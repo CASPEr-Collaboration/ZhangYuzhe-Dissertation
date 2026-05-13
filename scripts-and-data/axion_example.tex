@@ -1,0 +1,185 @@
+
+\documentclass[varwidth=true,border=6pt]{standalone}
+\usepackage{fancyvrb}
+\usepackage{color}
+\usepackage[utf8]{inputenc}
+\usepackage{varwidth}
+
+
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\@namedef{PY@tok@w}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\@namedef{PY@tok@c}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.38,0.63,0.69}{##1}}}
+\@namedef{PY@tok@cp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.44,0.13}{##1}}}
+\@namedef{PY@tok@cs}{\def\PY@tc##1{\textcolor[rgb]{0.38,0.63,0.69}{##1}}\def\PY@bc##1{{\setlength{\fboxsep}{0pt}\colorbox[rgb]{1.00,0.94,0.94}{\strut ##1}}}}
+\@namedef{PY@tok@k}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.44,0.13}{##1}}}
+\@namedef{PY@tok@kp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.44,0.13}{##1}}}
+\@namedef{PY@tok@kt}{\def\PY@tc##1{\textcolor[rgb]{0.56,0.13,0.00}{##1}}}
+\@namedef{PY@tok@o}{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\@namedef{PY@tok@ow}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.44,0.13}{##1}}}
+\@namedef{PY@tok@nb}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.44,0.13}{##1}}}
+\@namedef{PY@tok@nf}{\def\PY@tc##1{\textcolor[rgb]{0.02,0.16,0.49}{##1}}}
+\@namedef{PY@tok@nc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.05,0.52,0.71}{##1}}}
+\@namedef{PY@tok@nn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.05,0.52,0.71}{##1}}}
+\@namedef{PY@tok@ne}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.44,0.13}{##1}}}
+\@namedef{PY@tok@nv}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.38,0.84}{##1}}}
+\@namedef{PY@tok@no}{\def\PY@tc##1{\textcolor[rgb]{0.38,0.68,0.84}{##1}}}
+\@namedef{PY@tok@nl}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.13,0.44}{##1}}}
+\@namedef{PY@tok@ni}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.84,0.33,0.22}{##1}}}
+\@namedef{PY@tok@na}{\def\PY@tc##1{\textcolor[rgb]{0.25,0.44,0.63}{##1}}}
+\@namedef{PY@tok@nt}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.02,0.16,0.45}{##1}}}
+\@namedef{PY@tok@nd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.33,0.33,0.33}{##1}}}
+\@namedef{PY@tok@s}{\def\PY@tc##1{\textcolor[rgb]{0.25,0.44,0.63}{##1}}}
+\@namedef{PY@tok@sd}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.44,0.63}{##1}}}
+\@namedef{PY@tok@si}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.44,0.63,0.82}{##1}}}
+\@namedef{PY@tok@se}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.25,0.44,0.63}{##1}}}
+\@namedef{PY@tok@sr}{\def\PY@tc##1{\textcolor[rgb]{0.14,0.33,0.53}{##1}}}
+\@namedef{PY@tok@ss}{\def\PY@tc##1{\textcolor[rgb]{0.32,0.47,0.09}{##1}}}
+\@namedef{PY@tok@sx}{\def\PY@tc##1{\textcolor[rgb]{0.78,0.36,0.04}{##1}}}
+\@namedef{PY@tok@m}{\def\PY@tc##1{\textcolor[rgb]{0.25,0.63,0.44}{##1}}}
+\@namedef{PY@tok@gh}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gu}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\@namedef{PY@tok@gd}{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\@namedef{PY@tok@gi}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\@namedef{PY@tok@gr}{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\@namedef{PY@tok@ge}{\let\PY@it=\textit}
+\@namedef{PY@tok@gs}{\let\PY@bf=\textbf}
+\@namedef{PY@tok@ges}{\let\PY@bf=\textbf\let\PY@it=\textit}
+\@namedef{PY@tok@gp}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.78,0.36,0.04}{##1}}}
+\@namedef{PY@tok@go}{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\@namedef{PY@tok@gt}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\@namedef{PY@tok@err}{\def\PY@bc##1{{\setlength{\fboxsep}{\string -\fboxrule}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}}
+\@namedef{PY@tok@kc}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.44,0.13}{##1}}}
+\@namedef{PY@tok@kd}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.44,0.13}{##1}}}
+\@namedef{PY@tok@kn}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.44,0.13}{##1}}}
+\@namedef{PY@tok@kr}{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.44,0.13}{##1}}}
+\@namedef{PY@tok@bp}{\def\PY@tc##1{\textcolor[rgb]{0.00,0.44,0.13}{##1}}}
+\@namedef{PY@tok@fm}{\def\PY@tc##1{\textcolor[rgb]{0.02,0.16,0.49}{##1}}}
+\@namedef{PY@tok@vc}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.38,0.84}{##1}}}
+\@namedef{PY@tok@vg}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.38,0.84}{##1}}}
+\@namedef{PY@tok@vi}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.38,0.84}{##1}}}
+\@namedef{PY@tok@vm}{\def\PY@tc##1{\textcolor[rgb]{0.73,0.38,0.84}{##1}}}
+\@namedef{PY@tok@sa}{\def\PY@tc##1{\textcolor[rgb]{0.25,0.44,0.63}{##1}}}
+\@namedef{PY@tok@sb}{\def\PY@tc##1{\textcolor[rgb]{0.25,0.44,0.63}{##1}}}
+\@namedef{PY@tok@sc}{\def\PY@tc##1{\textcolor[rgb]{0.25,0.44,0.63}{##1}}}
+\@namedef{PY@tok@dl}{\def\PY@tc##1{\textcolor[rgb]{0.25,0.44,0.63}{##1}}}
+\@namedef{PY@tok@s2}{\def\PY@tc##1{\textcolor[rgb]{0.25,0.44,0.63}{##1}}}
+\@namedef{PY@tok@sh}{\def\PY@tc##1{\textcolor[rgb]{0.25,0.44,0.63}{##1}}}
+\@namedef{PY@tok@s1}{\def\PY@tc##1{\textcolor[rgb]{0.25,0.44,0.63}{##1}}}
+\@namedef{PY@tok@mb}{\def\PY@tc##1{\textcolor[rgb]{0.25,0.63,0.44}{##1}}}
+\@namedef{PY@tok@mf}{\def\PY@tc##1{\textcolor[rgb]{0.25,0.63,0.44}{##1}}}
+\@namedef{PY@tok@mh}{\def\PY@tc##1{\textcolor[rgb]{0.25,0.63,0.44}{##1}}}
+\@namedef{PY@tok@mi}{\def\PY@tc##1{\textcolor[rgb]{0.25,0.63,0.44}{##1}}}
+\@namedef{PY@tok@il}{\def\PY@tc##1{\textcolor[rgb]{0.25,0.63,0.44}{##1}}}
+\@namedef{PY@tok@mo}{\def\PY@tc##1{\textcolor[rgb]{0.25,0.63,0.44}{##1}}}
+\@namedef{PY@tok@ch}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.38,0.63,0.69}{##1}}}
+\@namedef{PY@tok@cm}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.38,0.63,0.69}{##1}}}
+\@namedef{PY@tok@cpf}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.38,0.63,0.69}{##1}}}
+\@namedef{PY@tok@c1}{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.38,0.63,0.69}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+\begin{document}
+\begin{varwidth}{0.9\linewidth}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{c+c1}{\PYZsh{} import packages}
+\PY{o}{.}\PY{o}{.}\PY{o}{.}
+
+\PY{c+c1}{\PYZsh{} Define the Xe\PYZhy{}129 sample with gyromagnetic ratio,}
+\PY{c+c1}{\PYZsh{} mass density, molar mass, number of spins per molecule,}
+\PY{c+c1}{\PYZsh{} relaxation times, volume, magnetic dipole moment,}
+\PY{c+c1}{\PYZsh{} temperature, and polarization.}
+\PY{n}{sample} \PY{o}{=} \PY{n}{Sample}\PY{p}{(}
+    \PY{n}{gamma}\PY{o}{=}\PY{n}{gamma\PYZus{}Xe129}\PY{p}{,}
+    \PY{n}{massDensity}\PY{o}{=}\PY{n}{PQ}\PY{p}{(}\PY{l+m+mf}{3.1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{g / cm**3 }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+    \PY{n}{molarMass}\PY{o}{=}\PY{n}{PQ}\PY{p}{(}\PY{l+m+mf}{131.29}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{g / mol}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+    \PY{n}{numOfSpinsPerMolecule}\PY{o}{=}\PY{n}{PQ}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+    \PY{n}{T2}\PY{o}{=}\PY{n}{PQ}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{minute}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+    \PY{n}{T1}\PY{o}{=}\PY{n}{PQ}\PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{minute}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+    \PY{n}{vol}\PY{o}{=}\PY{n}{PQ}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cm**3}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+    \PY{n}{mu}\PY{o}{=}\PY{n}{mu\PYZus{}Xe129}\PY{p}{,}
+    \PY{n}{temp}\PY{o}{=}\PY{n}{PQ}\PY{p}{(}\PY{l+m+mi}{300}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{K}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+    \PY{n}{pol}\PY{o}{=}\PY{n}{PQ}\PY{p}{(}\PY{l+m+mf}{0.5}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Define the axion field with axion Compton frequency}
+\PY{c+c1}{\PYZsh{} and axion\PYZhy{}nucleon coupling strength}
+\PY{n}{axion} \PY{o}{=} \PY{n}{MilkyWayAxionHalo}\PY{p}{(}
+    \PY{n}{nu\PYZus{}a}\PY{o}{=}\PY{n}{PQ}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{kHz}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+    \PY{n}{g\PYZus{}aNN}\PY{o}{=}\PY{n}{PQ}\PY{p}{(}\PY{l+m+mf}{1.0e\PYZhy{}9}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{GeV**(\PYZhy{}1)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Set the bias field strength, direction, and homogeneity}
+\PY{n}{magnet} \PY{o}{=} \PY{n}{Magnet}\PY{p}{(}
+    \PY{n}{B0}\PY{o}{=}\PY{n}{axion}\PY{o}{.}\PY{n}{nu\PYZus{}a\PYZus{}eff} \PY{o}{/} \PY{p}{(}\PY{n}{sample}\PY{o}{.}\PY{n}{gamma} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+    \PY{n}{direction}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
+    \PY{n}{FWHM}\PY{o}{=}\PY{n}{PQ}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ppm}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Bundle all inputs into one dictionary}
+\PY{n}{params}\PY{p}{:} \PY{n}{SimuParams} \PY{o}{=} \PY{p}{\PYZob{}}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{key\PYZus{}info}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{nu\PYZus{}a}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{axion}\PY{o}{.}\PY{n}{nu\PYZus{}a}\PY{p}{\PYZcb{}}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{axion}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{axion}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{sample}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{sample}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{magnet}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{magnet}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{excField}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{MagField}\PY{p}{(}\PY{p}{)}\PY{p}{,}  \PY{c+c1}{\PYZsh{} excitation field}
+    \PY{c+c1}{\PYZsh{} rms of the pseudomagnetic field}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{B\PYZus{}a\PYZus{}rms}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{axion}\PY{o}{.}\PY{n}{getRabiFreq}\PY{p}{(}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{n}{sample}\PY{o}{.}\PY{n}{gamma}\PY{p}{)}\PY{p}{,}
+    \PY{c+c1}{\PYZsh{} Number of random field realizations.}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{numFields}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{1000}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rand\PYZus{}seed}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{l+m+mi}{10}\PY{p}{,}  \PY{c+c1}{\PYZsh{} random seed}
+    \PY{c+c1}{\PYZsh{} amplitude, polar and azimuthal angle}
+    \PY{c+c1}{\PYZsh{} of the initial magnetization}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{init\PYZus{}M}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{PQ}\PY{p}{(}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{init\PYZus{}M\PYZus{}theta}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{PQ}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rad}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{init\PYZus{}M\PYZus{}phi}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{PQ}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rad}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+    \PY{c+c1}{\PYZsh{} sampling rate and duration of the time series}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{PQ}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Hz}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{duration}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:} \PY{n}{PQ}\PY{p}{(}\PY{l+m+mi}{4000}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{s}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}
+\PY{p}{\PYZcb{}}
+
+\PY{c+c1}{\PYZsh{} Create and execute the simulation job collection}
+\PY{n}{simulations} \PY{o}{=} \PY{n}{Simulations}\PY{p}{(}\PY{n}{all\PYZus{}params}\PY{o}{=}\PY{p}{[}\PY{n}{params}\PY{p}{]}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} run the simulation}
+\PY{n}{simulations}\PY{o}{.}\PY{n}{run}\PY{p}{(}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Post\PYZhy{}process results with summary stats and plotting}
+\PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{item} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{simulations}\PY{o}{.}\PY{n}{pool}\PY{p}{)}\PY{p}{:}
+    \PY{n}{item}\PY{o}{.}\PY{n}{simu}\PY{o}{.}\PY{n}{keepMeanStd}\PY{p}{(}\PY{p}{)}
+    \PY{n}{item}\PY{o}{.}\PY{n}{simu}\PY{o}{.}\PY{n}{displayTrjries}\PY{p}{(}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} Save to .pkl file for later analysis}
+\PY{n}{simulations}\PY{o}{.}\PY{n}{saveToPkl}\PY{p}{(}\PY{n+nb}{dir}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{path\PYZus{}to\PYZus{}save}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\end{varwidth}
+\end{document}

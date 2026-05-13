@@ -1,0 +1,185 @@
+\appendix
+
+\chapter{Numerical simulation with axionbloch}
+
+Key questions to be answered:
+    \begin{itemize}
+        \item 
+        \item 
+        \item 
+    \end{itemize}
+\begin{jointwork}
+    ???
+\end{jointwork}
+
+\section{Hypothesis test}
+
+Key questions to be answered:
+    \begin{itemize}
+        \item How to set up hypothesis? 
+        \item 
+        \item 
+    \end{itemize}
+
+\section{The Neyman--Pearson Lemma}
+
+The \emph{Neyman--Pearson lemma} is a foundational result in statistical hypothesis testing. It establishes the form of the most powerful test for discriminating between two simple hypotheses at a fixed significance level.
+
+\subsection{Problem Setup}
+
+Suppose we observe data $x$ drawn from a probability distribution. We wish to test
+
+\[
+H_0 : x \sim f_0(x)
+\]
+
+against
+
+\[
+H_1 : x \sim f_1(x),
+\]
+
+where both $f_0(x)$ and $f_1(x)$ are fully specified probability density functions. Such hypotheses are referred to as \emph{simple hypotheses}.
+
+The goal is to construct a statistical test that
+
+\begin{itemize}
+    \item maintains a fixed probability of false alarm (Type I error),
+    \item while maximizing the probability of correctly detecting the alternative hypothesis (power).
+\end{itemize}
+
+\subsection{Likelihood Ratio}
+
+The key quantity is the likelihood ratio
+
+\[
+\Lambda(x)
+=
+\frac{f_1(x)}{f_0(x)}.
+\]
+
+This ratio quantifies how much more likely the observed data is under the alternative hypothesis than under the null hypothesis.
+
+Large values of $\Lambda(x)$ indicate that the observation is more consistent with $H_1$ than with $H_0$.
+
+\subsection{Statement of the Neyman--Pearson Lemma}
+
+For a fixed significance level $\alpha$, the most powerful test of $H_0$ against $H_1$ is given by
+
+\[
+\Lambda(x) > k,
+\]
+
+where the threshold $k$ is chosen such that
+
+\[
+P(\Lambda(x) > k \mid H_0) = \alpha.
+\]
+
+Equivalently, the optimal decision rule is:
+
+\[
+\text{Reject } H_0
+\quad \text{if} \quad
+\frac{f_1(x)}{f_0(x)} > k.
+\]
+
+The lemma therefore establishes that the likelihood-ratio test is optimal among all tests with the same false-positive rate.
+
+\subsection{Type I Error and Power}
+
+The significance level is defined as
+
+\[
+\alpha
+=
+P(\text{reject } H_0 \mid H_0 \text{ true}),
+\]
+
+which represents the probability of falsely rejecting the null hypothesis.
+
+The power of the test is
+
+\[
+1-\beta
+=
+P(\text{reject } H_0 \mid H_1 \text{ true}),
+\]
+
+which measures the probability of correctly detecting the alternative hypothesis.
+
+The Neyman--Pearson lemma guarantees that the likelihood-ratio test maximizes the power for a fixed $\alpha$.
+
+\subsection{Gaussian Example}
+
+Consider the case
+
+\[
+X \sim \mathcal{N}(\mu,\sigma^2),
+\]
+
+with known variance $\sigma^2$. We test
+
+\[
+H_0 : \mu = 0
+\]
+
+against
+
+\[
+H_1 : \mu = 1.
+\]
+
+Under the null hypothesis,
+
+\[
+f_0(x)
+=
+\frac{1}{\sqrt{2\pi\sigma^2}}
+\exp\left(
+-\frac{x^2}{2\sigma^2}
+\right)\,,
+\]
+
+while under the alternative hypothesis,
+
+\[
+f_1(x)
+=
+\frac{1}{\sqrt{2\pi\sigma^2}}
+\exp\left(
+-\frac{(x-1)^2}{2\sigma^2}
+\right).
+\]
+
+The likelihood ratio is therefore
+
+\[
+\Lambda(x)
+=
+\frac{f_1(x)}{f_0(x)}
+=
+\exp\left[
+-\frac{(x-1)^2}{2\sigma^2}
++
+\frac{x^2}{2\sigma^2}
+\right].
+\]
+
+Expanding the exponent,
+
+\[
+(x-1)^2 = x^2 - 2x + 1,
+\]
+
+so that
+
+\[
+\log \Lambda(x)
+=
+\frac{x}{\sigma^2}
+-
+\frac{1}{2\sigma^2}.
+\]
+
+Hence, rejecting for large $\Lambda(x)$ is equivalent to rejecting for sufficiently large $x$.

@@ -34,6 +34,7 @@ venv/
 *.tsv
 *.png
 *.jpg
+*.jpeg
 
 # Ignore internal files
 # _internal/
