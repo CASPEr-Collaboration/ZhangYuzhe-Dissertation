@@ -32,9 +32,9 @@ venv/
 *.hdf5
 *.csv
 *.tsv
-*.png
-*.jpg
-*.jpeg
+# *.png
+# *.jpg
+# *.jpeg
 
 # Ignore internal files
 # _internal/
