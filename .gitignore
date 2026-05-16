@@ -39,3 +39,17 @@ venv/
 # Ignore internal files
 # _internal/
 fonts/
+
+# ignore tex temp / log files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.loc
+*.out.ps
+*.run.xml
+*.soc
+*.toc

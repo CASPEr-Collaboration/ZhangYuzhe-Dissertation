@@ -23,6 +23,7 @@
 
 \usepackage[utf8]{inputenc} % Allows to input UTF8 characters.
 \usepackage[T1]{fontenc}    % Allows to print special characters correctly.
+\usepackage{iftex}
 \usepackage
 [
     ngerman,         % German is used for the German abstract.
@@ -32,8 +33,10 @@
 
 % The following two commands make it such that the LaTeX compiler of Overleaf produces a PDF from with ligatures and mathematical symbols can be copied correctly.
 % Also refer to: https://tex.stackexchange.com/questions/64188/what-are-good-ways-to-make-pdflatex-output-copy-and-pasteable
+\ifPDFTeX
 \input glyphtounicode
 \pdfgentounicode=1
+\fi
 
 
 %%%%%%%%%%%%%%%

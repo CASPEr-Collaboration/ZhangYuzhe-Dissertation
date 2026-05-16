@@ -1,0 +1,244 @@
+%_______________________________________________________________________________
+%class
+%_______________________________________________________________________________
+%\documentclass[a4paper,11pt,onecolumn,final,german,openbib]{scrbook}
+\documentclass[a4paper,11pt,oneside,final,english,pdftex]{scrbook}
+%_______________________________________________________________________________
+% page borders
+%_______________________________________________________________________________
+\addtolength{\headheight}{2cm}
+%\addtolength{\topmargin}{2cm}
+\setlength{\oddsidemargin}{1.0cm}
+\setlength{\evensidemargin}{0.5cm}
+\setlength{\textwidth}{14.3cm}
+\setlength{\parindent}{10pt}
+
+%_______________________________________________________________________________
+% packages
+%_______________________________________________________________________________
+%\usepackage{english}
+%\usepackage{amsmath, amssymb}
+% \usepackage{amsmath}
+\usepackage{amsmath}
+\usepackage{mathabx}
+\usepackage{theorem}
+\theoremstyle{plain}
+\newtheorem{assumption}{Assumption}
+ 
+\usepackage[utf8]{inputenc}
+% \usepackage{cleveref}
+\usepackage{enumerate}
+\usepackage{multirow}
+%\usepackage{subfigure}
+\usepackage{comment}
+\usepackage{dsfont}
+\usepackage{slashed}
+\usepackage{textcomp}
+\usepackage{url}
+\usepackage{braket}
+
+%_______________________________________________________________________________
+%For comments and notations
+%_______________________________________________________________________________
+\usepackage[dvipsnames,svgnames,x11names]{xcolor}
+% \definecolor{Yu}{RGB}{9, 77, 127}
+\usepackage[draft, commandnameprefix=always, commentmarkup=todo, markup=underlined]{changes}
+\definechangesauthor[color=NavyBlue]{Yu}
+
+\newcommand{\DB}[1]{\textcolor{blue}{#1}}
+\newcommand{\YZ}[1]{\textcolor{teal}{#1}}
+
+\usepackage{todonotes}
+\setcommentmarkup{\todo[color={authorcolor!20},size=\scriptsize]{#3: #1}}
+% \setcommentmarkup{#1}
+% \setcommentmarkup{#2}
+
+%_______________________________________________________________________________
+% Figures
+%_______________________________________________________________________________
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+% \usepackage{floatrow}
+% \usepackage[label font=bf,labelformat=simple]{subfig}
+% \usepackage{caption}
+% \floatsetup[figure]{style=plain,subcapbesideposition=top}
+
+\usepackage[export]{adjustbox}
+\renewcommand{\figurename}{Fig.}
+\usepackage{pgf-pie} % 
+%_______________________________________________________________________________
+% Tables
+%_______________________________________________________________________________
+\usepackage{rotating}
+\usepackage{booktabs}
+%\usepackage{tablefootnote}
+\usepackage{multirow}
+% SI unit
+\usepackage{siunitx}
+%\sisetup{evaluate-expression}
+\DeclareSIUnit\torr{torr}
+\DeclareSIUnit\ppm{ppm}
+\DeclareSIUnit\ppb{ppb}
+\DeclareSIUnit\bar{bar}
+\DeclareSIUnit\gauss{G}
+% \DeclareSIUnit\Phinot{\Phi_{0}}
+% chemical formula
+\usepackage{chemformula}
+% \renewcommand\ch{chem}
+\usepackage{chemfig}
+
+\usepackage{tikz}
+\newcommand{\cir}[1]{\tikz[baseline]{%
+    \node[anchor=base, draw, circle, inner sep=0, minimum width=1.2em]{#1};}}
+
+
+
+%_______________________________________________________________________________
+% Reference and citation
+%_______________________________________________________________________________
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true, %set true if you want colored links
+    linktoc=all,     %set to all if you want both sections and subsections linked
+    linkcolor=black,  %color for internal links from \ref{}
+    urlcolor=black,    %color for clickable url links
+    citecolor=black        %color for citations
+}
+\usepackage[backend=biber,sorting=none]{biblatex}
+%\usepackage[backend=bibtex,style=numeric]{biblatex}
+\DeclareCiteCommand{\supercite}[\mkbibsuperscript]
+  {\iffieldundef{prenote}
+     {}
+     {\BibliographyWarning{Ignoring prenote argument}}%
+   \iffieldundef{postnote}
+     {}
+     {\BibliographyWarning{Ignoring postnote argument}}}
+  {\usebibmacro{citeindex}%
+   \bibopenbracket\usebibmacro{cite}\bibclosebracket}
+  {\supercitedelim}
+  {}
+\addbibresource{Bibliography.bib}
+%\usepackage[numbers,compress]{natbib}
+%\usepackage{chapterbib}
+
+%_______________________________________________________________________________
+% bold fonts for headings
+%_______________________________________________________________________________
+\font\afont=cmssbx10 scaled \magstep5     % for the title
+\font\bfont=cmssbx10 scaled \magstep4     % for chapter headings
+\font\cfont=cmssbx10 scaled \magstep3
+\font\dfont=cmssbx10 scaled \magstep2     % for section headings and author name
+\font\efont=cmssbx10 scaled \magstephalf
+
+%_______________________________________________________________________________
+% index depth
+%_______________________________________________________________________________
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+%_______________________________________________________________________________
+% new commands
+%_______________________________________________________________________________
+\newcommand{\demi}{\frac{1}{2}}
+%_______________________________________________________________________________
+% renewed commands
+%_______________________________________________________________________________
+% \renewcommand{\topfraction}{1.}       % this is important for figure placement
+% \renewcommand{\bottomfraction}{1.}
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}
+}
+\makeatother
+
+%_______________________________________________________________________________
+% special words, hyphenation
+%_______________________________________________________________________________
+\hyphenation{Ba-che-lor-ar-beit}
+
+\pagestyle{empty}
+\pagestyle{headings}
+%for changing the style on a specific page use \thispagestyle{e.g., empty}
+
+%_______________________________________________________________________________
+% begin document 
+%_______________________________________________________________________________
+\begin{document}
+\pagenumbering{roman}
+
+%_______________________________________________________________________________
+\begin{titlepage}
+  \vspace*{6mm}
+  \begin{center}
+     {\afont Search for axion-like particles by performing NMR on a thermally polarized sample}
+     \\[3.5cm]
+     {\large von}
+     \\[3.5cm]
+     {\dfont Yuzhe Zhang}
+     \\[2cm]
+     {\large Masterarbeit in Physik \\
+        vorgelegt dem Fachbereich Physik, Mathematik und Informatik (FB 08) \\
+        der Johannes Gutenberg-Universit\"at Mainz \\
+        17.09.2022}
+   \end{center}
+   %\vfill
+   1. Gutachter: Prof. Dr. Dmitry Budker\\
+   2. Gutachter: Prof. Dr. Matthias Schott\\
+   %\vfill	
+\end{titlepage}
+
+\thispagestyle{empty}
+Ich versichere, dass ich die Arbeit selbstst\"andig verfasst und keine 
+anderen als die angegebenen Quellen und Hilfsmittel benutzt sowie 
+Zitate kenntlich gemacht habe.
+\\
+\\[3.5cm] 
+Mainz, den 17.09.2022 
+\vfill
+\noindent 
+Yuzhe Zhang\\
+Matter Antimatter Asymmetry Section\\
+Helmholtz Institut Mainz\\
+Staudingerweg 18\\
+Johannes Gutenberg-Universit\"at
+D-55099 Mainz\\
+{\ttfamily yuhzhang@uni-mainz.de}\\
+{\ttfamily yzhang01@students.uni-mainz.de}
+%_______________________________________________________________________________
+%\renewcommand\contentsname{Inhaltsverzeichnis}
+\renewcommand\figurename{Figure}
+\renewcommand\tablename{Table}
+\tableofcontents
+\clearpage
+
+\mainmatter
+\sloppy
+
+%_______________________________________________________________________________
+\listoffigures
+\listoftables
+\include{01_Introduction}
+\include{01.5_Design}
+\include{02_Apparatus}
+\include{03_Diagnostic}
+\include{04_Results}
+\include{05_Conclusion}
+
+%_______________________________________________________________________________
+\backmatter
+%\begin{appendix}
+%_______________________________________________________________________________
+% \include{06_Appendix}
+%\include{07_Danksagung}
+%\end{appendix}
+
+
+% \bibliographystyle{h-physrev3}
+% \bibliographystyle{spphys3}
+\printbibliography
+\end{document}  
+        
+        

@@ -10,52 +10,98 @@ Interesting questions:
 \end{jointwork}
 
 
+The starting point of this thesis is the observation that NMR is a sensitive probe of magnetic fields, while axionlike particles can be treated as an effective oscillating pseudomagnetic field acting on nuclear spins. This makes NMR a natural readout channel for dark-matter searches in the low-field regime.
+
+Astrophysical evidence for dark matter comes from observations such as galaxy rotation curves: the visible matter alone does not explain the measured dynamics. Axions and axionlike particles are attractive candidates because they are weakly coupled, can occupy a large parameter space, and may generate detectable spin-precession signatures through non-gravitational interactions.
+
+The purpose of this introductory chapter is therefore to connect the language of NMR with the language of axion searches. The later chapters use that connection to motivate the detector design, the scan strategy, and the analysis of the measured signal.
+
 % \section{Interaction with spins}
 \section{Nuclear magnetic resonance}\label{sec:NMR}
+Nuclear magnetic resonance is a technique for studying nuclear spins in magnetic fields. In the presence of a leading field, spin states split by the Zeeman effect and a polarized sample acquires a net magnetization that precesses at the Larmor frequency. Because the resonant frequency is directly proportional to the magnetic field, NMR is a precision tool for field measurement.
+
+For the purposes of this thesis, the most important features of NMR are its sensitivity to weak fields, its applicability from zero to very high field, and its rich time-domain response. Those properties make it possible to reinterpret axionlike spin precession as a small perturbation on an otherwise standard NMR experiment.
 
 \subsection{Zeeman splitting and polarization}\label{sec:NMR:Zeeman}
+In a magnetic field, a spin-$1/2$ system splits into two energy levels. At thermal equilibrium, the populations are slightly imbalanced, producing a polarization proportional to the magnetic field and inversely proportional to temperature. This equilibrium polarization is the origin of the net magnetization used in NMR.
+
+The practical consequence is that stronger leading fields generally improve polarization, but even at high field the thermal imbalance remains small. Hyperpolarization methods can therefore be extremely valuable when signal strength is limited by the available spin population rather than by detector noise.
 
 \subsection{Spin-projection noise}\label{sec:NMR:SPN}
+Even in the absence of a leading field, an ensemble of many spins does not cancel perfectly. Statistical fluctuations leave a residual moment of order $\sqrt{N}\mu$, which is known as spin-projection noise. This sets a fundamental scale for very low-noise measurements.
+
+SPN is usually negligible in ordinary NMR, but it becomes relevant when the signal amplitude is reduced to the point where statistical fluctuations and instrumental noise are comparable. In the axion-search context, it is one of the natural reference scales for the smallest measurable spin signal.
 
 \subsection{Relaxations}\label{sec:NMR:Relax}
+Relaxation describes the return of the spin ensemble toward equilibrium after it has been perturbed. Longitudinal relaxation $T_1$ controls how quickly the magnetization along the leading field rebuilds, while transverse relaxation $T_2^*$ determines how quickly coherent precession dephases.
+
+These time scales are central to the rest of the thesis because they set the window over which the signal can be observed coherently. In particular, the weakly driven axion signal is only useful if its coherence time and the detector linewidth are compatible with the relaxation times of the sample.
 
 \subsubsection{$T_1$ relaxation}\label{sec:NMR:Relax:T1}
+Longitudinal relaxation governs how the population difference between spin states rebuilds after perturbation. In practice, a short $T_1$ is helpful for rapid repetition, while a long $T_1$ can preserve polarization for longer measurements.
 
 \subsubsection{$T_2^*$ relaxation}\label{sec:NMR:Relax:T2}
+Transverse relaxation combines microscopic spin-spin interactions and macroscopic field inhomogeneity. It determines the decay of the free-induction signal and directly controls the linewidth in the frequency domain. For field searches, a narrower linewidth can improve sensitivity, but only if the coherence time remains long enough to integrate signal power efficiently.
 
 \subsubsection{Cross relaxation}
+Cross relaxation is one of the mechanisms by which energy can be exchanged between coupled spin species or spin reservoirs. It is relevant whenever the sample or environment contains more than one spin system, because it can alter the effective relaxation rates seen in the measurement.
 
 \subsection{Chemical shift}
+Chemical shielding changes the local magnetic field felt by a nucleus and therefore shifts the resonance frequency. The shift is typically small on an absolute scale, but it can be crucial in spectroscopy because it makes nuclei in different chemical environments distinguishable.
+
+In the current thesis, chemical shift matters mainly as a source of spectral structure and as a reminder that the resonant response is not determined by the external field alone.
 
 \subsection{Spin-spin coupling}
+Coupling between nuclear spins splits resonance lines into multiplets. This effect is useful rather than harmful when the goal is signal verification, because the pattern of peaks can identify a particular molecular species and help distinguish genuine NMR signals from noise spikes.
+
+For the calibration sample used later in the thesis, J-coupling provides a clear spectral signature that is much easier to recognize than a single unresolved line.
 
 \subsection{Experimental schemes}
+Two pulse-based schemes are especially useful. Free induction decay measures the coherent response after a tipping pulse, while spin echo refocuses dephasing and gives access to the intrinsic transverse relaxation time. Both are diagnostic tools that help characterize the apparatus before an axion measurement.
 
 \subsubsection{Free decay}\label{sec:NMR:scheme:1Pulse}
+After a $\pi/2$ pulse, the magnetization is tipped into the transverse plane and then decays with the dephasing time $T_2^*$. The resulting free-induction signal is the simplest way to measure resonance frequency and linewidth.
 
 \subsubsection{Spin echo}\label{sec:NMR:scheme:echo}
+Spin echo uses a $\pi$ pulse to reverse dephasing from static field inhomogeneity. By recovering the signal at the echo time, it separates true spin-spin relaxation from broadening caused by imperfect field homogeneity.
 
 
 \section{Dark matter hypothesis}
+The concept of dark matter arose from astronomical observations that could not be explained by visible matter and standard gravity alone. Galaxy rotation curves are the classic example: the outer parts of galaxies rotate too quickly for the observed baryonic mass to provide the required gravitational binding.
+
+This empirical gap motivated a broad search for non-luminous matter. For this thesis, the important point is not the historical detail but the fact that dark matter must interact with ordinary matter in some way if it is to be detected directly.
 
 \subsection{History}
+From early galaxy-dynamics studies to later lensing and large-scale structure measurements, the dark-matter hypothesis was strengthened by evidence from many independent observations. The basic conclusion is that a large fraction of the matter content of the universe is not directly visible.
 
 \subsection{Recent developments}
+Modern dark-matter searches span weakly interacting particles, ultralight bosons, and direct-detection strategies based on precision measurement. Axions and axionlike particles are especially interesting because they connect cosmology with laboratory-scale experiments through tiny but coherent effects.
 
 \section{Axions and axionlike particles}
+The QCD axion was originally proposed as a solution to the strong $CP$ problem. Axionlike particles generalize the idea to a broader class of light bosons whose masses and couplings are not fixed by the QCD mechanism alone.
+
+The relevance of axions to this thesis is that they can generate oscillating effective fields with frequencies set by the particle mass. That makes them accessible to resonant experiments such as NMR.
 
 \subsection{QCD axion}
+The QCD axion is a hypothetical pseudoscalar particle that appears when a global symmetry is introduced to explain why strong interactions conserve $CP$ so well. Its properties are tightly linked to the QCD scale, which makes it a special case rather than the most general one.
 
 \subsection{Axionlike particles}
+Axionlike particles share the oscillatory and weakly coupled character of the QCD axion, but their mass range can be much wider. This flexibility makes them attractive targets for laboratory searches.
 
 \subsection{Non-gravitational interactions}
+The most relevant non-gravitational couplings for this thesis are the ones to photons, gluons, and fermions. Axion-fermion couplings are particularly interesting for spin-precession experiments because they can appear as an effective interaction with nuclear spins.
 
 including \textit{Experiment design for axion research}
 
 \section{CASPEr project}
+CASPEr is a family of proposed experiments that use nuclear spins to search for axion-induced effects. The idea is to translate the tiny axion coupling into a measurable precession or phase shift in a carefully controlled NMR setup.
 
-% \subsection{Idea}
-Idea and method. 
+The project has several branches, including electric and gradient-based searches, and both low-field and high-field implementations. The low-field regime is especially relevant when the goal is to scan a wide frequency band with high sensitivity to weak couplings.
+
+\subsection{Idea}
+The central idea is to tune the NMR resonance to a frequency that matches the axion Compton frequency. If the two frequencies align, the axion field can act like a tiny driving field and induce a coherent response in the sample.
+
+In practice, the method reduces to a frequency scan: either the signal appears at a particular resonance or the absence of a signal constrains the coupling strength over the scanned band.
 
 CASPEr-E
 

@@ -1,0 +1,587 @@
+\chapter{Result Analysis}
+\begin{comment}
+
+\end{comment}
+
+% As a unique spin-precession experiment among DM research and NMR experiments, CASPEr calls for development of new analytic tools for data analysis. 
+In the first few sections of this chapter, the process of NMR during axion measurement is revisited given that the magnitude of pseudo-magnetic field can be relatively small compared to regular NMR experiments. Stochastic nature of axion field is also considered. A computer simulation for NMR driven by stochastic axion field is designed and implemented to explore the signal signature in the magnetometer. By the end of the chapter, a 10-hr axion measurement is analyzed under the framework provided here. 
+
+\section{Weakly-driven NMR}
+
+The frequency band that CASPEr-gradient focuses on is approximately \SI{1}{\kHz} to \SI{600}{\MHz}. 
+% As discussed in \S\,\ref{sec:Experiment_Design:Measurement_target}, the experimental phenomenon is axion field driving the magnetization vector towards transverse direction. 
+Magnetometer response to axion is more significant in case of strong coupling between axion field and nuclear spins. We discussed strong excitation field and precession signal induced by it in the pulsed-NMR scheme (see \S\,\ref{sec:NMR:Pulsed-NMR}). 
+However, in this section, we assume the coupling to be weak. Under such assumption, analysis of signal power is different from pulsed-NMR that we are familiar with. Therefore, before we start discussion on axion research, we prepare ourselves with knowledge of a NMR experiment with weak excitation field.
+% In the rest of this section, we start with a description of the physical process of weakly-driven NMR. Then a rough estimation and a more considerable analysis follows up in terms of quantitative conclusions. 
+
+\subsection{General picture}
+
+When there is no relaxation, the signal in pick-up coil scales with the transverse component of magnetization $ M_{xy}$: 
+\begin{equation}\label{eq:MxyM0_Be}
+    M_{xy} = M_{eff} \sin \theta = M_{eff} \sin \Omega t_e 
+    = M_{eff} \sin \left(\dfrac{1}{2} \gamma \mathrm{B}_e t_e \right)\,.
+\end{equation}
+Here $M_{eff}$ is the effective magnetization along the z-axis when at equilibrium. 
+$\theta$ is the tilt angle. 
+$\Omega$ is Rabi frequency. 
+The factor of $1/2$ originated from the rotating-wave approximation. $\gamma$ is the nuclear gyromagnetic ratio. $\mathrm{B}_e$ is the amplitude of excitation field. $t_e$ is excitation duration. 
+$M_{eff}$ is given by:
+\begin{equation}
+    M_{eff} = \mu p N_{eff} / V = M_0 \dfrac{N_{eff}}{N_{all}}\,,\label{eq:Meff_mu_p_Neff_V}\,
+\end{equation}
+where $\mu$ is the nuclear magnetic dipole moment, $p$ is the polarization, and $N_{eff} / V$ is the number of effective nuclear spins divided by sample volume. It has to be emphasized that ``effective'' is not equivalent to ``on-resonance''. The nuclear spins that are not on-resonance can still be tilt by the excitation field, though the tilt angle is smaller than that of on-resonance ones. 
+
+We can infer from Eq.\,\eqref{eq:MxyM0_Be} that the duration of $\pi/2$ pulse is:
+\begin{equation}
+    t_{\pi/2}= \dfrac{\pi}{2 \Omega}= \dfrac{\pi}{ \gamma \mathrm{B}_e }\,.  \label{eq:duration_pi/2pulse}
+    %  
+\end{equation}
+We denote transverse relaxation time as $\tau$ (here we do not use $T_2^{*}$ because we want to account for axion coherence time $\tau_a$). When $\mathrm{B}_e$ is large enough to satisfy $t_{\pi/2} \ll \tau$,we do not have to consider relaxation during the excitation. In contrast, when $\mathrm{B}_e$ is so weak that $t_{\pi/2} \gg \tau$ (say 10 times larger), we step into the regime of weakly-driven NMR. The weak-driving condition can be summarized as
+\begin{align}
+    \Omega \tau \ll 1\,. \label{eq:weakdriving}
+\end{align}
+
+
+%As mentioned above, the power of signal is proportional to the square of transverse magnetization vector. 
+Three mechanisms are involved in building up $M_{xy}$: excitation on transverse direction, transverse relaxation characterized by time $\tau$, longitudinal relaxation characterized by time $T_1$. Notice that the $T_1$ time matters when magnetization along the z-axis differs from its value at equilibrium (see Eq.\,\eqref{eq:BlochMz}). Since our discussion focuses on weakly-driven NMR, we can safely ignore it. %With two mechanisms left, we can try to draw the picture in time domain. 
+
+From weakly-driving condition $\tau \ll t_{\pi/2}$ we know the tilt angle $\theta \sim \Omega  \tau \ll 1$. Therefore one approximation we can make is $\sin \theta \approx \theta$. 
+% Besides, we can assume that the magnetization vector is initially along z-axis (even if this assumption is not true, the relaxation brings it to such a state after a few $T_1$ or $\tau$). 
+Furthermore, we can infer from Eq.\,\eqref{eq:MxyM0_Be} that:
+\begin{equation}
+    M_{xy}|_{t \ll t_{\pi/2}} \approx M_{eff} \Omega  t\,. 
+\end{equation}
+After the $M_{xy}$ evolves for long time ($\gg \tau$), the excitation and relaxation reach a dynamical balance where the magnitude of magnetization remains stationary. We predict that eventually $M_{xy} \approx  M_{eff} \Omega \tau$. This prediction agrees with more complicated analyses and also kinetic simulation results which are introduced in \S\,\ref{sec:weaklydrivenNMR:theo} and \S\,\ref{sec:Kinetic_simulation}. 
+
+\subsection{Theoretical analysis on weak-driving process}\label{sec:weaklydrivenNMR:theo}
+
+Assume that initially the magnetization $\textbf{M} = M_0 \mathbf{e}_z$. 
+Under excitation, the transverse magnetization $M_{xy}$ grows as $M_{eff} \sin \Omega t_e$. Therefore, within a short period of $\Delta t \ll \tau$, increment of $M_{xy}$ is 
+\begin{align}
+    \Delta M_{xy}(t) &\approx M_{eff} \dfrac{d \sin(\Omega t)}{dt} \Delta t\\
+    &\approx M_{eff} \Omega \cos(\Omega t) \Delta t\,.
+\end{align}
+Considering that the $t_{\pi/2}$ is much greater than measurement time $T$, we have $\Omega t \ll \pi/2$, and $\cos(\Omega t) \approx 1$, so that we can make further approximation:
+\begin{align}
+    \Delta M_{xy} &\approx M_{eff} \Omega \Delta t\,. \label{eq:DeltaMxy_excitation}
+\end{align}
+
+Meanwhile, transverse relaxation is suppressing the magnetization exponentially over time by $e^{-t/\tau}$ as indicated in Bloch equations:
+\begin{align}
+    M_{xy}(t + \Delta t) = e^{-\Delta t/\tau} M_{xy}(t)\,.\label{eq:DeltaMxy_relaxation}
+\end{align}
+The combination of these two mechanisms determines $M_{xy}$ at time $t$.
+
+Following the analyses on the kinetic process in Eqs.\,\eqref{eq:DeltaMxy_excitation} and \eqref{eq:DeltaMxy_relaxation}, 
+we slice time domain $[0,\,t]$ into $n$ fractions ($n \gg 1$) to consider the evolution of $M_{xy}$:  
+\begin{equation}
+    M_{xy}(i \Delta t ) =  M_{xy}((i-1) \Delta t )e^{-\Delta t/\tau} + M_{eff} \Omega \Delta t
+    \,,\label{eq:Mxi+1Mx}
+\end{equation}
+where  $\Delta t = t/n$. 
+% The evolution of $M_{xy}$ is dependent on its magnitude of the last moment
+
+% , . In each of these fractions, decrease of $M_{xy}$ due to relaxation can be accounted as a factor of $e^{-t/n\tau}$, while 
+% The relationship of $M_{xy}$ of neighboring time intervals is:
+Now We are able to compute $M_{xy}(t)$ from the Eq.\,\eqref{eq:Mxi+1Mx}:
+\begin{align*}
+    M_{xy} (t) &= M_{eff} \Omega  \Delta t \sum_{i=1}^{n} e^{-(i-1) \Delta t/\tau}\,. 
+\end{align*}
+
+Take $n\rightarrow \infty$ and $\Delta t \rightarrow 0$, then we have 
+% and consider that $\omega \Delta t \ll 1$, 
+\begin{align}
+    M_{xy} (t) &= M_{eff} \Omega \tau (1 - e^{- t/\tau})\,.\label{eq:Mxy_Meff_Omega_t}
+\end{align}
+After a sufficiently long time ($t \gg \tau$), the transverse magnetization can be obtained as
+\begin{equation}
+    M_{xy}|_{t \gg \tau} = M_{eff} \Omega  \tau\,.\label{eq:Mxy_Meff_Omega_tau}
+\end{equation}
+The corresponding dependence is shown in Fig.\,\ref{fig:weaklydrivenNMR}. We can find it that the $M_{xy}$ grows up linearly at first, and gradually approaches a constant value after a few of relaxation time $\tau$. %This is consistent with the picture of weakly-driven NMR we made at the beginning of this section. 
+\begin{figure}[htb]
+\centering
+    \includegraphics[width=1\textwidth]{figures/04_Result/Mxy_tau_theoandsimu20220721.png}
+    \caption{Weakly-driven NMR at different relaxation times. The excitation $\mathrm{B}_e$ is $10^{-14}\,\SI{}{\tesla}$ , and gyromagnetic ratio $\gamma$ is $2\pi\times$\SI{11.7}{\MHz/\tesla}. }
+    \label{fig:weaklydrivenNMR}
+\end{figure}
+%However, in axion research, we expect the coupling between axion and nuclear spins to be so weak that the relaxation time is much shorter than the duration for the magnetization vector
+
+The result in Eq.\,\eqref{eq:Mxy_Meff_Omega_t} is also the solution to the approximate Bloch equation in the rotating frame:
+\begin{equation}
+    \dfrac{d M_{xy}}{dt} = M_{eff}\Omega  - \dfrac{M_{xy}}{\tau}\, \label{eq:BlochMxyApprox}
+\end{equation}
+with the initial condition $M_{xy}|_{t=0} = 0$. 
+
+There is a trick to acquire of $M_{xy}|_{t\gg\tau}$. From the analysis of the kinetic process we know that $dM_{xy}/dt|_{t\gg \tau}=0$. Therefore from Eq.\,\eqref{eq:BlochMxyApprox} we can obtain $M_{xy}|_{t\gg\tau} = M_{eff} \Omega \tau$. 
+
+Another method to calculate magnetization is based on susceptibility. It was computed in \cite{Aybas_QuantumSensitivity} that the magnetization under continuous weak driving is
+\begin{align}
+    M_{xy} = \dfrac{M_0 \Omega_1 T_2^*}{ 1 + (\omega - \omega_0)^2 T_2^{*2} }\,,\label{eq:Mxy_detuning}
+\end{align}
+where $\Omega_1$ is the coherent drive Rabi frequency, and $(\omega - \omega_0)$ is the detuning of drive frequency $\omega$ from resonant frequency $\omega_0$. 
+This example can give us an idea of how detuning suppresses the magnetization. 
+
+
+\section{Axion signal estimation}\label{sec:axion_signal_estimation}
+
+\subsection{Overview of the data analysis method}
+
+To begin with, we figure out the criteria for deploying weakly-driven NMR analytics in axion research. Concerning the relaxation times for the CASPEr-gradient calibration sample (methanol) and apparatus, we have $T_1$ up to a few seconds, and $T_2$ ranging from \SI{20}{} to \SI{40}{\ms} depending on the temperature (concluded from measurements summarized in \S\,\ref{sec:SpinEchoExperiment}). Typical $T_2^*$ time at \SI{1}{\MHz} is approximately \SI{10}{\milli\second}, while axion coherence time $\tau_a$ is \SI{1}{\second} at this frequency. 
+We can expect the relaxation time $\tau$ to be no greater than \SI{10}{\milli\second} in this case. 
+On the other hand, here Rabi frequency of axion excitation field can be approximated as $\Omega_a \approx \gamma \mathrm{B}_a/2$. The calculation based on Eq.\,\eqref{eq:Ba_gaNN_rhoDM} indicates that $\Omega_a [\SI{}{\Hz}]  \approx 2 \mathrm{g_{aNN}} [\SI{}{\GeV^{-1}}] $. Thus the weak-driving condition in Eq.\,\eqref{eq:weakdriving} is translated into $\mathrm{g_{aNN}} \ll \SI{5e0}{\GeV^{-1}}$. 
+% Based on the condition $t_{\pi/2} \gg \tau$ and Eq.\,\eqref{eq:duration_pi/2pulse}, 
+
+% $\mathrm{g_{DM}} \equiv \sqrt{2 \hbar c \rho_{DM}} v_a = 2\pi\times\SI{0.6}{\GeV.\Hz}$
+% where $\mathrm{g_{DM}} = 120\,\SI{}{\GeV \Hz}$. 
+% Therefore, the weak-driving condition is again translated into $\mathrm{g_{aNN}} \ll 10^1\,\SI{}{\GeV^{-1}} $. 
+The analysis on neutrino signal of SN 1987A\,\cite{Raffelt_PhysRevD.86.015001} excluded $\mathrm{g_{aNN}} \gtrsim \SI{3e-10}{\GeV^{-1}}$. 
+% Meanwhile, similar direct-detection experiments on axion-fermion coupling excluded $\mathrm{g_{aNN}}$ from approximately $10^{-9}\,\SI{}{\GeV^{-1}}$ to $10^{-3}\,\SI{}{\GeV^{-1}}$. 
+With this knowledge we can proceed to applying weakly-driven NMR analytics to data analysis. Anyway, in the case of stronger coupling, the analytic method does not obstruct the measurement. 
+
+% We denote magnitude of axion-induced pseudo magnetic field as $\mathrm{\textbf{B}}_a$. 
+We can divide Eq.\,\eqref{eq:Mxy_Meff_Omega_tau} into three parts to analyze the axion signal properties: magnetization $M_{eff}$, drive Rabi frequency $\Omega$ and relaxation time $\tau$. 
+
+\subsection{Magnetization}\label{sec:Axion_signal_estimation:Magnetization}
+
+Aside from the nuclear magnetic dipole moment $\mu$, polarization $p$, and sample volume $V$, which are more or less fixed for experiments, the effective number of spins $N_{eff}$ is the key parameter here for determining magnetization $M_{eff}$ (see Eq.\,\eqref{eq:Meff_mu_p_Neff_V}). 
+$N_{eff}$ is determined by the Larmor frequencies of spins and axion frequency distribution. When axion frequency distribution can cover all Larmor frequencies, $N_{eff}$ is essentially the number of all spins $N_{all}$. On the contrary, when it cannot, only a fraction of spins are on-resonance and $N_{eff}$ is smaller than $N_{all}$. 
+
+% since it is modulated by the distribution of axion frequency and nuclear spin Larmor frequency. 
+% To put it in another way, the number of effective nuclear spins is a variable parameter dependent on the ratio of NMR linewidth to that of axion. 
+\begin{figure}[ht]
+    \includegraphics[width=\textwidth]{figures/04_Result/T2star_taua_linewidth_illustration_20220914_2.png}
+    \caption{Pulsed-NMR PSD, axion spectral signature and PSD of axion signal. The amplitudes of PSDs were deliberately adjusted to make it easy to compare the linewidth. (a) When $T_2^* \ll \tau_a$, only a small number of nuclear spins are on resonance with axion field. Signal linewidth is close to that of axion. Note that off-resonance spins generate weaker signal compared to the on-resonance ones. The frequency of the signal is determined by the $\mathbf{B}_z$ field. (b) When $T_2^* \gg \tau_a$, all of nuclear spins are on resonance. But still, axion decoherence influences the signal amplitude. }
+    \label{fig:linewidths_NMR_axion}
+\end{figure}
+Here we present quantitative analysis on $N_{eff}$. 
+On one hand, the spectral linewidth of axion is estimated to be \SI{1}{\ppm}\,\cite{Gramolin_PhysRevD.105.035029}, which can also be taken as $\Gamma_a 1/\tau_a$ (see Eq.\,\eqref{eq:axion_Q_factor}). On the other hand, transverse relaxation time $T_2^*$ determines the NMR linewidth $\Gamma = 1/(\pi T_2^*)$. We illustrate the two regimes in Fig.\,\ref{fig:linewidths_NMR_axion}:
+When $T_2^* \ll \tau_a$, i.e., when axion linewidth is much smaller than that of NMR, effective spins are a fraction of all spins. This fraction is approximately $  \Gamma_a /\Gamma = \pi T_2^*/ \tau_a $.  In the other regime where $T_2^* \gg \tau_a$, all the spins are on-resonance. In summary we have
+\begin{equation}
+    N_{eff} \approx \left\{
+    \begin{array}{cl}
+    \dfrac{\pi T_2^*}{\tau_a} N_{all} & T_2^* \ll \tau_a\\
+     & \\
+    N_{all} & T_2^* \gg \tau_a  \\  %\tau_a T_2^* \gg
+    \end{array} \right.\,.\label{eq:Neff_T2star_taua}
+\end{equation}
+Note that even in the first regime, all the nuclear spins are interacting with axion field. However, the detuning from resonance suppresses the magnetization of these off-resonance spins. Similar suppression can be found in Eq.\,\eqref{eq:Mxy_detuning}. 
+
+% From experience we know such suppression on the signal amplitude goes with $\sim (\nu - \nu_{a})^{-2}$, where $\nu$ is the resonant frequency of nuclear spin, and $\nu_{a}$ is the Compton frequency of axion. The signal from off-resonance spins oscillate at frequency of $\nu - \nu_{a}$ in the rotating frame. We raise this topic again in \S\,\ref{sec:Kinetic_simulation}. For now we arbitrarily discard the off-resonance spins for signal amplitude calculation. 
+
+\subsection{Drive Rabi frequency}
+
+It should be emphasized that we are measuring the magnetization generated by nuclear spins interacting with the pseudo-magnetic field instead of measuring a physical magnetic field. %which involves more parameters than those of a regular magnetic field. Such a field is different from a regular excitation field generated by coil and current source. 
+We have discussed the amplitude and stochastic nature of axion field in \S\,\ref{sec:Axion_wind}. Here these parameters are examined again with more quantitative analyses.
+
+We can rewrite Eq.\,\eqref{eq:Ba_gaNN_rhoDM} into an explicit form:
+\begin{equation}
+    \gamma \mathrm{B}_{a} \approx \mathrm{g_{aNN}} \mathrm{g_{DM}}  \,. %\label{eq:gamma_Ba_gaNN}
+\end{equation}
+As defined in Eq.\,\eqref{eq:Ba_gaNN_rhoDM}, $\mathrm{g_{DM}}$ stands for $\sqrt{2 \hbar c \rho_{DM}} v_a$. Here $\mathrm{B}_{a}(t)$ plays a similar role as typical excitation field $\mathrm{B}_{e}(t)$. But they are not equivalent. The excitation field generated by the excitation coil can be assumed coherent all the time, while the coherence time of axion field $\tau_a$ is finite and scales with axion mass. The amplitude of $\mathrm{B}_{a}(t)$ fluctuates over time, thus Rabi frequency of axion excitation field $\Omega_a$ is not a constant for axion excitation field. 
+Since the axion signal amplitude is proportional to the square of $\Omega_a$ (we discuss this later in \S\,\ref{sec:axion_signal_estimation:Expectation_value}), we can estimate $\Omega_a$ by
+% is estimated to be proportional to the excitation field in rotating frame:
+\begin{align}
+    \sqrt{\langle \Omega_a^2 \rangle} = \gamma \sqrt{\langle \mathrm{B}_{a,\,rot}(t)^2 \rangle}
+    = \mathrm{g}_{r} \gamma \mathrm{B}_{a} /2
+    % &= \mathrm{g}_{r} \mathrm{g_{aNN}} \mathrm{g_{DM}} 
+    \,. \label{eq:Omega_gr_gamma_Ba_gaNN}
+\end{align}
+% We can substitute $\gamma \mathrm{B}_{e}$ in Eq.\,\eqref{eq:Mxy_Meff_Omega_tau} with
+% \begin{equation}
+%     \gamma \mathrm{B}_{a} \approx \mathrm{g}_{r} \mathrm{g_{aNN}} \mathrm{g_{DM}}  \,. \label{eq:gamma_Ba_gaNN}
+% \end{equation}
+With $\mathrm{g}_{r} > 0$ we take the stochastic amplitude of ${\boldsymbol \nabla} a$ into account. 
+% In other words, Rabi frequency  
+It is defined as% the root mean square (r.m.s) of $\mathrm{B}_{a,\,rot}(t)$ to $(\mathrm{B}_{a}/2)$
+:
+\begin{equation}
+    \mathrm{g}_{r} = \dfrac{\sqrt{\langle \mathrm{B}_{a,\,rot}(t)^2 \rangle}}{\mathrm{B}_{a}/2}
+    \,.\label{eq:gr_expectationBat_Ba}
+\end{equation}
+%\,\cite{Foster_PhysRevD.97.123006}
+% We can estimate the value of $\mathrm{g}_{r}$ by the root mean square (r.m.s) of sine wave, which is $1/\sqrt{2}$.
+% Here we present two ways to estimate $\mathrm{g}_{r}$.
+% The first way is to regard ${B}_{a}(t)$ as a simple sine function, the average power of which is $\mathrm{B}_{a}/\sqrt{2}$. Hence $\mathrm{g}_{r}=1/\sqrt{2}$. 
+One method to compute $\mathrm{g}_{r}$ is based on ``thermal light source'' model and 2D random walk\,\cite{Loudon2000TheQT, budker2021physics}, where the axion particle contributes to ${B}_{a}(t)$ with random ``steps''. In our case, we can take detector displacement $\mathbf{r} = \mathbf{0}$, axion speed $v_n=v_a$, and rewrite Eqs.\,\eqref{eq:Bat_a0}, \eqref{eq:Ba_gaNN_rhoDM} and \eqref{eq:axion_ensemble_gradient} into:
+\begin{align}
+    \mathrm{B}_{a}(t) = \dfrac{\mathrm{B}_{a}}{\sqrt{N_a}}\sum_{n=1}^{N_a} \sin(\omega_a t + \phi_n)\,,
+\end{align}
+where $N_a$ is the number of axions, and $v_n$ and $\phi_n$ are the speed and phase of $n$-th axion respectively. $\phi_n$ is randomly distributed on $[0,\,2\pi)$. 
+This equation can be further transformed into:
+\begin{align}
+    \mathrm{B}_{a}(t) = \dfrac{\mathrm{B}_{a}}{\sqrt{N_a}} 
+    \mathrm{Im}[\exp\left( i\omega_n t \right) \sum_{n=1}^{N_a} \exp\left( i \phi_n\right)]
+    \,.\label{eq:Bat_sum_va}
+\end{align}
+We get rid of $\exp\left( i\omega_n t \right)$ in the rotating frame: 
+% which can be regarded as a sine signal with random amplitude:
+\begin{align}
+    \mathrm{B}_{a, rot}(t) &= \dfrac{\mathrm{B}_{a}}{2\sqrt{N_a}} 
+    \mathrm{Im}[\exp\left( i (\omega_n - \omega_a ) t \right) \sum_{n=1}^{N_a} \exp\left( i \phi_n\right)]\\
+    &\approx \dfrac{\mathrm{B}_{a}}{2\sqrt{N_a}} \mathrm{Im}[\sum_{n=1}^{N_a} \exp\left( i \phi_n\right)]
+    \,. \label{eq:Barot_omegaa}
+\end{align}
+Here we arbitrarily take $\omega_n = \omega_a$. Due to the distribution of $\omega_n$, this is only an approximate assumption. Notice that we have a factor of 1/2 in Eq.\,\eqref{eq:Barot_omegaa} due to rotating wave approximation. 
+For convenience, we adjust Eq.\,\eqref{eq:Barot_omegaa} to:
+\begin{align}
+    \eta = \dfrac{\mathrm{B}_{a, rot}(t)}{\mathrm{B}_{a}/2} 
+    \approx \dfrac{1}{\sqrt{N_a}} \mathrm{Im}[\sum_{n=1}^{N_a} \exp(i \phi_n)]
+    \,. \label{eq:Barot/Ba_2_omegaa}
+\end{align}
+where $\eta \in [- \sqrt{N_a},\,\sqrt{N_a} ]$. 
+% We can infer from t
+% The definitions of $\mathrm{g}_{r}$ and $\eta$ in Eqs.\,\eqref{eq:gr_expectationBat_Ba} and that of in Eq.\,\eqref{eq:Barot/Ba_2_omegaa} that:
+The definition of $\mathrm{g}_{r}$ in Eq.\,\eqref{eq:gr_expectationBat_Ba} and that of $\mathrm{g}_{r}$ in Eq.\,\eqref{eq:Barot/Ba_2_omegaa} imply that:
+\begin{align}
+    \mathrm{g}_{r} = \sqrt{\langle \eta^2 \rangle}\,.\label{eq:gr_eta}
+\end{align}
+
+Since we have $N_a \gg 1$ considering the local density of dark matter ($\rho_{DM}\approx\SI{.4}{\GeV/\cm^{3}}$) and axion mass ($<\SI{1}{\electronvolt}$), the probability density of $\eta$ can be given by:
+\begin{align}
+    f(\eta) = \dfrac{1}{\sqrt{\pi}} \exp\left( - \eta^2 \right)\,,
+\end{align}
+with which the expectation value of $ \eta^2 $ is computed to be $1$. So that we obtain that $\mathrm{g}_r = 1$. If we do not take $\omega_n = \omega_a$ for Eq.\,\eqref{eq:Bat_sum_va}, then $\mathrm{B}_{a, rot}$ remains time-dependent, and $\mathrm{g}_{r}$ is smaller than 1 due to oscillation in $\mathrm{B}_{a, rot}$. 
+
+
+% Considering the r.m.s of $\mathrm{Im}\left[\exp\left( i\omega_a t \right)\right]$ in Eq.\,\eqref{eq:Bat_sum_va}, we can estimate $\langle \mathrm{B}_{a}(t)^2 \rangle$ to be $\mathrm{B}_{a}^2/2$. Therefore we have $ \mathrm{g}_{r} = 1/\sqrt{2}$. 
+
+% under the assumption that $v_n = v_a$ since the speed of 
+% Here we do not turn to analytical method but simulation and statistics for calculation, which is stated in \S\,\ref{sec:Kinetic_simulation}. 
+% In this thesis, we assume the pseudo-magnetic field is always perpendicular to the leading field. The sensitivity is worse when it is not. And the axion lineshape varies with regard to different axion velocities and orientations of leading field\,\cite{Gramolin_PhysRevD.105.035029}. We don not include all these effects into consideration for now but try to gain an initial understanding of the signal. 
+
+\subsection{Relaxation time}
+
+Three mechanisms are involved in analyzing the relaxation time of nuclear spins: axion decoherence, nuclear spin-spin interaction, and inhomogeneous leading field, corresponding to coherence/relaxation times $\tau_a$, $T_2$ and $T_\delta$. These three variables yield the collective relaxation time $\tau_s$ for the magnetization. 
+
+For measurement at a certain frequency with a certain sample, the first two parameters are more or less fixed, while the homogeneity of leading field can be manipulated through shim coils, so as to tune signal relaxation time $\tau_s$. Then the question arises naturally: what is the expression $\tau_s$ with arguments $\tau_a$, $T_2$ and $T_\delta$? In analogy to Eq.\,\eqref{eq:T2star_T2_Tdelta}, we propose this equation to account for all three coherence/relaxation times:
+\begin{equation}
+    \dfrac{1}{\tau_s} = \dfrac{1}{T_2} + \dfrac{1}{T_{\delta}}+ \dfrac{1}{\tau_a}
+    = \dfrac{1}{T_2^*} + \dfrac{1}{\tau_a}
+    \,.\label{eq:taus_T2_Tdelta_taua_rate}
+\end{equation}
+or equivalently:
+\begin{equation}
+    \tau_s = \dfrac{T_2^* \tau_a}{T_2^* + \tau_a}\,.\label{eq:taus_T2_Tdelta_taua}
+\end{equation}
+
+We can discuss on $\tau$ in the two regimes mentioned in \S\,\ref{sec:Axion_signal_estimation:Magnetization} and Fig.\,\ref{fig:linewidths_NMR_axion}: $T_2^* \ll \tau_a$ and $T_2^* \gg \tau_a$. 
+
+In the first one, only a fraction of the spins are effectively contributing to the signal. The linewidth of these spins is approximately $1/\tau_a$ (a factor of 2 or $\pi$ could be missing). The first two mechanisms mentioned above (axion decoherence and spin-spin interaction) are not dependent on the number of spins or the volume of the sample, while the third one is. Smaller volume means better field homogeneity. 
+% The relaxation time $T_2^*$ can be inferred from the linewidth by Eq.\,\eqref{eq:T2star}. 
+The $T_2^*$ time for this fraction of spins is approximated to be $\tau_a$, so that $\tau_s = T_2^* \tau_a/(T_2^* + \tau_a) = \tau_a/2$. %Still, there could be a factor of 2 or $\pi$ missing in $\tau_s$. 
+
+In the other scenario, NMR linewidth is much smaller than axion linewidth. The relaxation is mostly due to the decoherence of axion field, and we should expect $\tau_s = \tau_a$. This agrees with Eq.\,\eqref{eq:taus_T2_Tdelta_taua} when $T_2^* \gg \tau_a$. 
+
+In summary we have
+\begin{equation}
+    \tau_s = \left\{
+    \begin{array}{cl}
+    \tau_a/2 & T_2^* \ll \tau_a\\
+      & \\
+    % \dfrac{T_2^* \tau_a}{T_2^* + \tau_a} & T_2^* \approx \tau_a\\ %T_2^* \tau_a/(T_2^* + \tau_a)
+    %   & \\
+    \tau_a & T_2^* \gg \tau_a\\
+    \end{array} \right.\,.\label{eq:taus_taua_T2s}
+\end{equation}
+
+We can continue to figure out in which regime CASPEr-gradient is. The magnetometer in use is not sensitive to low frequency signal. We arbitrarily choose \SI{1}{\kHz} as the lower limit. The upper limit in exploring frequency domain is the magnet. With the \SI{14.1}{\tesla} magnet and methanol sample (gyromagnetic ratio $\gamma = \SI{42.577}{\MHz/\tesla}$), the ceiling is \SI{600}{\MHz}. Thus we can plot the $T_2^*$ and $\tau_a$ in Fig.\,\ref{fig:relaxation_time}, from which we can tell that, when leading field homogeneity is $\SI{10}{\ppm}$, $T_2^*$ is be smaller than $\tau_a$ by nearly 2 orders of magnitude, which satisfies $T_2^* \ll \tau_a$. When at \SI{2}{\ppm}, $T_2^*/\tau_a$ is approximately $10^{-1}$, which may not satisfy either of the conditions in Eq.\,\eqref{eq:taus_taua_T2s} since there is an ambiguity of $\sim \pi$ in this comparison. Due to $T_2$, even if we have \SI{1}{\ppb} magnet, only when working frequency is over \SI{10}{\MHz} can we touch the regime of $T_2^* \gg \tau_a$. 
+With current CASPEr-gradient magnet of $\sim \SI{20}{\ppm}$, relaxation time $\tau_s \approx \tau_a/2$. 
+
+There is another way to interpret effective spins and relaxation time. It is rational to take $N_{eff} = N_{all}$ even in the case of $T_2^* \ll \tau_a$ since the off-resonance spins generate signal, though with a suppressed magnetization due to detuning. The corresponding relaxation time $\tau_s$ is $\approx T_2^*$, and the product $N_{eff} \tau_s$ is $N_{all} T_2^*$. On the other hand, $N_{eff} \tau_s$ is computed to be $N_{all} \pi T_2^*/2$ by Eqs.\,\eqref{eq:Neff_T2star_taua} and \eqref{eq:taus_taua_T2s}. These two ways of thinking agree within a factor of order unity, which is acceptable considering the ambiguity up to $2\pi$ in comparing axion coherence time and NMR relaxation time. 
+
+\begin{figure}[th]
+\centering
+    \includegraphics[width=1\textwidth]{figures/04_Result/relaxation_time_20220914.png}
+    \caption{Coherence/relaxation time at different frequencies. $T_2$ is taken as the \SI{2}{\second} for room-temperature methanol. Different magnetic field homogeneities were chosen to compare $T_2^*$ to $\tau_a$. The frequency range was chosen as the combination of CASPEr-gradient low-field and high-field range. }
+    % (a) Weak excitation field and response in transverse magnetization. (b) (c) 
+    \label{fig:relaxation_time}
+\end{figure}
+
+
+\subsection{Expectation value of signal amplitude}\label{sec:axion_signal_estimation:Expectation_value}
+% From \,\cite{KimballOverview}, 
+% Here we defined $g_{g \gamma B}=\SI{60}{\Hz.\GeV}$ for explicitness. 
+For CASPEr-gradient, measurement time for $T$ is at least 10 times greater than relaxation time $\tau_s$ no matter at which frequency. In other words, we are mostly measuring the signal after sufficient time of evolution. Thus we can ignore the initial growing stage of the signal and assemble Eqs.\,\eqref{eq:Meff_mu_p_Neff_V}, \eqref{eq:Mxy_Meff_Omega_tau}, \eqref{eq:Omega_gr_gamma_Ba_gaNN} to have:
+\begin{equation}
+    \langle \sqrt{M_{xy}^2} \rangle = \dfrac{1}{2} M_0 \dfrac{N_{eff}}{N_{all}} \mathrm{g_{r}} \gamma \mathrm{B}_{a}  \tau_s 
+    \,.\label{eq:Mxy_Meff_gr_gamma_Ba_taus}
+\end{equation}
+This can be rewritten with Eqs.\,\eqref{eq:Ba_gaNN_rhoDM} and \eqref{eq:M0_allspins} into:
+\begin{equation}
+    \langle \sqrt{M_{xy}^2} \rangle \approx \dfrac{1}{2} \mu p N_{eff} \mathrm{g_{r}} \mathrm{g_{aNN}} \mathrm{g_{DM}} \tau_s / V \,.
+\end{equation}
+The power of signal in the magnetometer is proportional to $M_{xy}^2$. This is why we prefer $\sqrt{M_{xy}^2}$ over $M_{xy}$. 
+The expectation value of power in the magnetometer can be inferred from Eq.\,\eqref{eq:Phiin_gV}:
+\begin{align}
+    \langle P \rangle &= (\mathrm{g}_{in} \mathrm{g}_{V} \mu_0 V \langle \sqrt{M_{xy}^2} \rangle/ L )^2\,.
+\end{align}
+Here $\mathrm{g}_{V}$, $\mathrm{g}_{in}$ and $L$ are constant values determining the coupling between magnetization and the detector, which are explained in \S\,\ref{sec:Signal_receptio_and_processing:SQUID} and \S\,\ref{sec:Signal_response}. 
+
+During the data-analysis, we can choose the chunk size for one power spectrum as $T_{PSD}$ (spectrum resolution or frequency bin size is $1/T_{PSD}$). PSD is the average power in the frequency bin. 
+In order to obtain large PSD, it is rational to choose frequency-bin size equal or smaller than axion signal linewidth. Otherwise the power is diluted over a large frequency bin. 
+
+In a frequency bin, the average power is portional to the bin size over signal linewidth, which is $(1/\tau_s)/(1/T_{PSD}) = \tau_s/T_{PSD}$ (a factor of $\pi$ could be missing here), corresponding to power of $P \tau_s/T_{PSD}$. The expectation value of PSD $S$ is power divided by bin size:
+\begin{align}
+    \langle S \rangle &= \dfrac{\langle P \rangle \tau_s/T_{PSD}}{1/T_{PSD}} \\
+    & = \dfrac{1}{4} (\mathrm{g_{r}} \mathrm{g_{aNN}} \mathrm{g_{DM}} \mathrm{g}_{in} \mathrm{g}_{V} \mu_0 \mu p  N_{eff}/ L )^2  \tau_s^3 \,. \label{eq:S_expectation}
+\end{align}
+Here $S$ is the signal amplitude for the experiment. 
+However, though we can measure or calculate the parameters for magnetometer in Eq.\,\eqref{eq:S_expectation} separately, we do not prefer this way in practice. To avoid accumulating error from multiplying many parameters, we perform pulsed-NMR diagnostic (as in Fig.\,\ref{fig:Procedure} step 1) to figure out the response in magnetometer. The expression for SQUID flux after $\pi/2$ pulse was drawn in Eq.\,\eqref{eq:Phiin_gV_pNMR} as $\Phi_{\pi/2} = \mathrm{g}_{in} \mathrm{g}_V \mu_0 \mu p n V / L$, with which we can simplify Eq.\,\eqref{eq:S_expectation} to
+\begin{align}
+    \langle S \rangle
+    & = \dfrac{1}{4} \left(\mathrm{g_{r}} \mathrm{g_{aNN}}  \mathrm{g_{DM}} \Phi_{\pi/2} 
+     \dfrac{N_{eff}}{N_{all}}\right)^2 \tau_s^3  \\ 
+    & = \left(\mathrm{g_{s}}  \mathrm{g_{aNN}} \dfrac{N_{eff}}{N_{all}}\right)^2 \tau_s^3 \,. 
+    \label{eq:S_T2s_taua}
+\end{align}
+Here $g_s$ stands for $ (\mathrm{g_{r}} \mathrm{g_{DM}}  \Phi_{\pi/2}) /2$.  
+Therefore in practice, we measure $\Phi_{\pi/2}$ via pulsed-NMR to calibrate the system. 
+
+If we continue to examine this expression in regimes of $T_2^* \ll \tau_a$ and $T_2^* \gg \tau_a$, and take advantage of Eqs.\,\eqref{eq:Neff_T2star_taua}, \eqref{eq:taus_taua_T2s} and \eqref{eq:S_T2s_taua}, we can have
+\begin{equation}
+    \langle S \rangle = \left\{
+    \begin{array}{cl}
+    \mathrm{g_{s}^2}    \mathrm{g_{aNN}^2} (\pi T_2^*)^2  \tau_a  /8 &  T_2^* \ll \tau_a\\
+     & \\
+    \mathrm{g_{s}^2}    \mathrm{g_{aNN}^2}  \tau_a^3  & T_2^* \gg \tau_a\\
+    \end{array} \right.\,.%\label{eq:S_taua_T2star_2regimes}
+\end{equation}
+% A quick conclusion we can draw from this equation is that w
+When $T_2^* \gg \tau_a$, the signal amplitude goes with the $T_2^{*2}$. 
+After we increase the relaxation time to $\gg \tau_a$, the amplitude does not grow with $T_2^*$ since the main relaxation mechanism is axion decoherence. 
+
+
+\section{Kinetic simulation based on Bloch equations}\label{sec:Kinetic_simulation}
+
+To cross-check the accuracy of analytic tools we developed in the first two sections, a kinetic simulation was designed and implemented via Python. It simulates NMR process based on Bloch equations. Furthermore, with a simulated stochastic axion field, we can explore the response in the magnetometer. 
+
+Kinetic simulation is based on Taylor expansion up to the second order. 
+\begin{align}
+    M_{x}(t+\Delta t) &=  M_{x}(t) + \dfrac{d M_x(t)}{dt}\Delta t + \dfrac{d^2 M_x(t)}{dt^2}\Delta t^2 + O(\Delta t^3) \\
+    M_{y}(t+\Delta t)  &= M_{y}(t) + \dfrac{d M_y(t)}{dt}\Delta t + \dfrac{d^2 M_y(t)}{dt^2}\Delta t^2 + O(\Delta t^3) \\
+    M_{z}(t+\Delta t)  &= M_{z}(t) + \dfrac{d M_z(t)}{dt}\Delta t + \dfrac{d^2 M_z(t)}{dt^2}\Delta t^2 + O(\Delta t^3)\,
+\end{align}
+with initial condition:
+\begin{align}
+    M_{x}(t=0) &= 0\\
+    M_{y}(t=0) &= 0\\
+    M_{z}(t=0) &= M_0\,.
+\end{align}
+Here we take $ M_0 = 1$ for simulations. For estimation on experimental results, we can multiply $\mathbf{M}$ by any value of $M_0$ to obtain the absolute amplitude. 
+% Verlet algorithm can extend accuracy to $O(\Delta t^4)$. But unfortunately, it abandons $\dfrac{d M_z(t)}{dt}$ which leads to irrational $M_z$ value. 
+
+Second-order derivative of $\mathbf{M}(t)$ can be obtained from Bloch equations. Here we do not list the explicit forms for them but in a more readable way:
+\begin{align}
+    \dfrac{d^2 M_i(t)}{dt^2} = f_{i}(\mathbf{M}(t), \mathbf{B}(t), \dfrac{d \mathbf{B}(t)}{dt}),\,i = x,\,y,\,z\,. 
+\end{align}
+
+The simulation rate is vital for correct output. For instance, when the NMR frequency $\nu = \gamma \mathrm{B}_0/(2\pi)$ is \SI{1}{\MHz}, the simulation rate should be much greater than \SI{1}{\MHz} (here term ``much greater'' means $10^2$ or $10^3$ times larger). Otherwise the precession of spins cannot be regarded a smooth process. To avoid going beyond capacity of normal personal computer, we perform simulation in the rotating frame instead of the laboratory frame, where the precession due to the leading field $\mathbf{B}_0$ is canceled. In a pulsed-NMR scheme or axion measurement, the simulation rate only has to be much greater than drive Rabi frequency of the excitation field or the detuning from resonant frequency. 
+
+One example is displayed in Fig.\,\ref{fig:weaklydrivenNMR}, where we generated an excitation field $\mathrm{B}_{e,t} = \mathrm{B}_{e}$ (in the rotating frame) for simulation. The result matched what is predicted in the Eq.\,\eqref{eq:Mxy_Meff_Omega_tau}. 
+
+For a stochastic field, the problem is more complicated. 
+We can write down the axion pseudo-magnetic field in the rotating frame (angular frequency $\omega = \gamma \mathrm{B}_0$) with Eqs.\,\eqref{eq:Bat_a0}, \eqref{eq:Ba_gaNN_rhoDM} and \eqref{eq:axion_ensemble_gradient}:
+\begin{equation}
+    \mathbf{B}_{a}(t) =  \dfrac{ \mathrm{B}_a}{\gamma \sqrt{N_a} }\sum_{n=1}^{N_a} \mathbf{v}_n \sin((\omega_n-\gamma \mathrm{B}_0) t - \mathbf{k}_n\cdot \mathbf{r} + \phi_n)\,. %\label{eq:axion_ensemble_gradient}
+\end{equation}
+Here $\mathrm{B}_a$ is $c \mathrm{g_{aNN}} a_0 m_a v_a / \gamma$. 
+
+As discussed in \S\,\ref{sec:Axion_wind:Stochastic_nature}, we can take $\mathbf{r} = 0$ for CASPEr experiment. We neglect effects such as gravitational lensing and adopt the approximation that all the axions are heading towards the same orientation. Thus we have
+\begin{equation}
+    \mathbf{B}_{a}(t) =  \dfrac{ \mathrm{B}_a }{\sqrt{N_a} } \dfrac{\mathbf{v}_a}{v_a} 
+    \sum_{n=1}^{N_a}  v_n \sin((\omega_n-\gamma \mathrm{B}_0) t +\phi_n)
+    \,,%\label{eq:axion_ensemble_gradient}
+\end{equation}
+and
+\begin{equation}
+    \dfrac{d \mathbf{B}_{a}(t)}{dt} =  \dfrac{ \mathrm{B}_a }{\sqrt{N_a} } \dfrac{\mathbf{v}_a}{v_a}
+    \sum_{n=1}^{N_a}  v_n (\omega_n-\gamma \mathrm{B}_0)\cos((\omega_n-\gamma \mathrm{B}_0) t + \phi_n)
+    \,. %\label{eq:axion_ensemble_gradient}
+\end{equation}
+
+In the simulation, over \SI{10 000}{} axion particles were generated with Monte-Carlo method. They are attributed with velocities and frequencies. Besides, they experience phase jump to random values $\in [0,\,2\pi)$ in every $\tau_a$. Some of the properties are displayed in Fig.\,\ref{fig:axion_stochastic_properties}. 
+
+One important parameter that can be obtained from simulation is $\mathrm{g_{r}}$. To express it in the language of simulation or experiment, we rewrite Eq.\,\eqref{eq:gr_expectationBat_Ba} into:
+\begin{equation}
+    \mathrm{g}_{r} = \dfrac{\sqrt{  \overline{\mathrm{B}_{a}(t)^2}  }}{\mathrm{B}_{a}/2}\,.\label{eq:gr_avgpowerBat_Ba}
+\end{equation}
+Twelve simulations were done to obtain $\mathrm{g_{r}}$. The average value was \SI{1.01}{} with standard deviation \SI{0.09}{}. Hence we take $\mathrm{g_{r}} = \SI{1}{}$ for future calculation. 
+
+\begin{figure}[ht]
+    \includegraphics[width=\textwidth]{figures/04_Result/axion_stochastic_properties_20220829.png}
+    \caption{Simulation done with $v_a = \SI{300}{\km / \second}$, 
+    $\nu_a = \SI{1}{\MHz}$, 
+    $\tau_a = \SI{1}{\second}$,
+    $\mathrm{g_{aNN}} = 10^{-7}\SI{}{\GeV^{-1}}$ and
+    simulation rate \SI{6696.43}{\Hz}. (a) Speed distribution of axion particles. (b) Frequency distribution due to the spread in speed. (c) Amplitude of $\mathrm{B}_{a}(t)$ field. (d) Distribution of $\mathrm{B}_{a}(t)$ field amplitude. }
+    \label{fig:axion_stochastic_properties}
+\end{figure}
+
+
+\begin{figure}[pht]
+    % \includegraphics[width=\textwidth]{figures/04_Result/normalized_avgMxy_T2star_20220827.png}
+    \includegraphics[width=\textwidth]{figures/04_Result/Kinetic_Simulation_20220909_2.png}
+    \caption{Kinetic simulation for $M_{xy}$. Basic parameters are consistent with the simulations shown in Fig\,\ref{fig:axion_stochastic_properties}: $v_a = \SI{300}{\km / \second}$, 
+    $\nu_a = \SI{1}{\MHz}$, 
+    $\tau_a = \SI{1}{\second}$,
+    $\mathrm{g_{aNN}} = 10^{-7}\SI{}{\GeV^{-1}}$ and
+    simulation rate \SI{6696.43}{\Hz}. (a) - (f) Different $T_2^*$s were chosen to illustrate the response in the magnetometer. We also set detuning of NMR frequency from $\nu_a$, which resulted in the oscillation in $\mathrm{B}_{a}(t)$ in the rotating frame, suppressing signal amplitude. (g) Two predictions for signal relaxation time $\tau_s$ are drawn here. Calculated $\tau_s$s based on simulation results approximately agree with predictions at $T_2^*  \gg \tau_a$ and $T_2^*  \gg \tau_a$. }
+    \label{fig:simu_Mxy_T2star}
+\end{figure}
+
+Besides the equations we developed in earlier sections, we are able to calculate signal relaxation time $\tau_s$ with simulation results now. We can transform Eq.\,\eqref{eq:Mxy_Meff_gr_gamma_Ba_taus} with simulation results into this form:
+\begin{equation}
+    \sqrt{\overline{M_{xy}^2}} = \dfrac{1}{2} M_0 \dfrac{N_{eff}}{N_{all}} \gamma \sqrt{\overline{\mathrm{B}_{a}(t)^2}}\,   \tau_s 
+    \,.\label{eq:Mxy_Meff_gamma_Baeff_taus_simu}
+\end{equation}
+The elements in Eq.\,\eqref{eq:Mxy_Meff_gamma_Baeff_taus_simu} are either simulation parameter or what can be directly obtained from simulation results, except for $\tau_s N_{eff}/N_{all}$. Therefore Eq.\,\eqref{eq:Mxy_Meff_gamma_Baeff_taus_simu} can be applied in acquiring values for this product and assist in theoretic analysis. One example is shown in Fig.\,\ref{fig:simu_Mxy_T2star}(g). In comparison to our prediction on $\tau_s N_{eff}/N_{all}$ by Eqs.\,\eqref{eq:Neff_T2star_taua} and \eqref{eq:taus_taua_T2s}:
+\begin{equation}
+     \tau_s N_{eff}/N_{all}  = \left\{
+    \begin{array}{cl}
+    \dfrac{\pi T_2^*}{2}  &  T_2^* \ll \tau_a\\
+     & \\
+    \tau_a  & T_2^* \gg \tau_a\\
+    \end{array} \right.\,,%\label{eq:taus_Neff_2regimes}
+\end{equation}
+we can find the simulation results agree with it within one order of magnitude. Furthermore, simulation is a tool to look into the intermediate regime between two extremes regimes. 
+
+In light of the concept of ``effective spins'', simulation offered more evidence to deepen our understanding. Take the simulation run whose result is shown in Fig.\,\ref{fig:simu_Mxy_T2star}(f). NMR linewidth is $1/(\pi T_2^*) = \SI{0.003}{\Hz}$, while the axion linewidth is \SI{2}{\ppm} (The statistics on frequency distribution is shown in Fig\,\ref{fig:axion_stochastic_properties}(d).), which translates into \SI{2}{\Hz} at \SI{1}{\MHz}. Detuning was \SI{7}{\Hz}, so that the NMR spins are off-resonance. But still we observed a weak oscillating signal at the detuning frequency. Therefore, ``effective spin'' is not equivalent to ``on-resonance spin''. 
+
+\section{Exclusion analysis}\label{sec:Exclusion_analysis}
+
+Signal-to-noise ratio is the key for axion measurement and detection. Noise is evaluated by the standard deviation of PSD. As analyzed in \S\,\ref{sec:Noise_analysis}, CASPEr-gradient is limited by white noise for the time being. Therefore the expectation value of noise decreases with the square root of number of spectra $N \gg 1$ averaged:
+\begin{equation}\label{eq:sigmaN}
+    \langle \overline{\sigma} \rangle =\dfrac{\langle\sigma\rangle}{\sqrt{N}}\,.
+\end{equation}
+Here $\overline{\sigma}$ is the noise of averaged spectra, and $\sigma$ is that of a single spectrum. This equation can be verified with experimental result shown in Fig.\,\ref{fig:SpinNoise_Results}(d). 
+
+With Eq.\,\eqref{eq:sigmaN} we can put SNR as:
+\begin{equation}\label{eq:SNRandN}
+    \langle SNR \rangle = \dfrac{\langle S \rangle}{ \langle \overline{\sigma} \rangle}= \dfrac{\langle S \rangle}{ \langle \sigma \rangle} \sqrt{N}\,.
+\end{equation}
+
+% When we are finished with axion detection, we know every parameter in Eq.\,\eqref{eq:SNRandN} and \eqref{eq:S_expectation} except for $\mathrm{g_{aNN}}$. 
+Now we set detection criteria to $SNR \geqslant 5$. The expected signal amplitude is written in Eq.\,\eqref{eq:S_expectation}. Therefore we can derive:
+\begin{align}
+    \mathrm{g_{s}^2}    \mathrm{g_{aNN}^2} \left(\dfrac{N_{eff}}{N_{all}}\right)^2 \tau_s^3
+    \dfrac{\sqrt{N}}{\langle\sigma\rangle} \geqslant 5\,. \label{eq:gs_gaNN_5}
+\end{align}
+
+We spend measurement time $T$ at frequency $\nu_s$. The number of spectra $N = T/T_{PSD}$, where $T_{PSD}$ is the chunk size of time-domain data. 
+% is:
+% \begin{equation}
+%     N = \dfrac{T}{T_{PSD}}\,. 
+% \end{equation}
+We can further translate Eq.\,\eqref{eq:gs_gaNN_5} into:
+\begin{align}
+    % \begin{split}
+        \mathrm{g_{aNN}} \geqslant \dfrac{\sqrt{5 \langle\sigma\rangle}}{\mathrm{g_{s}}}   T^{-1/4}  \left(\dfrac{N_{eff}}{N_{all}}\right)^{-1} \tau_s^{-3/2}  T_{PSD}^{1/4}\,. \label{eq:exclusionthreshold_sce1_tausTPSD}
+    % \end{split}
+\end{align}
+This equation indicates the range of $\mathrm{g_{aNN}}$ we can explore with the measurement. In the case of not detecting axion signal, we can exclude the coupling strength in this range in corresponding frequency band. The exclusions can be plotted to record the space that has been explored. 
+
+By now we can find in Eq.\,\eqref{eq:exclusionthreshold_sce1_tausTPSD} that large relaxation time $\tau_s$ and small $T_{PSD}$ help us go deeper in exclusion plot. The smallest $T_{PSD}$ is $\tau_s$ (otherwise smaller $T_{PSD}$ gives us too large frequency and dilutes the signal), thus we have: 
+\begin{align}
+    % \begin{split}
+        \mathrm{g_{aNN}} \geqslant \dfrac{\sqrt{5 \langle\sigma\rangle}}{\mathrm{g_{s}}}    T^{-1/4} \left(\dfrac{N_{eff}}{N_{all}}\right)^{-1} \tau_s^{-5/4}   \,. \label{eq:exclusionthreshold_sce1_tausonly}
+    % \end{split}
+\end{align}
+Similar to the practices we made in the last sections, we can further clarify this equation by considering two regimes mentioned in Eqs.\,\eqref{eq:Neff_T2star_taua} and \eqref{eq:taus_taua_T2s} before:
+\begin{equation}
+    \mathrm{g_{aNN}} \geqslant \left\{
+    \begin{array}{cl}
+    \dfrac{\sqrt{5 \langle\sigma\rangle}}{\mathrm{g_{s}}}\,   T^{-1/4} \, 2^{5/4} (\pi T_2^*)^{-1} \tau_a^{-1/4}   &  T_2^* \ll \tau_a\\
+     & \\
+    \dfrac{\sqrt{5 \langle\sigma\rangle}}{\mathrm{g_{s}}}\,  T^{-1/4}   \,   \tau_a^{-5/4}     &  T_2^*  \gg \tau_a\\
+    \end{array} \right.\,.\label{eq:gaNN_taua_T2star_2regimes_single}
+\end{equation}
+ Since CASPEr-gradient stands in the first regime, the exclusion goes as $(T_2^*)^{-1}$. When $T_2^*$ is already much greater than $\tau_a$, the exclusion is dominated by the axion coherence time.
+
+
+
+\section{Experimental data analysis}
+
+% We can predict mass-coupling exclusion by the specifications of experiment setup and sample properties (through Eq.\,\eqref{eq:exclusionthreshold_sce1_tausonly} or \eqref{eq:exclusionthresholdsce2_tau} for example). However, to avoid errors accumulated in some many parameters, we adopt a slightly different scheme in experimental data analysis. 
+
+As mentioned in \S\,\ref{sec:Noise_analysis}, a 10-hr measurement was performed, with SQUID listening to a thermally polarized sample without pulsing. This can be regarded as a axion measurement as well. Before the measurement, a pulsed-NMR diagnostic (see Fig.\,\ref{fig:PSD_and_Exclusion10hr}(a)) indicated the NMR central frequency is \SI{1.349550}{\Hz}, and $T_2^* = \SI{9.6}{\milli\second}$. The corresponding axion coherence time $\tau_a = \SI{720}{\milli\second}$. This satisfies the condition $T_2^* \ll \tau_a$ hence we can use Eq.\,\eqref{eq:gaNN_taua_T2star_2regimes_single} to compute the exclusion of $\mathrm{g_{aNN}}$. Besides, the noise level is shown in Fig.\,\ref{fig:SpinNoise_Results} and here we take $\sigma = \SI{2.2e-12}{}\,\Phi_0^2/\SI{}{\Hz}$. It is demonstrated that this measurement excluded the coupling strength above approximately $10^{-5}\SI{}{\GeV^{-1}}$ in a \SI{160}{\Hz} frequency band at \SI{1.349550}{\Hz}. The corresponding result is shown in Fig.\,\ref{fig:PSD_and_Exclusion10hr}(b). 
+\begin{figure}[htbp]
+    \centering
+	\includegraphics[width=\textwidth]{figures/04_Result/PSD_and_Exclusion10hr_20220914.png}
+	\caption{(a) Pulsed-NMR PSD. Here a $\pi/2$ pulse was applied. (b) Exclusion for axion-neutron coupling constant. To avoid falsely taking noise power as signal power, we deliberately cut off the sensitive frequency band. }
+	\label{fig:PSD_and_Exclusion10hr}
+\end{figure}
+
+
+\section{Scanning strategy}\label{sec:Scanning_strategy}
+
+% \textbf{Scenario Two: Measurements at multiple frequencies}
+Say, the measurement is repeated at $N_{\nu}$ different frequencies (see Fig\,\ref{fig:Procedure} step 6) and the total measurement time is $T_{tot}$. In order to cover the target frequency range $[\nu_{start},\,\nu_{end}]$, we choose the step size as NMR linewidth $\delta_{NMR}$ (constant value). Here $\delta_{NMR} = 1 / (\pi T_2^* \nu_{NMR})$.
+
+The relationship between frequency $\nu_n$ and neighboring $\nu_{n+1}$ is
+\begin{equation}\label{eq:fnfn+1}
+    \nu_{n+1} = \nu_{n} + \delta_{NMR} \nu_{n}\,.
+\end{equation}
+The frequencies form a geometric sequence. Therefore we have
+\begin{equation}\label{fendfstart}
+    \nu_{end} = \nu_{start}(1 + \delta_{NMR})^{N_{\nu} - 1}\,,
+\end{equation}
+where $N_{\nu}$ is the number of frequencies to scan. Consider that in the experiment $\delta_s \sim 10^{-6}\ll 1$, then the value of $N_{\nu}$ can be computed as: 
+\begin{equation}\label{eq:N_nu:appendix}
+    N_{\nu} = \dfrac{ \ln{ \left(\nu_{end}/\nu_{start} \right) } }{\ln{ (1 + \delta_{NMR}) } } + 1 \approx \dfrac{ \ln{ \left( \nu_{end}/\nu_{start} \right) } }{ \delta_{NMR} }\,.
+    % \dfrac{\nu_{end}}{\nu_{start}}
+\end{equation}
+Assuming that the experiment is on-resonance with axion, we have $\nu_a \approx \nu_{NMR}$. If we distribute measurement time equally to each frequency, the measurement time for each frequency is
+\begin{equation}\label{eq:T}
+    T = \dfrac{T_{tot}}{N_{\nu}}=\dfrac{T_{tot} \delta_{NMR}}{ \ln{ \left(\nu_{end}/\nu_{start} \right) } } = \dfrac{T_{tot} \tau_a }{ Q \ln{ \left(\nu_{end}/\nu_{start} \right) } \pi T_2^*  }\,.
+\end{equation}
+Note that Eq.\,\eqref{eq:axion_Q_factor} is applied here to substitute $\nu_a$ with $Q/\tau_a$. For CASPEr-gradient, $T$ can be safely assumed to be much greater than $\tau_{a}$ and $T_2^*$. 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/04_Result/CASPEr_MultiFreq_20220914.png}
+    \caption{Measurements at multiple frequencies}
+    \label{fig:MultifreqMeas}
+\end{figure}
+
+Similarly to \S\,\ref{sec:Exclusion_analysis}, we have
+\begin{equation}\label{eq:N}
+    N = \dfrac{T}{T_{PSD}}\,. 
+\end{equation}
+
+Combine Eqs.\,\eqref{eq:gs_gaNN_5}, \eqref{eq:T} and \eqref{eq:N}, then we have:
+\begin{align}
+    \mathrm{g_{aNN}} \geqslant \dfrac{\sqrt{5 \langle\sigma\rangle}}{\mathrm{g_{s}}} 
+    \left(\dfrac{T_{tot}}{Q \ln{ \left(\nu_{end}/\nu_{start} \right) } }\right)^{-1/4}      
+    \left(\dfrac{N_{eff}}{N_{all}}\right)^{-1} \tau_s^{-3/2}  \tau_a^{-1/4} (\pi T_2^* T_{PSD})^{1/4}
+    \,. \label{eq:exclusionthresholdsce2_tau_TPSD} 
+\end{align}
+% We can further simplify t
+The optimal choice is again $T_{PSD} = \tau_s$ in which way the frequency bin size matches signal linewidth, and the Eq.\,\eqref{eq:exclusionthresholdsce2_tau_TPSD} becomes
+\begin{align}
+    \mathrm{g_{aNN}} \geqslant \dfrac{\sqrt{5 \langle\sigma\rangle}}{\mathrm{g_{s}}} 
+    \left(\dfrac{T_{tot}}{Q \ln{ \left(\nu_{end}/\nu_{start} \right) } }\right)^{-1/4} 
+    \left(\dfrac{N_{eff}}{N_{all}}\right)^{-1} \tau_s^{-5/4} \tau_a^{-1/4} (\pi T_2^*)^{1/4}
+    \,. \label{eq:exclusionthresholdsce2_tau} 
+\end{align}
+Again, we can take two extremes of $T_2^*$ in Eqs.\,\eqref{eq:Neff_T2star_taua} and \eqref{eq:taus_taua_T2s} to obtain:
+\begin{equation}
+    \mathrm{g_{aNN}} \geqslant \left\{
+    \begin{array}{cl}
+    \dfrac{\sqrt{5 \langle\sigma\rangle}}{\mathrm{g_{s}}} 
+    \left(\dfrac{T_{tot}}{Q \ln{ \left(\nu_{end}/\nu_{start} \right) } }\right)^{-1/4}   
+     \times 2^{5/4} (\pi T_2^*)^{-3/4} \tau_a^{-1/2} 
+    &  T_2^* \ll \tau_a\\
+     & \\
+    \dfrac{\sqrt{5 \langle\sigma\rangle}}{\mathrm{g_{s}}} 
+    \left(\dfrac{T_{tot}}{Q \ln{ \left(\nu_{end}/\nu_{start} \right) } }\right)^{-1/4}    
+     \times (\pi T_2^*)^{1/4} \tau_a^{-3/2}
+    &  T_2^*  \gg \tau_a\\
+    \end{array} \right.
+    \,.\label{eq:gaNN_exc_Scan_2regimes}
+\end{equation}
+We can find in Eq.\,\eqref{eq:gaNN_exc_Scan_2regimes} that large $T_2^*$ is favourable for us to explore deeper in exclusion plot only when it is much smaller than $\tau_a$. If it is already much greater than $\tau_a$, we are limited by axion decoherence. The superior strategy in such a scenario is decreasing $T_2^*$ so that we can scan a frequency band faster. 
+
+
+
+
+
