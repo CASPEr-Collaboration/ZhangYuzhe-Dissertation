@@ -1,10 +1,10 @@
-# Dissertation
+# Yuzhe's Dissertation
 
 This repository includes scripts for the calculations and plotting for the dissertation of Yuzhe Zhang. 
 
 Yuzhe Zhang - Uni Mainz - yuhzhang@uni-mainz.de
 
-## Installation
+## Download
 
 ```python 
 git clone https://github.com/CASPEr-Collaboration/ZhangYuzhe-Dissertation.git
