@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"c:\\\\Users\\\\zhenf\\\\D\\\\Yu0702\\\\CASPEr-Collaboration\\\\ZhangYuzhe-Dissertation\" ls-files tex/content/ tex/core/)"
+    ]
+  }
+}

@@ -52,4 +52,5 @@ fonts/
 *.out.ps
 *.run.xml
 *.soc
+*.synctex.gz
 *.toc
