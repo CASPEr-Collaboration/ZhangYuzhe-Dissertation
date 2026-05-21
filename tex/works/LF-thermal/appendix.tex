@@ -1,0 +1,435 @@
+% \section{Supappendixplementary Material}
+
+\section{Detection chain properties}\label{sec:squid}
+
+% \kp{SQUID flux copling. }
+The properties of the dc-SQUID sensor used for this measurement are listed in Table\,\ref{tab:SQUIDtab}. 
+The magnetic flux coupled into the SQUID, $\Phi_\mathrm{in}$, can be obtained from the feedback voltage signal, $V_\mathrm{f}$, via the relation:
+
+\begin{equation}
+    \Phi_{\mathrm{in}} = \frac{M_\mathrm{f}}{R_\mathrm{f}} V_\mathrm{f}\,,
+    \label{eq:Phi_in_Vf}
+\end{equation}
+where $M_\mathrm{f}$ is the feedback-coil inductance and $R_\mathrm{f}$ is the feedback resistance. 
+\begin{table}[h!]
+\caption{Properties of SQUID sensor in use. Note that $R_f$ can be set to different values.}
+\centering
+\begin{tabular}{l  c }
+\hline
+\hline
+Pickup coil inductance ($L_\mathrm{pick}$) & \SI{553}{\nH}\\[1ex]  \hline
+SQUID input coil inductance ($L_\mathrm{in}$) &  400\,nH\,\\[1ex]  \hline
+Mutual inductance ($M_\mathrm{in}$) &   \SI{03.98}{\nH}\,\\[1ex]  \hline
+Feedback-coil inductance ($M_\mathrm{f}$) &   22.83\,\unit{\Phi_0}/mA\,\\ [1ex] \hline
+Feedback resistance ($R_\mathrm{f}$) & \SI{3}{\kohm} \\[1ex]  \hline \hline
+%$R_f/M_f$ & 0.13\,V/\unit{\Phi_0}\,\\
+%$M_{in}/(L_{grad}+L_{in})$ & \SI{0.00418}{}\\
+\end{tabular}
+\label{tab:SQUIDtab}
+\end{table}
+% \kp{SQUID noise. }
+Figure\,\ref{fig:SQUIDfull} shows the full PSD spectrum of the SQUID with the bias magnetic field turned off and without sample. 
+\begin{figure}[ht]
+    %\leavevmode
+    %\floatsetup[figure]{capposition=bottom}
+    \centering
+    \includegraphics[width=\linewidth]{figures/SQUID_full_spectrum_avg_10.png}
+    \caption{Spectrum showing the bandwidth of the SQUID recorded with the bias field off and without sample. 
+    The frequency probed in this work is marked by a dotted red line.
+    The shown spectrum is an average of 10 spectra. }
+    \label{fig:SQUIDfull}
+\end{figure}
+
+% The NMR setup and sample are characterized at each scanned frequency so as to obtain information on the following parameters:
+% \begin{itemize}
+%     \item Larmor frequency of the sample, and the inhomogeneity of the bias field. They are obtained from the position and linewidth of the NMR excitation recorded after sending $\pi/2$-pulses at the sample.
+%     \item Relaxation time $T_2$ of the sample, obtained from the spin-echo signal after sending CPMG pulse sequences.
+%     %\item Magnetization of the sample
+% \end{itemize}
+
+% The precession motion of the sample transverse magnetization $\mathbf{M}_1$ generates an oscillating signal in the SQUID that decays over time, $|V_\mathrm{f}(t)| \approx V_0 \times e^{-t/T_2^*}$. 
+% The feedback voltage after a $\pi/2$-pulse, $V_0$, corresponds to the power $P_{\mathrm{NMR}}$ contained within the NMR peak featured in the PSD recorded after pulsing:
+% \begin{align}
+%     V_0 &= \sqrt{4\,P_{\mathrm{NMR}} \frac{T_{\text{acq}}} {T_2^*}}
+%     %=\sqrt{4\,A_{\mathrm{NMR}} \frac{T_{\text{acq}}}{T_2^*}}
+%     \,,
+% \end{align}
+% where $T_{\text{acq}}=\SI{0.5}{\s}$ is the acquisition time after each pulse. 
+% To find the suitable pulse duration, a series of measurements of the transverse magnetization of the sample were performed during and after sending RF pulses of various lengths at the sample.
+%The resulting nutation plot can be seen in Fig.\,\ref{fig:pulsesweep}.
+%Note that we did not record a full oscillation because the approximate pulse length of a $\pi/2$ pulse was already known from previous measurements.
+%\begin{figure}[ht]
+%    \centering
+%    \includegraphics[width=\linewidth]{figures/plots/pulse_duration_sweep.png}
+%    \caption{Sweep over nine RF excitation pulse durations between 160 and 240 $\mu s$.
+%    Plotted is the integrated area under the NMR signal peak in PSD, in units of $V^2$.
+%    The data exhibits the expected oscillatory behavior, the pulse length corresponding to a tipping of the spin magnetization vector by \SI{90}{\degree} was identified at $\tau_p\approx 190\mu s$ (indicated by a dashed red line).}
+%    \label{fig:pulsesweep}
+%\end{figure}
+
+% After a $\pi/2$-pulse, an oscillating and decaying signal is generated due to Larmor precession and the relaxation of the transverse magnetization. 
+% The signal detected with the SQUID is recorded and demodulated with a lock-in amplifier (LIA). 
+% Combining the two channels of the LIA output into a complex time-series, we obtain:\OM{schematic for LIA? mention reference or demodulator freq and motivation for using LIA in this work}
+% \begin{equation}
+%     s(t) = \frac{1}{\sqrt{2}} V_0 e^{-t/T_2}\int_{-\infty}^{\infty} d\nu \rho_N (\nu) e^{i(2\pi\nu t + \zeta_0)}
+%     \,. 
+%     \label{eq:decay_signal}
+% \end{equation}
+% Here, $V_0$ is the amplitude of the voltage signal detected with the SQUID. 
+% A factor of $1/\sqrt{2}$ is added here so that the power of the demodulated signal $s(t)$ is consistent with that of the SQUID signal. 
+% $e^{-t/T_2}$ parametrizes the relaxation at the rate of $1/T_2$. ($T_2$ is obtained from a Carr-Purcell-Meiboom-Gill pulse-sequence measurement). 
+% The integral takes into account the distribution of Larmor frequencies due to bias-field inhomogeneity: $\rho_N (\nu) d\nu$ is the fraction of total spins precessing with Larmor frequencies in the interval $[\nu, \, \nu + d\nu]$. $\zeta_0$ is the initial phase of the Larmor precession. 
+
+% We describe a Lorentzian line in the frequency domain by the following function:
+% \begin{equation}\label{eq:Lor}
+%     \mathrm{Lorz}(\nu,\,\nu_c,\,\Delta) = \frac{2}{\pi} \frac{1}{\Delta} \frac{1}{1+(\frac{\nu-\nu_c}{\Delta/2})^2}
+%     \,,
+% \end{equation}
+% where $\nu$ is frequency, $\nu_c$ is the central frequency, and $\Delta$ is the linewidth. 
+% Such a function is normalized as $\int_{-\infty}^{\infty} d\nu\, \mathrm{Lorz}(\nu,\,\nu_c,\,\Delta) = 1$. 
+% In the experiment, $\rho_N (\nu) \approx \mathrm{Lorz}[\nu,\,\nu_L,\,(\pi T_{\delta})^{-1}]$, with Larmor frequency $\nu_L$ and time constant $T_\delta$ characterizing the relaxation due to bias-field inhomogeneity.
+% The signal can be approximated by:
+% \begin{align}
+%     s(t) &\approx  \frac{1}{\sqrt{2}}V_0e^{-t/T_2^*}  e^{i(2\pi\nu_L t + \zeta_0)}
+%     \,. 
+%     \label{eq:decay_signal_T2_Tdelta}
+% \end{align}
+% Here $T_2^* = (T_2^{-1} + T_\delta^{-1})^{-1}$. 
+% From the acquired time-series (acquisition time $T_{\text{acq}}=\SI{0.5}{\s}$), we generate the PSD spectrum.  
+% In the spectrum, $V_0$ corresponds to the power distributed over the NMR peak, $P_{\mathrm{NMR}}$:
+% \begin{align}
+%     V_0 &= \sqrt{4\,P_{\mathrm{NMR}} \frac{T_{\text{acq}}} {T_2^*}}
+%     %=\sqrt{4\,A_{\mathrm{NMR}} \frac{T_{\text{acq}}}{T_2^*}}
+%     \,.
+% \end{align}
+
+% \kp{Transfer coefficient }
+We characterize the detection chain with the transfer coefficient $\beta$, which defines the relation between sample magnetization perpendicular to the bias field, $M_\perp$, and the amplitude of the oscillating feedback voltage of the SQUID, $V_\perp$,
+\begin{equation}
+    \beta = \frac{V_\perp}{\mu_0 M_\perp}\,,
+    \label{eq:beta}
+\end{equation}
+with the vacuum magnetic permeability, $\mu_0$. 
+In the special case of $\pi/2$-pulsing, the sample magnetization vector is tilted into the transverse plane, and $M_\perp = M_0 \sin(\pi/2)= M_0$ holds, where $M_0$ is the equilibrium magnetization of the sample.
+For each scan step, we measured the feedback-voltage amplitude right after such a pulse, $V_0$, and calculated the equilibrium magnetization of the liquid methanol sample\,\cite{Abragam1961_NuclearMagnetism},
+\begin{equation}
+    M_0 = \frac{n \gamma^2 \hbar^2 I(I+1) B_0}{3 k_B T}\,.
+\end{equation}
+Here, $\hbar$ is the reduced Planck constant, $k_B$ is the Boltzmann constant, $n$ is the number density of protons and I is the nuclear spin.
+The proton is a spin $1/2$ particle with a gyromagnetic ratio of $\gamma=2\pi\times\SI{42.577}{\MHz/\tesla}$.
+With four protons per methanol molecule, the sample contained \SI{7.2e22}{} protons within a cylindrical volume of \SI{1.2}{\cm^3}, with \SI{4}{\mm} radius and \SI{24}{\mm} height.
+The sample at a temperature $T \approx \SI{180}{\kelvin}$ was placed within a bias field $B_0$ varying over the scans.
+% With the reduced Planck constant $\hbar$ = \SI{1.054571817e-34}{\joule\s} and Boltzmann's constant $k_B$ =\SI{1.380649e-23}{\joule\per\kelvin},
+% (where $\mu_0$ = \SI{1.257e-6}{Tm/A} is the vacuum magnetic permeability).
+At a bias field of $B_0=\SI{0.0317}{\tesla}$, we find an equilibrium magnetization of $M_0\approx \SI{1.86e-10}{\tesla}/\mu_0$.
+We computed the SQUID transfer coefficients for all scan steps and found an average value of $\beta\approx 4\times 10^6\,\mathrm{V/T}$.
+
+
+\section{Expected axionlike-particle signal}\label{sec:ALPlineshape}
+% \kp{PSD of ALP signal }
+The magnetometer responds to the gradient of the ALP field, $\bm{\nabla} a$, which can be treated as a pseudo-magnetic field. 
+The response has a linear dependence on $\bm{\nabla} a_\perp$, the component of $\bm{\nabla} a$ perpendicular to the bias field. 
+In the measurements analyzed in this work, the NMR linewidth is ten times broader than the expected ALP linewidth, therefore the ALP-induced signal follows the spectral lineshape of $\bm{\nabla} a_\perp$ \cite{Yuzhe2023_FrequencyScanning}. The PSD of the signal is given by: 
+\begin{equation}
+    |S_{\perp}(\nu,\,\nu_a)|^2 = P_{\perp} \lambda_{\perp}(\nu,\,\nu_a)
+    \,,\label{eq:Sperp}
+\end{equation}
+where $\nu$ is the frequency, $\nu_a$ is the ALP Compton frequency, $P_{\perp}$ is time-averaged signal power and $\lambda_{\perp}(\nu,\,\nu_a)$ is the normalized averaged spectral lineshape of $\bm{\nabla} a_\perp$ as found in Eq.\,(22) of Ref.\,\cite{Gramolin2022Feb_SpectralSignatures}. 
+$\lambda_{\perp}(\nu,\,\nu_a)$ is illustrated in Fig.\,\ref{fig:NMR_ALP_lineshape}. 
+In this work, we present PSDs in the units of \unit{\Phi_0^2/\Hz}, where \unit{\Phi_0} is the magnetic flux quantum.
+$P_{\perp}$ can be derived as\,\cite{aybas2021_SolidStateNMR}:
+\begin{align}
+    \label{eq:axionpower}
+    P_{\perp} &= \frac{1}{2} \left( \frac{M_\mathrm{f}}{R_\mathrm{f}}  \beta\,\mu_0 M_0\,  u \right)^2 \langle \xi^2\rangle \nonumber\\ 
+    &=\frac{1}{2} \left( \Phi_{\pi/2} u \right)^2 \langle \xi^2\rangle\,.
+\end{align}
+Here, $\Phi_{\pi/2}$ refers to the magnetic flux in the SQUID after a $\pi/2$-pulse, converted from the feedback voltage by Eqs.\,\eqref{eq:Phi_in_Vf} and \eqref{eq:beta}. 
+The spectral factor $u$, which is a function of Larmor frequency $\nu_L$, can be regarded as the effective fraction of on-resonance spins. 
+% Note that the factor $1/2$ appears to account for the time-averaged contribution of an oscillating signal
+% For a spin-precession signal, the amplitude of its PSD is proportional to the mean-square tipping angle $\langle \xi^2\rangle$. 
+$\xi$ is the tipping angle. 
+In the following, we expand on the parameters in Eq.\,\eqref{eq:axionpower}. 
+%\begin{figure}[hbt]
+%    \centering
+%    \includegraphics[width=\linewidth]{figures/plots/ALP_lineshape.png}
+%    \caption{Spectral lineshape of the signal induced by gradient coupling of the ALP field, as given by Eq. (22) in \cite{Gramolin2022Feb_SpectralSignatures}. 
+%    The amplitude has been normalized. 
+%    Plotted for the geographic location, date and time at the start of the measurement presented in this work.}\label{fig:lineshape}
+%\end{figure}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{figures/NMR_ALP_lineshape.png}
+    \caption{Illustration of spectral lineshapes of NMR, the ALP-field gradient and the ALP-induced signal. 
+    In the shown scenario, where the NMR linewidth is much broader than the ALP-field gradient, only a small fraction of the spins are on-resonance, and the signal lineshape follows the ALP-field gradient.
+    % the intrinsic ALP lineshape and the lineshapes of signals induced by the ALP-field gradient under different NMR spectral lines. (a) Spectral lineshape of the ALP-field gradient. (b) and (c) The orange solid lines represent the cases of narrow and broad NMR lines \new{obtained by pulsed-NMR}, with their widths determined by the relaxation time $T_2^*$. The blue dashed lines are ALP-signal lineshapes corresponding to the NMR lines in each plot. 
+    }
+    \label{fig:NMR_ALP_lineshape}
+\end{figure}
+
+% \kp{Tipping angle }
+%Because the ALP field is assumed always present on Earth, albeit fluctuating in amplitude, its effect on polarized nuclear spins is best compared to weak-drive cw-NMR. Here, an oscillating transverse field drives the spin precession, instead of a transient pulse. The interaction with the ALP gradient exerts a torque on nuclear spins.
+The ALP-field gradient transverse to the bias field (acting as an oscillating pseudo-magnetic field) would slightly tip the sample magnetization from its equilibrium orientation.
+The root-mean-squared (rms) tipping angle is determined by the rms Rabi frequency $\Omega_a$, relaxation time $T_2$, and the ALP-coherence time $\tau_a$\,\cite{Yuzhe2023_FrequencyScanning},
+\begin{equation}\label{eq:tipping_angle}
+    \sqrt{\langle \xi^2\rangle} \approx \Omega_a T_2 \sqrt{\frac{\tau_a}{\tau_a + T_2}} = \left\{
+    \begin{array}{cl}
+    \Omega_a \sqrt{\tau_a T_2}\,,
+    &  \tau_a \ll T_2 \\
+    & \\
+    \Omega_a T_2\,,
+    &  T_2 \ll \tau_a
+    \end{array} \right.
+    \,.
+\end{equation}
+%\YZ{Here we use $T_2 \sqrt{\frac{\tau_a}{\tau_a + T_2}}$ so as to interpolate between the two extreme cases. }
+Note that as an implication of the stochastic nature of the ALP field, the Rabi frequency is not constant; therefore we use its rms value\,\cite{Centers2021Stochastic},
+\begin{equation}\label{eq:ALP_Rabi}
+    \Omega_a \approx \frac{1}{2} \frac{c}{\hbar} g_\mathrm{aNN} a_0 m_a v_{\perp} 
+    = \frac{1}{2} g_\mathrm{aNN} \sqrt{2\hbar c\rho_{DM}} v_{\perp}
+    %\gamma B_a
+    \,,
+\end{equation}
+% \sqrt{\langle\Omega_a^2 \rangle}
+with the speed of light $c$, the gradient coupling constant $g_\mathrm{aNN}$, the rms ALP-field amplitude $a_0$ and the ALP mass $m_a=\nu_a(2\pi \hbar/c^2)$.
+$v_{\perp}= v_a \sin{\alpha}$ refers to the magnitude of the ALP velocity perpendicular to $\mathbf{B}_0$, where $\alpha$ is the angle between the ALP velocity, $\mathbf{v}_a$, and $\mathbf{B}_0$ (refer to Fig.\,1 of Ref.\,\cite{Gramolin2022Feb_SpectralSignatures}). 
+% \kp{ALP velocity }
+$v_a$ is boosted by the velocity of the terrestrial detector relative to the galactic rest frame. 
+This velocity is dominated by the galactic rotation speed at the solar radius, $v_{\odot}\approx\SI{233}{\km/\s}$. 
+Earth's motion introduces annual and daily modulation into $v_{\perp}$. 
+During the six-hour measurement, $v_{\perp}= v_a \sin{\alpha}$ varied by around \SI{50}{\%} due to the daily modulation of $\alpha$, which is plotted in Fig.\,\ref{fig:modulation}. 
+Meanwhile, the magnitude of $v_a$ varied by less than \SI{1}{\%} around $v_{\odot}$ over the measurement duration. 
+The factor of $1/2$ in Eq.\,\eqref{eq:ALP_Rabi} arises because only one of the two counter-rotating components of the linearly polarized drive field is on resonance (rotating-wave approximation). 
+%\JW{is the ALP gradient ALWAYS linearly polarized?}
+%\YZ{For gradient coupling, I would say yes. Let us leave people to read and give feedback. }
+\begin{figure}[ht]
+    %\leavevmode
+    %\floatsetup[figure]{capposition=bottom}
+    \centering
+    \includegraphics[width=\linewidth]{figures/ALP_wind_modulation.png}
+    \caption{ALP parameters modulated by Earth's motion. 
+    Plotted for the start times of each measurement step for each of the three scans in seconds. Zero time corresponds to start of the data taking on December 23, 2022, 15:47:30 (Central European Time, UTC+1). 
+    Vertical dashed red lines mark the beginning time of a scan. 
+    % Purple: the ALP velocity between DM halo and the lab frame over its mean value $v_a / \overline{v}_a$ . 
+    % Purple dot: the ALP velocity of the DM halo in the lab frame over its mean value $v_a / \overline{v}_a$. 
+    % The velocity $v_as$ varies by less than \SI{1}{\%} around its mean value, $\overline{v}_a=\SI{233}{km/s}$.
+    % , over the course of the measurement and can be assumed as constant.
+    Green line: $\sin\alpha$ oscillates with a period of one day.
+    %Note the different scales for both values, the variation of $v_a$ is around an order of magnitude smaller than that of $\alpha$.}
+    % This angle oscillates with a period of one day and has profound impact on the signal. 
+    Blue dot with error bar: expected ALP signal powers in the PSD, according to Eq.\,\eqref{eq:axionpower}, for the reference case of an ALP gradient coupling to proton of $g_\mathrm{ap}=\SI{1}{\GeV^{-1}}$.
+    Uncertainties for these values were propagated from errors of the spin relaxation times $T_2$ and $T_2^*$, sample Larmor frequency $\nu_L$ and NMR signal power $P_\mathrm{NMR}$. %\OM{include 1e-8 in the units of the y axis ($P_\perp\,(10^{-8}\Phi_0^2)$), and leave a space between quantity name and units.}\YZ{I checked the magnitude of $P_\perp$ and it ($10^{-8}$) looks right in the plot. }\YZ{Julian will change it.}
+    }
+    \label{fig:modulation}
+\end{figure}
+% \kp{spectral factor }
+% Due to finite bias-field inhomogeneity, nuclear spins precess at different Larmor frequencies. 
+% The distribution of Larmor frequencies can be described by a function $\rho_N$.
+% In our case, it can be well described by a Lorentzian function:
+% \begin{align}
+%     \rho_N(\nu,\,\nu_c,\,\Delta) = \frac{2}{\pi} \frac{1}{\Delta} \frac{1}{1+(\frac{\nu-\nu_c}{\Delta/2})^2}
+%     \,,\label{eq:rho_N}
+% \end{align}
+% where $\nu_c$ is the mean Larmor frequency, and $\Delta$ is the NMR frequency linewidth due to the bias-field inhomogeneity. Such a function is normalized as $\int_{-\infty}^{\infty} d\nu\, \rho_N = 1$. Another way to characterize the inhomogeneity is to use a time constant $T_\delta = 1 / (\pi \Delta)$. 
+% We also use $T_2^* = (T_2^{-1} + T_\delta^{-1})^{-1}$ to indicate the effective relaxation time due to these two different relaxation mechanisms.
+
+% In the spectral factor $u$, we consider the contribution of each spin to the signal. This contribution depends on the distribution of Larmor frequencies $\rho_N$, detunings of Larmor frequencies from the ALP Compton frequency (excitation frequency) $\nu_a$, relaxation time $T_2$ and ALP field coherence time $\tau_a$\,\cite{Abragam1961_NuclearMagnetism, aybas2021_SolidStateNMR}. 
+% \begin{align}
+%     u &= \int_{-\infty}^{+\infty}  d\nu\rho_N \frac{1}{1+ ( \frac{\nu-\nu_a}{\Delta_2/2})^2}\\
+%     &\approx \frac{\Delta_2}{\Delta_3} \frac{1}{1+ ( \frac{\nu_L-\nu_a}{\Delta_3/2})^2 }
+%     \,,\label{eq:u_nu_Tdelta}
+% \end{align}
+% where
+% \begin{equation}
+%     \Delta_2 = \frac{1}{T_2} +  \frac{1}{\tau_a}\quad \textrm{and} \quad
+%     \Delta_3 = \frac{1}{T_2^*} +  \frac{1}{\tau_a}
+%     \,.
+% \label{eq:Delta2_Delta3}
+% \end{equation}
+% % The integral in Eq.\,\ref{eq:u_nu_Tdelta} accounts for the contribution of all spins.
+% A typical value of $\Delta_2/\Delta_3$ for the measurements is $\Delta_2/\Delta_3\approx 0.12(5)$.
+% We can interpret the spectral factor in this way: assume small detuning as $(\nu_L-\nu_a)/ \Delta_3 \ll 1$; if the bias-field inhomogeneity is much larger than the ALP linewidth, i.e., $T_2^*\ll \tau_a,\,T_2$, then only a small fraction of the spins are on-resonance with the ALP-field gradient, and $u\approx T_2^*(\tau_a^{-1} + T_2^{-1})$. \new{This work corresponds to this regime, yielding $u\approx \SI{9.2}{\%}$. }\YZ{check the value!}
+% However, if $T_2^*\gg \tau_a$, then the majority of the spins are on-resonance, yielding $u\approx 1$.
+% In our case, the excitation frequency is close to the ALP Compton frequency. 
+In the spectral factor $u$, we consider the fraction of spins on-resonance with the ALP-field gradient. 
+Considering the linewidth of NMR ($\Delta\nu_\mathrm{NMR}/\nu\approx\SI{10}{\ppm}$) and the ALP-field gradient ($\Delta\nu_a/\nu\approx\SI{1}{\ppm}$), we can roughly estimate the spectral factor to be $u\approx\SI{10}{\%}$. 
+A more precise value can be computed by,
+\begin{align}
+    u=\frac{\Delta\nu_a}{\Delta\nu_\mathrm{NMR}} = \frac{T_2^*}{\tau_a}\,.
+\end{align}
+For the measurements around \SI{1.348500}{\MHz}, with $T_2^*=\SI{24.2 \pm 4}{\ms}$ and $\tau_a \approx \SI{0.35}{\s}$, the spectral factor $u$ is approximately $\SI{7}{\%}$. 
+
+Summarizing the above contributions, we arrive at the expected rms ALP-signal amplitude:
+\begin{align}
+    |S_{\perp} (\nu,\,\nu_a)|^2_{\mathrm{rms}}& =\frac{1}{2} [\Phi_{\pi/2} u \Omega_{a} T_2]^2 \frac{\tau_a}{\tau_a+T_2} \lambda_{\perp} (\nu,\,\nu_a) 
+    \,.\label{eq:S_perp_Tdelta}
+\end{align}
+% We consider two extreme regimes under the assumption that $\nu_L\approx\nu_a$ to verify Eq.\,\eqref{eq:S_perp_Tdelta}. 
+% Suppose that the NMR linewidth is much more significant than the ALP linewidth, i.e., $T_\delta,\,T_2\ll \tau_a$, where $T_\delta$ refers to inhomogeneous broadening, for which the relation $1/T_2^*=1/T_2+1/T_\delta$ holds. 
+% In that case Larmor frequencies of nuclear spins are evenly distributed near the ALP Compton frequency in the frequency domain and we can do the following approximation for the amplitude of the ALP signal: 
+% \begin{align}
+%     |S_{\perp} (\nu)|^2 \approx  \frac{1}{2} \Phi_{\pi/2}^2 \Omega_a^2 (T_2^*)^2 \lambda_{\perp}(\nu,\,\nu_a) 
+%     \,,\label{eq:S_perp_Tdelta_ll_taua}
+% \end{align}
+% whereas for $T_\delta,\,T_2\gg\tau_a$:
+% \begin{align}
+%     |S_{\perp} (\nu)|^2& \approx   \frac{1}{2} \Phi_{\pi/2}^2   \Omega_a^2 T_2 \tau_a \lambda_{\perp}(\nu,\,\nu_a) 
+%     \,.\label{eq:S_perp_Tdelta_gg_taua}
+% \end{align}
+% \OM{do we need these two cases?}
+% \JW{no strong opinion on them}
+%To test the signal recovery of the data analysis, we injected artificial ALP signals of various strengths into the data.
+We used synthetic ALP signals to test the recovery of signal candidate coupling constants and to derive the sensitivity of the measurement (see Sec\,\ref{sec:recoverytest}).
+Such signals were generated by evaluating the lineshape $\lambda_{\perp}(\nu,\,\nu_a)$ for a selected ALP Compton frequency $\nu_a$, scaling it with signal power $P_{\perp}(g_{ap})$ for a chosen coupling strength $g_{ap}$ according to Eqs.\,\eqref{eq:Sperp} and \eqref{eq:S_perp_Tdelta} and then adding (``injecting'') the generated signal on top of a PSD spectrum obtained from the measurements. 
+% In many analysis strategies, several slices of time domain data recorded at the same scan frequency are combined and an averaged PSD is computed. 
+% \sout{(often called vertical combination)} \YZ{not necessarily true. vertical combination usually refers to combination of spectra at different scan frequencies. }.
+%\sout{For data where a "stochastic" ALP signal has been injected, this procedure would smooth the lineshape, making it trend closer to $\lambda_{\perp}(\nu,\,\nu_a)$ with increasing number of averages.}
+If many spectra over the same frequency range are being averaged during data analysis, the expected ALP signal would be sufficiently described by the time-averaged lineshape $\lambda_{\perp}(\nu,\,\nu_a)$.
+In our case, however, we look for signals in a single spectrum for each scan step.
+%\sout{Assuming that the ALP gradient experienced by an Earth-bound haloscope is dominated by the relative velocity between the detector and the halo, $\lambda_{\perp}(\nu,\,\nu_a)$ is a smooth function of frequency. 
+%Taking into account that the amplitude and phase of the ALP field are random variables on a timescale of the ALP coherence time, the ALP lineshape should be treated as a stochastic function of frequency instead.}
+The amplitude of the ALP field at any frequency is a stochastic variable with values drawn from a Rayleigh distribution.
+The power that the ALP signal deposits in a single frequency bin of a PSD spectrum would be proportional to the square of its amplitude, and is therefore drawn from an exponential distribution\,\cite{Gramolin2022Feb_SpectralSignatures}.
+To account for this stochasticity, we performed a bin-wise random scaling of $\lambda_{\perp}(\nu,\,\nu_a)$, where the PSD values of the ALP signal are multiplied by numbers drawn from an exponential distribution with unitary mean.
+The ``smooth'' lineshape, $\lambda_{\perp}(\nu,\,\nu_a)$, would arise as the expectation value of the random-scaled ALP signal.
+
+\section{Data analysis efficiency}
+% \kp{Overview of the data-analysis procedure. }
+A schematic overview of the data analysis strategy reported in this work can be found in Fig.\,\ref{fig:flowchartDA}. 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{figures/flowchart.png}
+    \caption{
+    Schematic of the data analysis procedure. 
+    Nonwhite-noise-spike identification steps: Obtain the histogram of the residual spectrum (difference between raw spectrum and narrow SG-filter output). Calculate threshold from a $\chi^2_2$ fit to the histogram.
+    Baseline removal: subtraction of and division by the broad-SG-filter output (baseline).
+    Matched filtering: convolution of PSD with the ALP lineshape $\lambda_{\perp}(\nu,\,\nu_a)$. 
+    Hypothesis testing: identification of outliers from the rescan threshold for an ALP signal at the $5\sigma$ level.
+    ALP candidates: outliers within a window of $\pm5$ NMR linewidths around the Larmor frequency $\nu_L$.
+    }
+    \label{fig:flowchartDA}
+\end{figure}
+
+
+\subsection{Data ``sanity'' check}\label{sec:recoverytest}
+%When a PSD with an injected ALP signal undergoes the analysis procedure, the SG filter used during baseline removal may fit the signal peak as noise, degrading the efficiency of signal recovery.
+%This degradation can occur with real ALP signals as well, and is larger for higher coupling strength of the ALP in question.
+%We will consider the effects of baseline removal in a more comprehensive way in section\,\ref{effectsofbase}, and for now inject artificial ALP signals only after baseline removal is complete.
+We injected artificial ALP signals after baseline removal. 
+%This is effectively equivalent to injecting the signal into an ideal spectrum with completely flat baseline.
+%While the recovery of signals injected after baseline removal is not a good indicator of data analysis efficiency \OM{negative statement!!}, it can act as a sanity check to test if we are able to reliably recover signals from an ideal spectrum with a completely flat baseline.
+The recovery of signals injected after baseline removal serves as a useful check, demonstrating our ability to recover signals from an ideal spectrum with a flat baseline. 
+In Section\,\ref{effectsofbase}, we examine how baseline removal affects the signal recovery and consider the overall efficiency of the data analysis.
+
+We injected 20 different ALP signals with gradient couplings $\SI{0.001}{\GeV^{-1}} < g_\mathrm{aNN} < \SI{0.1}{\GeV^{-1}}$ into a raw PSD spectrum generated from data taken in one of the scan steps.
+All artificial ALP signals were introduced at Compton frequencies randomly chosen from the analysis window.
+Injections and subsequent data analyses were carried out individually so that each spectrum used to test signal recovery only contained a single synthetic ALP signal.
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=\linewidth]{figures/20221223_194651_fakeAxionScanTestStocSG_FakeAxionInjection__nocands.png}
+    \caption{
+    (a) Zoomed-in view of the spectrum of one of the scan steps of the main scan. 
+    The PSD values are plotted in blue. 
+    %The spectrum contains an injected ALP signal with $\nu_a=\SI{1348600}{\Hz}$, $g_\mathrm{ap}=\SI{5e-2}{\GeV^{-1}}$ and $\tau_a\approx\SI{0.25}{\s}$.
+    %The ALP halo velocity according to SHM at the time of measurement was \SI{233.58(2)}{\km\per\s} %233.581642 \YZ{so many digits} 
+    %at a sensitive detector angle of $\alpha=$\SI{124.06(1)}{\degree}\YZ{is the angle defined?}.
+    %The signal power (Eq.\,\eqref{eq:Sperp}) is $P_{\perp} \approx 4.513 \times 10^{-8}$.
+    Shown in red is the time-averaged signal lineshape $\lambda_{\perp}(\nu,\,\nu_a)$ of one of the injected ALP signals, and shown in green is $\lambda_{\perp}(\nu,\,\nu_a)$ after random scaling with values drawn from an exponential distribution.
+    %\sout{In the histogram of the convolved PSD, the frequency bin at \mbox{\SI{1348555.629}{\MHz}}, closest to the injection frequency, exceeds the rescan threshold (along with 88 others) and is therefore labeled a signal candidate.}
+    %This injected ALP signal is recovered by the data analysis with a coupling of $\SI{4.8e-2}{\GeV^{-1}}$ with an uncertainty of a few percent. 
+    (b) Gradient coupling constants recovered from 20 ALP signals, injected at random frequencies after baseline removal had been performed. 
+    Plotted %in red (green) 
+    are the signal power values of the matched filtered PSD at the ALP Compton frequencies converted into gradient coupling. %, for the spectra where a signal without (with) random scaling has been injected.
+    % The recovery factor of $\eta_{\mathrm{flat}}=$\SI{0.9998\pm0.0072}{} %(0.9861) is retrieved from a linear fit.
+    Note that for couplings below the setup sensitivity, we indicate the uncertainty of the recovered value with the $5\sigma$ sensitivity interval.
+    %\OM{PRD guideline: place units in parentheses (not square brackets) after the quantity}
+    }
+    \label{fig:fakeALPsensitivity}
+\end{figure}Figure\,\ref{fig:fakeALPsensitivity}\,(a) showcases one synthetic ALP signal injected at a Compton frequency of $\nu_a=\SI{1348600}{\Hz}$, with a gradient coupling of $g_\mathrm{ap}=5\times10^{-2}\,\mathrm{GeV}^{-1}$.
+This injected ALP signal is recovered by data analysis with a coupling of $\SI{4.8e-2}{\GeV^{-1}}$ with an uncertainty of a few percent.
+The recovered coupling constants of all injected ALP signals are plotted in Fig.\,\ref{fig:fakeALPsensitivity}\,(b).
+For the flat baseline case, an agreement between the injected and recovered coupling is expected, and in fact, we found a linear relation with a slope of \SI{0.999\pm0.007}{}.
+%A suppression of recovered coupling can arise due to the discrete sampling of the ALP search frequencies: 
+%if the injected ALP frequency falls between the scanning frequencies, a mismatch in the line-shapes during convolution reduces the recovered coupling strength.
+%The recovery test yields almost the same suppression regardless of whether random scaling has been applied to the signal or not, showing that the data analysis is suitable to search for signals in data that has been taken over many coherence times.
+
+
+\subsection{Effects of baseline removal}
+\label{effectsofbase}
+
+The effect of baseline removal depends on the shape of the baseline and, in our case, on the chosen window length of the SG filter.
+%When the SG filter window size is sufficiently large, the distribution of the null-axion case gives a nonzero mean distribution, and this offset needs to be taken into account to evaluate the efficiency.
+The SG filter used to obtain the baseline may accidentally fit potential ALP signal peaks as noise.
+When the filter window is sufficiently large, this can produce a significant shift in the NPE distribution obtained after filtering, compared to a scenario without baseline removal. 
+This shift in NPE leads to a degradation of accuracy in recovering the signal coupling strength from NPE, which needs to be taken into account when evaluating the efficiency of the data analysis.
+We define the signal recovery efficiency including baseline removal, $\eta_{\mathrm{rec}}$, as follows:
+\begin{equation}
+    \eta_{\mathrm{rec}} = \frac{e_{\mathrm{rec}} - \langle e_{\mathrm{off}} \rangle}{e_{0}}\,.
+\end{equation}
+Here, $e_{\mathrm{rec}}$, $e_{0}$, and $\langle e_{\mathrm{off}} \rangle$ are the average NPE values at the frequency of an ALP signal with the SG filter, without the SG filter, and the offset due to the SG filter, respectively.
+
+To compute the average efficiency, we used the baselines obtained via broad-SG filtering from ten of the PSD spectra.
+For each of these baselines, we generated 1000 sets of random noise data following a $\chi^2$ distribution with two degrees of freedom and with the mean value adjusted to zero. 
+These datasets simulate baseline-free, normalized spectra containing purely white noise (and are referred to as pure-noise spectra).
+An artificial ALP signal was injected into all datasets, with a coupling strength adjusted to ensure a 5-$\sigma$ significance in the absence of a baseline.
+Then, PSDs with nonflat baselines were simulated by combining the pure-noise datasets with the baselines from the measurements, as \textit{baseline $\times$ (1 + noise)}.
+Both sets of PSDs, with and without baseline, underwent the analysis procedure to obtain their NPE.
+%Then, the distribution of NPE at the ALP Compton frequency was obtained for each baseline set, while the distribution of the background was taken from the frequency region far from resonance to avoid the effect of the SG filter.
+Finally, we constructed the histogram of NPE values recovered in the bin containing the frequency of the injected ALP across all simulated PSDs.
+Similarly, the distribution of NPE values in the absence of an ALP signal was collected from a frequency bin more than five ALP linewidths remote from the ALP frequency.
+%Fig.\,\ref{fig:pulldistr} shows the pull distribution of the matched filtered spectrum, after undergoing the SG filter and matched filter. 
+%The red dots represent the NPE at the ALP frequency, and the blue dots represent the frequency bins without ALP signal. 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{figures/MC_simulation.png}
+    \caption{Histogram of normalized power excess (pull distribution) with ALP (red) and without ALP (blue). 
+    \textbf{(a)} Flat baseline. 
+    \textbf{(b)} With real baseline and SG filter. 
+    Here, $\mu$ refers to the mean of a histogram. 
+    %The offset of the spectrum is considered.
+    }
+    \label{fig:pulldistr}
+\end{figure}
+Figure\,\ref{fig:pulldistr} depicts the NPE histograms for these scenarios: flat baseline, obtained from the pure-noise spectra, and nonflat baseline, obtained from the noise spectra combined with real baselines; with and without ALP signal for both cases.
+%For a flat baseline, we recover ALP signal bins (red) that are spread around a mean NPE of $5.0$ ($e_{0}$), conforming with the signal-to-noise ratio of the injected signal.
+%In comparison, in the spectra where the SG filter has removed a nonflat baseline the mean of the ALP signal bin distribution, $e_{\mathrm{rec}}$, has been shifted.
+For a flat baseline [Fig.\,\ref{fig:pulldistr}\,(a)], the NPE values recovered from the ALP signal bin (red) are distributed around a mean of $e_0=5.0$, consistent with the signal-to-noise ratio of the injected signal. 
+In contrast, for spectra where the SG filter has removed a nonflat baseline [Fig.\,\ref{fig:pulldistr}\textbf{(b)}], the distribution of ALP signal NPEs is shifted, with a mean of $e_{\mathrm{rec}}=4.36$.
+The average offset due to the effect of the filter, $\langle e_{\mathrm{off}} \rangle$, is obtained from the difference between the no-ALP NPE histograms with and without baseline.
+We arrive at an average recovery efficiency $\eta_{\mathrm{rec}} =\SI{88.2\pm 4.6}{\%}$. 
+In terms of signal coupling strength, the efficiency is $\sqrt{\eta_{\mathrm{rec}}} =\SI{93.9\pm 2.5}{\%}$ and has been taken into account in the calculation of the sensitivity limits.
+
+\subsection{Finding the rescan threshold}
+
+Previously, we obtained the expected distribution of NPE values depending on the presence of an ALP signal, through Monte-Carlo (MC) simulations. 
+To determine whether the NPE of each frequency bin of a spectrum obtained from the experiment is likely to be a signal from ALPs or a statistical fluctuation, we performed a hypothesis test.
+
+In the simulation, we assumed an ALP with a coupling strength corresponding to $5\,\sigma$.
+This signal was used as the null hypothesis. %, $H_0$. 
+From it, we found the NPE providing a \SI{95}{\%} confidence level. 
+We calculated the empirical cumulative distribution function (CDF) using the histogram of NPE values at the ALP signal frequency bin obtained through MC simulations for the case of a flat baseline, i.e., the ideal case without using an SG filter.
+Figure\,\ref{fig:Hypothesis test} shows the empirical CDF obtained from MC simulation.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{figures/Hypothesis.png}
+    \caption{Empirical CDF obtained from the NPE distribution of spectra with a flat baseline [refer to Fig.\,\ref{fig:pulldistr}(a)].
+    The vertical dashed line represents the threshold for rescan, $\Theta_{\mathrm{RE}}$, corresponding to the null hypothesis of a $5\,\sigma$ ALP detection at the \SI{95}{\%} confidence level.
+    The p-value corresponding to the threshold (horizontal dashed line) is approximately 0.001. 
+    }
+    \label{fig:Hypothesis test}
+\end{figure}
+The threshold value at the \SI{95}{\%} confidence interval limit was found to be $\Theta_{\mathrm{RE}}=3.43$. 
+In the experiment, frequency components that yielded an NPE greater than this were considered signal candidates or outliers, depending on whether they were on resonance or not.
+ALP signal candidates from the main scan were compared with scans A and B in order to determine if they were signals from statistical fluctuations.
+
+
+% \onecolumngri
+% \begin{figure*}[ht]
+%     \centering
+%     \includegraphics[width=0.8\linewidth]{figures/AxionProton.png}
+%     \caption{Ref.\,\cite{OHare2020_AxionLimits} Our results in their full glory. Not sure if it should be included. Change "Mainz-Krakow" to "CASPEr-Helium"?\YZ{maybe ``this work'' instead of ``CASPEr-gradient-thermal''}
+%     \YZ{modify y-axis and use \unit{\GeV^{-1}}. put projection. }
+%     }
+%     \label{fig:cajohareplot}
+% \end{figure*}
+
+%\twocolumngrid

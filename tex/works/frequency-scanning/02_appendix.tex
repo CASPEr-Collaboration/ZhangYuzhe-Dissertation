@@ -1,0 +1,400 @@
+\section{Appendix}
+
+
+\subsection{Optimal dwell time in the scanning}
+
+As mentioned in the main text, we consider scanning with a fixed total measurement time $T_{\mathrm{tot}}$. 
+Here we determine the optimal strategy in allocating measurement time for each step so that we can maximize the sensitive area in the parameter space. To simplify the discussion, we make the following calculations with the normalized frequency in the range of $\hat{\omega}\in [1,\,\hat{\omega}_{\mathrm{end}}]$, where $\hat{\omega}=\omega/\omega_{\mathrm{start}}$ and $\hat{\omega}_{\mathrm{end}}=\omega_{\mathrm{end}}/\omega_{\mathrm{start}}>1$. %We can always go back to the ordinary frequency range by substituting $\hat{\omega}$ with $\omega$. 
+
+The dwell time is chosen to be proportional to $\hat{\omega}^n$:
+\begin{equation}
+    T = \kappa\, \hat{\omega}^n
+    \,,\label{eq:T_kappa_omega_n}
+\end{equation}
+where $\kappa$ is a constant determined by $T_{\mathrm{tot}}$ and $n$. The optimal value of $n$ is determined below. 
+The frequency scanned per time (scan rate) $d\omega/dt$ for this adaptive scheme is obtained by taking the ratio of the step size and the dwell time: 
+\begin{equation}
+    \dfrac{d\omega}{dt} = \dfrac{\Gamma_{\mathrm{scan}}}{T}
+    \,,\label{eq:domega_dt}
+\end{equation}
+from which we can derive the expressions for $\kappa$ in different regimes by integration. 
+The details are as follows. 
+
+
+\textbf{Regime (1) $\tau_a \ll T_2^*$ ($\Gamma_n\ll\Gamma_a$)}
+
+In this regime, the ALP signal is close to maximal for any detuning between the central ALP frequency and the NMR resonance smaller than $1/\tau_a$.
+%the NMR linewidth is so small that the nuclear spins are sensitive to a bandwidth of the ALP linewidth. 
+We therefore choose the step size in the scanning to be one ALP linewidth $\hat{\omega}/Q_a$, 
+and the scan rate is given as:
+\begin{equation}
+    \dfrac{d\hat{\omega}}{dt} = \dfrac{1}{\kappa\,Q_a} \hat{\omega}^{1-n}
+    \,,\label{eq:scan_rate_regime1}
+\end{equation}
+which can be written as
+\begin{equation}
+    dt = \kappa\,Q_a\, \hat{\omega}^{n-1} d\hat{\omega}
+    \,.\label{eq:dt_domega}
+\end{equation}
+We can integrate over $[0,\,T_{\mathrm{tot}}]$ and $[1,\,\hat{\omega}_{\mathrm{end}}]$ for two sides of the Equation \eqref{eq:dt_domega}, respectively:
+\begin{equation}
+    \int_{0}^{T_{\mathrm{tot}}} dt = Q_a \kappa 
+    \int_{1}^{\hat{\omega}_{\text{end}}} \hat{\omega}^{n-1} d\hat{\omega}
+    \,,
+\end{equation}
+so that $\kappa$ is derived as
+\begin{equation}
+    \kappa = \dfrac{n\,T_{\mathrm{tot}} }{ Q_a(\hat{\omega}_{\mathrm{end}}^{n}-1 )}  
+    \,.\label{eq:kappa_regime1}
+\end{equation}
+We can obtain the expression for $\kappa$ at $n=0$ by taking $\lim\limits_{n\to0}\kappa = T_{\mathrm{tot}}/Q_a \ln(\hat{\omega}_{\mathrm{end}})$. 
+
+
+
+
+\textbf{Regimes (2) $T_2^* \ll \tau_a \ll T_2 $ and (3) $T_2^* \ll T_2 \ll \tau_a$ ($\Gamma_a\ll\Gamma_n$)}
+
+
+In these two regimes, the NMR linewidth is dominated by the gradient of the bias field. 
+For the CASPEr-Gradient-Low-Field setup, the typical normalized linewidth is $\delta_{\omega}\sim \SI{10}{\ppm}$. The step size $\Gamma_{\mathrm{scan}}$ is taken as the NMR linewidth $\delta_{\omega} \omega$.
+
+
+The result for these regimes can be obtained by replacing $Q_a$ with $\delta_\omega^{-1}$ in Equation \eqref{eq:kappa_regime1}:
+\begin{equation}
+    \kappa = \dfrac{n \,\delta_\omega\,T_{\mathrm{tot}} }{ \hat{\omega}_{\mathrm{end}}^{n}-1 }
+    \,.\label{eq:kappa_regime2and3}
+\end{equation}
+The expression for $\kappa$ at $n=0$ is $\delta_\omega T_{\mathrm{tot}} / \ln(\hat{\omega}_{\mathrm{end}})$. 
+
+
+
+\textbf{Regime (3) $T_2^*=T_2 \ll \tau_a$ ($\Gamma_a\ll\Gamma_n$)}
+
+The magnitude of the magnetic-field gradient often scales linearly with the magnitude of the bias field. 
+If this is so, at low field, the relaxation due to the magnetic-field gradient is small compared to the $T_2$ relaxation, so that we have the effective relaxation time $T_2^*=T_2$. 
+Similar to regime (1) and (2), We choose the step size to be one NMR linewidth $2/T_2$, and the scan rate is proportional to $\hat{\omega}^{-n}$ in this regime:
+\begin{equation}
+    \dfrac{d\hat{\omega}}{dt} =\dfrac{2}{\kappa\, T_2}  \hat{\omega}^{-n}
+    \,.
+\end{equation}
+Repeating the steps for the first two regimes, and obtain
+% \begin{equation}
+%     \int_{0}^{T_{\mathrm{tot}}} dt = \dfrac{1}{2} \kappa T_2\int_{1}^{\hat{\omega}_{\mathrm{end}}} \hat{\omega}^{n} d\hat{\omega}
+%     \,.
+% \end{equation}
+% \begin{equation}
+%     \kappa = \left\{
+%     \begin{array}{ll}
+%     \dfrac{2 T_{\mathrm{tot}}}{ \ln{(\hat{\omega}_{\mathrm{end}})}  T_2} ,
+%     & n=-1  \\
+%         & \\
+%     \dfrac{2(n+1) T_{\mathrm{tot}}}{(\hat{\omega}_{\mathrm{end}}^{n+1}-1) T_2  } ,
+%     &  n\ne -1  
+%     \end{array} \right.
+%     \,.%\label{eq:k_Ttot}
+% \end{equation}
+\begin{equation}
+    \kappa = \dfrac{2(n+1) T_{\mathrm{tot}}}{(\hat{\omega}_{\mathrm{end}}^{n+1}-1) T_2  }
+    \,.\label{eq:kappa_regime4}
+\end{equation}
+At $n=-1$, we have $\kappa|_{n=-1} = \lim\limits_{n\to-1}\kappa = 2 T_{\mathrm{tot}}/\ln{(\hat{\omega}_{\mathrm{end}})}  T_2 $. 
+
+
+
+
+
+
+\begin{table}[ht]
+    \centering
+    \caption{Summary of parameters for different regimes.} 
+    % ($n\ne0$ or $-1$) $T\propto\hat{\omega}^0$ $T\propto\hat{\omega}^{-1}$
+    \begin{tabular}{cccccc}
+    	\hline
+    	\, & Regime & frequency-step size &  Dwell time  &  Dwell time  &  Dwell time   \\
+        \, &  & $\Gamma_{\mathrm{scan}}$ & $T|_{n\ne0 \text{ or } -1}$ & $T|_{n=0}$ & $T|_{n=-1}$ \\
+    	\hline
+        \, & &   &  &   &   \\
+        (1) & $\tau_a \ll T_2^*$ & $Q_a^{-1}\omega$ 
+        & $\dfrac{n \,T_{\mathrm{tot}} }{ Q_a (\hat{\omega}_{\mathrm{end}}^{n}-1) } \hat{\omega}^n$ 
+        & $\dfrac{T_{\mathrm{tot}} }{ Q_a \ln(\hat{\omega}_{\mathrm{end}}) } $
+        & $\dfrac{T_{\mathrm{tot}} }{ Q_a (-\hat{\omega}_{\mathrm{end}}^{-1}+1) } \hat{\omega}^{-1}$\\
+        \, & &   &  &   &   \\
+    	(2) & $T_2^* \ll \tau_a \ll T_2$  & $\delta_\omega \omega$ 
+        & $\dfrac{n \,\delta_{\omega} T_{\mathrm{tot}} }{ \hat{\omega}_{\mathrm{end}}^{n}-1 } \hat{\omega}^n$ 
+        & $\dfrac{\delta_{\omega} T_{\mathrm{tot}} }{  \ln(\hat{\omega}_{\mathrm{end}}) } $
+        & $\dfrac{\delta_{\omega} T_{\mathrm{tot}} }{  -\hat{\omega}_{\mathrm{end}}^{-1}+1 } \hat{\omega}^{-1}$  \\
+        \, & &   &  &   &   \\
+        % \hline
+    	(3) & $T_2^* \ll T_2 \ll \tau_a$ & $\delta_\omega \omega$
+        & $\dfrac{n \,\delta_{\omega} T_{\mathrm{tot}} }{ \hat{\omega}_{\mathrm{end}}^{n}-1 } \hat{\omega}^n$ 
+        & $\dfrac{\delta_{\omega} T_{\mathrm{tot}} }{  \ln(\hat{\omega}_{\mathrm{end}}) } $
+        & $\dfrac{\delta_{\omega} T_{\mathrm{tot}} }{  -\hat{\omega}_{\mathrm{end}}^{-1}+1 } \hat{\omega}^{-1}$\\
+        \, & &   &  &   &   \\
+        % \hline
+    	(4) & $T_2^*=T_2 \ll \tau_a$ & $\dfrac{2}{T_2}$ 
+        & $\dfrac{2(n+1) T_{\mathrm{tot}}}{(\hat{\omega}_{\mathrm{end}}^{n+1}-1) T_2} \hat{\omega}^n$ 
+        & $\dfrac{2\,T_{\mathrm{tot}}}{(\hat{\omega}_{\mathrm{end}}-1) T_2  }$ 
+        & $ \dfrac{2\,T_{\mathrm{tot}}}{\ln{(\hat{\omega}_{\mathrm{end}})} T_2}   \hat{\omega}^{-1}      $ \\
+        \, & &   &  &   &   \\
+        % \hline
+        \hline
+    \end{tabular}
+    \label{tab:summary_of_scanning}
+\end{table}
+
+The parameters in the scanning are summarized in Table\,\ref{tab:summary_of_scanning}. With arbitrary $n$ and dwell time $T$, The sensitivity in each regime is 
+\begin{equation}
+    |\mathrm{g_{aNN}}| \geqslant f(\hat{\omega},\, n) = \left\{
+    \begin{array}{ll}
+    \eta
+    \left(\dfrac{16\pi^2 Q_a T_{\mathrm{tot}}}{\delta_{\omega}^3}   
+     \times \dfrac{ n\, \hat{\omega}^{n-5} }{\hat{\omega}_{\mathrm{end}}^{n}-1   }   \right)^{-1/4}
+    ,
+    & \tau_a\ll T_2^* \text{ or }  T_2^*\ll\tau_a\ll T_2 \\
+    & \\
+    
+    \eta
+    \left(\dfrac{T_2^4\, T_{\mathrm{tot}} }{Q_a^3\, \delta_{\omega}^3} 
+      \times \dfrac{ n\, \hat{\omega}^{n-1} }{  \hat{\omega}_{\mathrm{end}}^{n}-1 }   \right)^{-1/4}
+    ,
+    & T_2^* \ll T_2 \ll \tau_a  \\
+        & \\
+    
+    \eta
+    \left(\dfrac{T_2^7\, T_{\mathrm{tot}} }{8 Q_a^3} 
+      \times \dfrac{ (n+1)\,\hat{\omega}^{n+3}  }{ \hat{\omega}_{\mathrm{end}}^{n+1}-1 }   \right)^{-1/4} ,
+    &  T_2^*=T_2 \ll \tau_a  \\
+    \end{array} \right.
+    \,.\label{eq:gaNN_n}
+\end{equation}
+Here $f(\hat{\omega},\, n)$ is the function of sensitivity, describing the lower bound that the experiment can reach. 
+In Figure \ref{fig:UniVsAdpt}, we show the sensitivity plots computed with parameters: $\omega_{\mathrm{end}}/\omega_{\mathrm{start}}=10$ and $n=0$ or $-1$. The sensitive regions of experiments are filled with colors. 
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=.7\linewidth]{UniVsAdpt_20230412-3.png}
+    \caption{Sensitivity plots (log-log scale) simulated with different schemes. The regions in the parameter space where the experiment is sensitive are indicated by the color blocks. The coupling strength is separately normalized in each regime so that the highest point is always 1 in a plot. The ratio $\omega_{\mathrm{end}}/\omega_{\mathrm{start}}$ is chosen to be 10 to compute the experimental sensitivities. }
+    \label{fig:UniVsAdpt}
+\end{figure}
+
+The area of the sensitive region (in log-log scale) can be drawn as
+\begin{equation}
+    A(n) = -\int_{\hat{\omega}=1}^{\hat{\omega}=\hat{\omega}_{\mathrm{end}}} \log f(\hat{\omega},\, n) d\log\hat{\omega}
+    \,.\label{eq:A_n}
+\end{equation}
+% Hence we can take the 
+Since we are optimizing the area, we need to figure out the maximum of $A(n)$. Consider the derivative of the area with regard to $n$:
+\begin{equation}
+    A^{'}(n) = \left\{
+    \begin{array}{ll}
+    \dfrac{\log^2\hat{\omega}_{\mathrm{end}}}{4} 
+    \left( 
+    \dfrac{1}{2} + \dfrac{1}{\log \hat{\omega}_{\mathrm{end}}^n }
+    -\dfrac{\hat{\omega}_{\mathrm{end}}^n }{ \hat{\omega}_{\mathrm{end}}^n-1 }    
+    \right)
+    ,
+    & \tau_a\ll T_2^* ,\, T_2^*\ll\tau_a\ll T_2  \text{ or }  T_2^* \ll T_2 \ll \tau_a  \\
+    & \\
+    
+    \dfrac{\log^2\hat{\omega}_{\mathrm{end}}}{4} 
+    \left( 
+    \dfrac{1}{2} + \dfrac{1}{\log \hat{\omega}_{\mathrm{end}}^{n+1} }
+    -\dfrac{\hat{\omega}_{\mathrm{end}}^{n+1} }{ \hat{\omega}_{\mathrm{end}}^{n+1}-1 }    
+    \right),
+    &  T_2^*=T_2 \ll \tau_a  \\
+    \end{array} \right.
+    \,,\label{eq:dA_dn}
+\end{equation}
+and three different cases ($\hat{\omega}_{\mathrm{end}}>1$):
+\begin{equation}
+    m\to0,\,\dfrac{1}{2} + \dfrac{1}{\log \hat{\omega}_{\mathrm{end}}^m }
+    -\dfrac{\hat{\omega}_{\mathrm{end}}^m }{ \hat{\omega}_{\mathrm{end}}^m-1 } = 0
+    \,,
+\end{equation}
+\begin{equation}
+    m<0,\,\dfrac{1}{2} + \dfrac{1}{\log \hat{\omega}_{\mathrm{end}}^m }
+    -\dfrac{\hat{\omega}_{\mathrm{end}}^m }{ \hat{\omega}_{\mathrm{end}}^m-1 } > 0
+    \,,
+\end{equation}
+\begin{equation}
+    m>0,\,\dfrac{1}{2} + \dfrac{1}{\log \hat{\omega}_{\mathrm{end}}^m }
+    -\dfrac{\hat{\omega}_{\mathrm{end}}^m }{ \hat{\omega}_{\text{end}}^m-1 } < 0
+    \,.
+\end{equation}
+%\YZ{What punctuation marks should we use here for the equations and inequalities?}
+We find that to maximize the area $A(n)$, we should take $n=-1$ for regime $T_2^*=T_2 \ll \tau_a$ and $n=0$ for the other 3 regimes. 
+Another way to state the optimal dwell-time strategy is that, when the sensitive bandwidth of single measurements (frequency-step size $\Gamma_{\mathrm{scan}}$) is proportional to $\omega^1$, as in the regime where $\tau_a\ll T_2^* ,\, T_2^*\ll\tau_a\ll T_2  \text{ or }  T_2^* \ll T_2 \ll \tau_a$, the dwell time $T$ should be proportional to $\omega^0$, while when $\Gamma_{\mathrm{scan}} \propto\omega^0$ (regime $T_2^*=T_2\ll\tau_a$), the optimal $T\propto\omega^{-1}$. 
+
+The corresponding expressions for optimal sensitivity are included in Equation \eqref{eq:gaNN_Ttot_optimal}. 
+Notice that we could use $\delta_\omega = \tau_a/\pi Q_a T_2^*$ for the expressions if we are interested in seeing the effects of $\tau_a$ and $T_2^*$ on the sensitivity directly. 
+
+
+
+
+% \begin{equation}
+%     |\mathrm{g_{aNN}}| \geqslant f(\hat{\omega},\, -1) = \left\{
+%     \begin{array}{ll}
+%     \eta
+%     \left(\dfrac{16\pi^2 Q_a T_{\mathrm{tot}}}{\delta_{\omega}^3}   
+%      \times \dfrac{ \, \hat{\omega}^{-6} }{1-\hat{\omega}_{\mathrm{end}}^{-1}   }   \right)^{-1/4}
+%     ,
+%     & \tau_a\ll T_2^* \text{ or }  T_2^*\ll\tau_a\ll T_2 \\
+%     & \\
+    
+%     \eta
+%     \left(\dfrac{T_2^4\, T_{\mathrm{tot}} }{Q_a^3\, \delta_{\omega}^3} 
+%       \times \dfrac{ \, \hat{\omega}^{-2} }{1-  \hat{\omega}_{\mathrm{end}}^{-1} }   \right)^{-1/4}
+%     ,
+%     & T_2^* \ll T_2 \ll \tau_a  \\
+%         & \\
+    
+%     \eta
+%     \left(\dfrac{T_2^7\, T_{\mathrm{tot}} }{8 Q_a^3} 
+%       \times \dfrac{\hat{\omega}^{2}  }{ \ln\hat{\omega}_{\mathrm{end}}}   \right)^{-1/4} ,
+%     &  T_2^*=T_2 \ll \tau_a  \\
+%     \end{array} \right.
+%     \,.
+% \end{equation}
+
+% n=0
+
+% \begin{equation}
+%     |\mathrm{g_{aNN}}| \geqslant f(\hat{\omega},\, 0) = \left\{
+%     \begin{array}{ll}
+%     \eta
+%     \left(\dfrac{16\pi^2 Q_a T_{\mathrm{tot}}}{\delta_{\omega}^3}   
+%      \times \dfrac{ \hat{\omega}^{-5} }{\ln\hat{\omega}_{\mathrm{end}}^{n}   }   \right)^{-1/4}
+%     ,
+%     & \tau_a\ll T_2^* \text{ or }  T_2^*\ll\tau_a\ll T_2 \\
+%     & \\
+    
+%     \eta
+%     \left(\dfrac{T_2^4\, T_{\mathrm{tot}} }{Q_a^3\, \delta_{\omega}^3} 
+%       \times \dfrac{ \hat{\omega}^{-1} }{  \ln\hat{\omega}_{\mathrm{end}} }   \right)^{-1/4}
+%     ,
+%     & T_2^* \ll T_2 \ll \tau_a  \\
+%         & \\
+    
+%     \eta
+%     \left(\dfrac{T_2^7\, T_{\mathrm{tot}} }{8 Q_a^3} 
+%       \times \dfrac{ \hat{\omega}^{3}  }{ \hat{\omega}_{\mathrm{end}}-1 }   \right)^{-1/4} ,
+%     &  T_2^*=T_2 \ll \tau_a  \\
+%     \end{array} \right.
+%     \,.
+% \end{equation}
+
+
+% left
+
+% n=-1
+
+% \begin{equation}
+%     |\mathrm{g_{aNN}}| \geqslant f(\hat{\omega},\, -1) = \left\{
+%     \begin{array}{ll}
+%     \eta
+%     \left(\dfrac{16\pi^2 Q_a T_{\mathrm{tot}}}{\delta_{\omega}^3}   
+%      \times \dfrac{ 1 }{1-\hat{\omega}_{\mathrm{end}}^{-1}   }   \right)^{-1/4}
+%     ,
+%     & \tau_a\ll T_2^* \text{ or }  T_2^*\ll\tau_a\ll T_2 \\
+%     & \\
+    
+%     \eta
+%     \left(\dfrac{T_2^4\, T_{\mathrm{tot}} }{Q_a^3\, \delta_{\omega}^3} 
+%       \times \dfrac{ 1 }{1-  \hat{\omega}_{\mathrm{end}}^{-1} }   \right)^{-1/4}
+%     ,
+%     & T_2^* \ll T_2 \ll \tau_a  \\
+%         & \\
+    
+%     \eta
+%     \left(\dfrac{T_2^7\, T_{\mathrm{tot}} }{8 Q_a^3} 
+%       \times \dfrac{1  }{ \ln\hat{\omega}_{\mathrm{end}}}   \right)^{-1/4} ,
+%     &  T_2^*=T_2 \ll \tau_a  \\
+%     \end{array} \right.
+%     \,.
+% \end{equation}
+
+% n=0
+
+% \begin{equation}
+%     |\mathrm{g_{aNN}}| \geqslant f(\hat{\omega},\, 0) = \left\{
+%     \begin{array}{ll}
+%     \eta
+%     \left(\dfrac{16\pi^2 Q_a T_{\mathrm{tot}}}{\delta_{\omega}^3}   
+%      \times \dfrac{ 1 }{\ln\hat{\omega}_{\mathrm{end}}^{n}   }   \right)^{-1/4}
+%     ,
+%     & \tau_a\ll T_2^* \text{ or }  T_2^*\ll\tau_a\ll T_2 \\
+%     & \\
+    
+%     \eta
+%     \left(\dfrac{T_2^4\, T_{\mathrm{tot}} }{Q_a^3\, \delta_{\omega}^3} 
+%       \times \dfrac{1 }{  \ln\hat{\omega}_{\mathrm{end}} }   \right)^{-1/4}
+%     ,
+%     & T_2^* \ll T_2 \ll \tau_a  \\
+%         & \\
+    
+%     \eta
+%     \left(\dfrac{T_2^7\, T_{\mathrm{tot}} }{8 Q_a^3} 
+%       \times \dfrac{ 1 }{ \hat{\omega}_{\mathrm{end}}-1 }   \right)^{-1/4} ,
+%     &  T_2^*=T_2 \ll \tau_a  \\
+%     \end{array} \right.
+%     \,.
+% \end{equation}
+
+% right
+
+% \begin{equation}
+%     |\mathrm{g_{aNN}}| \geqslant f(\hat{\omega},\, -1) = \left\{
+%     \begin{array}{ll}
+%     \eta
+%     \left(\dfrac{16\pi^2 Q_a T_{\mathrm{tot}}}{\delta_{\omega}^3}   
+%      \times \dfrac{ \hat{\omega}_{\mathrm{end}}^{-6} }{1-\hat{\omega}_{\mathrm{end}}^{-1}   }   \right)^{-1/4}
+%     ,
+%     & \tau_a\ll T_2^* \text{ or }  T_2^*\ll\tau_a\ll T_2 \\
+%     & \\
+    
+%     \eta
+%     \left(\dfrac{T_2^4\, T_{\mathrm{tot}} }{Q_a^3\, \delta_{\omega}^3} 
+%       \times \dfrac{ \hat{\omega}_{\mathrm{end}}^{-2} }{1-  \hat{\omega}_{\mathrm{end}}^{-1} }   \right)^{-1/4}
+%     ,
+%     & T_2^* \ll T_2 \ll \tau_a  \\
+%         & \\
+    
+%     \eta
+%     \left(\dfrac{T_2^7\, T_{\mathrm{tot}} }{8 Q_a^3} 
+%       \times \dfrac{\hat{\omega}_{\mathrm{end}}^{2}  }{ \ln\hat{\omega}_{\mathrm{end}}}   \right)^{-1/4} ,
+%     &  T_2^*=T_2 \ll \tau_a  \\
+%     \end{array} \right.
+%     \,.
+% \end{equation}
+
+% n=0
+
+% \begin{equation}
+%     |\mathrm{g_{aNN}}| \geqslant f(\hat{\omega},\, 0) = \left\{
+%     \begin{array}{ll}
+%     \eta
+%     \left(\dfrac{16\pi^2 Q_a T_{\mathrm{tot}}}{\delta_{\omega}^3}   
+%      \times \dfrac{ \hat{\omega}_{\mathrm{end}}^{-5} }{\ln\hat{\omega}_{\mathrm{end}}^{n}   }   \right)^{-1/4}
+%     ,
+%     & \tau_a\ll T_2^* \text{ or }  T_2^*\ll\tau_a\ll T_2 \\
+%     & \\
+    
+%     \eta
+%     \left(\dfrac{T_2^4\, T_{\mathrm{tot}} }{Q_a^3\, \delta_{\omega}^3} 
+%       \times \dfrac{ \hat{\omega}_{\mathrm{end}}^{-1} }{  \ln\hat{\omega}_{\mathrm{end}} }   \right)^{-1/4}
+%     ,
+%     & T_2^* \ll T_2 \ll \tau_a  \\
+%         & \\
+    
+%     \eta
+%     \left(\dfrac{T_2^7\, T_{\mathrm{tot}} }{8 Q_a^3} 
+%       \times \dfrac{ \hat{\omega}_{\mathrm{end}}^{3}  }{ \hat{\omega}_{\mathrm{end}}-1 }   \right)^{-1/4} ,
+%     &  T_2^*=T_2 \ll \tau_a  \\
+%     \end{array} \right.
+%     \,.
+% \end{equation}
+% \begin{equation}
+%     \hat{\omega}_{\mathrm{end}}>1,\, \dfrac{1 }{1-\hat{\omega}_{\mathrm{end}}^{-1}   } >\dfrac{ 1 }{  \ln\hat{\omega}_{\mathrm{end}} }
+% \end{equation}
+% \begin{equation}
+%     \hat{\omega}_{\mathrm{end}}>1,\, \dfrac{ \hat{\omega}_{\mathrm{end}} }{  \ln\hat{\omega}_{\mathrm{end}} }>\dfrac{1 }{1-\hat{\omega}_{\mathrm{end}}^{-1}   } 
+% \end{equation}

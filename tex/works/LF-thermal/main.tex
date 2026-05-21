@@ -1,0 +1,694 @@
+% ******Start of file apssamp.tex ******
+%
+%   This file is part of the APS files in the REVTeX 4.2 distribution.
+%   Version 4.2a of REVTeX, December 2014
+%
+%   Copyright (c) 2014 The American Physical Society.
+%
+%   See the REVTeX 4 README file for restrictions and more information.
+%
+% TeX'ing this file requires that you have AMS-LaTeX 2.0 installed
+% as well as the rest of the prerequisites for REVTeX 4.2
+%
+% See the REVTeX 4 README file
+% It also requires running BibTeX. The commands are as follows:
+%
+%  1)  latex apssamp.tex
+%  2)  bibtex apssamp
+%  3)  latex apssamp.tex
+%  4)  latex apssamp.tex
+%\usepackage{siunitx}
+\documentclass[superscriptaddress,
+floatfix,
+reprint,
+%superscriptaddress,
+%groupedaddress,
+%unsortedaddress,
+%runinaddress,
+%frontmatterverbose, 
+% preprint,
+%preprintnumbers,
+nofootinbib,
+%nobibnotes,
+%bibnotes,
+amsmath,amssymb,
+aps,
+% pra,
+prd,
+%prb,
+%rmp,
+%prstab,
+%prstper,
+]{revtex4-2}
+
+\usepackage{graphicx}% Include figure files
+
+\usepackage{bm}% bold math
+\usepackage{hyperref}% add hypertext capabilities
+\usepackage{cleveref}
+%\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+%\linenumbers\relax % Commence numbering lines
+% \usepackage{comment}
+
+
+%\usepackage[showframe,%Uncomment any one of the following lines to test 
+%%scale=0.7, marginratio={1:1, 2:3}, ignoreall,% default settings
+%%text={7in,10in},centering,
+%%margin=1.5in,
+%%total={6.5in,8.75in}, top=1.2in, left=0.9in, includefoot,
+%%height=10in,a5paper,hmargin={3cm,0.8in},
+%]{geometry}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ % For professional tables
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{booktabs} % if you're using \toprule, \midrule, \bottomrule
+\usepackage{tabularx}
+\usepackage{multirow}
+\renewcommand{\arraystretch}{1.5}
+\usepackage{threeparttable}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% for chemical forumals
+\usepackage{chemformula}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\usepackage{gensymb} % for degree ° symbol
+\usepackage{mycommands}
+% \usepackage{float}
+%\usepackage{floatrow}
+\usepackage{dblfloatfix}
+\usepackage{placeins}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SI unit
+\usepackage{siunitx}
+\DeclareSIUnit\torr{torr}
+\DeclareSIUnit\ppm{ppm}
+\DeclareSIUnit\ppb{ppb}
+\DeclareSIUnit\bar{bar}
+\DeclareSIUnit\gauss{G}
+\DeclareSIUnit\neV{\nano\electronvolt}
+\DeclareSIUnit\peV{\pico\electronvolt}
+\DeclareSIUnit\kms{km/s}
+\sisetup{print-unity-mantissa=false}  % To display only the exponent (i.e., 10⁻¹¹) 
+\sisetup{separate-uncertainty = false} % use parenthesis style for uncertainty
+% \sisetup{uncertainty-mode = separate} % use +/- style for uncertainty
+\sisetup{uncertainty-mode = compact-marker} % turn this on to use style like 123.45(1.20)
+% otherwise we  turn this on to use style like 123.45(120)
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[normalem]{ulem}
+\usepackage{changes}
+
+\begin{document}
+
+\preprint{APS/123-QED}
+
+\title{Search for axionlike dark matter using liquid-state nuclear magnetic resonance}
+
+\author{Julian Walter}
+\thanks{These authors contributed equally to this work.}
+\affiliation{Johannes Gutenberg-Universit{\"a}t Mainz, 55128 Mainz, Germany}
+\affiliation{Helmholtz Institute Mainz, 55099 Mainz, Germany}
+\affiliation{GSI Helmholtzzentrum für Schwerionenforschung GmbH, 64291 Darmstadt, Germany}
+
+\author{Olympia Maliaka}
+\thanks{These authors contributed equally to this work.}
+\affiliation{Johannes Gutenberg-Universit{\"a}t Mainz, 55128 Mainz, Germany}
+\affiliation{Helmholtz Institute Mainz, 55099 Mainz, Germany}
+\affiliation{GSI Helmholtzzentrum für Schwerionenforschung GmbH, 64291 Darmstadt, Germany}
+
+\author{Yuzhe Zhang}
+\thanks{These authors contributed equally to this work.}
+\affiliation{Johannes Gutenberg-Universit{\"a}t Mainz, 55128 Mainz, Germany}
+% \affiliation{Helmholtz-Institut, GSI Helmholtzzentrum f{\"u}r Schwerionenforschung, 55128 Mainz, Germany}
+\affiliation{Helmholtz Institute Mainz, 55099 Mainz, Germany}
+\affiliation{GSI Helmholtzzentrum für Schwerionenforschung GmbH, 64291 Darmstadt, Germany}
+
+\author{John W. Blanchard}
+\affiliation{Quantum Technology Center, University of Maryland, College Park, MD 20742, United States of America}
+\affiliation{Helmholtz Institute Mainz, 55099 Mainz, Germany}
+\affiliation{GSI Helmholtzzentrum für Schwerionenforschung GmbH, 64291 Darmstadt, Germany}
+
+\author{Gary Centers}
+\affiliation{Johannes Gutenberg-Universit{\"a}t Mainz, 55128 Mainz, Germany}
+% \affiliation{Helmholtz-Institut, GSI Helmholtzzentrum f{\"u}r Schwerionenforschung, 55128 Mainz, Germany}
+\affiliation{Helmholtz Institute Mainz, 55099 Mainz, Germany}
+\affiliation{GSI Helmholtzzentrum für Schwerionenforschung GmbH, 64291 Darmstadt, Germany}
+
+\author{Arian Dogan}
+\affiliation{Johannes Gutenberg-Universit{\"a}t Mainz, 55128 Mainz, Germany}
+% \affiliation{Helmholtz-Institut, GSI Helmholtzzentrum f{\"u}r Schwerionenforschung, 55128 Mainz, Germany}
+\affiliation{Helmholtz Institute Mainz, 55099 Mainz, Germany}
+\affiliation{GSI Helmholtzzentrum für Schwerionenforschung GmbH, 64291 Darmstadt, Germany}
+
+\author{Martin Engler}
+\affiliation{Johannes Gutenberg-Universit{\"a}t Mainz, 55128 Mainz, Germany}
+% \affiliation{Helmholtz-Institut, GSI Helmholtzzentrum f{\"u}r Schwerionenforschung, 55128 Mainz, Germany}
+\affiliation{Helmholtz Institute Mainz, 55099 Mainz, Germany}
+\affiliation{GSI Helmholtzzentrum für Schwerionenforschung GmbH, 64291 Darmstadt, Germany}
+
+\author{Nataniel L. Figueroa}
+\affiliation{Johannes Gutenberg-Universit{\"a}t Mainz, 55128 Mainz, Germany}
+% \affiliation{Helmholtz-Institut, GSI Helmholtzzentrum f{\"u}r Schwerionenforschung, 55128 Mainz, Germany}
+\affiliation{Helmholtz Institute Mainz, 55099 Mainz, Germany}
+\affiliation{GSI Helmholtzzentrum für Schwerionenforschung GmbH, 64291 Darmstadt, Germany}
+
+
+\author{Younggeun Kim}
+\affiliation{Johannes Gutenberg-Universit{\"a}t Mainz, 55128 Mainz, Germany}
+% \affiliation{Helmholtz-Institut, GSI Helmholtzzentrum f{\"u}r Schwerionenforschung, 55128 Mainz, Germany}
+\affiliation{Helmholtz Institute Mainz, 55099 Mainz, Germany}
+\affiliation{GSI Helmholtzzentrum für Schwerionenforschung GmbH, 64291 Darmstadt, Germany}
+
+\author{Derek F. Jackson Kimball}
+\affiliation{Department of Physics, California State University--East Bay, Hayward, CA 94542-3084, United States of America}
+
+\author{Matthew Lawson}
+\affiliation{Physics Department, Stockholm University, Albanova University Centre, SE-10691 Stockholm, Sweden}
+
+\author{Declan W. Smith}
+% \affiliation{Department of Physics, Boston University, Boston, MA 02215, United States of America}
+\affiliation{Department of Physics, Boston University, Boston, MA 02215, United States of America}
+
+\author{Alexander O. Sushkov}
+\affiliation{Department of Physics, Boston University, Boston, MA 02215, United States of America}
+% \affiliation{Department of Electrical and Computer Engineering, Boston University, Boston, MA 02215, United States of America}
+\affiliation{Department of Electrical and Computer Engineering, Boston University, Boston, MA 02215, United States of America}
+% \affiliation{Photonics Center, Boston University, Boston, MA 02215, United States of America}
+\affiliation{Photonics Center, Boston University, Boston, MA 02215, United States of America}
+\affiliation{Department of Physics \& Astronomy, The Johns Hopkins University, Baltimore, MD 21218, United States of America}
+
+\author{Dmitry Budker}
+\affiliation{Johannes Gutenberg-Universit{\"a}t Mainz, 55128 Mainz, Germany}
+% \affiliation{Helmholtz-Institut, GSI Helmholtzzentrum f{\"u}r Schwerionenforschung, 55128 Mainz, Germany}
+\affiliation{Helmholtz Institute Mainz, 55099 Mainz, Germany}
+\affiliation{GSI Helmholtzzentrum für Schwerionenforschung GmbH, 64291 Darmstadt, Germany}
+\affiliation{Department of Physics, University of California, Berkeley, CA 94720-7300, United States of America}
+
+\author{Hendrik Bekker}
+\email{hbekker@uni-mainz.de}
+\affiliation{Johannes Gutenberg-Universit{\"a}t Mainz, 55128 Mainz, Germany}
+% \affiliation{Helmholtz-Institut, GSI Helmholtzzentrum f{\"u}r Schwerionenforschung, 55128 Mainz, Germany}
+\affiliation{Helmholtz Institute Mainz, 55099 Mainz, Germany}
+\affiliation{GSI Helmholtzzentrum für Schwerionenforschung GmbH, 64291 Darmstadt, Germany}
+
+\author{Arne Wickenbrock}
+\affiliation{Johannes Gutenberg-Universit{\"a}t Mainz, 55128 Mainz, Germany}
+% \affiliation{Helmholtz-Institut, GSI Helmholtzzentrum f{\"u}r Schwerionenforschung, 55128 Mainz, Germany}
+\affiliation{Helmholtz Institute Mainz, 55099 Mainz, Germany}
+\affiliation{GSI Helmholtzzentrum für Schwerionenforschung GmbH, 64291 Darmstadt, Germany}
+
+%\YZ{To check after almost completing the manuscript: }
+%\YZ{Has every symbol or parameter been introduced after their first appearances?}
+%\YZ{time-domain data or time-series?}
+%\YZ{TODO: check if we wrote enough effective digits for numbers. }
+
+\begin{abstract}
+% We search for dark matter in the form of axionlike particles (ALPs) in the mass range 5.576741 $\mathrm{neV/c^2}$ - 5.577733 $\mathrm{neV/c^2}$ by probing their possible coupling to fermion spins through the ALP field gradient. This is achieved by performing proton nuclear magnetic resonance spectroscopy on a sample of methanol as a technical demonstration of the Cosmic Axion Spin Precession Experiment Gradient (CASPEr-Gradient) Low-Field apparatus. Searching for spin-coupled ALP dark matter in this mass range with associated Compton frequencies in a 240 Hz window centered at 1.348570 MHz resulted in a sensitivity to the ALP-proton coupling constant of $g_{\mathrm{ap}} \approx 3 \times 10^{-2}\,\mathrm{GeV}^{-1}$. This narrow-bandwidth search serves as a proof-of-principle and a commissioning measurement, validating our methodology and demonstrating the experiment's capabilities. It opens the door to probing large swaths of hitherto unexplored mass-coupling parameter space in the future by using hyperpolarized samples.
+We search for dark matter in the form of axionlike particles (ALPs) in the mass range $\SI{5.576741}{\neV/c^2}-\SI{5.577733}{\neV/c^2}$ by probing their possible coupling to fermion spins through the ALP field gradient. This is achieved by performing proton nuclear magnetic resonance spectroscopy on a sample of methanol as a technical demonstration of the Cosmic Axion Spin Precession Experiment Gradient (CASPEr-Gradient) Low-Field apparatus. Searching for spin-coupled ALP dark matter in this mass range with associated Compton frequencies in a \SI{240}{\Hz} window centered at \SI{1.348570}{\MHz} resulted in a sensitivity to the ALP-proton coupling constant of $g_{\mathrm{ap}} \approx 3 \times 10^{-2}\,\mathrm{GeV}^{-1}$. This narrow-bandwidth search serves as a proof-of-principle and a commissioning measurement, validating our methodology and demonstrating the experiment's capabilities. CASPEr-Gradient Low-Field will probe the mass range from \SI{4.1}{\peV/c^2} to \SI{17}{\neV/c^2} with hyperpolarized samples to boost the sensitivity beyond the astronomical limits.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+The hypothesis of dark matter (DM) is well supported by astronomical and cosmological observations. 
+Early examples include studies of galaxy clusters by Zwicky \textit{et al.} in the 1930s\,\cite{zwicky1933redshift,zwicky1979masses} and of galactic rotation curves by Rubin \textit{et al.} in the 1970s\,\cite{rubin1970rotation}.
+Since then, observations supporting the DM hypothesis\,\cite{ade2016planck, bartelmann2010gravitational,Clowe_2006,Harvey_2015,jedamzik2009big} have been accumulating.
+Among various well-motivated DM candidates, axions and axionlike particles (ALPs)\,\cite{berezhiani1992primordial, annurevAxionSearches, chadhaday2022axiondarkmatternow, Kimball2023_search} are the focus of this work. 
+These ultralight pseudoscalar bosons with possible masses between roughly $10^{-22}$ and $\SI{10}{\eV/c^2}$\,\cite{GrahamStochasticAxion} are introduced by theoretical models of particle physics such as string theory and grand unified theories (GUT)\,\cite{Preskill1983_invisible_axion, Abbott1982_Cosmological_Axion, Dine1983_not_so_harmless_axion,svrcek2006axions, berezhiani1991cosmology}.
+Axions are particularly of interest as they emerged as a solution to the strong $CP$ problem of quantum chromodynamics\,\cite{PecceiQuinn1977_CPConservation_PRL, PecceiQuinn1977_ConstraintsCP_PRD}. 
+For convenience, we refer to both axions and axionlike particles as ALPs unless there is a need to distinguish them.
+
+Considering the local DM density $\rho_{\text{DM}} \approx \SI{0.3}{\GeV/\cm^{3}}$ \cite{BERGSTROM1998137, Jungman1992SupersymmetricDM, doi:10.1146/annurev.astro.39.1.137} and the ALP mass, if ALPs make up a significant fraction of DM, their number density is large enough that their collective behavior can be approximately described as a classical wave, 
+\begin{equation}\label{eq:ALPfield}
+    a(\mathbf{r},t) = a_0 \cos{(2\pi\nu_a t - \mathbf{k}\cdot\mathbf{r}+\phi)}\,,
+\end{equation}
+where $a_{0}$ is the field amplitude, $\mathbf{r}$ is the displacement vector; $\mathbf{k}=m_a\bm{v}_a/\hbar$ is the wave vector with ALP velocity $\bm{v}_a$, ALP mass $m_a$ and the reduced Planck constant $\hbar$; and $\phi$ is a random phase\,\cite{Foster2018HaloAxion,Lisanti2021Stoch,Cheong2025QuantumDM}.
+The field oscillates at a frequency close to the Compton frequency $\nu_{a}= m_{a}c^2/(2\pi\hbar)$, where $c$ is the speed of light in vacuum.
+%The root-mean-square value of $a_0$ can be estimated from the DM energy density $\rho_{\text{DM}}\approx{c^2 m_a^2 a_0^2}/{2\hbar^2}$.
+Following the standard halo model (SHM) and assuming that DM is virialized in the Milky Way\,\cite{Primack1988DetectionOC}, the value of $a_0$ can be estimated from the DM energy density $\rho_{\text{DM}}\approx{c m_a^2 a_0^2}/{(2\hbar^3)}$\,\cite{kimball2018overview}. 
+The velocity of DM bound within the galactic halo follows a Maxwell-Boltzmann distribution with an average speed of $v_0\approx$\,\SI{220}{km/s}, an isotropic velocity dispersion of $v_\sigma \approx \SI{156}{\km/\s}$\,\cite{Primack1988DetectionOC}, and a cutoff at the escape velocity of $v_\mathrm{esc}\approx\SI{544}{km/s}$\,\cite{Evans2019_SHMRefined}.
+Taking the velocity distribution into account, a background field of axionlike DM is more accurately expressed as a sum over $N$ independent oscillators, each of the form of Eq.\,\eqref{eq:ALPfield}, where the velocity of the $n$th ALP is sampled from the distribution of velocities in the halo.
+The distribution of ALP velocities results in a spread of ALP frequencies. 
+With a mean velocity dominated by Earth's motion, a terrestrial detector observes the distribution of ALP frequencies with a mode of $\approx \nu_a[1+v_0^2/(2c^2)]$\,\cite{kimball2018overview}. 
+Individual ALP waves of frequency $\nu_n$ and phase $\phi_n$ interfere with each other and the resulting amplitude follows a Rayleigh distribution\,\cite{Foster2018HaloAxion, Lisanti2021Stoch, Gramolin2022Feb_SpectralSignatures}.
+Therefore, the ALP field amplitude and phase vary randomly on a timescale of the characteristic coherence time $\tau_a \approx (\nu_a v_a^2 / c^2)^{-1}$\,\cite{Schive2014,  Centers2021Stochastic, Gramolin2022Feb_SpectralSignatures}.
+As it affects the computed or measured experimental sensitivity, this stochastic behavior of the ALP signal is taken into account during analysis. 
+
+There are three possible nongravitational couplings between ALPs and Standard Model (SM) particles: (a) coupling to photons, (b) coupling to gluons and (c) coupling to fermion spins, also referred to as the gradient coupling\,\cite{Kimball2023_search}. Various experiments\,\cite{ouellet2019first,du2018search,ALPHA2023,aja2022canfranc,CAPP2024,brouwer2022projected,alesini2023future,zhong2018results,garcia2024searchaxiondarkmatter,quiskamp2024near,rettaroli2024search,Gramolin2021_Ferromagnetic,gavilan2024searching,bloch2105nasduck,wu2019search,abel2023search,karanth2023first,lee2023laboratory,capozzi2023new} search for these couplings.
+
+The Cosmic Axion Spin Precession Experiments (CASPEr), located in Boston, USA and Mainz, Germany, focus on the latter two couplings to search for ALPs\,\cite{CASPErProposal2014, kimball2018overview, wang2018application, wu2019search, aybas2021_SolidStateNMR, CASPEr_ZULF_2019}. 
+% \YZ{I suggest leave out ``to search for ALPs in the DM halo of the Milky Way'' because we are also searching for the Earth-bound DM halo. }
+In this paper, we report on measurements done with the CASPEr-Gradient Low-Field (LF) apparatus, a magnetometry-based experiment that investigates the interaction between the gradient of the ALP field and atomic spins.
+While experiments looking for all three couplings are sensitive to stochastic fluctuations in the amplitude of the ALP field, a key distinction of experiments investigating the gradient coupling is their additional sensitivity to fluctuations in ALP velocity. 
+The Hamiltonian of the gradient interaction can be written as:
+\begin{equation}
+   H_{\mathrm{aNN}}=g_{\mathrm{aNN}}\bm{\nabla} a\cdot \mathbf{I}\,, 
+   \label{eq:axionham}
+\end{equation}
+where $g_{\mathrm{aNN}}$ is the coupling constant and $\mathbf{I}$ is the nuclear spin. 
+In this paper, we focus on a measurement using a spin-1/2 proton sample. 
+Thus, we are effectively probing the ALP gradient-proton coupling constant, $g_{\mathrm{ap}}$. 
+The magnitude of the gradient can be estimated as $|\bm{\nabla}a|\,\approx a_0 m_a v_a/\hbar$. 
+The Hamiltonian in Eq.\,\eqref{eq:axionham} is similar to that of the Zeeman interaction: $H=-\hbar \gamma~\mathbf{B}\cdot \mathbf{I}$, where $\gamma$ denotes the proton gyromagnetic ratio and $\mathbf{B}$ is the applied magnetic field. 
+In analogy to this, one can define an oscillating ``pseudo-magnetic field'' generated by the gradient of the ALP field
+\begin{equation}
+    \mathbf{B_a}(t)=g_{\mathrm{ap}}\sqrt{2\hbar c\rho_{\text{DM}}}\,\frac{ \bm{v_a}\,\sin(2\pi\nu_a t)}{\gamma}\,.
+    \label{eq:pseudoB}
+\end{equation}
+To detect the presence of such a pseudo-magnetic field, we use nuclear magnetic resonance (NMR) techniques. 
+For an ensemble of nuclear spins in a bias magnetic field $\mathbf{B}_0$, the Larmor frequency of the spins $\nu_L$ is proportional to the strength of the bias field: $\nu_L=\gamma B_0/(2 \pi)$.
+If the Larmor frequency matches the Compton frequency of the ALP background, the component of the ALP-field gradient perpendicular to $\mathbf{B_0}$ and $\bm{\nabla} a_\perp$, serves as a continuous oscillating driving field, analogous to continuous-wave (cw) NMR.
+As with a conventional cw-NMR experiment, this results in a transverse magnetization oscillating at the Larmor frequency which could be detected using, for example, lock-in amplification.
+Note that CASPEr-Gradient, and any experiment probing the ALP-nucleon coupling via NMR, is by nature also sensitive to real magnetic fields generated by the presence of DM near the sample, such as dark photons\,\cite{CASPEr_ZULF_2019,beadle2025dark}.
+%For example, our setup could detect DM candida that couples directly to the bias field $\mathbf{B_0}$ via the axion-photon coupling, or detect dark photons through their kinetic mixing.
+
+
+The CASPEr-Gradient-LF has a tunable magnet producing $\mathbf{B_0}$ from zero to \SI{0.1}{\tesla}. 
+For ALP searches in a higher mass range the CASPEr-Gradient High-Field (HF) apparatus is employed with a tunable zero-to-\SI{14.1}{\tesla} magnet and is in the calibration stage at the time of this work.
+The sensitivity of the setup is nearly frequency-independent in the range of \SI{1}{\kHz} to \SI{4.3}{\MHz}.
+In this work, we report on a search for the ALP-proton gradient coupling over a \SI{240}{\Hz} interval centered around \SI{1.348570}{\MHz} ($|\mathbf{B_0}|\approx\SI{31.67331}{\milli\tesla}$). This corresponds to ALP masses in a range of $\SI{0.992}{\peV/c^2}$ around $m_a\approx\SI{5.577237}{\neV/c^2}$.
+%\SI{5.576741}{\neV/c^2} to \SI{5.577733}{\neV/c^2}
+We use a thermally polarized sample and focus on a narrow bandwidth to validate our methodology\,\cite{CASPErProposal2014,garcon2017cosmic} and characterize the CASPEr-Gradient-LF apparatus as a tool to search for ALP DM. 
+
+\section{Apparatus and sample}
+
+The CASPEr-Gradient-LF apparatus includes a flow-through liquid-helium cryostat containing a superconducting solenoid that can generate a bias field of up to $B_0 =\SI{0.1}{\tesla}$. The DM mass range that can be searched using the CASPEr-Gradient apparatuses depends on the gyromagnetic ratio of the sample in use and on $B_0$. 
+For example, see Table\,\ref{tab:parameters} for methanol and xenon (Xe) samples.
+As evident from Table\,\ref{tab:parameters}, the degree of polarization of the sample presents the largest limiting factor to CASPEr-Gradient-LF sensitivity. 
+For that reason, in the future we will employ a hyperpolarized liquid Xe sample, which can boost sensitivity by several orders of magnitude alone.
+
+Eight superconducting shim coils surrounding the solenoid are used to reduce the field inhomogeneity to less than \SI{2}{\ppm} over a spherical volume with a radius of \SI{4}{\mm}. However, in the measurements, an inhomogeneity of approximately \SI{10}{\ppm} was obtained after tuning the shim fields using an algorithm based on Bayesian optimization\,\cite{ShimmingPaper}. This is larger than the \SI{2}{\ppm} inhomogeneity mentioned because we used a larger sample volume with a height of \SI{24}{\mm} and a radius of \SI{4}{\mm} and introduced an additional superconducting pickup coil. 
+In general, higher number of spins results in better sensitivity. Therefore we chose liquid methanol (\ch{CH3OH}) as the sample due to its high proton density (\SI{99}{\mmol/\cm^3}), resulting in a total of $\SI{7.2e22}{}$ protons, and low freezing point (\SI{175.6}{\kelvin}) for it to remain liquid in the cold sample holder.
+A variable temperature insert (VTI) is used to position the sample in the homogeneous region of the bias field. 
+The sample was kept above the freezing point (verified via repeated pulsed-NMR measurements) by vacuum insulation from the liquid helium and by blowing warm nitrogen gas through a spiral surrounding the sample holder. 
+A system capable of more advanced temperature monitoring and control is currently being implemented for future works.
+
+The sample of proton spins is thermally polarized by the bias field and acquire a net magnetization collinear to $\mathbf{B}_0$. 
+To detect transverse magnetization of the sample, a niobium (Nb) pickup coil is mounted on the outside of the VTI in the liquid helium bath, see Fig.\,\ref{fig:setup}.  
+The filling factor, defined as the volume ratio that the sample fills in the space enclosed by the central pickup coil, is approximately \SI{8}{\%}. 
+A filling factor close to unity indicates that the dimensions of the sample match those of the pickup coil, optimizing the measurement sensitivity. 
+However, due to the necessary vacuum insulation between the pickup and the sample, it is difficult to increase the filling factor. 
+To reduce the noise, the cryostat features a built-in superconducting Nb shield.
+A $\mu$-metal shield outside the cryogenic reservoir provides further magnetic shielding, and the entire apparatus is itself placed within a Faraday cage.
+
+The magnetic flux generated in the pickup coil is coupled into a direct-current superconducting quantum interference device (dc-SQUID) operated in flux-locked-loop (FLL) mode.
+The current in the SQUID input coil is converted into a feedback voltage, which is fed out of the cryostat and the Faraday cage via shielded copper Bayonet Neill-Concelman (BNC) cables into a Zurich Instrument MFLI Lock-in Amplifier (LIA) for processing and recording. 
+With the excitation coils it is possible to send radio frequency (RF) excitation pulses to conduct NMR experiments, while with the Helmholtz coils shown in Fig.\,\ref{fig:setup}, we can generate an offset on the bias magnetic field to scan different frequencies. 
+\begin{figure}[ht]
+    %\floatsetup[figure]{capposition=bottom}
+    \centering
+    \includegraphics[width=1.0\linewidth]{figures/setup.png}
+    \caption{Left: the sample (blue) is at the center of the pickup coil (red).  
+    The pickup coil consists of three Nb saddle-pair coils, where the area of the central coil is twice as large as the top and bottom ones. 
+    % The coils are wound in a way that the flux induced in the central coil due to far-field plane waves is canceled by the flux in the other two. 
+    Helmholtz coils (black) are used to fine-tune the bias field.
+    Additional saddle-pair coils (not shown) are used to apply RF pulses.
+    The sample temperature is regulated and kept above the freezing point by flowing nitrogen gas through the spiral surrounding the sample holder.
+    Right: pulsed-NMR scheme, used solely for characterizing the sample. The net magnetization vector $\mathbf{M}$ of the sample is initially along the bias field $\mathbf{B}$. 
+    If an excitation pulse is sent, then $\mathbf{M}$ is tilted into the transverse plane and starts to precess. 
+    The precessing $\mathbf{M}$ generates a signal detectable with the pickup and the SQUID.}
+    \label{fig:setup}
+\end{figure}
+
+During measurements, the SQUID and FLL electronics were battery-powered to avoid electromagnetic interference (EMI). All other electronics are outside the Faraday cage, and only cables to power the excitation and Helmholtz coils are fed through the Faraday cage. One intrinsic noise source is due to the spins within the sample, known as spin-projection noise (SPN)\,\cite{Aybas_2021_Quantum_sensitivity}.
+An overview of the parameters of the CASPEr-Gradient-LF contributing to the sensitivity is listed in Table\,\ref{tab:parameters} for this measurement and future ones. 
+
+\begin{table*}
+\begin{threeparttable}
+    \caption{\label{tab:parameters} 
+    In addition to the measurement analyzed in this paper, examples of using \ch{^{129}Xe} and other samples in future measurements are considered. 
+    The polarization here refers to molar polarization, the product of polarization and concentration of the target nucleus.  
+    The polarization of methanol in this work is estimated from the proton thermal polarization at \SI{180}{\kelvin}. 
+    There are numerous options for samples with polarization-boosted orders of magnitude beyond thermal polarization. 
+    }
+    % \small
+    \renewcommand{\arraystretch}{1.3}  % Add space between rows
+    \setlength{\tabcolsep}{3pt}        % Reduce space between columns
+    \begin{ruledtabular}
+    \begin{tabular}{p{0.23\linewidth}>{\centering\arraybackslash}p{0.23\linewidth}>{\centering\arraybackslash}p{0.23\linewidth}>{\centering\arraybackslash}p{0.23\linewidth}}
+        % \hline
+        % Future CASPEr-Gradient-LF & Projection in \cite{kimball2018overview}
+        \multicolumn{1}{c}{} & This work & \multicolumn{2}{p{0.46\linewidth}}{\centering Examples of future CASPEr-Gradient-LF} \\ \hline     
+        Sample & Methanol & Methanol\tnote{a} &  Liquid \ch{^{129}Xe}\tnote{b} \\ \hline
+        Spin density (\unit{\cm^{-3}}) & \num{5.9e22} & \num{5.9e22} & $\sim\num{1e22}$ \\ \hline
+        Sample volume (\unit{\cm^3})& 1.2 & 1.2 & $\sim\num{1}$ \\ \hline
+        Polarization technique & Thermal polarization & Brute Force\tnote{c} / PHIP\tnote{d} / DNP\tnote{e}  & SEOP\tnote{f} \\ \hline
+        Polarization & \SI{1.8e-7}{} & $>\SI{1.1e-5}{}$ & $\sim\num{1}$\\ \hline
+        $T_2$ (\unit{\s}) & 0.71 & 1 & 1000 \\ \hline
+        $B_0$ inhomogeneity (\unit{\ppm}) & 10 & $\leq2$ & $\leq2$\\ \hline % \multicolumn{2}{p{0.46\linewidth}}{\centering 2}
+        % SQUID input coupling & 0.004 & 0.004 &  \\ \hline
+        % $|g_{\mathrm{aNN}}|$ sensitivity at \SI{1.348}{\MHz} (\unit{\GeV^{-1}})& \SI{3e-2}{} & \SI{2.8e-9}{} & \SI{1e-11}{} \\ \hline
+        \multirow{2}{=}{Maximum scan range} & \SI{1.348450}{\MHz} -- \SI{1.348690}{\MHz} & $\sim$\SI{1}{\kHz} -- \SI{4.3}{\MHz} & $\sim$\SI{1}{\kHz} -- \SI{1.2}{\MHz} \\ 
+          & \SI{5.576741}{\neV/c^2} -- \SI{5.577733}{\neV/c^2} & $\sim$\SI{4.1}{\pico\eV/c^2} -- \SI{17}{\nano\eV/c^2} & $\sim$\SI{4.1}{\pico\eV/c^2} -- \SI{4.9}{\nano\eV/c^2} \\ \hline
+        % SQUID noise (\unit[power-half-as-sqrt){\micro\Phi_0 /\Hz^{1/2}}) & \SI{7.1}{} & \multicolumn{2}{p{0.46\linewidth}}{\centering \num{1.0}}  \\ \hline
+        % SQUID noise & \SI{7.1}{\micro\Phi_0 /\Hz^{1/2}} & \SI{1}{\micro\Phi_0 /\Hz^{1/2}} &  \SI{1}{\femto\tesla /\Hz^{1/2}} \\ \hline
+        Electronic noise (\unit{\micro\Phi_0/\Hz^{1/2}}) & \SI{7.1}{} & \SI{1}{} &  \SI{1}{} \\ \hline
+        Flux of SPN\tnote{g}\,\, (\unit{\micro\Phi_0}) &  $\num{.39}$ & $\num{.39}$   & \SI{0.16}{} \\ \hline
+        \multirow{2}{=}{Spectral SPN in scan range (\unit{\micro\Phi_0/\Hz^{1/2}})} 
+        & \multirow{2}{=}{\centering \num{0.11}} 
+        & \SI{8.7}{} at \SI{1}{\kHz} 
+        & \SI{3.3}{} at \SI{1}{\kHz} \\
+        \rule{0pt}{0pt} 
+        & \rule{0pt}{0pt} 
+        & \SI{0.13}{} at \SI{4.3}{\MHz}  
+        & \SI{0.11}{} at \SI{1.2}{\MHz} \\ \hline
+        \multirow{2}{=}{$|g_{\mathrm{aNN}}|$ sensitivities in scan range (\unit{\GeV^{-1}})} 
+        & \multirow{2}{=}{\centering \SI{3e-2}{}}  
+        & \SI{1.0e-06}{} at \SI{1}{\kHz}  
+        & \SI{1e-12}{} at \SI{1}{\kHz} \\
+        \rule{0pt}{0pt} 
+        & \rule{0pt}{0pt}  
+        & \SI{1.2e-5}{} at \SI{4.3}{\MHz}  
+        & \SI{1e-11}{} at \SI{1.2}{\MHz} \\
+        
+          % 180K1sT2\SI{1.4e-08}{} 300K2sT2\SI{2.4e-08}{} at \SI{1}{\kHz}
+          % 180K1sT2\SI{1.6e-5}{} 300K2sT2\SI{1.9e-05}{} at \SI{4.3}{\MHz}
+    \end{tabular}
+    \end{ruledtabular}
+    \begin{tablenotes}
+    \footnotesize
+    \item[a] Here, we take \SI{180}{\kelvin} methanol prepolarized at \SI{2}{\tesla} and measurement time $100\,\tau_a$ for one scan step as the conditions for computing the baseline of future improvements. 
+    \item[b] \ch{^{129}Xe}-enriched sample. The \ch{^{129}Xe} concentration can be close to unity. The details of calculations about liquid \ch{^{129}Xe} sample can be found in Ref.\,\cite{kimball2018overview}.
+    \item[c] Prepolarization in a strong magnetic field and/or at low temperature. 
+    \item[d] Parahydrogen-induced polarization (PHIP). 
+    \item[e] Dynamic nuclear polarization (DNP).
+    \item[f] Spin exchange optical pumping (SEOP).
+    \item[g] Spin projection noise (SPN). 
+    \end{tablenotes}
+    \end{threeparttable}
+\end{table*}
+
+
+\section{Measurement}
+
+% \kp{Summary of the measurement method.}
+We searched for ALPs in a range of \SI{240}{\Hz} centered at \SI{1.348570}{\MHz} in steps of \SI{6}{\Hz}. The \SI{6}{\Hz} step size is approximately half of the NMR linewidth. 
+At each step, the following actions were performed:
+1) characterization of the NMR sample and the setup, 
+2) dwell time of \SI{5}{\s} for ring-down noise to decay,
+3) data collection for \SI{100}{\s} to search for DM over $\approx$ 100 ALP coherence times,
+4) ramping the bias field to change the Larmor frequency by \SI{6}{\Hz}, and 
+5) another \SI{5}{\s} dwell time before repeating the steps. 
+We performed three scans over the same frequency range to be able to cross-check potential signal candidates. 
+
+% \kp{NMR sample and setup characterization. }
+To calibrate the sensitivity of the setup and to monitor the sample temperature, a pulsed-NMR measurement was carried out at each step. In such a measurement, the magnetization vector of the sample is tilted into the transverse plane by an RF pulse, creating a magnetic field perpendicular to $\mathbf{B}_0$. 
+The pulse frequency is chosen close to the Larmor frequency and the pulse duration is chosen such that a tipping angle of $\theta = \Omega_R\tau_p = \pi/2$ (usually called a $\pi/2$-pulse in NMR) is achieved. 
+The Rabi frequency, $\Omega_R$, and the pulse duration $\tau_p=\SI{190}{\micro\s}$ were found by a pulse duration sweep.
+The precession of the magnetization $\mathbf{M}$ after the pulse generates an oscillating signal in the SQUID (which is maximal for a $\pi/2$-pulse) that decays over time. 
+The envelope of the decay signal is indicated by the red line in the pulsed-NMR scheme in Fig.\,\ref{fig:setup}. 
+The transverse magnetization of the sample decays due to homogeneous and inhomogeneous relaxation mechanisms. 
+The homogeneous relaxation time is called $T_2$. 
+The total effective relaxation time due to all mechanisms $T_2^*\le T_2$ can be extracted from the linewidth of the spectral line $T_2^*=1/(\pi\,\Delta\nu)$. Both $T_2$ and $T_2^*$ should be as long as possible to optimize the sensitivity in ALP searches\,\cite{Yuzhe2023_FrequencyScanning}. 
+
+From the feedback voltage $V_\mathrm{f}$ of the SQUID, the magnetic flux at the SQUID input, $\Phi_{\mathrm{in}}$, as well as the magnetic flux inside the pickup coil, $\Phi_{\mathrm{pick}}$, can be reconstructed\,\cite{clarke2006squid}, 
+\begin{equation}\label{eq:squidpickup}
+    V_\mathrm{f}
+    = \frac{R_\mathrm{f}}{M_\mathrm{f}} \Phi_{\mathrm{in}}
+    = \frac{R_\mathrm{f}}{M_\mathrm{f}} \frac{M_\mathrm{in}}{L_{\mathrm{pick}}+L_{\mathrm{in}}} \Phi_{\mathrm{pick}}
+    = \varepsilon\,\Phi_{\mathrm{pick}}\,.
+\end{equation}
+Here, $R_\mathrm{f}$ is the feedback resistance and $M_\mathrm{f}$ is the feedback-coil mutual inductance. 
+$L_{\mathrm{pick}}$ and $L_{\mathrm{in}}$ are the inductance of the pickup coil and SQUID input coil. 
+The flux couples into the SQUID via a mutual inductance of $M_\mathrm{in}$.
+The conversion factor is $\varepsilon \approx \SI{0.549}{\milli\volt/\Phi_0}$, where \unit{\Phi_0} denotes the magnetic flux quantum.
+
+\begin{figure*}
+    % \floatsetup[figure]{capposition=bottom}
+    \centering
+    \includegraphics[width=\linewidth]{figures/measurements.png}
+    \caption{\textbf{(a)} PSD generated from the time-series of $\Phi_{\text{in}}$ after a $\pi/2$-pulse. 
+    %It is in the units of $\Phi_0^2/\mathrm{Hz}$, where \unit{\Phi_0} is the magnetic flux quantum. 
+    The NMR peak was fitted with a Lorentzian function (red line).
+    % and the inset window shows a zoomed-in view of the NMR peak with a Lorentzian fit (red line).
+    The center of the peak is at \SI{1348449.21(5)}{\Hz} with a FWHM of \SI{14.79(1)}{\Hz}. 
+    %The average noise level outside the 10-NMR-linewidth range centered at the peak is 
+    %The inset window shows our pulse duration sweep, where we plot the integrated area of the NMR peak (in arbitrary units) for eight pulse length values between 160 and 240\,$us$. 
+    %The duration corresponding to a $\pi/2$-pulse was found at 190\,$us$.
+    \textbf{(b)} CPMG-pulse-sequence measurement taken prior to the ALP-search steps. 
+    From an exponential fit (red line) $y(t)=A e^{-t/T_2}+B$, where t is time and $y(t)$ is the normalized spin-echo amplitude (indicated by the blue dots), the relaxation time is extracted as $T_2 = \SI{0.72(5)}{\s}$. 
+    \textbf{(c)} PSD of the first \SI{100}{s} ALP-search step.
+    Structures at the lower and upper edges of the spectrum are artifacts from compensating for the built-in bandpass filter of the LIA.
+    The analysis window (grey) is centered at the Larmor frequency and has a width of \SI{8}{\kHz} to exclude the filter artifacts at the edges. 
+    Parts of the spectrum outside of this window are not used in the data analysis. 
+    We compute the noise baseline of each PSD within the analysis window. 
+    For the spectrum shown, the average noise level is \SI{3.97(6)e-11}{\Phi_0^2/\Hz}. 
+    We chose a resonant window (green) $\pm5$ NMR linewidths ($\pm \SI{70}{\Hz}$) around the  Larmor frequency to search for ALP-signal candidates around the Larmor frequency. 
+   Outliers found outside the resonant windows can be used to examine outliers found on resonance in other data sets.
+    \textbf{(d)} Histogram of the normalized power excess (NPE) generated from the PSD in (c) with the rescan threshold $\Theta_{\mathrm{RE}}$ (red line) at the \SI{95}{\%} confidence limit for a $5\,\sigma$-ALP detection. 
+    }
+    \label{fig:measurements}
+\end{figure*}
+
+In the LIA, the signal is demodulated into two channels, typically called the in-phase (I) and quadrature (Q) channels.
+The output of the LIA, $I + i Q$, is used to generate the power spectral density (PSD) via discrete fast Fourier transformation (FFT).
+An example of a PSD after applying a $\pi/2$-pulse is shown in Fig.\,\ref{fig:measurements}\,(a).
+A Lorentzian fit to the PSD is used to extract the Larmor frequency, the full-width at half-maximum (FWHM) or linewidth $\Delta\nu$, and the power of the NMR signal.
+These three parameters determine the sensitivity of the setup to the (pseudo)magnetic field (Eq.\,\ref{eq:pseudoB}).
+Moreover, the sample temperature influences the linewidth. 
+During the measurements, we did not observe significant changes in the linewidth; therefore, we conclude that the temperature was well regulated by the nitrogen gas flow.
+
+% \kp{$T_2$ measurement.}
+We performed a Carr-Purcell-Meiboom-Gill (CPMG)\,\cite{CPMG} pulse sequence measurement to determine the $T_2$ relaxation time. A $\pi/2$-pulse followed by a series of $\pi$-pulses at fixed intervals (called echo time) is sent to the sample.
+The resulting signal in the pickup coil features a series of spin echoes in between each two $\pi$-pulses (refocusing pulses). 
+The spin-echo amplitudes decay exponentially with a decay constant $T_2$. 
+We obtained $T_2=\SI{0.72(5)}{\s}$ for the sample from an exponential fit to the measured spin-echo amplitudes [see Fig.\,\ref{fig:measurements}\,(b)]. 
+The average $T_2^*$ time for our setup obtained from NMR-peak fits is \SI{24.2 \pm 4}{\ms}. This places our setup in the regime where the ALP-coherence time $\tau_a=1/( \pi \Delta \nu_a )$, calculated from the linewidth of the ALP gradient broadening\,\cite{Gramolin2022Feb_SpectralSignatures} at \SI{1.348500}{\MHz}, is longer than $T_2^*$: $\tau_a \approx \SI{0.35}{\s}\gg T_2^*$.
+
+% \kp{ALP-search runs.} 
+After the characterization by pulsed-NMR and the CPMG pulse sequence, a dwell time of $\SI{5}{\s}$, which is longer than the characteristic longitudinal relaxation time $T_1$ ($\sim \SI{1}{\s}$), allowed time for the sample to return close to the equilibrium magnetization. 
+Next, we recorded $V_\mathrm{f}$ for \SI{100}{\s} without sending pulses, with the lock-in frequency detuned by \SI{820}{\Hz} from the initial Larmor frequency.\,\footnote{We detuned the lock-in frequency from the Larmor frequency by a few hundred hertz. 
+Such a nonzero difference frequency presents a number of advantages.
+For example, the demodulated signal oscillates at the difference frequency, which, being a signature of the NMR signal, can be easily distinguished from noise.
+%Such difference frequency, as a signature of the NMR signal, allows us to distinguish it from noise. 
+% This allows to distinguish an NMR signal from noise and to suppress high-frequency noise with the low-pass filter. 
+}
+The sampling frequency was \SI{13.4}{\kHz}. %larmor=1.348449e+06, f_LIA=1349269.9999999758
+The data taken in this step were analyzed for possible signatures of ALPs. To prepare for the next scan step, we increased the Larmor frequency by \SI{\approx 6}{\Hz} (half of the NMR linewidth), either by ramping the superconducting magnet or the Helmholtz coils. 
+The scan-step size was chosen such that the resonant windows would overlap. 
+This overlap can allow the same ALP signal to appear in several neighboring scan steps and can be used as a validity test.\,\footnote{The strength of an ALP signal detected in multiple scan steps depends on the detunings of Larmor frequencies from the ALP Compton frequency. Such variation of ALP signal strength can be used to test the ALP signal candidates.}
+After changing the bias field there was another \SI{5}{\s} dwell time to ensure that the magnet power supply connection is physically interrupted in order to minimize ring-down noise in electronics.
+We evaluated the PSD noise level over the measurement duration and found no effects caused by the ramping process.
+%Since ramping could affect the SQUID noise level during parts of the data taking process, we first compute 20 PSDs from chunks of \SI{5}{\s} duration out of a \SI{100}{\s} data set, and compare the noise levels of the partial PSDs. 
+%We find that their values deviate by less than \SI{5}{\%} for five randomly chosen data sets, and conclude that with our dwell time the noise level remained approximately constant over the time of our data taking.
+The PSD of a full \SI{100}{\s} dataset is plotted in Fig.\,\ref{fig:measurements}\,(c).
+The resulting noise floor of our PSD spectra is determined by spin-projection noise, SQUID noise, electronic noise (e.g., the amplifier noise), and noise created by mechanical vibrations. 
+The SPN in PSD is proportional to the number of spins and inversely proportional to the NMR linewidth [$\Delta\nu=1/(\pi T_2^*)$].
+Since the NMR linewidth is proportional to the frequency, SPN in PSD scales inversely with frequency (see Table\,\ref{tab:parameters}). A typical noise spectrum of our setup is shown in\,Fig.\,\ref{fig:SQUIDfull} of the Appendix. 
+
+Due to Earth's motion, the component of the ALP gradient perpendicular to $\mathbf{B_0}$ varies over time.
+This leads to periodic modulations in signal strength, which affected the sensitivity over the duration of the measurements.
+We consider the most sensitive scan as the main scan, and we use the other two, which we will call A and B, as consistency checks.
+
+
+\section{Data analysis}
+
+% \kp{Summary of the data analysis.}
+We analyzed the data in a way similar to that of the HAYSTAC\,\cite{Brubaker2017_HAYSTAC}, the SHAFT\,\cite{Gramolin2021_Ferromagnetic}, and the CASPEr-electric\,\cite{aybas2021_SolidStateNMR} experiments.
+Each \SI{100}{\s} time-series corresponding to one individual scan step is converted to a PSD spectrum, as shown in Fig.\,\ref{fig:measurements}(c), which is then processed in three successive steps. 
+First, features much narrower and wider than the expected standard halo ALP signal at the scanned frequency were smoothed out.\,\footnote{This step renders the analysis insensitive to scenarios other than the standard halo model. 
+For example, some models predict the existence of fine-grained DM streams in the galaxy \cite{Arza:2022dng, MiniclusterStreamsOHare, DALIstreams}. 
+Such streams would feature a small velocity dispersion and would thus have spectral signatures narrower than what we consider in this work.} 
+Subsequently, a matched filter using the ALP lineshape expected for the gradient coupling is applied to generate normalized power excess.
+Finally, after filtering the spectrum, bins with excess power greater than the threshold for a detection at $5\,\sigma$ significance are considered as outliers. 
+Outliers near resonance are considered ALP signal candidates and undergo a scan-rescan test. 
+In the following paragraphs we describe these analysis steps in detail. 
+
+% \kp{narrow SG filter.}
+Savitzky-Golay (SG) filters\,\cite{SavitzkyGolay} are commonly used to smooth out features of a spectrum that are either narrower or wider than the expected signal. 
+In the spectra, noise spikes can appear, for example, due to EMI penetrating the shields.
+Additionally, impedance mismatch in the detection chain, composed of the pickup coil, the SQUID and the LIA, can lead to a broad and uneven baseline. 
+We chose one half of the expected ALP linewidth at the scanned frequency as the filter window and applied a second-order SG filter to smooth out any features narrower than this.
+If narrow features are present on top of an ALP signal, the signal lineshape can appear significantly distorted in the filter response, as we found by injecting simulated ALP signals into the data.
+To minimize distortion, we refined the smoothing to selectively address only those narrow features that are unlikely to stem from white noise: 
+the SG-filter response was subtracted from the unfiltered spectrum, leaving a residual spectrum containing only features narrower than the filter window.
+The values in the (residual) PSD are expected to stem from a $\chi^2$ distribution with two degrees of freedom, if the time-series signals from the in-phase and quadrature channels of the LIA contain just Gaussian-distributed noise.
+% \sout{In the raw spectrum, PSD values that differed from the filter response by an amount that is counted as an outlier according to a $\chi^2$ fit to the residual were identified as nonwhite noise.}
+We performed $\chi^2$ fits to the histograms of the residual PSD, and determined the threshold for outliers. 
+In the raw spectrum, if some PSD values differed from the filter response by an amount exceeding this threshold, they were identified as nonwhite-noise spikes.
+Only these PSD bins as well as their four nearest neighbors were substituted with the average of the SG filter window, smoothing out those spikes that are likely EMI while preserving potential ALP signals.
+We refer to the spectra after undergoing this spike suppression guided by SG-filter residuals as the spike-corrected spectra.
+In all spike-corrected spectra of the main scan, \SI{0.002}{\%} of the total data points were modified in this way; in rescan A and B, \SI{0.004}{\%} and \SI{0.003}{\%}, respectively, of points were modified.%giving the EMI-free spectrum for further processing.
+% old threshoooolds: scan19 \SI{9.8}{\%}, scan 15 \SI{12.7}{\%}, scan17 \SI{11.0}{\%}
+%\HB{As mentioned before, is it really true that this allows the ALP signal to survive?f} 
+%\YZ{This can be answered by the detection of fake axion signals. However, personally speaking, the use of SG filter still has to be justified.} 
+%\JW{The recovery factor of fake axion signals (output vs input coupling) differs by a factor of 0.04 between the cases where SG filter is off or on. I would take from this that it is OK to use SG in this way.}
+
+% \kp{broad SG filter.}
+Next, we performed a reduced chi-square test on the filtered spectrum to verify if the remaining noise is of purely random nature.
+The test indicates the presence of a noise floor (baseline) that is not flat over the analysis window. 
+To characterize the remaining noise, we fitted the spectrum baseline by applying another broad SG filter, this time with a filter window length of 200 ALP linewidths.
+For normalization, this noise baseline is subtracted from the spike-corrected spectrum, then the result is divided by the baseline. 
+An estimation of analysis efficiency considering all filtering steps is presented at the end of this section and is derived in more detail in the Appendix.
+
+% \kp{matched filter.}
+To search for ALP signal candidates in the spectra after baseline removal, we applied a matched filter (also known as an optimal filter) using the expected ALP signal lineshape. 
+For each scan step, we determined the spectral lineshape $\lambda(\nu,\,\nu_a)$ of the ALP signal as a function of frequency $\nu$ and ALP Compton frequency $\nu_a$.
+The lineshape also depends on the continuously changing orientation of the sensitive axis of the setup with respect to the direction of Earth's motion through the DM halo\,\cite{Gramolin2022Feb_SpectralSignatures}.
+% (see Eq.\,22 of Ref.\,\cite{Gramolin2022Feb_SpectralSignatures}).
+Matched filtering is performed by convolving the PSD with the lineshape at a series of ALP Compton frequencies in the analysis window. 
+The step size of the matched filter was chosen to be half the ALP linewidth. 
+As verified empirically, such a step size not only maximizes the signal-to-noise ratio (SNR) but also reduces the analysis time compared to finer step sizes.
+The result of matched filtering, normalized by its standard deviation, is referred to as normalized power excess (NPE).
+
+% \kp{find outliers. }
+To assess the likelihood of an ALP signal being present in the NPE, we conducted a hypothesis test using the NPE of each scan step as a test statistic.
+Here we defined the presence of an ALP signal as the null hypothesis, and the absence of it as the alternative hypothesis.
+We modeled the NPE at the ALP frequency bin for the two scenarios of a signal at $5\,\sigma$ significance being present, and not being present, by performing Monte-Carlo (MC) simulations (see Sec\,\ref{sec:recoverytest} in the Appendix).
+From the cumulative distribution functions (CDFs) obtained for both cases we located the NPE value $\Theta_{\mathrm{RE}}$ corresponding to the left-tail \SI{95}{\%} confidence interval limit of the null hypothesis, yielding a $p$-value of 0.001.
+A histogram of the NPE is calculated with a bin width chosen according to the Freedman-Diaconis rule\,\cite{Freedman1981OnTH} to balance data resolution and noise, as shown in Fig.\,\ref{fig:measurements}\,(d).
+In the NPE spectra, frequency bins at which the NPE value exceeds $\Theta_{\mathrm{RE}}$ were considered outliers.
+% \kp{find ALP candidates.}
+\begin{table}[htb]
+\centering
+\begin{ruledtabular}
+\begin{tabular}{lccc} % l for labels, ccc for values
+%\toprule
+\textbf{} & \textbf{Main scan} & \textbf{Scan A} & \textbf{Scan B} \\
+\midrule
+%$N$ & 14166 & 13997 & 16676 \\
+%$N'$ & 0 & 8 & 7 \\
+%$N''$ & 0 & 4 & 3 \\
+%$N'''$ & - & 0 & 0 \\
+%$n$ & 354 & 350 & 417 \\
+%$\langle n \rangle$ & 29.1 & 23.5 & 30.7 \\
+%$\langle n \rangle^*$ & 27.5 & 26.7 & 32.9 \\
+%\bottomrule
+%$N$ & \SI{2867715}{} & \SI{4318070}{} & \SI{3375709}{} \\
+%$\langle X \rangle$ & \SI{1098}{} (\SI{0.038}{\%}) & \SI{1316}{} (\SI{0.030}{\%}) & \SI{1068}{} (\SI{0.031}{\%}) \\
+%$X_\mathrm{full}$ & \SI{16445}{} (\SI{0.573}{\%}) & \SI{18521}{} (\SI{0.429}{\%}) & \SI{20130}{} (\SI{0.596}{\%}) \\
+%$X_\mathrm{res}$ & 0 & 8 & 7 \\
+%$X^{'}_\mathrm{res}$ & 0 & 4 & 3 \\
+%$X^{''}_\mathrm{res}$ & - & 0 & 0 \\
+%% results with the old axion width
+%$N$ & \SI{557138}{} & \SI{823630}{} & \SI{651502}{} \\
+%$\langle X \rangle$ & \SI{168}{} (\SI{0.03}{\%}) & \SI{249}{} (\SI{0.03}{\%}) & \SI{197}{} (\SI{0.03}{\%}) \\
+%$X_\mathrm{full}$ & \SI{8330}{} (\SI{1.50}{\%}) & \SI{11119}{} (\SI{1.35}{\%}) & \SI{11768}{} (\SI{1.80}{\%}) \\
+%$X_\mathrm{res}$ & 10 & 13 & 7 \\
+%$X^{'}_\mathrm{res}$ & 9 & 8 & 5 \\
+%$X^{''}_\mathrm{res}$ & - & 0 & 1 \\
+%% results with the new axion width
+$N_\mathrm{full}$ & \SI{481680}{} & \SI{481680}{} & \SI{481680}{} \\
+$ X_\mathrm{full}$ & \SI{6393}{} (\SI{1.32}{\%}) & \SI{5760}{} (\SI{1.20}{\%}) & \SI{6202}{} (\SI{1.29}{\%}) \\
+$\langle X_\mathrm{full} \rangle$ & \SI{145}{} (\SI{0.03}{\%}) & \SI{145}{} (\SI{0.03}{\%}) & \SI{145}{} (\SI{0.03}{\%}) \\
+\hline 
+$N_\mathrm{res}$ & \SI{8430}{} & \SI{8430}{} & \SI{8430}{} \\
+$X_\mathrm{res}$ & 5 & 7 & 3 \\
+$\langle X_\mathrm{res}\rangle$ & 3 (\SI{0.03}{\%}) & 3 (\SI{0.03}{\%}) & 3 (\SI{0.03}{\%})\\
+$X^{'}_\mathrm{res}$ & 5 & 5 & 3 \\
+$X^{''}_\mathrm{res}$ & - & 0 & 0 \\
+$\langle X^{''}_\mathrm{res}\rangle$ & - & 0 & 0 \\
+\end{tabular}
+\end{ruledtabular}
+\caption{
+Results of the three ALP scans. 
+The expected values are derived assuming white noise. 
+$N_\mathrm{full}$: number of bins in all NPE spectra.
+$X_\mathrm{full}$: number of outliers (bins above rescan threshold). 
+$\langle X_\mathrm{full} \rangle$: expected value of $X_\mathrm{full}$. 
+$N_\mathrm{res}$: number of bins in resonant windows.
+$X_\mathrm{res}$: number of ALP signal candidates (outliers within resonant windows). 
+$\langle X_\mathrm{res} \rangle$: expected value of $X_\mathrm{res}$. 
+$X^{'}_\mathrm{res}$: number of candidates after merging (candidates closer than one ALP linewidth are merged). 
+$X^{''}_\mathrm{res}$: number of candidates appearing in this scan and also in the main scan within four ALP linewidths. 
+$\langle X^{''}_\mathrm{res}\rangle$: expected value of $X^{''}_\mathrm{res}$. 
+Values noted in parentheses following our results indicate the fraction of that quantity compared to the total bins, $N_{full}$.
+% \new{, within \SI{5}{\Hz}}.\YZ{In ALP linewidth?}
+%$n$: average number of outliers found per scan step (each scan consisted of 40 steps).\YZ{change this to a ratio? }
+%$\langle n \rangle$: statistically expected number of outliers per scan step based on the empirical CDF of the NPE distribution. The value is calculated as $\langle n \rangle = N_{\Delta\nu}[1-\mathrm{eCDF}(\Theta_{\mathrm{RE}})]$. Here, $N_{\Delta\nu}$ refers to the number of frequency bins within the analysis window and $\mathrm{eCDF}(\Theta_{\mathrm{RE}})$ to the empirical CDF value at the rescan threshold.
+%$\langle n \rangle^*$: statistically expected number of outliers per scan step, assuming only Gaussian noise, as a reference. 
+%\JW{alternative to giving the sum of all outliers in the scan, like now: give average outliers per scan step, like CASPEr-e does (5000 convolved bins per step, 2 outliers expected, 30 outliers found).}
+%\YZ{how to rightly include the fraction? fraction in parenthesis like now? }
+%\JW{I'd say it's sufficiently clear, if you want to make it even clearer add sentence to caption "Values noted in parantheses following our results indicate the fraction of that quantity compared to the total bins, $N_{full}$."}
+}
+\label{tab:candidates}
+\end{table}
+
+Table\,\ref{tab:candidates} lists the outliers and ALP signal candidates discovered over the investigated frequency range.
+At every scan step the number of outliers, $X_\mathrm{full}$, exceeds the statistically expected number of false positives, $\langle X \rangle$, by at least an order of magnitude ($X \geq 10 \langle X \rangle$). 
+The excess outliers in each spectrum were found to stem from nonwhite noise with linewidths neither narrow nor broad enough to be smoothed out by the SG filters. 
+By distinguishing between resonant regions and backgrounds in the spectra, and by comparing the main scan to the rescans, we identified outliers resulting from noise.
+
+Our setup is only sensitive to ALP interactions when the Larmor frequency of the sample spins is near the ALP Compton frequency. 
+For that reason, out of the total number of outliers, $X_\mathrm{full}$, we considered only the $X_\mathrm{res}$ outliers within the resonant window to be candidates in need of further inspection.
+In each scan step, candidates appearing less than one ALP linewidth apart (approximately \SI{1}{Hz}) were considered as a single candidate. This process reduced the number of candidates to $X^{'}_\mathrm{res}$.
+The next step was to check whether any candidate in the main scan appeared in the other two scans as well. 
+No such candidates were found; therefore, we conclude that no ALP gradient interaction was discovered at the detection sensitivity. 
+
+In the absence of ALP-signal detection at the $5\sigma$ level, we calculate an upper limit for $g_{\mathrm{ap}}$,
+\begin{equation}\label{eq:limcouple}
+    |g_{\mathrm{ap,\, lim}} | = \sqrt{ \frac{ e_{5} } { \eta P_{\perp,\,1} } }\,.
+\end{equation}
+Here, $e_{5}$ denotes the signal power corresponding to the $5\sigma$ threshold of the NPE distribution. 
+$P_{\perp,\,1}$ is a reference signal power expected for the case $|g_{\mathrm{ap}}|=\SI{1}{\GeV^{-1}}$. 
+It is essential to correct the setup sensitivity and the coupling constants of ALP signal candidates for the efficiency of signal recovery, $\eta$.
+We defined the efficiency of the analysis as the ratio of signal power recovered by the analysis to its original value, and we obtained with MC simulations $\eta=\SI{88.2\pm 4.6}{\%}$ (see Sec\,\ref{sec:recoverytest}). 
+
+The limits obtained from our proof-of-concept measurements are plotted in Fig.\,\ref{fig:ALPlimits}.
+\begin{figure}[ht]
+    %\floatsetup[figure]{capposition=bottom}
+    \centering
+    \includegraphics[width=\linewidth]{figures/ALPlimits.png}
+    \caption{ALP gradient-proton couplings excluded at the \SI{95}{\percent} confidence level by the three sequential scans.
+    Each data point represents the sensitivity to an ALP signal on resonance with the Larmor frequency of the respective scan step.
+    Data taking happened within a time of approximately six hours. Therefore the daily modulation of the ALP signal amplitude lead to an increase in sensitivity (see Fig.\,\ref{fig:modulation} in the Appendix).
+    }
+    %\YZ{mention the reason for sensitivity diff}
+    \label{fig:ALPlimits}
+\end{figure}
+
+\section{Conclusions and outlook}
+We present an experimental search for galactic dark matter ALPs interacting with the protons of a thermally polarized methanol sample employing SQUID-based detection of the transverse magnetization.
+To the best of our knowledge, this is the first dedicated laboratory search in this general mass range. 
+We scanned from \SI{5.576741}{\neV/c^2} to \SI{5.577733}{\neV/c^2}, corresponding to a Compton frequency range of \SI{240}{\Hz} ($\approx$ 200 ALP linewidths) centered at \SI{1.348570}{\MHz}. 
+We found no statistically significant evidence of ALP dark matter signals after performing a set of consistency checks.
+This sets the ALP gradient-proton coupling $|g_{\mathrm{ap}}| \leq \SI{3e-2}{\GeV^{-1}}$ as the constraint in the scanned ALP mass range.
+This narrow-bandwidth search serves as a commissioning test and proof-of-principle for the methodology of CASPEr-Gradient-LF.
+
+In ongoing experimental efforts, we employ various samples of higher nuclear-spin polarization. 
+Those samples are polarized by techniques such as prepolarization in a strong magnetic field and low temperature (also referred to as ``Brute Force''), spin exchange optical pumping, parahydrogen-induced polarization and dynamic nuclear polarization\,\cite{Eills2023_Spin_Hyperpolarization}.
+The polarization could reach the order of unity at maximum, boosting the sensitivity by more than six orders of magnitude compared to thermal polarization in this work. 
+
+More methods are being developed to improve the sensitivity by up to four orders of magnitude, such as prolonging the relaxation time $T_2$ and increasing bias-field homogeneity.
+Examples of using hyperpolarized samples with long relaxation times are given in Table\,\ref{tab:parameters}.
+Increasing the volume of the sample can further improve the sensitivity.
+The flexibility in the choice of sample is also advantageous to distinguish between various axion and ALP models that can have different couplings to protons and neutrons\,\cite{raffelt1999particle}.
+With these upgrades, CASPEr-Gradient-LF is expected to probe the previously unexplored well-motivated ALP parameter space.
+
+% The scanned frequency range: \[\SI{1.348450}{\MHz} - \SI{1.348690}{\MHz}\,.\]
+% Convert to mass range by $m = h\nu/c^2$, we get \[5.576741104671199-\SI{5.577733664918239}{\neV/c^2}\,.\] 
+
+% By choosing 7 effective digits as \[5.576741-\SI{5.577733}{\neV/c^2}/c^2\, ,\] we can recover the scanned frequency range as \[\SI{1348449.9746906166}{\MHz} - \SI{1348689.839223485}{\MHz}\,.\] Pretty much close to the input. This proves that 7 digits are enough. 
+
+
+% \FloatBarrier
+
+\begin{acknowledgments}
+
+The authors acknowledge helpful discussions with Pablo Chrisvert, Jiawei Gao, Daniel Gavilan Martin, Grzegorz Łukasiewicz, Ophir Ruimi, Malavika Unni, and Pengyu Zhou. 
+This work was supported in part by the Cluster of Excellence ``Precision Physics, Fundamental Interactions, and Structure of Matter'' (PRISMA+ EXC 2118/1) funded by the German Research Foundation (DFG) within the German Excellence Strategy (Project ID 39083149) and COST Action COSMIC WISPers CA21106, supported by COST (European Cooperation in Science and Technology), and also by the U.S. National Science Foundation under grant PHYS-2110388. 
+The work of Y. Kim was supported by the Alexander von Humboldt Foundation. 
+The work of A.O.S. and D.W.S. was supported by the U.S. National Science Foundation CAREER Grant No. PHY-2145162, and by the Gordon and Betty Moore Foundation, Grant DOI 10.37807/gbmf12248. 
+The work of O.M. was supported by the DFG, Project FKZ: SFB 1552/1 465145163.
+
+\end{acknowledgments}
+
+% \clearpage
+
+\appendix
+
+\include{appendix.tex}
+\bibliographystyle{unsrt}
+\bibliography{references}% Produces the bibliography via BibTeX.
+
+
+
+\end{document}
+%
+% ****** End of file apssamp.tex ******

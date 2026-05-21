@@ -1,0 +1,6 @@
+# ignore figures
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.eps

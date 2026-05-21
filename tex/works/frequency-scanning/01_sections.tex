@@ -1,0 +1,772 @@
+
+\section{Introduction}\label{sec:introduction}
+
+\subsection{Dark matter, axion and axionlike particles}
+
+As a long-standing mystery, the nature of dark matter (DM) has attracted scientists' attention for decades. Various theories have been put forward to explain the origin and composition of DM. 
+%the nature of it beneath the mist and dust in the universe. 
+The axion, a hypothetical elementary particle, was first invented in 1977 as a solution to the strong-$CP$ problem in quantum chromodynamics (QCD) \cite{IRASTORZA201889, Peccei_PhysRevLett.38.1440, Weinberg_PhysRevLett.40.223, Wilczek_PhysRevLett.40.279, DeMille_doi:10.1126/science.aal3003}.
+Here $CP$ refers to the combined symmetry of charge conjugation ($C$) and parity transformation ($P$). 
+%It is sometimes 
+The axion that solves the strong-$CP$ problem is called the ``QCD axion.'' 
+% \DK{explain CP, maybe in parentheses or footnote.}
+It was later found to be a candidate for DM since the axion could acquire mass %from QCD interactions when 
+due to spontaneous breaking of the Peccei-Quinn symmetry at some scale, $f_a$, and soft explicit symmetry breaking due to QCD effects, 
+generating a nonzero axion mass $m_a \sim (\Lambda_{QCD}^2/f_a)$ \cite{Kimball2022search}. 
+% \DK{We need to be a little careful with the language here, since the spontaneous symmetry breaking noted here does not impart a mass to the axion. It is the combination of the spontaneous symmetry breaking of the Peccei-Quinn symmetry and the (soft) explicit symmetry breaking due to QCD effects that imparts the mass. You need both. See discussion in the dark matter book, chapter 2: https://link.springer.com/book/10.1007/978-3-030-95852-7}
+Here, $\Lambda_{QCD}\sim \SI{200}{\MeV}$ \cite{Dzuba_2002_PhysRevA, Baldicchi_2007_PhysRevLett} is the characteristic energy scale of strong interactions. Pseudoscalar bosons that acquire mass from mechanisms other than QCD are referred to as axionlike particles (ALPs) \cite{IRASTORZA201889, Graham_doi:10.1146/annurev-nucl-102014-022120, Sikivie_RevModPhys.93.015004}. From now on we do not differentiate between the concepts of axions and ALPs, and use ``ALP'' to represent the entire class of such particles. 
+
+The ALP mass
+%\AW{ALP masses (i would make it plural, or at least the same as WIMPs)}
+could be low ($m_a \ll \SI{1}{\eV}$) compared to other DM candidates such as weakly interacting massive particles (WIMPs) with mass
+%\AW{es}
+$\gtrsim\SI{50}{\GeV}$ \cite{Bertone2010_momentWIMP}. 
+Considering the local DM density $\rho_{DM}\approx\SI{0.4}{\GeV\cm^{-3}}$ \cite{BERGSTROM1998137, Jungman1992SupersymmetricDM, Sofue_RotationCurves}, the ALP number density is expected to be so high that we can use the language of a classical field to describe the influence of ALPs on laboratory detectors as opposed to a particle-like description of interactions used in the case of WIMPs. The ALP field is stochastic in nature \cite{Centers2021Stochastic} but on time scales shorter than its characteristic coherence time $\tau_a$ it can be approximated as  
+%The ALP field is described as: \DK{(I wonder if here we should specify that this is an approximate description of the field over durations $\ll \tau_a$, or perhaps specify that this describes the field from a single mode of the ALP field, or something else to already at this point point out to the reader that this does not entirely capture the physics of the ALP field, in particular its chaotic/stochastic nature?)}
+\begin{equation}
+    a(r,t) = a_0 \cos(\omega_a t - \mathbf{k}\cdot \mathbf{r} + \phi)
+    \,.\label{eq:ALP_field}
+\end{equation}
+Here $a_0$ is the amplitude of the field, $\omega_a = m_a c^2/\hbar$ is the ALP Compton frequency where $c$ is the speed of light and $\hbar$ is the reduced Planck constant, $\mathbf{k} = m_a \mathbf{v}_a/\hbar$ is the wave vector ($\mathbf{v}_a$ is the relative velocity of ALP and the detector), $\mathbf{r}$ is the displacement vector, and $\phi$ is a random phase in the interval $[0,\, 2\pi)$. The amplitude $a_0$ follows a Rayleigh distribution and the average root-mean-square (r.m.s) value of $a_0$ can be estimated from $\rho_{DM}$ \cite{KimballOverview, Centers2021Stochastic, Gramolin2021NaturePhysics}:
+\begin{align}
+    \rho_{DM} \approx \dfrac{c\, m_a^2 a_0^2}{2\hbar^3}
+     \,.\label{eq:rhoDM} 
+\end{align}
+In this work, we assume that ALP DM is virialized in the galaxy and its velocity follows the Maxwell-Boltzmann distribution with average speed $v_a\approx$\,220\,km/s \cite{Evans2019SHM++_PhysRevD}.
+%\AW{there should be a separator between c and $m_a$. Also, the formula is not obvious to me (sorry!) and checking resulted in at least a difference to the CASPEr ZULF paper of 1$\hbar$ (there is just $\hbar^2$.Just for consistency i would also mention that c is the speed of light.}
+Due to the second-order Doppler effect, the spectral linewidth of the ALP field observed with a detector on Earth $\Gamma_a$ is approximately $(v_a/c)^2\omega_a \sim \omega_a/Q_a$ \cite{Gramolin2022_SpectralPhysRevD} ($v_a = |\mathbf{v}_a|$, $Q_a \equiv (c/v_a)^2$ is the ALP quality factor). 
+%\AW{this actually the average speed. I would mention here somewhere, that it is commonly assumed, that ALP DM is virialized in the potential of the galaxy and considered a maxwell boltzman distributed gas of particles whose average speed is $v_a\approx$300km/s. I would write this before the linewidth definition. Ah, you could define the linewidth here.}
+The mode of the ALP frequency distribution (i.e., the value of the frequency appearing in the distribution with highest probability) is $\omega_a^{'}\approx\omega_a(1+v_a^2/2c^2)$ \cite{KimballOverview}. Since the difference between $\omega_a$ and $\omega_a^{'}$ is relatively small, we do not differentiate between them in the following. 
+
+
+
+While astrophysical evidence for the existence of DM comes from its gravitational effects, understanding its nature requires probing its possible non-gravitational couplings.
+In the case of ALPs, there are three kinds of non-gravitational couplings to standard-model particles that are predicted by theory \cite{GrahamNewobservables_PhysRevD.88.035023}: the ALP-photon, ALP-gluon and ALP-fermion couplings.
+In this paper, we analyze spin precession that arises due to the latter two couplings. Moreover, for concreteness, we concentrate on the ALP-fermion coupling to nuclei, although the results should be general for all spin-precession searches. 
+% \DB{Co-authors, do you agree with this?}
+
+The Hamiltonian describing such an interaction between the ALP field and nuclei, also referred to as the ``nuclear-gradient coupling,'' can be written as:
+\begin{align}
+    H_{\mathrm{aNN}} \sim \mathrm{g_{aNN}} {\boldsymbol \nabla} a \cdot \mathbf{I} 
+   \,,\label{eq:HaNN}
+\end{align}
+where $\mathrm{g_{aNN}}$ is the coupling strength for a neutron or a proton in units of \SI{}{\GeV^{-1}}, ${\boldsymbol \nabla} a$ is the ALP-field gradient and $\mathbf{I}$ is the nuclear spin operator. The exact form of this expression is model dependent (for example, the proton and neutron couplings vary between different ALP theories). The connection between the ALP couplings to protons and neutrons and the ALP coupling to the entire nucleus depends
+%\YZ{depends or depend?}
+on nuclear physics \cite{Kimball_2015_spin}.
+
+\subsection{ALP search with spin-precession haloscope}
+
+
+
+Depending on the theoretical model, different schemes of spin-precession experiments are adopted to search for DM fields.
+%\DK{Maybe here mention or cite closely related electron-spin-resonance (ESR) experiments: Ref\,\cite{Crescini2020_Ferromagnetic}).}
+For example, the Global Network of Optical Magnetometers for Exotic physics searches (GNOME) \cite{Pustelny_AdP_GNOMEnovel, Pospelov_PhysRevLett_DomainWalls, Kimball_2018_PhysRevD_terrestrial, Masia-Roig_2020_Analysismethod, Afach_2021_topological} investigates transient exotic spin couplings. 
+Other examples are the Cosmic Axion Spin Precession Experiment (CASPEr) \cite{budkergraham2014proposal}, aiming at probing a persistent (and fluctuating, see, for example, Ref.\,\cite{Centers2021Stochastic}) pseudomagnetic field
+%\AW{the galactic background (it is not persistent but fluctuates...)}
+with nuclear magnetic resonance (NMR) and the QUaerere AXions (QUAX) experiment probing possible interactions of the galactic ALP field with 
+electrons %spin resonance (ESR)
+\cite{Crescini2020_Ferromagnetic}. 
+
+In this work, we focus on CASPEr and similar experiments. CASPEr is carried out in parallel at Boston and Mainz. At Boston, the main focus is the search for the ALP coupling to gluons resulting in oscillating parity- and time-reversal-invariance-violating nuclear moments. At Mainz, the focus is on the ALP-field-gradient coupling to nuclei. There are a number of setups at Mainz using different magnets (or magnetic shielding) and addressing different ALP-mass ranges. 
+%\HB{What about CASPEr-GNOME, and the old ZULF setup? In other words, I would not explicitly mention how many setups we're working with.}
+The target frequency band to scan is determined by the maximum magnetic field of the NMR setup and the gyromagnetic ratio of the spins. 
+In the ``CASPEr-Gradient-Low-Field'' experiment, the magnetic field is limited to about 0.1\,T, while the ``CASPEr-Gradient-High-Field'' experiment will operate with a tunable 14.1\,T magnet.
+With proton spins,  the corresponding maximum frequencies are about 4.3 and \SI{600}{\MHz}, respectively. 
+% \YZ{After consulting an editor, we know we should write 4.3 and \SI{600}{\MHz}}
+The sensitivity of spin-precession experiments depends on the number of polarized spins in the sample, the relaxation times and the sensitivity of the detector. In the following sections, we discuss the mechanism of spin-precession experiments in DM search, and formulate an optimal strategy to scan through the mass-$|\mathrm{g_{aNN}}|$-coupling parameter space describing the nuclear-gradient coupling. 
+
+We take the CASPEr-Gradient-Low-Field experiment as an example. 
+%CASPEr-Gradient-Low-Field uses magnetic fields up to 0.1\,T, while CASPEr-Gradient-High-Field will go up to 14.1\,T. 
+%\DK{The first time you introduce the "Low-Field" experiment, you should explain the different versions of the CASPEr-Gradient experiment: high field, low field, and ZULF.}
+A conceptual diagram of the apparatus is illustrated in Figure\,\ref{fig:CASPEr_Apparatus}. 
+The cryostat contains a liquid helium reservoir (providing a cryogenic environment for the magnet), an excitation coil, a pickup coil and a superconducting quantum interference device (SQUID). We can use multiple pickup coils and SQUIDs in the experiment. The magnet produces the bias field $\mathbf{B}_0$. The magnetization of the sample is prepared so that it is oriented colinearly with $\mathbf{B}_0$, and the magnetization can be tilted by applying a transverse oscillating magnetic field with the excitation coil. The role of this transverse oscillating field could also be taken, in principle, by the gradient of the ALP field.
+%\AW{i know wwhat you want to say, but the sentence starts with can and you have no control over the ALP field. i am not sure how to fix it here...}
+The transverse magnetization induces an oscillating magnetic flux in the pickup coil which couples to the SQUID loop. 
+% The pickup transfer coefficient is given by
+% \begin{equation}
+%    \alpha \equiv \dfrac{\Phi_1}{\mu_0 %M_1} = \dfrac{\mathrm{g}_{in} %\mathrm{g}_{V}}{L} 
+%    \,.\label{eq:alpha}
+% \end{equation}
+% Here $\Phi_1$ is the flux in the SQUID, $\mu_0$ is the vacuum permeability, $\mathrm{g}_{in}$ is the SQUID input coupling factor, $\mathrm{g}_{V}$ characterizes the geometry of sample and pickup coil, and $L$ is the combined inductance of the %loop consisting of pickup coil and SQUID input. To increase the experimental sensitivity, we plan to use hyperpolarized samples (including xenon and methanol).
+%\AW{What does this tell me?
+%alpha is flux per magnetization. Good. But is the rest suppossed to tell me? what is the squid input coupling factor? why do you give that here?}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.65\linewidth]{CASPEr_Apparatus_20230508.png}
+    \caption{Conceptual diagram of the CASPEr-Gradient-Low-Field setup. The superconducting devices (indicated by dark green) are submerged in a liquid helium bath (light green). The magnet comes with shim coils so that the inhomogeneity of the magnetic field can be manipulated. The excitation and pickup coils can be used to characterize the properties of magnetic field and sample. 
+    % \DA{Are the excitation and pickup coils really coaxial as drawn? Does that not saturate the SQUIDs during excitation? Some clarification here would be good.} \YZ{I made some modification to the figure on the positions of the coils. Saturation of SQUID during excitation is observed but I believe it is not a big problem. Or maybe I am totally wrong?}
+    The sample is isolated from the liquid helium bath via a vacuum insulation (indicated by light blue), and the sample temperature can be adjusted with a temperature-control system, affecting such as the $T_2$ relaxation. The setup is compatible with different samples that require significantly different temperatures ($\geq\SI{100}{\kelvin}$ difference). 
+%   \DK{Are the relative dimensions of the sample and pickup/excitation coils close to matching those of the actual experiment? If possible, it would be nice to make them  match the relative sizes more closely to indicate our "filling factor."}
+    % \AW{Maybe better: conceptual diagram. Since (as you know very well) many things are different (coils, SC magnet, sample does not sit in vacuum). You could introduce here the shimstack as well (if you want)}
+    }
+    \label{fig:CASPEr_Apparatus}
+\end{figure}
+
+
+\subsection{The goal of the present work}
+
+Before discussing the search optimization, we need to define what is being optimized. This may depend on the specific situation. One reasonable goal may be to obtain a ``needle sensitivity'' by achieving the best possible sensitivity at a fixed value (i.e., a narrow range) of the ALP mass. While chances of finding DM around one random frequency are insignificant, a needle-sensitivity experiment may be useful for exploring the practical limits of sensitivity and the study of systematic effects. Another circumstance when one may wish to look in a narrow mass range is if a plausible candidate is found and it is necessary to check if it is real at the observed mass of the candidate. However, in this paper we consider a complementary case where the ultimate goal is to scan a large range of the ALP mass (frequency) parameter space in search for DM; therefore, the question we address here with respect to our scanning strategy is: 
+% within a given total measurement time $T_{\mathrm{tot}}$ and the target frequency range $[\omega_{\mathrm{start}},\,\omega_{\mathrm{end}}]$ (determined, for instance, by the range of the field supplied by a given magnet and the choice of the NMR sample), 
+what are the optimal experimental settings for exploring the largest area in the parameter space? In other words, which experimental settings correspond to the highest sensitivity to the ALP coupling strength over the entire frequency range? 
+%(We note that other reasonable goals may be set for an experiment, for example, achieving the best ``needle exclusion,'' i.e., the best possible sensitivity in a narrow frequency band.)  
+%\AW{Would there be a different outcome? is it not just the same argument for a different frequency range $[\omega_start-\omega_end]$}
+The specific questions that we address here include:
+\begin{itemize}
+    \item What is the best frequency-step size for scanning?
+    \item What are optimal values of the transverse relaxation time $T_2$ and the effective transverse relaxation time $T_2^*$?
+    \item How does sensitivity scale with the total measurement duration $T_{\mathrm{tot}}$ (or the dwell time at one ALP frequency, $T$)?
+\end{itemize}
+
+An interesting issue to consider in conjunction with choosing the optimal scanning strategy is whether it may be beneficial to apply a ``seed'' transverse oscillating magnetic field at the resonance frequency to heterodyne the ALP signal \cite{Aybas_2021_Quantum_sensitivity, Omarov_2022_Speedingaxionhaloscope}. We leave seeding outside the scope of the current work. Similarly, we do not consider here the case of sub-kHz frequencies addressed previously in CASPEr-ZULF \cite{Garcon_2019_Constraints, Wu_2019_Comagnetometer}, where ZULF stands for zero-to-ultralow field or other related low-frequency work \cite{Abel2017Electric_PRX, Terrano2019Axionlike23_PhysRevLett, Roussy2021AxionlikeSeven_PhysRevLett, BlochItay2022Floquet_sciadv}. 
+% \DK{Reference these related experiments:
+% C. Abel, N. J. Ayres, G. Ban, G. Bison, K. Bodek, V. Bondar, M. Daum, M. Fairbairn, V. V. Flambaum, P. Geltenbort, et al., Search for axionlike dark matter through nuclear spin precession in electric and magnetic fields, Phys. Rev. X 7, 041034 (2017).
+% W. A. Terrano, E. G. Adelberger, C. A. Hagedorn, and B. R. Heckel, Constraints on axionlike dark matter with masses down to 10 23 eV/c2, Phys. Rev. Lett. 122, 231301 (2019).
+% T. S. Roussy, D. A. Palken, W. B. Cairncross, B. M. Brubaker, D. N. Gresh, M. Grau, K. C. Cossel, K. B. Ng, Y. Shagam, Y. Zhou, et al., Experimental constraint on axionlike particles over seven orders of magnitude in mass, Phys. Rev. Lett. 126, 171301 (2021).
+% I. M. Bloch, G. Ronen, R. Shaham, O. Katz, T. Volansky, and O. Katz, New constraints on axion-like dark matter using a Floquet quantum detector, Sci. Adv. 8, eabl8919 (2022).}
+
+
+We note here in passing that the issue of relative value (value scaling) of searching in different parts of the parameter space is nontrivial and highly consequential. The value scaling depends on theoretical assumptions and preferences. To give an example, it is commonly assumed that a ultralight-bosonic-dark-matter (UBDM) particle could have a mass in the 10$^{-22}-10$\,eV range. If we assume that the a-priori probability of finding the particle is uniform over this interval, this strongly biases the search towards the highest masses. However, it is the area in the log-lin or log-log
+(mass-1/coupling) parameter space that is usually taken as the figure-of-merit (see, for example, Ref.\,\cite{Gedalia_Perez2010HierarchyPhysRevD} for a related discussion). This makes a search covering, say, a decade at low masses just as valuable as a decade searched at higher masses. The distinction between these value scalings is not important for searches that cover a fractionally small mass range, which is common.
+% \DK{I gather from Dima's discussion at his recent conference that at the very least many in the community value the log-log area. This generally makes sense with respect to the "objective prior" way of thinking where if we don't have a prior expectation for even the order of magnitude of the effect (which I believe is the case for the ALP coupling), the standard assumption is that the prior distribution in the Bayesian sense is flat in the log scale.}
+% \cite{Gedalia_Perez2010HierarchyPhysRevD}
+% In addition, we would like to mention that whenever there is an interesting ALP DM candidate, we can search in a narrow frequency band centered around its Compton frequency. 
+ 
+ 
+ 
+
+
+
+
+We also note the work of Ref.\,\cite{Dror_2022_SensitivityofSpinPrecession_PhysRevLett.130.181801}, where the authors address the sensitivity of DM search experiments like CASPEr. We claim that there is no conflict in terms of conclusions between Ref.\,\cite{Dror_2022_SensitivityofSpinPrecession_PhysRevLett.130.181801} and this paper. 
+In Ref.\,\cite{Dror_2022_SensitivityofSpinPrecession_PhysRevLett.130.181801}, experimental sensitivities under any hierarchy between ALP coherence time $\tau_a$, NMR transverse relaxation time $T_2$, and measurement time $T$ are derived. However, in this paper, we always assume that $T\gg\tau_a,\,T_2$ and consider hierarchy between $\tau_a$, $T_2$ and $T_2^*$. The effect of $T_2^*$ is discussed here as well. 
+%\DB{Dear co-authors, we are trying to come up with a polite mention here that would also warn the readers not to blindly trust that paper's conclusions.} 
+% \AW{I think you disclose for the first time here, that it is "our" experiment. I would do that then earlier, for example, in the section starting "In this work we focus on CASPEr-like experiments, such as the ones currently taking data and being under construction in Mainz) you can introduce CASPER LF and HF here if you want.}
+
+
+
+\section{Spin-Precession Experiment}\label{sec:Spin-PrecessionExperiment}
+
+\subsection{Characteristic parameters}
+
+The effect of the ALP field is best described as continuous-wave (CW) NMR, for which a key parameter is the transverse spin-relaxation rate. 
+%\AW{The steady state signal amplitude for small drive amplitudes (by the ALP field) scales inversely with the overall transverse magnetization relaxation.}
+Transverse relaxation occurs via homogeneous mechanisms (e.g., intermolecular interactions in the sample) as well as inhomogeneous mechanisms\footnote{Though they may not be regarded as true relaxation mechanisms. Their effect is also described as ``dephasing''. }, for example, due to magnetic-field gradients across the sample. 
+%\DK{Note that there can be other sources of broadening, for example damping due to the interaction with the pickup circuit.}
+%\AW{broadening is not a relaxation mechanism, it is the result of a relaxation mechanism.}
+%\AW{maybe write: homogeneous, inhomogeneous and ALP-field related mechanisms. (mechanisms could be replaced here with something more direct)
+%What about changing the sentence to: Several relaxation mechanisms have to be considered: homogenoeus, inhomogeneous and ALP-field related relaxation.}
+% Homogeneous broadening arises from
+% fluctuating magnetic fields, like those generated by spin-spin interactions within the sample. 
+The homogeneous-relaxation time is called $T_2$. 
+% On the other hand, there can be inhomogeneous broadening due to, for example, spatial variation of the external magnetic field over the sample volume. 
+The total effective relaxation time is called $T_2^*\leq T_2$.
+%If we tilt the spins away from the bias field, turn the excitation field off, and observe the NMR signal as a function of time, we can obtain the NMR ``decay'' spectrum by taking the Fourier transform of the signal. 
+If we tilt the spins away from the bias field, turn the excitation field off, we observe a decaying sine wave NMR signal as a function of time. We can obtain the NMR ``decay'' spectrum by taking the Fourier transform of the time series. 
+The full-width-at-half-maximum (FWHM) or the linewidth of the spectral line is $\Gamma_{n} = 2/T_2^*$ \cite{Levitt2008SpinDynamics}, which is the result of relaxation from both homogeneous and inhomogeneous mechanisms. Here we approximate the NMR spectral lineshape as a Lorentzian for simplicity (which is not true in general, see for example Ref.\,\cite{Aybas_2021_Solid-StateNMR}).
+In NMR the linewidth is sometimes normalized with the center frequency $\omega$:
+\begin{equation}
+    \delta_\omega \equiv \dfrac{\Gamma_{n}}{\omega} = \dfrac{2}{\omega T_2^*}
+    \,,\label{eq:delta_omega}
+\end{equation}
+often in the unit of parts per million (\SI{}{\ppm}). The value of $\delta_{\omega}$ can be manipulated with magnetic shimming in the case where inhomogeneous broadening due to the field gradients is significant. 
+%\DK{Of course, this is only in the case where broadening due to gradients is a dominant or at least significant contributor to $T_2^*$. This should be noted.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The ALP-field gradient can be viewed as a pseudomagnetic field
+because it interacts with nuclear spins in a similar way as a magnetic field does. 
+% \DK{If you're making an analogy with the effects of a magnetic, then logically you should connect the detection scheme to a "magnetic" detection scheme. Spin precession is already implied by Eq. (3) without invoking the magnetism analogy.}
+This implies the possibility of detecting an ALP-field gradient through magnetic resonance experiments where the oscillating gradient of the galactic ALP field drives spin precession.
+We can regard the ALP field as the oscillating drive field for nuclear spins in a bias magnetic field. 
+The Rabi frequency of this pseudomagnetic field is determined by the coupling strength, 
+the amplitude of the ALP-field gradient, ALP mass and the magnitude of the relative velocity of experiment and ALP field perpendicular to the direction of the bias field $v_{\bot}$. 
+It is important to note that the ALP field is a stochastically varying quantity, so that the Rabi frequency does not have a constant value over time. 
+The r.m.s. Rabi frequency $\Omega_a$ can be computed based on Equations\,\eqref{eq:ALP_field}, \eqref{eq:rhoDM} and \eqref{eq:HaNN} \cite{Centers2021Stochastic}:
+\begin{equation}
+    \Omega_a = \dfrac{1}{2\hbar} \mathrm{g_{aNN}} a_0 m_a c v_{\bot} \approx \dfrac{1}{2} \mathrm{g_{aNN}} \sqrt{2\hbar c \rho_{DM}} v_{\bot}
+    \,,\label{eq:Omega_a}
+\end{equation}
+%\AW{this is a stochastically varying quantity!}
+Here we assume that the ALP-field gradient comes exclusively from the relative motion of the field and the detector.\footnote{This is not necessarily the case, for instance, for ALPs gravitationally bound %\AW{to stellar objects (but you are just talking about earth here...)} 
+in stationary states like axion stars or ``axion atoms'' \cite{Lam2017_PhysRevD, Liang_Zhitnitsky2019_GravitationallyPhysRevD}. We do not consider such regimes here. 
+% \AW{I would leave a reference here to gravitationally bound axions: e.g. https://journals.aps.org/prd/abstract/10.1103/PhysRevD.99.023015}
+} 
+%\DK{The readers probably don't know what you're referencing here... perhaps use the term that appears more commonly in the literature, "axion stars," and include related references, for example:\cite{Braaten_2019_axionstars_RevModPhys, Eby_2019_QCDaxionstars_PhysRevD, Eby_2021_axionstarsPlanck_PhysRevD, Banerjee2020_Relaxionstars,Banerjee2020axionhalos}}
+%\DB{But, indeed, we were not thinking about axion stars that are bound states of ALPs themselves, but rather really Axion Atom with, say, the Sun in the center and a halo around it. The atomic analogy is quite strong here and this has been used in the literature…}
+% It is important to note that the ALP field is a stochastically varying quantity, so that the $\Omega_a$ in Equation\,\eqref{eq:Omega_a} is the r.m.s value.
+If we take $v_{\bot} = \SI{220}{\km\per\second}$, we have $\Omega_a/2\pi=\mathrm{g_{aNN}}\times\SI{.2}{\GeV.\Hz}$. For an experiment searching for $\mathrm{g_{aNN}}\leq 10^{-10}\SI{}{\per\GeV}$, the period of Rabi oscillation is $2\pi/\Omega_a \geq 1000\,\mathrm{yr}$, for which reason we can regard ALP-field gradient as a weak drive for the spins. 
+The stochastic nature of the ALP field \cite{Centers2021Stochastic, Gramolin2022_SpectralPhysRevD} leads to its finite coherence time $\tau_a$, which can be estimated as
+\begin{equation}
+    \tau_a = \dfrac{2\pi Q_a}{\omega_a}
+    \,.\label{eq:taua_Qa_omegaa}
+\end{equation}
+%\AW{Are you sure about the $2\pi$ here? i would probably recommend to relate the coherence time to the frequency like in your $\Gamma_d$ definition, so: $\tau_a=2Q_a/\omega_a$}
+%\HB{I don't find where $Q_a$ is defined.} \YZ{Below Eq (2). should I make the definition more obvious?}
+Here $Q_a$ is the ALP quality factor defined after Equation\,\eqref{eq:rhoDM}.
+The parameter $\tau_a$ describes the ALP decoherence and needs to be taken into consideration for measurements lasting for $\tau_a$ or longer. 
+% The ALP linewidth is approximately $\Delta \omega_a = 2\pi /\tau_a$ \cite{Gramolin2022_SpectralPhysRevD}. 
+We are considering frequencies above \SI{1}{\kHz}, and $\tau_a \leq \SI{1000}{\second}$. Dwell time $T$ for the measurement at one frequency is chosen to be much longer than $\tau_a,\, T_2^*$ and $T_2$.
+% [\DK{Perhaps already here, for the sake of the reader, we should mention that for our considerations we are focused on Compton frequencies above about a kHz (?), so at the very lowest range of frequencies this means dwell times of $T \gg 1000$~s (?). This will assure interested people that the scan time is reasonable. Although maybe we should limit it to above 10 or 100 kHz, which already is better since 10s to 100s per point is more reasonable.}\YZ{This has been clarified in Sec 1.3. I think measuring for over 1000 seconds is reasonable. We have tested running SQUID overnight and it worked out. Meanwhile, PHIP can provide hyperpolarized sample continuously (>1 hour without break). }]
+%\AW{safely assume indicates something beyond our control. but we choose the measurement time, and we choose the frequencies. So i would write: we choose measurement times much longer than...
+%It is maybe to early, but i would also mention what you mean with measurement time. Like single shot, or overall measurement campaign?}
+%\YZ{We will come back to this later. }
+The linewidth of the ALP field $\Gamma_a = \omega_a/Q_a$ can be expressed with $\tau_a$ as:
+\begin{equation}
+    \Gamma_a = \dfrac{2\pi}{\tau_a}
+    \,.\label{eq:Gamma_a}
+\end{equation}
+Additionally, the hyperpolarized samples used for the experiment lose polarization due to $T_1$ relaxation, which sets a limit on the transverse relaxation time of $T_2\le 2T_1$.
+
+% therefore we only consider $T \ll T_1$ so that the polarization stays constant during one measurement. 
+% \YZ{The necessity of this paragraph is to be discussed. Relevant reference Ref.\,\cite{Abragam1961ThePO} page 46. }
+% \begin{align*}
+%     \Tilde{M}_x &= \dfrac{\Delta\omega\Omega_1 T_2^2}{1+(\Delta\omega T_2)^2+\Omega_1^2T_1T_2} M_0\\
+%     \Tilde{M}_y &= \dfrac{\Omega_1 T_2}{1+(\Delta\omega T_2)^2+\Omega_1^2T_1T_2} M_0\\
+%     M_z &= \dfrac{1+(\Delta\omega T_2)^2}{1+(\Delta\omega T_2)^2+\Omega_1^2T_1T_2} M_0
+% \end{align*}
+% under weak-drive assumption:
+% \begin{align*}
+%     \Tilde{M}_x &\approx \dfrac{\Delta\omega\Omega_1 T_2^2}{1+(\Delta\omega T_2)^2} M_0\\
+%     \Tilde{M}_y &\approx \dfrac{\Omega_1 T_2}{1+(\Delta\omega T_2)^2} M_0\\
+%     M_z &\approx  M_0
+% \end{align*}
+% \AS{I think the equations above should have $T_2^*$ and not $T_2$.}
+% For the CASPEr-Gradient experiment, we can safely assume that measurement time is much larger than $T_2^*$, $T_2$ or $\tau_a$, and the gradient coupling is so weak that the magnetization can only be tilted by a small angle ($\ll$$\SI{90}{\degree}$).
+
+\subsection{Weak-drive NMR}
+
+We expect the ALP-field gradient to induce nuclear spin precession. 
+For a sample with longitudinal magnetization $M_{0}$ prepared along the bias field, the angle of magnetization is tilted by the ALP-field gradient, generating a transverse magnetization $M_{1}$. 
+
+
+% \HB{the last period in r.m.s. was failing a few times, I've added it. The abbreviation is undefined, but that's OK I guess, it's a common term.} 
+% \YZ{Thank you. The abbreviation is mentioned below Eq (1). }
+Since the coupling strength $\mathrm{g_{aNN}}$ and the corresponding r.m.s. Rabi frequency $\Omega_a$ are assumed to be so small that $\Omega_a T \ll 1$ $[$see the discussion following Equation\,\eqref{eq:Omega_a}$]$, we can consider the precession under weak drive: the tipping angle $\xi \ll 1$ and $M_{1} = M_{0}\sin\xi \approx  M_{0}\xi$ \cite{Abragam1961ThePO}. At the beginning of the precession (evolution time $t \ll T_2,\, T_2^*$ or $\tau_a$), the tipping angle increases linearly with time ($\xi \approx \Omega_a t$). 
+% If $T_2,\, T_2* \ll \tau_a $, and we consider measurement
+Meanwhile, the relaxation decreases the magnitude of $M_{1}$. 
+If $T_2^* \ll \tau_a$, the drive and relaxation establish a steady state where the tipping angle stays mostly constant when $t\geq T_2^*$. 
+% The r.m.s tipping angle in this regime can be estimated as $\Omega_a T_2^*$ \cite{Abragam1961ThePO}. This and other cases are considered below. 
+However, if $\tau_a \ll T_2^*$, 
+we should not expect to measure a constant tipping angle since the ALP field is not coherent at the time scale of $T_2^*$. 
+These cases are considered below. 
+
+% \YZ{we stopped here. }
+% \YZ{Note that we have new changes in the paragraph where Equation\,\eqref{eq:taua_Qa_omegaa} is. }
+For the case of a weak drive (which is the ALP field in our case), there is a general expression for the r.m.s. transverse magnetization \cite{Abragam1961ThePO}:
+\begin{equation}
+    \sqrt{\langle M_{1}^2 \rangle} \approx \dfrac{1}{\sqrt{2}} u_n M_{0} \sqrt{\langle  \xi^2 }\rangle 
+    \,,\label{eq:M1_u_M0_Omega}
+\end{equation}
+Here $u_n$ is a factor indicating the fraction of on-resonance spins out of all the spins, $M_{0}$ is the longitudinal magnetization and $\xi$ is the tipping angle of the magnetization.
+% and $\tau \equiv \sqrt{\langle  \xi^2 }\rangle/\Omega_a$ is the effective transverse precession time. 
+The factor of $1/\sqrt{2}$ appears due to $M_1$ oscillating at Larmor frequency. 
+Note that we make the approximation that $\sin\xi \approx \xi$ here based on the weak-drive assumption. 
+
+Assume that the Larmor frequency is tuned to the value of the ALP Compton frequency. As an approximation, the NMR and ALP lineshapes can be taken to be rectangles, the spectral $u_n$ factor can be estimated from the ratio of ALP linewidth to NMR linewidth (the numerical factor depends of the line-shape model):
+% \HB{Why not $T_2$ here as in eq. (8)?}
+% \YZ{eq. (8) describes the distribution of nuclear spins over frequency band, characterized by T_2^*. }
+\begin{equation}
+    u_n \approx \left\{
+    \begin{array}{cl}
+    1\,,
+    &  \tau_a \ll T_2^* \\
+    & \\
+    \dfrac{\Gamma_a }{ \Gamma_{n} } = \dfrac{\pi T_2^*}{\tau_a}\,,
+    &  T_2^* \ll \tau_a
+    \end{array} \right.
+    \,.\label{eq:un}
+\end{equation}
+%\AW{i would probably not use $\pi$ here. (please check whether this should be here)}
+Here, the second regime corresponds to that all nuclear spins being on-resonance with the ALP field. 
+% \DA{A quick suggestion in response to the reviewer's comment $\#2$: maybe mention our finite dwell time $T$ that was introduced in the previous page, which would make $\Gamma_a \geq 1/T$ for our case. I suspect that the case the reviewer mentions is when both $\tau_a \rightarrow \infty$ and $T \rightarrow \infty$, then the rms would indeed be approaching zero as the field would drive spins only until time $T_2$ in a broadened spin ensemble. To have a non-zero rms, we would need to have $T_2 \rightarrow \infty$ too, i.e. a perfectly resonant spin ensemble.}
+
+% \YZ{I think Deniz has pointed out the right answer above. The key point is that we assume we measure for time $T\gg\tau_a\,,T_2^*\,,T_2$. I give Eq.\,\eqref{eq:M1_u_M0_Omega_tau_T2} in order to see that in last regime in it, large $\tau_a$ and $T$ give use zero signal. }
+
+% In weak-drive NMR process, we can not see full Rabi oscillation because the transverse precession is limited by the relaxation. 
+The expectation value of $\sqrt{ \xi^2 }$ is limited by $\tau_a$, $T_2$ and $T_2^*$. 
+%\DK{The sentence is not for the general case of "nuclear spin precessoin" since it involves the axion field, which is rather specific to our experiment :).}
+%\DK{Overall, maybe it seems in this paragraph we are now considering the "the spin-projection noise limits" ? This should be stated and explained at the outset.}
+% When $\tau_a \ll T_2^*$, 
+When $\tau_a \ll T_2$ or $\tau_a \ll T_2^*$, we need to consider the decoherence of the ALP field during the measurement. 
+To model the effect of decoherence, we assume that the phase $\phi$ of the ALP field, corresponding to the orientation of the pseudomagnetic field in the rotating frame, changes to a random value in $[0,\, 2\pi)$ in the period of $\tau_a$. The induced transverse magnetization vector in the rotating frame $\mathbf{M_1} = M_x\mathbf{e_x} + M_y\mathbf{e_y}$ can be represented as a function of $M_0$, tipping angle $\xi_x$ and $\xi_y$ under the weak-drive condition: $\mathbf{M_1} = u_n M_0 (\xi_x\mathbf{e_x} + \xi_y\mathbf{e_y})$. 
+It can be estimated via a two-dimensional random walk \cite{Loudon2000TheQT}, with a characteristic step size of $\Omega_a\tau_a$. 
+%\AS{I am guessing this square root should cover all three factors}. 
+% Here $u_a$ is the fraction of ALPs on resonance with nuclear spins, i.e., the fraction of ALPs driving spin precession. The square root appears due to going from energy to the field amplitude. 
+% When $\Gamma_a \ll \Gamma_n$, all the ALPs are involved. On the contrary, when $\Gamma_n \ll \Gamma_a$, only a small fraction of ALPs is driving the spin precession. Hence we estimate $u_a$ as:
+% \begin{equation}
+%     u_a \approx \left\{
+%     \begin{array}{cl}
+%     1 ,
+%     &  \Gamma_a \ll \Gamma_{n}\\
+%     & \\
+%     \dfrac{\Gamma_{n}}{ \Gamma_a } ,
+%     &  \Gamma_{n} \ll \Gamma_a 
+%     \end{array} \right.
+%     \,.\label{eq:ua}
+% \end{equation}
+% \DB{I think that we can have a simple picture in the rotating frame. First, instead of the polar angle $\xi$, I propose to consider $\xi_x$ and $\xi_y$. These quantities have sign (in contrast to the polar angle!). Moreover, since all angles are small, we can just consider the evolution of these two angles independently. They both undergo random walk with a characteristic step size of $\Omega_a\tau_a$. Then if we have $t/\tau_a\gg1$ steps, we arrive back at Yuzhe's answer modulo factor of order unity.}
+Given the evolution time $t$, the r.m.s value of $M_1$ is $u_n M_0 \sqrt{\langle \xi_x^2 + \xi_y^2\rangle}  = u_n M_0 \sqrt{\langle \xi^2\rangle} $, 
+and $\sqrt{\langle \xi^2\rangle}  = \Omega_{a} \sqrt{\tau_a t}$, growing linearly with $\sqrt{t}$. 
+If we take relaxation into account, $\sqrt{\langle \xi^2\rangle} $ stops increasing after the relaxation time of the on-resonance spin ensemble. When $\tau_a \ll T_2^*$, all the spins are on-resonance, and we can take $t= T_2^*$ so that $\sqrt{\langle\xi^2\rangle}=\Omega_{a}\sqrt{\tau_a T_2^*}$. 
+% If we take advantage of Equations\,\eqref{eq:delta_omega} and \eqref{eq:Gamma_a}, we can find that $\sqrt{\langle \xi^2\rangle}  = \Omega_a\tau_a/\sqrt{\pi}$. 
+When $T_2^* \ll \tau_a \ll T_2$, only a small fraction of the spins in the sample are on resonance with the ALP field, and their linewidth is equal to the ALP linewidth $\Gamma_a$. 
+%\DK{I don't think this is the correct phrasing. Rather what you mean is that "only a small fraction of the spins in the sample are on resonance" -- the way you wrote it here it sounds like there is a specific volume of the sample where the spins are on resonance. This may be the case if T2* is due entirely to magnetic field gradients, but if T2* is due to the local spin environment then the resonant spins are distributed throughout the volume. Earlier you offer the gradient as an example of an effect leading to T2* but it is not assumed to be the ONLY effect... }
+The relaxation time of this small fraction, dominated by the residual inhomogeneous relaxation, is $2/\Gamma_a = \tau_a / \pi$, hence we take $t= \tau_a / \pi$ and have $\sqrt{\langle \xi^2\rangle} = \Omega_{a} \sqrt{\tau_a t} = \Omega_{a} \tau_a /\sqrt{\pi}$ in this case.\footnote{To clarify the meaning of residual inhomogeneous relaxation, note that the ALP spectral line overlaps with a portion of width $\sim1/\tau_a$ out of a broader inhomogeneously broadened spectrum with overall width $\sim1/T_2^*$. 
+The groups of spins that are not overlapping with the ALP spectral line (off-resonance spin groups) cannot be driven coherently by the ALP field during the long dwell time $T$. 
+Considering just the on-resonance group of spins, when $\tau_a\ll T_2$, relaxation is determined by the differences in spin-precession frequencies across this group (residual inhomogeneous broadening) instead of $T_2$, i.e., the relaxation time is $\sim \tau_a$. } 
+% \DK{don't we mean "homogeneous" here?}
+% \YZ{No. It is still inhomogenous relaxation. The homogeneous relaxation time $T_2\gg\tau_a\gg T_2^*$. }
+
+% [\DK{I would start a new paragraph here, because everything above is for the cases where $\tau_a \ll T_2$ or $\tau_a \ll T_2^*$. In those cases you can use $\Omega_a\tau_a$ as the characteristic step size in the random walk. But in the case where $T_2 \ll \tau_a$, the characteristic step size in the random walk is $\Omega_a T_2$. Maybe that should be mentioned for clarity -- I think it would help the readers.}] 
+However, when $T_2 \ll \tau_a$, the phase of the ALP-field gradient can be regarded as coherent during $T_2$, and spin transverse decoherence is dominated by $T_2$ relaxation. Therefore we have $\sqrt{\langle \xi^2\rangle}=\Omega_{a}T_2$. 
+We can summarize the cases above as: 
+\begin{equation}
+    \sqrt{\langle \xi^2\rangle}  = \left\{
+    \begin{array}{cl}
+    \Omega_{a}\sqrt{\tau_a T_2^*} ,
+    &  \tau_a \ll T_2^*\\
+    & \\
+    \Omega_a\dfrac{\tau_a}{\sqrt{\pi}} ,
+    &  T_2^*\ll\tau_a \ll T_2\\
+    & \\
+    \Omega_a T_2 ,
+    &  T_2 \ll \tau_a
+    \end{array} \right.
+    \,.\label{eq:rms_xi}
+\end{equation}
+%\DK{This is a bit confusing, because shouldn't the transverse coherence time be given by $T_2^*$ -- this is only when the inhomogeneous broadening and backaction effects are negligible, right?}
+%\DK{again, this is if $T_2^*$ = $T_2$, right?}
+For frequency ranges of interest to us, 
+%\DK{this seems to imply that there is a particular physical and chemical environment where this is true, and in other physical and chemical environments it is not true, but that is not what you mean here I think}
+the $T_2$ time is assumed here as a fixed value independent of the external magnetic field. 
+% We have considered the limiting regimes in Equation\,\eqref{eq:rms_xi}, and the results for the intermediate regimes where $T_2\approx \tau_a$ or $T_2^*\approx \tau_a$ can be deduced by interpolation between the three regimes. 
+%\DK{This is a strange way to phrase this... $\tau_a$ is fixed by properties of the ALP field.  Depending on the resonant Larmor frequency being investigated, the corresponding mass (frequency) of the ALP searched for determines the corresponding $\tau_a$ for those parameters according to Eq. (6). I think maybe this sentence could be re-structured to be more clear on this point.}
+%\DK{maybe explain to the reader why this can be assumed?} \DB{We are looking into this. If you have thoughts, tell us!}
+
+Summarizing Equations \,\eqref{eq:M1_u_M0_Omega}, \eqref{eq:un} and \eqref{eq:rms_xi}, we can obtain the expression for the r.m.s transverse magnetization:
+\begin{equation}
+    T\gg\tau_a\,,T_2^*\, \,\text{or}\,\,T_2,\, \sqrt{\langle M_{1}^2 \rangle} \approx \dfrac{1}{\sqrt{2}} M_{0}\Omega_a\left\{
+    \begin{array}{cl}
+    \sqrt{\tau_a T_2^*}\, ,
+    &  \tau_a \ll T_2^*\\
+    & \\
+    \dfrac{T_2^*}{\sqrt{\pi}}\, ,
+    &  T_2^*\ll\tau_a \ll T_2\\
+    & \\
+     \dfrac{T_2^*T_2}{\sqrt{\pi}\tau_a}\, ,
+    &  T_2 \ll \tau_a
+    \end{array} \right.
+    \,.\label{eq:M1_u_M0_Omega_tau_T2}
+\end{equation}
+In the third case of the Equation \eqref{eq:M1_u_M0_Omega_tau_T2}, as $T_2 \ll \tau_a$, $T_2$ and $T_2^*$ suppress the growth of $\sqrt{\langle M_{1}^2 \rangle}$ over the dwell time. In the limit of $\tau_a\rightarrow\infty$, since $T$ is assumed to be much larger than $\tau_a$, we have $T\rightarrow\infty$, whereby the ALP field cannot drive the nuclear spins coherently all the time and $\sqrt{\langle M_{1}^2 \rangle}$ decreases to zero. 
+
+\subsection{Summary of regimes}
+
+
+As can be seen in the discussion on the spectral factor and the tipping angle, there are different regimes in the experiment. 
+To organize the discussion, we summarize the possible regimes depending on the relative magnitudes of $T_2$, $T_2^*$ and $\tau_a$: 
+ % $\tau_a \ll T_2^*$ 
+ % $T_2^*=T_2 \ll \tau_a$
+ % $T_2^* \ll \tau_a \ll T_2 $ 
+ % $T_2^* \ll T_2 \ll \tau_a$
+\begin{enumerate}[label = (\arabic*)]
+    \item $\tau_a \ll T_2^*$;
+    \item $T_2^* \ll \tau_a \ll T_2 $;
+    \item $T_2^* \ll T_2 \ll \tau_a$;
+    \item $T_2^*=T_2 \ll \tau_a$;
+\end{enumerate}
+These four regimes are also illustrated in Figure\,\ref{fig:T2star_T2_taua_regimes}. Since the NMR and ALP linewidth can also be expressed with $T_2^*$ and $\tau_a$, we do not mention linewidth in these regimes. We do not separately consider intermediate regimes such as $T_2\approx \tau_a$ and $T_2^* \approx \tau_a$. The estimates for these regimes can be done by interpolation or extrapolation. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.6\linewidth]{T2star_T2_taua_relations_20230413.png}
+    \caption{Different regimes that are considered in the experimental schemes. }
+    \label{fig:T2star_T2_taua_regimes}
+\end{figure}
+
+
+
+
+
+
+\section{Sensitivity and scanning optimization}\label{sec:Sensitivity}
+
+
+
+
+\subsection{Single-frequency measurement}
+
+The relationship between the flux in the SQUID $\Phi$ and the transverse magnetization $M_1$ is described by pickup transfer coefficient $\alpha$:
+\begin{equation}
+    \alpha = \dfrac{\Phi}{\mu_0 M_1}
+    \,\label{eq:alpha}
+\end{equation}
+where $\mu_0$ is the the vacuum permeability. 
+The average flux power of an ALP-induced spin-precession signal is determined by ALP-induced transverse magnetization that is described in Equations \eqref{eq:M1_u_M0_Omega}, \eqref{eq:un} and \eqref{eq:rms_xi}:
+% \AW{i would, if possible, always try to summarize the relationship in words. This one is particularly simple, but i have to scroll back because i forgot the formulas. you could write: the average flux power ... is the product of axion induced transverse magnetization converted into flux (or something like that...)}
+\begin{align}
+    \langle \Phi_a^2 \rangle = \dfrac{1}{2}(\alpha u_n \mu_0 M_0 )^2 \langle \xi^2 \rangle
+    =\dfrac{1}{2}(\alpha u_n \mu_0 M_0 \Omega_a)^2 \left\{
+    \begin{array}{cl}
+    \tau_a T_2^* ,
+    &  \tau_a \ll T_2^*\\
+    & \\
+    \dfrac{\tau_a^2}{\pi} ,
+    &  T_2^*\ll\tau_a \ll T_2\\
+    & \\
+    T_2^2 ,
+    &  T_2 \ll \tau_a
+    \end{array} \right.
+    \,. \label{eq:Phia2}
+\end{align}
+% Here $\alpha$ characterizes the relationship between flux in the SQUID and the induced transverse magnetization. 
+%\AW{The average of this is just a constant. For a power spectrum it needs some time dependence. What is tau here?}
+This power is concentrated in a spectral interval corresponding to the width of the NMR line.
+The corresponding signal amplitude in power spectrum or power spectral density (PSD) can be computed from the flux power in Equation\,\eqref{eq:Phia2}:
+\begin{align}
+    S = \dfrac{\langle \Phi_a^2 \rangle}{\Gamma /2\pi} 
+    \,, \label{eq:S_expectation}
+\end{align}
+%\AW{Ok, i am puzzled. There is no fourier transform here.... you are just dividing the average power by the linewidth. This is the PSD amplitude at the frequency of the ALP if you resolve it properly. In your formula is no frequency dependence. Weird... What do you mean?}
+where 
+%the units of $S$ is the signal PSD amplitude in the unit of $\Phi_0^2/\SI{}{\Hz}$, and 
+$\Gamma$ is the spectral linewidth of the expected signal. Considering the NMR and ALP linewidth, we have
+\begin{equation}
+    \Gamma = \left\{
+    \begin{array}{cl}
+    \Gamma_a ,
+    &  \Gamma_a \ll \Gamma_{n}\\
+    \,& \\
+    \Gamma_{n},
+    & \Gamma_a  \gg \Gamma_{n}
+    \end{array} \right.
+    \,.\label{eq:Gamma}
+\end{equation}
+The first case in Equation\,\eqref{eq:Gamma} refers to the situation where only a fraction of nuclear spins are on-resonance with the ALP field, and the second case refers to the situation where all the spins are on-resonance. 
+%\AW{I would prefer, if you somewhere define the corresponding frequencies/linewidth and then keep those either frequency or times. The mixing is confusing.}
+The number of data points in the power spectrum within a frequency bin of $\Gamma$ is
+\begin{equation}
+    N_{\Gamma} = \dfrac{\Gamma T}{2\pi} \gg 1
+    \,,\label{eq:NGamma}
+\end{equation}
+where $T$ is the dwell time of the measurement in one step. 
+These $N_{\Gamma}$ PSD values are averaged to improve the signal-to-noise ratio. Having $N_{\Gamma}$ large is an experimental choice; we normally want at least several points per ALP linewidth, for example, to be able to discriminate ALP signals using their expected lineshape \cite{Gramolin2022_SpectralPhysRevD}.
+%\AW{In the PSD, the linewidth gamma is resolved with certain number of points N determined by the duration T of a single measurement .}
+%\AW{why is this bigger than 1? This is a choice and i would make it explicit and justify it. Sometimes, for example 1khz ALPs, 1000s measurement time, >>1 is experimentally even challenging.}
+At present, dominant sources of noise in the CASPEr-Gradient-Low-Field experiment are from the SQUIDs and their electronics. 
+%\HB{interference noise is not white but rather depends on the interference source (such as noisy power supplies). What you probably mean here is thermal noise of the SQUID and its electronics.}
+%\AW{don't we have two SQUIDs?}
+%\AW{do you mean thermal noise of the squid electronics? Or just noise of the electronics. I would opt for the latter, since it is less specific and we actually do not know much about the origin of the noise in the electronics.}
+%Noise can be characterized as the standard deviation of the power spectrum. 
+%\AW{You are mixing things. PSD is a spectrum, so multiple data points. Power per frequency. Noise is a power per frequency. Most of the time, a power spectrum just shows noise. Then the actual value in the PSD characterizes the noise. You can say the average noise in a frequency interval is characterized by a mean and a standard deviation. According to the sacred and amazing central limit theorem, averaging reduces the standard deviation like 1/sqrt(N), where N is the number of averages.}
+The expected noise level after averaging is
+\begin{equation}
+    \sigma = \dfrac{\sigma_{0}}{\sqrt{N_{\Gamma} }} = \sqrt{\dfrac{2\pi }{\Gamma T}} \sigma_{0}
+    \,,\label{eq:sigma}
+\end{equation} 
+%\AW{why repeating this here?}
+where $\sigma_{0}$ is the expected noise of the power spectrum without any binning, characterizing the noise of the system. 
+%\AW{so far you have used averaging for binning. Both things work differently. Averaging several PSDs, doesn't change the frequency resolution. Binning does.}
+
+We choose the detection threshold as 3.355$\sigma$, corresponding to a detection of a signal whose true power is 5$\sigma$ above the background  (accounting for noise) with 95\% confidence level \cite{Gramolin2021NaturePhysics, Brubaker_PhysRevD.96.123008}:
+\begin{align}
+    S \geqslant 3.355 \sigma
+    \,. \label{eq:SNR}
+\end{align}
+%\AW{with background you mean noise, no? }
+Notice that $S$ is a function of $\mathrm{g_{aNN}}$ since the $\Omega_a$ appearing in Equation \eqref{eq:Phia2} is proportional to $\mathrm{g_{aNN}}$. 
+%\AW{i just scrolled up and down three times to figure that out. Why not combine all the constants in 11 that describe the apparatus into one and highlight the relation to $omega_axion$. haha, you are doing it later..}
+When no significant signal is discovered, we can use Equations\,\eqref{eq:Omega_a}, \eqref{eq:Phia2}, \eqref{eq:S_expectation}, \eqref{eq:sigma} and \eqref{eq:SNR} to exclude the coupling strengths whose values satisfy:
+\begin{equation}
+    T\gg\tau_a\,,T_2^*\, \,\text{or}\,\,T_2,\, |\mathrm{g_{aNN}}| \geqslant 
+    \left\{
+    \begin{array}{cl}
+    \eta\, T^{-\frac{1}{4}} (T_2^*)^{-\frac{3}{4}} \tau_a^{-\frac{1}{2}} ,
+    & \tau_a\ll T_2^* \\
+    & \\
+    \eta\, \pi^{-\frac{1}{4}} T^{-\frac{1}{4}} (T_2^*)^{-1} \tau_a^{-\frac{1}{4}} ,
+    &  T_2^*\ll\tau_a \ll T_2\\
+    & \\
+    \eta\, \pi^{-\frac{3}{4}} T^{-\frac{1}{4}} T_2^{-1} (T_2^*)^{-1} \tau_a^{\frac{3}{4}}  ,
+    &  T_2^*\ll T_2\ll\tau_a \\
+    & \\
+    \eta\, \pi^{-\frac{3}{4}} T^{-\frac{1}{4}} T_2^{-2} \tau_a^{\frac{3}{4}}   ,
+    &  T_2^*= T_2\ll\tau_a
+    \end{array} \right.
+    \,. \label{eq:exclusion_threshold}
+\end{equation}
+Here $\eta$ includes the parameters independent of $T$, $T_2$, $T_2^*$ and $\tau_a$:
+\begin{equation}
+    \eta = \dfrac{2  \sqrt{3.355 \sigma_0} }{\pi^{1/4} \alpha \mu_0 M_0  v_{\bot} \sqrt{\hbar c \rho_{DM}} }
+    % \eta = \left(\dfrac{2}{\pi}\right)^{1/4}   \dfrac{  \sqrt{3.355 \sigma_0} }{\alpha \mu_0 M_0 }
+    \,.\label{eq:eta}
+\end{equation}
+% \AW{whwat is the difference between 1/tau and gamma? }
+We can see from in Equations \eqref{eq:exclusion_threshold} and \eqref{eq:eta} that larger magnetization gives better sensitivity. 
+%\AW{(larger ALP mass)}
+
+
+\subsection{Scanning over frequency band}
+
+% Procedure
+The procedure of the scanning in the CASPEr-Gradient experiment is as follows:
+\begin{enumerate}[label = (\arabic*)]
+    \item The bias field $\mathrm{B}_0$ is ramped to a certain value to search for ALP DM oscillating at a frequency near the corresponding Larmor frequency; 
+    \item The measurement at one frequency can be divided into:
+    \begin{itemize}[label={}] %   label = \Alph*.      
+        \item A. Perform a pulsed-NMR experiment to obtain an NMR decay spectrum.
+        \item B. Perform a $T_2$ measurement.\footnote{We use a different protocol for measuring $T_2$ from that in the step A above; the details will be described elsewhere.}
+        %\DK{Are these two the same, or use the same data? Then maybe for (B) write "Extact from the pulsed-NMR data the T2 value."}
+        %\YZ{No, A and B are not the same. T2 value cannot be extracted from pulsed-NMR.}
+        \item C. Magnetometer data are acquired with no transverse field applied (in contrast to the measurements above using transverse-field pulses) to detect the spin-precession signal from the sample. 
+        %\DK{Maybe here indicate we acquire data with no transverse field applied to contrast with the pulsed-NMR measurement.}
+        % \YZ{Yes we can. I updated the text here. }
+        % Then the recorded data are processed to generate the power spectrum, which is then binned with the size of a frequency bin chosen to provide sufficient spectral resolution to resolve an ALP signal with the expected width $\Gamma$. 
+        \end{itemize}
+        The following data-analysis items are normally performed concurrently with the measurements; however, these steps can also be done separately at a later time.
+    \begin{itemize}[label={}]
+        \item D. The measured data are processed to generate a power spectrum. 
+        \item E. The power spectrum is binned, and the data are averaged in each bin. %in order to reduce the noise.
+        The frequency-bin size is chosen to distinguish an ALP signal with the expected width $\Gamma$ (dwell time $T \gg 1/\Gamma$). 
+%        \AW{what is the effect of high frequency noise?}
+        \item F. The PSD values in the frequency bins are analyzed. An example is the histogram in Figure\,\ref{fig:CASPEr_Procedure}a to determine whether there is an ALP candidate within the bandwidth of the step. 
+        \item G. If a DM candidate is found, further analysis on the candidate is performed and the measurement at this frequency is repeated. 
+        \item H. If no DM candidates is found, certain ALP couplings strength can be excluded for the given mass. 
+    \end{itemize}
+    % In case no ALP DM candidates are found, ramp $\mathrm{B}_0$ to a new value so that we continue to scan ALP DM in the target frequency band;
+    Note that after taking data, the value of the field can be incremented for the next step of the scan;
+    \label{step:onestep} 
+    \item Repeat \ref{step:onestep} until the target frequency band has been scanned. 
+    % If DM candidates are found at a certain frequency, they can be further investigated 
+    % by ramping the field so that we 
+    % in a ``rescan'' run, where we ramp the bias field so that we .
+\end{enumerate}
+The second item listed here is essentially ``one step'' of the experiment. The procedure is also illustrated in Figure\,\ref{fig:CASPEr_Procedure}. In the case where a statistically significant DM candidate signal is observed, more measurements (like measuring the daily and annual modulations \cite{Gramolin2022_SpectralPhysRevD}) can be done to verify that the signal characteristics correspond to the ALP DM hypothesis. 
+%   \HB{I'm not convinced that this is the best way to go about it, there will surely be many several rounds of fine-tuning the analysis and re-analysis of the data. Is it anyway really necessary to include these last two sentences in this paper? The results will be independent of when we do the data analysis.}
+%    \YZ{Here I updated the script. Happy to have further discussion. }
+%\DK{I feel like step 2 here is mixing two things:  the procedure for the measurement and the data analysis. I would suggest we first list only the experiment procedure steps without analysis, to enable readers to understand what we physically do in the experiment. Then we discuss how the data from the experimental steps are analyzed. The reason for the subdivision like this is because the readers at this point are trying to understand the "scanning strategy" which involves the expeirmental steps. But some of the steps you list here can be applied after the experiment is completed in the data analysis process.}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{CASPEr_Procedure_20230311.png}
+    \caption{Schematic of the experimental procedure. 
+    a) One step of the scan. The spectrum of the decay signal is obtained by pulsed-NMR, and the $T_2$ measurement can be done with a spin-echo experiment. The diagnostics can be repeated after the data acquisition. 
+    The data acquired with the magnetometer can be used to calculate the power spectrum, which is later binned and analyzed. 
+    One of the analysis methods is the histogram of PSD values. The threshold for DM candidates is shown in the histogram with the dashed line, where $\mu$ stands for the average PSD, and $\sigma$ is the standard deviation. More analyses can be performed to search for and evaluate ALP-signal candidates (see Ref.\,\cite{Aybas_2021_Solid-StateNMR}). 
+    If no ALP signal is found, the sensitivity plot can be made for this step, and the magnetic field would be ramped to a new value for the next step. 
+    b) One example of decay spectra (blue curves) and sensitivity in mass-coupling space (reddish area) after scanning. Here we assume the NMR linewidth $\Gamma_d$ to be the frequency increment between steps. 
+    }
+    \label{fig:CASPEr_Procedure}
+\end{figure}
+
+% \YZ{Here we explain the reason for choosing the step size as the NMR or ALP linewidth. }
+The frequency-step size is the interval between the center frequencies of adjacent steps. 
+In a DM spin-precession experiment, one is sensitive to signals in a bandwidth of the maximum of $\Gamma_n$ and $\Gamma_a$ around a given value of the bias magnetic field. 
+An appropriate step size in the scanning should be the sensitive bandwidth. Choosing the step size to be larger than the sensitive bandwidth results in low sensitivity between center frequencies of adjacent steps. On the other hand, choosing smaller steps leads to large number of steps to scan the whole frequency range and potentially, more time consumption in ramping the bias field between steps. We do not expect having smaller steps to improve the sensitivity. 
+
+We note that off-bandwidth detection can also be considered (see, for example, Ref.\,\cite{Bloch2022NASDUCK_SERF}). The analysis of whether this is beneficial or not depends on the dominant sources of noise and the frequency dependence of the noise. We leave this outside the scope of the current manuscript. 
+%\DK{Just to ask the question: can the bandwidth be extended depending on the SNR? This is the case for DM Radio, idea being if the noise is very low, even an off-resonant excitation can produce a measurable signal above the noise level. I think this may depend on what regime we are in. I guess the key question here is whether this is the correct bandwidth? I suppose regardless, the bandwidth is proportional to these values.}
+%\AW{now, you just state that here like a fact, but it is actually up for discussion. Derek hinted at it when he mentioned the DM radio papers. They exclude far beyond their bandwidth. The NASDUCK people do that too. And you actually can. For frequencies higher than the bandwidth, the signal is just suppressed. But so is the noise in this frequency range (if it is magnetic), so overall the SNR doesn't change. I would not state this here, or qualify it by saying, there are actually good reasons to do it differently.}
+If we deliberately introduce magnetic field inhomogeneity (increasing the inhomogeneous broadening) so that the NMR linewidth is larger than the ALP linewidth, the possible ALP-driven spin-precession signal would be weaker as we decrease the number of spins resonant with the ALP field.
+On the other hand, by spreading the spins over a broader frequency band, we extend the sensitive frequency range of an experimental step. 
+Which of these two strategies is optimal is discussed at the end of this section. 
+%\HB{Maybe add a sentence along the lines of "Which of these two strategies is optimal is determined at the end of this section".}\YZ{That's a good idea. I add it now. }
+
+% The ultimate goal is to scan a large range of the ALP mass (frequency) parameter space, therefore the question to our scanning strategy is: 
+% within a given total measurement time $T_{\mathrm{tot}}$ and the target frequency range $[\omega_{\mathrm{start}},\,\omega_{\mathrm{end}}]$, 
+% what are the optimal $T_2$ and $T_2^*$ for exploring the largest area in the parameter space? In other words, which optimal values of $T_2$ and $T_2^*$ correspond to the highest sensitivity to the ALP coupling strength in the entire frequency range? 
+% (As explained below, the answer does not depend on $T_{\mathrm{tot}}$, or $\omega_{\mathrm{start}},\,\omega_{\mathrm{end}}$ in a broad range of these parameters.)
+%\AW{Would there be a different outcome? is it not just the same argument for a different frequency range $[\omega_start-\omega_end]$}
+ % $\tau_a \ll T_2^*$ 
+ % $T_2^*=T_2 \ll \tau_a$
+ % $T_2^* \ll \tau_a \ll T_2 $ 
+ % $T_2^* \ll T_2 \ll \tau_a$
+
+
+% \subsubsection{Dwell time}
+
+%\DK{What is the duration of each step in this case? And why do we make that choice? I see it is explained later, but the reader wonders at this point. A summary of what the choice is should be made at the start of the section, namely that the time at each step will be the same, and then it is just a matter of deciding how many steps are required. }
+
+%\DK{So $T_{\mathrm{tot}}$ and $T$ are different. Not sure that is clear at the beginning of the paper, where I think you use T for total measurement time... see the bulleted list on page 3.}
+%\DK{Also maybe the point should be made concerning the optimum dwell time because of the $T^{1/4}$ dependence... ?}
+
+% \textbf{Dwell time}
+
+One can choose different schemes in distributing the total measurement time to each step. For example, we can allocate measurement time proportional to the $\tau_a$ for a measurement at one frequency (dwell time $T\propto\tau_a\propto\omega^{-1}$), or uniformly distributing measurement time to each step ($T\propto\omega^{0}$). We can even generalize the discussion to $T\propto\omega^{n}$ $[n\in(-\infty,\,\infty)]$ and figure out the optimal $n$ value so as to maximize the area in the parameter space. 
+A detailed discussion is included in the Appendix. The optimal dwell times for each regime are mentioned in Table \ref{tab:summary_of_regimes}. 
+
+
+% Assuming that we distribute the total measurement time equally to all the steps, we have dwell time for each step:
+% \begin{equation}
+%     T = \dfrac{T_{\mathrm{tot}}}{N_{step}}
+%     \,,\label{eq:T_Ttot}
+% \end{equation}
+% where $N_{step}$ is the number of steps. The total measurement time and dwell time here only include data acquisition time. The time consumption in other operations such as ramping the bias field is not included in $T_{\mathrm{tot}}$, although it could turn out to be significant in practice.  The expressions for $N_{step}$ in different regimes are derived in the Appendix. 
+%\AW{Seems also to be a choice that requires some justification, esp. if you call this section scanning strategy. I would actually recommend an alternative strategy (esp. considering the LogLog scale of the sensitivity plot): to always sit on a magnetic field for a couple of ALP coherence times. Again: also considering that we will be $t2*$ limited in the magnet to 2ppm (or more). So both, $\gamma$ and axion linewidth increase with frequency.}
+%\DK{Maybe already here we should mention that in practice, this ramping time can often be $\gtrsim T$.}
+
+
+%\AW{I would prefer not to equally distribute the times. }
+
+We assume that the target frequency band involves only one regime, otherwise we split the band and discuss the optimal scanning strategies for them separately. Indeed, the CASPEr program as a whole covers multiple regimes.
+%\AW{This is not a reasonable assumption at least for CASPEr in total. We are interested in excluding from DC to maximum larmor (and beyond if possible). Even in the range of CASPEr LF, which is, depending on who you ask, from 1000Hz (i would say we should go down to 10Hz or as low as possible) to 4MHz, there is a crossover of times. $T_ALP$ goes from 1000s (longer than anything) to 0.25s (close to t2, and even possible t2* for low field values)}
+The parameters for all the regimes above are summarized in Table.\,\ref{tab:summary_of_regimes}. 
+\begin{table}[ht]
+    \centering
+    \caption{Summary of parameters for different regimes. Note that $\delta_\omega = \tau_a/\pi Q_a T_2^*$ is assumed to be a constant in each regime. } %\AW{isn't it enough, to look at two regimes? for $t_axion$ > $t_2$ and $t2*$>$t_axion$? However as you have written in CASPErs case: there is always a fixed relationship between $t_alp$ and $t2*$ (order of 1 by design, and apparently 10) }}
+    \begin{tabular}{cccccc}
+    	\hline
+    	\, & Regime & Optimal dwell time & expected signal linewidth & spectral factor  & r.m.s. tipping angle  \\
+        \, &  & $T$ & $\Gamma$ & $u_n$ & $\sqrt{\langle \xi^2\rangle} $ \\
+    	\hline
+        \, & &   &  &   &   \\
+         % \hline
+    	(1) & $\tau_a \ll T_2^*$ & $\dfrac{T_{\mathrm{tot}}}{Q_a \ln{ \left( \omega_{\mathrm{end}}/\omega_{\mathrm{start}} \right) }}$ 
+        & $\dfrac{2}{T_2^*}$ & 1 & $\Omega_{a}\sqrt{\tau_a T_2^*}$\\
+        \, & &   &  &   &   \\
+    	(2) & $T_2^* \ll \tau_a \ll T_2$ &  $ \dfrac{T_{\mathrm{tot}}\tau_a}{\pi Q_a T_2^*\ln{ \left( \omega_{\mathrm{end}}/\omega_{\mathrm{start}} \right)}} $ 
+        & $\dfrac{2\pi}{\tau_a}$ & $\dfrac{\pi T_2^*}{\tau_a}$ & $\Omega_a\dfrac{\tau_a}{\sqrt{\pi}}$ \\
+        \, & &   &  &   &   \\
+        % \hline
+    	(3) & $T_2^* \ll T_2 \ll \tau_a$ & $ \dfrac{T_{\mathrm{tot}}\tau_a}{\pi Q_a T_2^*\ln{ \left( \omega_{\mathrm{end}}/\omega_{\mathrm{start}} \right)}}  $ 
+        & $\dfrac{2\pi}{\tau_a}$ & $\dfrac{\pi T_2^*}{\tau_a}$ & $\Omega_aT_2$\\
+        \, & &   &  &   &   \\
+        % \hline
+    	(4) & $T_2^*=T_2 \ll \tau_a$ & $\dfrac{ T_{\mathrm{tot}} \tau_a }{\pi  Q_a T_2 \ln \left(\omega_{\mathrm{end}}/\omega_{\mathrm{start}}\right)}$ 
+        & $\dfrac{2\pi}{\tau_a}$ & $\dfrac{\pi T_2}{\tau_a}$ & $\Omega_a T_2$ \\
+        \, & &   &  &   &   \\
+        \hline
+    \end{tabular}
+    \label{tab:summary_of_regimes}
+\end{table}
+
+
+
+
+
+
+
+% \subsubsection{Sensitivity and scanning optimization}
+
+With the information from Table.\,\ref{tab:summary_of_regimes} and the sensitivity of single steps described by Equation\,\eqref{eq:exclusion_threshold}, the sensitivities of the scanning are given as:
+ % $T_2^*=T_2 \ll \tau_a$
+ % $\tau_a \ll T_2^*=T_2$ 
+ % $\tau_a \ll T_2^* \ll T_2$ 
+ % $T_2^* \ll \tau_a \ll T_2 $ 
+ % $T_2^* \ll T_2 \ll \tau_a$
+\begin{equation}
+    |\mathrm{g_{aNN}}| \geqslant \left\{
+    \begin{array}{ll}
+    \eta
+    \left(\dfrac{T_{\mathrm{tot}}}{Q_a\ln{ \left(\omega_{\mathrm{end}}/\omega_{\mathrm{start}} \right) } }\right)^{-\frac{1}{4}}   
+     \times  (T_2^*)^{-\frac{3}{4}} \tau_a^{-\frac{1}{2}},
+    & \tau_a\ll T_2^* \text{ or }  T_2^*\ll\tau_a\ll T_2 \\
+    & \\
+    \eta
+    \left(\dfrac{\pi^2 T_{\mathrm{tot}}}{Q_a\ln{ \left(\omega_{\mathrm{end}}/\omega_{\mathrm{start}} \right) } }\right)^{-\frac{1}{4}}  
+     \times  (T_2^*)^{-\frac{3}{4}} T_2^{-1} \tau_a^{\frac{1}{2}},
+    & T_2^* \ll T_2 \ll \tau_a \text{ or } T_2^*=T_2 \ll \tau_a  %\\
+    %     & \\
+    % \eta
+    % \left(\dfrac{\pi^2 T_{\mathrm{tot}}}{ Q_a\ln{\left(\omega_{\mathrm{end}}/\omega_{\mathrm{start}}\right)} }\right)^{-\frac{1}{4}}   
+    %  \times  T_2^{-\frac{7}{4}} \tau_a^{\frac{1}{2}},
+    % &  T_2^*=T_2 \ll \tau_a  \\
+    \end{array} \right.
+    \,.\label{eq:gaNN_Ttot_optimal}
+\end{equation}
+% \YZ{merge the last two cases? The result here can be actually summarized into $\tau_a\ll T_2$ and $T_2\ll \tau_a$.}
+
+The essence of these results can be summarized as follows. 
+First of all, in each of these regimes, the sensitivity goes with $T_{\mathrm{tot}}^{-1/4}$. 
+This is a consequence of the fact that we consider measurements on time scales much longer than the relaxation times and the ALP coherence time \cite{budkergraham2014proposal, Aybas_2021_Quantum_sensitivity}. 
+%\AW{this is an assumption that is not necessary valid %or experimentally possible for low frequencies.}
+%\DK{Maybe Arne's concerns can be addressed at the very beginning of the article and we can state this assumption is that our analysis is for ALP Compton frequencies extending from 100 kHz to 600 MHz or something like that? So that the ALP coherence time is no longer than about 10s. And then here mention that for frequencies below 100 kHz these considerations may not necessarily apply because then the adaptive scan becomes much more advantageous since the extra time needed for scanning is probably small compared to T. And it is takes a long time to get even 1 ALP coherence time at low frequencies (1-10 kHz).}
+%\YZ{The following sentences may need modifications. }
+The second point concerns the scanning strategy. 
+With smaller NMR linewidth, under conditions when off-bandwidth detection is detrimental in terms of the SNR,  we have to make more steps in scanning the target frequency band, resulting in less dwell time for each step. 
+However, despite this disadvantage, 
+there is still benefit from longer $T_2$ and $T_2^*$ that can be traced back to larger ALP-signal amplitude. 
+We can consider the benefit in three cases: $\tau_a\ll T_2^* $, $T_2^* \ll \tau_a$ and $T_2 \ll \tau_a$. 
+In the first case, longer $T_2^*$ increases the r.m.s. tipping angle and decreases the ALP-signal linewidth, hence increasing the signal amplitude. 
+Though the ALP-signal linewidth does not decrease with longer $T_2^*$ in the second case, longer $T_2^*$ leads to more spins being addressed by the ALP field as the magnetic-field inhomogeneity is reduced.
+In the third case where $T_2 \ll \tau_a$, longer $T_2$ increases the r.m.s. tipping angle. 
+% On one hand, when $\tau_a\ll T_2^* $, the signal linewidth decreases when we have longer $T_2^*$, therefore increasing the signal amplitude. 
+% On the other hand, when $T_2 \ll \tau_a$, though the signal linewidth is not affected by the relaxation times and is only determined by the ALP field, the signal amplitude still improves due to more spins being addressed by the ALP field and as we 
+% More spins are addressed by the ALP field when the inhomogeneous broadening is reduced (longer $T_2^*$). 
+% This is due to more spins being addressed by the ALP field when the inhomogeneous broadening is reduced. 
+Overall, longer $T_2$ and $T_2^*$ are beneficial for improving the sensitivity. 
+
+% Furthermore, the third line in Equation\,\eqref{eq:gaNN_Ttot_optimal} suggests that there is benefit in increasing $T_2^*$ beyond $\tau_a$ so that the second line applies.
+% As for $T_2$, it is beneficial to increase its value only when it is much smaller than $\tau_a$, otherwise we do not gain much from longer $T_2$ since $\tau_a$ becomes the bottleneck for the transverse coherence time. 
+
+In summary, we find that the optimal
+%\AW{in which respect is this optimal?} 
+strategy to achieve the goals of the experiment (mentioned in Section\,\ref{sec:introduction}) is to work with maximally possible relaxation times ($T_2$ and $T_2^*$) and split the available experimental time among frequency steps with the step size given by the maximum of the inhomogeneous broadening and the ALP width.
+When the dwell time at a certain frequency becomes much longer than the ALP coherence time, the sensitivity of the search scales as $T^{-1/4}$.  
+%\DK{So now we need to tie it all together and explain what the optimum strategy is for our particular experiment...}
+%In recent measurements measurements in CASPEr-Gradient have been in the regime where $T_2^* < T_2 \approx \tau_a$. So we can potentially gain a bit by working at higher $T_2$, by increasing the sample temperature for example. And in any case it makes sense to still try and improve the shimming.} \YZ{Agreed to $T_2^* < T_2 \approx \tau_a$. For the CASPEr thermal measurement we took before Christmas, one more thing is dependent on temperature: polarization. When at higher temperature, we have smaller polarization and larger $T_2$. I can not compare the gain and loss without calculating.
+
+
+
+\section{Conclusion}
+
+%\DK{Here I would explicitly revisit and answer the questions discussed in Sec. 1.3.}
+We discussed a possible way of detecting axionlike DM through the ALP-fermion coupling using spin-precession experiments. The ALP-field gradient exerts a torque on nuclear spins, generating spin-precession signals that can be detected with magnetometers. 
+A wide range of ALP masses can be scanned by sweeping the magnitude of the bias magnetic field. 
+The scanning scheme is determined by the NMR and ALP linewidth, while the sensitivity of the experiment (leading to the discovery or exclusion of coupling strength $|\mathrm{g_{aNN}}|$) is dependent on sample relaxation times and the ALP coherence time. We divided the discussion into four regimes for spin-precession experiments, based on the relative magnitudes of $T_2$, $T_2^*$ and $\tau_a$. For each of the regimes, we introduced the scheme of scanning and calculated the corresponding sensitivity. 
+Analyzing the parameters in determining the sensitivity, we conclude that to search for ALPs with a $|\mathrm{g_{aNN}}|$ coupling over a range of ALP masses, there are advantages to increasing $T_2^*$ and $T_2$, especially when they are much shorter than $\tau_a$. This maximizes the sensitive area of the experiment in the ALP mass-$|\mathrm{g_{aNN}}|$-coupling parameter space. 
+%\DK{Analyzing the parameters in determining the sensitivity, we conclude that to exclude $|\mathrm{g_{aNN}}|$ over the largest range of ALP masses in a given measurement time, there are advantages to increasing $T_2^*$ (and, if possible, $T_2$), especially when they are much shorter than $\tau_a$.}
+
+Here we explicitly answer the questions posed in Sec.\,\ref{sec:introduction}.
+
+\begin{itemize}
+    \item The best frequency-step size for scanning should be comparable to the sensitive bandwidth, which is the NMR or ALP linewidth;
+    \item The transverse relaxation time $T_2$ and the effective transverse relaxation time $T_2^*$ should always be as long as possible;
+    \item The scaling of the sensitivity with the dwell time $T$ or the total measurement duration $T_{\mathrm{tot}}$ is $\propto T^{-1/4}$ or $\propto T_{\mathrm{tot}}^{-1/4}$ for all the cases considered here.
+\end{itemize}
+
+The present results will provide guidance for the CASPEr experiments and other spin-precession-based searches.
+
+
+
+
+
+
+
+% \RVone{I read over the manuscript "Frequency-scanning considerations in axionlike dark matter spin-precession experiments." The authors study the sensitivity of experiments searching for axion-induced spin precession and present prospective scanning strategies for the CASPEr-gradient experiment. The paper is an interesting contribution. It is the first paper studying the influence of inhomogeneous magnetic fields on the prospects of spin precession, a critical challenge for these experiments.}
+
+% \RVone{While this work is a useful contribution to the field, a few substantial modifications are required before I can recommend publication in Annalen der Physik. I list my comments below:}
+
+% \RVone{1) The authors incorrectly claim that the parameter regimes considered in Ref.\cite{Dror_2022_SensitivityofSpinPrecession_PhysRevLett.130.181801} do not correspond to their experiments. The expressions derived in the main text of Ref.\cite{Dror_2022_SensitivityofSpinPrecession_PhysRevLett.130.181801} are relevant for any hierarchy between tau, T2, and T. The authors should properly reference the existing literature in the section 1 and and throughout. In particular, results such as the root-mean-square magnetization in Eq.\eqref{eq:M1_u_M0_Omega} and \eqref{eq:rms_xi} are also given in Ref.\cite{Dror_2022_SensitivityofSpinPrecession_PhysRevLett.130.181801}.}
+
+
+% \YZ{I have updated the Ref.\cite{Dror_2022_SensitivityofSpinPrecession_PhysRevLett.130.181801} from the arXiv version to the PRL version. This comment is closely related to comment $\#2$. }
+
+
+% \RVone{2) The content of the paper starts with a nice intuitive picture of how an axion induces a tipping angle in the sample. The authors estimate this tipping angle as a product of the Rabi frequency and the relaxation time. Unfortunately, I don't think the expression for the root-mean-squared magnetization in Eq. \eqref{eq:M1_u_M0_Omega} is correct in the limit where $tau >> T2$ ($Gamma_a << Gamma_n$).}
+
+% \RVone{This limit corresponds to the limit where the axion field is indistinguishable from a monochromatic source since the system relaxes prior to reaching the axion coherence time. The authors find that in this limit, $(<M1^2>)^1/2 ~ M0 (T2/tau) Omega_a T2$. Therefore, they conclude the RMS value of the magnetization decreases as tau -> infty. This suggests that an infinitely coherent source cannot drive the system, which is not correct. }
+
+% \RVone{One can check this against Eq.\eqref{eq:Phia2} in Ref.\cite{Dror_2022_SensitivityofSpinPrecession_PhysRevLett.130.181801} (https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.130.181801). In the limit that $tp -> t$ and $t >> T2$, Eq.\eqref{eq:Phia2} gives, $(<M^2>)^1/2 ~ M0 T2^2 Omega_a$ (I converted the "A" notation to the "$Omega_a$" notation used in the current manuscript). Note that the RMS magnetization is independent of $tau_a$, as expected.}
+
+% \YZ{Deniz and I made some explanation in the text near Eq.\,\eqref{eq:un}.}
+
+% \RVone{3) It would be helpful to point to a specific equation from which Eq. \eqref{eq:M1_u_M0_Omega} originated. I took out the book by Abragam and Carr to try to understand the origin of the issue brought up above but was unable to find the expression.}
+
+% \YZ{One more figure for this?}
+
+% \RVone{4) I was surprised to learn that magnetic field inhomogeneities do not simply modify T2 to T2* (in particular, prior to reading this paper, I expected to be able just to write T2->T2*, and all existing equations would remain correct). It would be helpful if the authors could expand on footnote (3) about how the system evolves between T2* and T, and how this changes as a function of tau.}
+
+% \YZ{Relaxation mechaisms of T2 and T2* are different, therefore we cannot just modify T2 to T2*. Meanwhile, T2* is the parameter that can be easily manipulated, while T2 is not. This point is to be discussed. I think it is easy to answer. }
+
+% \RVone{5) There is a typo above Eq.\eqref{eq:rms_xi}. Should be $sqrt(<xi^2>)$ not $< sqrt(xi^2)>$.}
+
+% \YZ{Thanks for pointing this out. Now this typo is corrected. }
+
+
+% \RVone{6) Related to the comment 2 above: Eq.\,\eqref{eq:exclusion_threshold} has incorrect scaling on the coherence time for tau >> T2. In this limit, the result should be tau-independent, but instead, Eq.\,\eqref{eq:exclusion_threshold} suggests the experiment is not sensitive at all to a monochromatic axion source. This cannot be the case.}
+
+% \YZ{This is again due to $T\gg\tau_a\,,T_2^*\,,T_2$.}
+
+% % \YZ{My response to the reviewer in general: After going over all the comments carefully, I believe that the opinions in this paper and those in the Ref.38 are both correct. However, though these two papers share the basis in common, they were developed to solve different problems, and therefore went to different parametric regimes. Such differences could potentially cause obstructions for the readers of both papers. Hence, we update the manuscript with more details and explanations so that readers can comprehend the text better. }
+

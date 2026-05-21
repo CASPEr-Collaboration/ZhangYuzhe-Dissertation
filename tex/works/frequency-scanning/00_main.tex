@@ -1,0 +1,248 @@
+ \documentclass{WileyMSP-template}
+
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+% \usepackage{mathabx}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{multirow}
+
+
+% SI unit
+\usepackage{siunitx}
+%\sisetup{evaluate-expression}
+\DeclareSIUnit\torr{torr}
+\DeclareSIUnit\ppm{ppm}
+\DeclareSIUnit\ppb{ppb}
+\DeclareSIUnit\bar{bar}
+\DeclareSIUnit\gauss{G}
+
+\usepackage{chemformula}
+\usepackage{comment}
+
+\newcommand{\DB}[1]{\textcolor{blue}{#1}}
+\newcommand{\YZ}[1]{\textcolor{purple}{Yuzhe: #1}}
+\newcommand{\HB}[1]{\textcolor{orange}{Hendrik: #1}}
+\newcommand{\DK}[1]{\textcolor{brown}{Derek: #1}}
+\newcommand{\AW}[1]{\textcolor{cyan}{Arne: #1}}
+\newcommand{\AS}[1]{\textcolor{red}{Alex: #1}}
+\newcommand{\DA}[1]{\textcolor[HTML]{8DC73E}{Deniz: #1}}
+\newcommand{\RVone}[1]{\textcolor[HTML]{00783C}{Reviewer $\#1$: #1}}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true, %set true if you want colored links
+    linktoc=all,     %set to all if you want both sections and subsections linked
+    linkcolor=black,  %color for internal links from \ref{}
+    urlcolor=black,    %color for clickable url links
+    citecolor=black        %color for citations
+}
+
+\usepackage{setspace}
+% \doublespacing
+\usepackage[skip=10pt plus1pt, indent=20pt]{parskip}
+% \parskip=1\baselineskip \advance\parskip by 0pt plus 2pt
+\begin{document}
+
+
+\pagestyle{fancy}
+\rhead{\includegraphics[width=2.5cm]{vch-logo.png}}
+
+
+\title{Frequency-scanning considerations in axionlike dark matter spin-precession experiments}
+
+\maketitle
+
+
+
+% Author: Please give full first and last names for authors and include * after the name of all corresponding authors
+
+\author{Yuzhe Zhang*}
+\author{Deniz Aybas Tumturk}
+\author{Hendrik Bekker}
+\author{Dmitry Budker}
+\author{Derek F. Jackson Kimball}
+\author{Alexander O. Sushkov}
+\author{Arne Wickenbrock}
+
+\author{Corresponding author*} 
+% \author{Corresponding author*} 
+% \author{Corresponding author*} 
+
+
+
+% Dedication
+% Optional dedication here. If no dedication is required, please leave blank
+\dedication{}
+
+
+
+
+% Affiliations: Please provide adacemic titles (Prof. or Dr.) for all authors where applicable, and include an institutional email address for all corresponding authors
+\begin{affiliations}
+Yuzhe Zhang\\
+Johannes Gutenberg-Universit{\"a}t Mainz, 55128 Mainz, Germany\\
+Helmholtz-Institut, GSI Helmholtzzentrum f{\"u}r Schwerionenforschung, 55128 Mainz, Germany\\
+\,\\
+Dr. Deniz Aybas Tumturk\\
+Department of Physics, University of California, Berkeley, CA 94720-7300, United States of America\\
+\,\\
+Dr. Hendrik Bekker\\
+Johannes Gutenberg-Universit{\"a}t Mainz, 55128 Mainz, Germany\\
+\,\\
+Prof. Dr. Dmitry Budker\\
+Johannes Gutenberg-Universit{\"a}t Mainz, 55128 Mainz, Germany\\
+Helmholtz-Institut, GSI Helmholtzzentrum f{\"u}r Schwerionenforschung, 55128 Mainz, Germany\\
+Department of Physics, University of California, Berkeley, CA 94720-7300, United States of America\\
+\,\\
+Prof. Dr. Derek F. Jackson Kimball\\
+Department of Physics, California State University—East Bay, Hayward, CA 94542-3084, United States of America\\
+\,\\
+Prof. Dr. Alexander O. Sushkov\\
+Department of Physics, Boston University, Boston, MA 02215, United States of America\\
+Department of Electrical and Computer Engineering, Boston University, Boston, MA 02215, United States of America\\
+Photonics Center, Boston University, Boston, MA 02215, United States of America\\
+\,\\
+Dr. Arne Wickenbrock\\
+Johannes Gutenberg-Universit{\"a}t Mainz, 55128 Mainz, Germany\\
+Helmholtz-Institut, GSI Helmholtzzentrum f{\"u}r Schwerionenforschung, 55128 Mainz, Germany\\
+
+\end{affiliations}
+
+
+% Keywords: Please provide a minimum of three and a maximum of seven keywords, separated by commas
+
+\keywords{Dark matter, Axion, Axionlike particle, NMR, Spin precession}
+
+
+
+% Abstract should be written in the present tense and impersonal style (i.e., avoid we), and be at most 200 words long
+\begin{abstract}
+Galactic dark matter may consist of axionlike particles (ALPs) that can be described as an ``ultralight bosonic field" oscillating at the ALP Compton frequency. The ALP field can be searched for using nuclear magnetic resonance (NMR), where resonant precession of spins of a polarized sample can be sensitively detected.
+The ALP mass to which the experiment is sensitive is scanned by sweeping the bias magnetic field.
+The scanning either results in detection of ALP dark matter or 
+rules out ALP dark matter with sufficiently strong couplings to nuclear spins over the range of ALP masses corresponding to the covered span of Larmor frequencies. In this work, scanning strategies are analyzed with the goal of optimizing the parameter-space coverage via a proper choice of experimental parameters (e.g., the effective transverse relaxation time).
+
+\end{abstract}
+
+% Text: Please use section headings and subheadings as specified below. For communications, all section headings apart from Experimental Section should be removed
+% Please make the first reference to a display item bold: \textbf{Figure 1}
+% Do not abbreviate Figure, Equation, etc.; display items are always singular, i.e., Figure 1 and 2.
+% Equations are always singular, i.e., Equation 1 and 2, and should be inserted using the {equation} environment, not as graphics
+% Please do not use footnotes in the text, additional information can be added to the Reference list.
+
+\include{01_sections}
+
+
+% \include{01_Introduction.tex}
+
+% \include{02_Spin-Precession_Experiment.tex}
+
+% \include{03_Sensitivity_and_scanning_strategy.tex}
+
+% \include{04_Conclusion.tex}
+
+% \include{05_Appendix.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \medskip
+% \textbf{Supporting Information} \par %Please delete the Suppporting Information statement if it is not applicable. Please supply Supporting Information in another file. Supporting information should not be provided in .tex format
+% Supporting Information is available from the Wiley Online Library or from the author.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Acknowledgements
+\medskip
+\textbf{Acknowledgements} \par %delete if not applicable))
+The authors acknowledge helpful discussions with Younggeun Kim and Gilad Perez. This work was supported in part by the Cluster of Excellence ``Precision Physics, Fundamental Interactions, and Structure of Matter'' (PRISMA+ EXC 2118/1) funded by the German Research Foundation (DFG) within the German Excellence Strategy (Project ID 39083149) and COST Action COSMIC WISPers CA21106, supported by COST (European Cooperation in Science and Technology), and also by the U.S. National Science
+Foundation under grant PHYS-2110388. The authors would like to express special thanks to the Mainz Institute for Theoretical Physics (MITP) of the Cluster of Excellence PRISMA+ (Project ID 39083149), for its hospitality and support. The work of AOS was supported by the NSF CAREER grant PHY-2145162 and the U.S. Department of Energy, Office of High Energy Physics program under the QuantISED program, FWP 100495.
+
+
+% References
+\medskip
+
+% Use the following code if you wish to generate your bibliography with BibTeX;
+% replace the string "MSP-template" below with the name(s) of
+% the BibTeX data base(s) you want to use.
+% The resulting bibliography-output (the content of the .bbl file)
+% must be pasted back into this file before submission.
+% Please also include your BibTeX data base file(s) in your submission
+% so that we can re-run BibTeX if necessary.
+%
+\bibliographystyle{MSP}
+\bibliography{citation}
+
+\include{02_appendix}
+
+
+
+% Figures/tables and captions
+% Permission statements are required for all figures reproduced or adapted from previously published articles/sources. Please also ensure that all necessary permissions to reproduce images have been received
+% Please remove these statements for original figures
+
+
+% \begin{figure}
+%   \includegraphics[width=\linewidth]{placeholder-image.png}
+%   \caption{Figure 1 caption goes here. Reproduced with permission.\textsuperscript{[Ref.]} Copyright Year, Publisher. }
+%   \label{fig:boat1}
+% \end{figure}
+
+
+% \begin{table}
+%  \caption{Table 1 caption}
+%   \begi n{tabular}[htbp]{@{}lll@{}}
+%     \hline
+%     Description 1 & Description 2 & Description 3 \\
+%     \hline
+%     Row 1, Col 1  & Row 1, Col 2  & Row 1, Col 3  \\
+%     Row 2, Col 1  & Row 2, Col 2  & Row 2, Col 3  \\
+%     \hline
+%   \end{tabular}
+% \end{table}
+
+    
+
+
+% Please provide Biographies and photos for Essays, Feature Articles, Progress Reports, Reviews, and Perspectives for those authors who should be highlighted  
+% These should be at most 100 words long
+% For other article types this section can be removed
+% Photographs should be 40mm broad and 50 mm high
+
+% \begin{figure}
+%   \includegraphics{bio-placeholder.jpg}
+%   \caption*{Biography}
+% \end{figure}
+
+% \begin{figure}
+%   \includegraphics{bio-placeholder.jpg}
+%   \caption*{Biography}
+% \end{figure}
+
+% \begin{figure}
+%   \includegraphics{bio-placeholder.jpg}
+%   \caption*{Biography}
+% \end{figure}
+
+% \begin{figure}
+%   \includegraphics{bio-placeholder.jpg}
+%   \caption*{Biography}
+% \end{figure}
+ 
+
+% Table of contents entry should be 50 - 60 words long
+% Image should be 55 mm broad and 50 mm high or 110 mm broad and 20 mm high
+
+
+% \begin{figure}
+% \textbf{Table of Contents}\\
+% \medskip
+%   \includegraphics{toc-image.png}
+%   \medskip
+%   \caption*{ToC Entry}
+% \end{figure}
+
+
+
+\end{document}
