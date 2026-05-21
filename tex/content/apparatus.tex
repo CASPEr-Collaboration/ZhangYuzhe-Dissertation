@@ -1,26 +1,123 @@
-\chapter{Sample and Apparatus}
-Interesting questions to be answered:
-    \begin{itemize}
-        \item What are the experimental apparatus? 
-        \item What are the uses of them? 
-        \item What happens during the experiment? 
-    \end{itemize}
+\chapter{Sample and Apparatus}\label{chap:apparatus}
 \begin{jointwork}
-    meta
+    The content of this chapter is adapted from Ref.\,\cite{Walter2024_LFthermal}.
 \end{jointwork}
 
-\section{Overview}
-The apparatus can be organized into three functional blocks: signal generation, signal reception, and initial processing. The first block prepares the spin system, the second converts magnetic response into an electrical signal, and the third filters and digitizes that signal for later analysis.
+The CASPEr-Gradient-Low-Field apparatus converts a nuclear-spin signal into a detectable electrical output through three functional blocks: the magnet system sets the operating bias field and thereby the Larmor frequency of the sample; the sample and pickup coil generate and capture the magnetic response; and the SQUID and lock-in amplifier chain convert, amplify, and record the signal. This chapter describes each block in turn and closes with a summary of the key parameters.
 
-This structure mirrors the actual workflow of the experiment. The magnet and excitation hardware define the operating point, the pickup and SQUID chain set the sensitivity, and the processing electronics decide how much of the raw signal can be recovered from noise.
+\section{Magnet system}\label{sec:apparatus:magnet}
 
-\section{Magnets}
+The apparatus is built around a flow-through liquid-helium cryostat housing a superconducting solenoid that can generate a bias field $B_0$ up to \SI{0.1}{\tesla}. The DM mass range accessible to the experiment depends on the gyromagnetic ratio of the sample and on $B_0$; for proton spins, the covered Larmor frequency range is approximately \SI{1}{\kHz} to \SI{4.3}{\MHz}.
 
-\section{Coil system}
-kitchen roll
+Eight superconducting shim coils surrounding the solenoid are used to reduce the field inhomogeneity to less than \SI{2}{\ppm} over a spherical volume with radius \SI{4}{\mm}. In the measurements reported here, an inhomogeneity of approximately \SI{10}{\ppm} was achieved after tuning the shim fields using a Bayesian-optimisation algorithm \cite{ShimmingPaper}. The larger-than-design inhomogeneity results from using a longer sample (\SI{24}{\mm} height) and from the insertion of an additional superconducting pickup coil.
 
-\section{Detection chain}
+Helmholtz coils wound outside the cryostat provide a controllable offset on $B_0$, enabling fine-tuning of the Larmor frequency without ramping the main solenoid. This arrangement is used to step the Larmor frequency in \SI{6}{\Hz} increments during the scan.
 
-mention 1- and 3-coil pickups. 
+\section{Sample}\label{sec:apparatus:sample}
 
-\section{Data processing}
+Liquid methanol (\ch{CH3OH}) was chosen as the sample because of its high proton density (\SI{99}{\mmol/\cm^3}) and low freezing point (\SI{175.6}{\kelvin}), which allows it to remain liquid at the operating temperature of approximately \SI{180}{\kelvin}. With four protons per molecule, the \SI{1.2}{\cm^3} cylindrical sample (radius \SI{4}{\mm}, height \SI{24}{\mm}) contains $\num{7.2e22}$ protons.
+
+A variable-temperature insert (VTI) positions the sample in the homogeneous region of the bias field and thermally isolates it from the liquid-helium bath. The sample temperature is regulated by flowing warm nitrogen gas through a spiral surrounding the sample holder. Temperature stability is monitored by repeated pulsed-NMR measurements: a constant NMR linewidth indicates a stable temperature.
+
+At thermal equilibrium in the bias field $B_0$, the proton spins acquire a net longitudinal magnetization
+\begin{equation}
+    M_0 = \frac{n\,\gamma^2\hbar^2\,I(I+1)\,B_0}{3\,k_B\,T}
+    \,,\label{eq:M0}
+\end{equation}
+where $n$ is the proton number density, $\gamma = 2\pi\times\SI{42.577}{\MHz/\tesla}$ is the proton gyromagnetic ratio, $I=1/2$, $k_B$ is the Boltzmann constant, and $T$ is the sample temperature. At $B_0 = \SI{31.67}{\milli\tesla}$ and $T \approx \SI{180}{\kelvin}$, the thermal polarization is $\approx\num{1.8e-7}$ and $M_0 \approx \SI{1.86e-10}{\tesla}/\mu_0$.
+
+
+\section{Pickup coil and shielding}\label{sec:apparatus:pickup}
+
+A niobium (Nb) pickup coil mounted on the outside of the VTI in the liquid-helium bath detects the transverse magnetization of the sample. The coil consists of three saddle-pair coils in a gradiometer configuration: the area of the central coil is twice that of the two outer coils, and the coils are wound in opposing senses so that far-field flux contributions cancel. The filling factor---the fraction of the coil volume occupied by the sample---is approximately \SI{8}{\%}.
+
+A superconducting Nb shield built into the cryostat attenuates low-frequency magnetic noise. Additional shielding is provided by a $\mu$-metal shield outside the cryogenic reservoir and by a Faraday cage enclosing the entire apparatus, which suppresses electromagnetic interference (EMI). The pickup coil geometry and pulsed-NMR scheme are illustrated in Figure~\ref{fig:setup}.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\linewidth]{works/LF-thermal/figures/setup.png}
+    \caption{Left: the methanol sample (blue) sits at the centre of the three-coil Nb saddle-pair pickup (red). Helmholtz coils (black) fine-tune the bias field. Right: pulsed-NMR scheme used for sample characterisation. The net magnetization $\mathbf{M}$ is tipped into the transverse plane by a $\pi/2$ pulse and precesses, generating a signal in the pickup and SQUID. Reproduced from Ref.\,\cite{Walter2024_LFthermal}.}
+    \label{fig:setup}
+\end{figure}
+
+
+\section{Detection chain}\label{sec:apparatus:detection}
+
+Magnetic flux in the pickup coil is inductively coupled into a direct-current superconducting quantum interference device (dc-SQUID) operated in flux-locked-loop (FLL) mode. The properties of the SQUID sensor are listed in Table~\ref{tab:SQUIDtab}. The feedback voltage $V_\mathrm{f}$ is related to the magnetic flux in the pickup coil $\Phi_\mathrm{pick}$ by
+\begin{equation}
+    V_\mathrm{f}
+    = \frac{R_\mathrm{f}}{M_\mathrm{f}}\,\frac{M_\mathrm{in}}{L_\mathrm{pick}+L_\mathrm{in}}\,\Phi_\mathrm{pick}
+    = \varepsilon\,\Phi_\mathrm{pick}
+    \,,\label{eq:squidpickup}
+\end{equation}
+where $R_\mathrm{f}$ is the feedback resistance, $M_\mathrm{f}$ is the feedback-coil mutual inductance, $M_\mathrm{in}$ is the mutual inductance between pickup and SQUID input coils, and $L_\mathrm{pick}$, $L_\mathrm{in}$ are the respective coil inductances. The conversion factor $\varepsilon \approx \SI{0.549}{\milli\volt/\Phi_0}$, where $\Phi_0$ is the magnetic flux quantum.
+
+\begin{table}[ht]
+    \centering
+    \caption{Properties of the dc-SQUID sensor used in the measurements.}
+    \begin{tabular}{lc}
+        \hline\hline
+        Pickup coil inductance ($L_\mathrm{pick}$) & \SI{553}{\nH} \\[0.5ex]
+        SQUID input coil inductance ($L_\mathrm{in}$) & \SI{400}{\nH} \\[0.5ex]
+        Mutual inductance ($M_\mathrm{in}$) & \SI{3.98}{\nH} \\[0.5ex]
+        Feedback-coil inductance ($M_\mathrm{f}$) & \SI{22.83}{\Phi_0/\mA} \\[0.5ex]
+        Feedback resistance ($R_\mathrm{f}$) & \SI{3}{\kohm} \\[0.5ex]
+        \hline\hline
+    \end{tabular}
+    \label{tab:SQUIDtab}
+\end{table}
+
+The detection chain is characterised by the transfer coefficient $\beta$, defined as the ratio of the SQUID feedback-voltage amplitude $V_\perp$ to the transverse sample magnetization $\mu_0 M_\perp$:
+\begin{equation}
+    \beta = \frac{V_\perp}{\mu_0\,M_\perp}
+    \,.\label{eq:beta}
+\end{equation}
+The transfer coefficient was determined at each scan step from the feedback voltage following a $\pi/2$ pulse, for which $M_\perp = M_0$. The average value is $\beta \approx 4\times10^6\,\mathrm{V/T}$.
+
+During ALP-search measurements the SQUID and FLL electronics are battery-powered to avoid electromagnetic interference from the mains. All other electronics (lock-in amplifier, field-ramp supply) are outside the Faraday cage; only shielded BNC cables penetrating the cage are used to carry signals.
+
+The FLL output is fed into a Zurich Instruments MFLI Lock-in Amplifier (LIA), which demodulates the signal into in-phase (I) and quadrature (Q) channels. The complex output $I + iQ$ is recorded at a sampling frequency of \SI{13.4}{\kHz} and is used to generate power spectral densities (PSDs) via fast Fourier transformation (FFT).
+
+
+\section{Parameters summary}\label{sec:apparatus:params}
+
+Table~\ref{tab:parameters} summarises the key parameters of the CASPEr-Gradient-LF apparatus for the methanol measurement reported in this thesis and for two projected future configurations using hyperpolarized samples. The thermal polarization of methanol is the dominant limiting factor in the current measurement. Hyperpolarized methanol or liquid \ch{^{129}Xe} could boost the polarization by several orders of magnitude, substantially improving the sensitivity.
+
+\begin{table*}[ht]
+\begin{threeparttable}
+\centering
+\caption{Parameters of the CASPEr-Gradient-LF apparatus for the current measurement (thermally polarized methanol) and two projected future configurations. Polarization is given as molar polarization (polarization$\times$concentration).}
+\label{tab:parameters}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{p{0.24\linewidth}
+                >{\centering\arraybackslash}p{0.21\linewidth}
+                >{\centering\arraybackslash}p{0.21\linewidth}
+                >{\centering\arraybackslash}p{0.21\linewidth}}
+\hline\hline
+& This work & \multicolumn{2}{c}{Examples of future CASPEr-Gradient-LF} \\
+\hline
+Sample & Methanol & Methanol\tnote{a} & Liquid \ch{^{129}Xe}\tnote{b} \\
+Spin density (\unit{\cm^{-3}}) & \num{5.9e22} & \num{5.9e22} & $\sim\num{1e22}$ \\
+Sample volume (\unit{\cm^3}) & 1.2 & 1.2 & $\sim1$ \\
+Polarization technique & Thermal & BF\tnote{c} / PHIP\tnote{d} / DNP\tnote{e} & SEOP\tnote{f} \\
+Polarization & \num{1.8e-7} & $>\num{1.1e-5}$ & $\sim1$ \\
+$T_2$ (\unit{\s}) & 0.71 & 1 & 1000 \\
+$B_0$ inhomogeneity (\unit{\ppm}) & 10 & $\leq2$ & $\leq2$ \\
+Electronic noise (\unit{\micro\Phi_0/\Hz^{1/2}}) & 7.1 & 1.0 & 1.0 \\
+Flux of SPN\tnote{g} (\unit{\micro\Phi_0}) & 0.39 & 0.39 & 0.16 \\
+Scan range & \SI{1.348450}{\MHz}--\SI{1.348690}{\MHz} & $\sim$\SI{1}{\kHz}--\SI{4.3}{\MHz} & $\sim$\SI{1}{\kHz}--\SI{1.2}{\MHz} \\
+$|g_\mathrm{aNN}|$ sensitivity (\unit{\GeV^{-1}}) & \num{3e-2} & \num{1.0e-6}--\num{1.2e-5} & \num{1e-12}--\num{1e-11} \\
+\hline\hline
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item[a] Methanol at \SI{180}{\kelvin} prepolarized at \SI{2}{\tesla}; measurement time $100\,\tau_a$ per scan step.
+\item[b] \ch{^{129}Xe}-enriched liquid sample.
+\item[c] Brute-force prepolarization in a strong field at low temperature.
+\item[d] Parahydrogen-induced polarization (PHIP).
+\item[e] Dynamic nuclear polarization (DNP).
+\item[f] Spin-exchange optical pumping (SEOP).
+\item[g] Spin-projection noise (SPN).
+\end{tablenotes}
+\end{threeparttable}
+\end{table*}

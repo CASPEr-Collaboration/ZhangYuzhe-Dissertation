@@ -1,51 +1,182 @@
-\chapter{Axionlike-particle-induced spin precession}
-Key questions to be answered:
-    \begin{itemize}
-        \item How is the interaction between axionlike particles and spins? 
-        \item What does the axionlike-particle-induced spin precession signal look like? 
-        \item What is the optimal way to detect the signal? 
-    \end{itemize}
+\chapter{Axionlike-particle-induced spin precession}\label{chap:theory}
 \begin{jointwork}
-    How is the interaction between axionlike particles and spins? ...questions here. By answering these questions in this chapter, we can characterize the signal and determine a good strategy for the experiment. 
-
-    Part of the content related to the frequency scanning is adapted from the Ref.\,\cite{Yuzhe2023_FrequencyScanning}
+    Part of the content in this chapter related to frequency-scanning considerations is adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.
 \end{jointwork}
 
+The ALP field can be detected through its gradient coupling to nuclear spins, which acts as an effective oscillating pseudomagnetic field. Understanding the properties of this coupling---its frequency, amplitude, and coherence---is essential for designing a sensitive experiment and choosing an optimal measurement strategy. By answering the questions of what the signal looks like and how it depends on experimental parameters, this chapter lays the groundwork for the scanning strategy and sensitivity analysis of Chapter~\ref{chap:results}.
 
+\section{Stochasticity}\label{sec:theory:stochasticity}
 
-\section{Stochasticity}
+On time scales shorter than its coherence time $\tau_a$, the ALP field can be approximated as a coherent classical oscillation:
+\begin{equation}
+    a(\mathbf{r},t) = a_0 \cos(\nu_a t - \mathbf{k}\cdot \mathbf{r} + \phi)
+    \,.\label{eq:ALP_field}
+\end{equation}
+Here $a_0$ is the amplitude of the field, $\nu_a = m_a c^2/\hbar$ is the ALP Compton frequency where $c$ is the speed of light and $\hbar$ is the reduced Planck constant, $\mathbf{k} = m_a \mathbf{v}_a/\hbar$ is the wave vector ($\mathbf{v}_a$ is the relative velocity of the ALP field and the detector), $\mathbf{r}$ is the displacement vector, and $\phi$ is a random phase uniformly distributed in $[0,\, 2\pi)$. The amplitude $a_0$ follows a Rayleigh distribution. Its average root-mean-square (r.m.s.) value is set by the local dark-matter density $\rho_{DM}\approx\SI{0.4}{\GeV\cm^{-3}}$ \cite{BERGSTROM1998137,Jungman1992SupersymmetricDM,doi:10.1146/annurev.astro.39.1.137}:
+\begin{align}
+    \rho_{DM} \approx \dfrac{c\, m_a^2 a_0^2}{2\hbar^3}
+     \,.\label{eq:rhoDM}
+\end{align}
+
+The ALP field is stochastic in nature \cite{Centers2021Stochastic}. Assuming that ALP dark matter is virialized in the galactic potential and follows a Maxwell-Boltzmann velocity distribution with average speed $v_a \approx \SI{220}{\km\per\s}$ \cite{Evans2019_SHMRefined}, the spectral linewidth of the ALP field observed with a detector on Earth is
+\begin{equation}
+    \Gamma_a = \dfrac{\nu_a}{Q_a}
+    \,,\label{eq:Gamma_a_Qa}
+\end{equation}
+where $Q_a \equiv (c/v_a)^2 \approx 1.8\times10^6$ is the ALP quality factor. The ALP coherence time $\tau_a$ is related to the linewidth by $\Gamma_a = 2\pi/\tau_a$, giving
+\begin{equation}
+    \tau_a = \dfrac{2\pi Q_a}{\nu_a}
+    \,.\label{eq:taua}
+\end{equation}
+At any given search frequency, $\tau_a$ is fixed by the ALP mass and the dark-matter velocity model. For Compton frequencies above \SI{1}{\kHz}, $\tau_a \lesssim \SI{1000}{\second}$.
+
 
 \section{Periodic modulations}
 
 \subsection{Daily modulation}
 
+The ALP-field gradient driving spin precession depends on the direction of the relative velocity between the Earth and the local dark-matter halo. As the Earth rotates, this direction sweeps through space with a period of one sidereal day. An ALP signal therefore exhibits a daily modulation of its amplitude and phase \cite{Gramolin2022Feb_SpectralSignatures}.
+
 \subsection{Annual modulation}
 
-% \section{Interaction with spins}
+In addition to daily rotation, the Earth's orbital velocity around the Sun modulates the relative ALP-detector velocity with a period of one year. Both the daily and annual modulations have precisely predictable periods and phases, making them useful consistency checks for any claimed dark-matter-candidate signal \cite{Gramolin2022Feb_SpectralSignatures}.
 
-\section{Spin-precession signal}
 
-\subsection{Relaxations and coherence}
+\section{Spin-precession signal}\label{sec:theory:signal}
 
-\subsection{Estimation}
+The nuclear-gradient coupling of the ALP field to nuclear spins is described by the Hamiltonian
+\begin{align}
+    H_{\mathrm{aNN}} \sim g_{\mathrm{aNN}}\, {\boldsymbol \nabla} a \cdot \mathbf{I}
+   \,,\label{eq:HaNN}
+\end{align}
+where $g_{\mathrm{aNN}}$ is the coupling strength in units of $\SI{}{\GeV^{-1}}$, ${\boldsymbol \nabla} a$ is the gradient of the ALP field and $\mathbf{I}$ is the nuclear spin operator. This coupling acts as a pseudomagnetic drive field for nuclear spins precessing at the Larmor frequency in a bias field $\mathbf{B}_0$. Its r.m.s.\ Rabi frequency is \cite{Centers2021Stochastic,Yuzhe2023_FrequencyScanning}
+\begin{equation}
+    \Omega_a \approx \dfrac{1}{2}\, g_{\mathrm{aNN}} \sqrt{2\hbar c\, \rho_{DM}}\, v_{\bot}
+    \,,\label{eq:Omega_a}
+\end{equation}
+where $v_{\bot}$ is the component of the ALP-detector relative velocity perpendicular to $\mathbf{B}_0$. Taking $v_{\bot} = \SI{220}{\km\per\second}$, we have $\Omega_a/2\pi = g_{\mathrm{aNN}} \times \SI{0.2}{\GeV\cdot\Hz}$. For $g_{\mathrm{aNN}} \lesssim 10^{-10}\,\SI{}{\GeV^{-1}}$, the Rabi period $2\pi/\Omega_a \gtrsim 1000\,\mathrm{yr}$, confirming that the ALP field is a weak drive on the spins.
 
-\subsection{Numerical simulation}
 
-Low frequency: long ALP coherence time, short measurement time
+\subsection{Relaxations and coherence}\label{sec:theory:relaxations}
 
-medium frequency
+The transverse spin relaxation in the sample arises from homogeneous mechanisms (e.g., spin-spin interactions), characterised by the time $T_2$, and from inhomogeneous mechanisms (e.g., magnetic-field gradients across the sample), which cause additional dephasing. The total effective transverse relaxation time $T_2^* \leq T_2$ incorporates both contributions.
 
-high frequency: short ALP coherence time, short T2star, long T2, long T1
+The NMR linewidth (FWHM, assuming a Lorentzian lineshape) of the free-induction-decay spectrum is
+\begin{equation}
+    \Gamma_{n} = \dfrac{2}{T_2^*}
+    \,,\label{eq:Gamma_n}
+\end{equation}
+and the normalized linewidth is
+\begin{equation}
+    \delta_\nu \equiv \dfrac{\Gamma_{n}}{\nu} = \dfrac{2}{\nu T_2^*}
+    \,,\label{eq:delta_nu}
+\end{equation}
+often expressed in parts per million (\SI{}{\ppm}). The inhomogeneous contribution to $1/T_2^*$ can be reduced by magnetic shimming, giving control over $T_2^*$ independently of the intrinsic $T_2$.
 
-considering the T1 relaxation of hyperpolarized Xenon, we have ... factor of 1/3 worse sensitivity. 
 
-\subsection{Summary}
+\subsection{Estimation}\label{sec:theory:estimation}
 
-% \SI{1}{\cm^3}
-% Galactic dark matter may consist of axionlike particles (ALPs) that can be described as an “ultralight bosonic field” oscillating
-% at the ALP Compton frequency. The ALP field can be searched for using nuclear magnetic resonance (NMR), where resonant pre-
-% cession of spins of a polarized sample can be sensitively detected. The ALP mass to which the experiment is sensitive is scanned by
-% sweeping the bias magnetic field. The scanning either results in detection of ALP dark matter or rules out ALP dark matter with
-% sufficiently strong couplings to nuclear spins over the range of ALP masses corresponding to the covered span of Larmor frequencies.
-% In this work, scanning strategies are analyzed with the goal of optimizing the parameter-space coverage via a proper choice of experi-
-% mental parameters (e.g., the effective transverse relaxation time).
+For a sample with equilibrium longitudinal magnetization $M_0$ prepared along $\mathbf{B}_0$, the ALP-field drive tilts the magnetization by a small angle $\xi \ll 1$ (weak-drive regime, $\Omega_a T \ll 1$), generating a transverse magnetization $M_1 \approx M_0\xi$. The r.m.s.\ transverse magnetization is \cite{Yuzhe2023_FrequencyScanning}
+\begin{equation}
+    \sqrt{\langle M_{1}^2 \rangle} \approx \dfrac{1}{\sqrt{2}}\, u_n M_{0} \sqrt{\langle \xi^2 \rangle}
+    \,,\label{eq:M1_rms}
+\end{equation}
+where $u_n$ is the fraction of nuclear spins on resonance with the ALP field. Approximating both the NMR and ALP lineshapes as rectangles,
+\begin{equation}
+    u_n \approx \left\{
+    \begin{array}{cl}
+    1\,,
+    &  \tau_a \ll T_2^* \\[6pt]
+    \dfrac{\Gamma_a}{\Gamma_{n}} = \dfrac{\pi T_2^*}{\tau_a}\,,
+    &  T_2^* \ll \tau_a
+    \end{array} \right.
+    \,.\label{eq:un}
+\end{equation}
+
+The r.m.s.\ tipping angle $\sqrt{\langle\xi^2\rangle}$ is limited by the interplay between ALP decoherence and spin relaxation. Modeling the ALP decoherence as a random phase that resets on the time scale $\tau_a$, the tipping angle executes a two-dimensional random walk in the rotating frame with step size $\Omega_a\tau_a$ \cite{Yuzhe2023_FrequencyScanning}. Combining this with the three relevant relaxation scales,
+\begin{equation}
+    \sqrt{\langle \xi^2\rangle}  = \left\{
+    \begin{array}{cl}
+    \Omega_{a}\sqrt{\tau_a T_2^*} ,
+    &  \tau_a \ll T_2^*\\[6pt]
+    \Omega_a\dfrac{\tau_a}{\sqrt{\pi}} ,
+    &  T_2^*\ll\tau_a \ll T_2\\[6pt]
+    \Omega_a T_2 ,
+    &  T_2 \ll \tau_a
+    \end{array} \right.
+    \,.\label{eq:rms_xi}
+\end{equation}
+These cases combine into the r.m.s.\ transverse magnetization (for dwell time $T \gg \tau_a,\,T_2^*,\,T_2$):
+\begin{equation}
+    \sqrt{\langle M_{1}^2 \rangle} \approx \dfrac{M_{0}\Omega_a}{\sqrt{2}}\left\{
+    \begin{array}{cl}
+    \sqrt{\tau_a T_2^*}\, ,
+    &  \tau_a \ll T_2^*\\[6pt]
+    \dfrac{T_2^*}{\sqrt{\pi}}\, ,
+    &  T_2^*\ll\tau_a \ll T_2\\[6pt]
+    \dfrac{T_2^* T_2}{\sqrt{\pi}\,\tau_a}\, ,
+    &  T_2 \ll \tau_a
+    \end{array} \right.
+    \,.\label{eq:M1_regimes}
+\end{equation}
+In the third case, when $T_2 \ll \tau_a$ and the dwell time $T \gg \tau_a$, the signal amplitude decreases because the ALP field cannot drive the spins coherently for longer than $T_2$, while off-resonance spins (those not within the narrow ALP linewidth) contribute negligibly.
+
+
+\subsection{Numerical simulation}\label{sec:theory:simulation}
+
+The analytical estimates above are valid in the limit $T \gg \tau_a,\,T_2^*,\,T_2$. At lower Compton frequencies, the ALP coherence time can become comparable to or longer than experimentally accessible dwell times, and the simple scaling laws no longer apply. Numerical simulations using the \texttt{axionbloch} package are used to validate the analytical estimates and to explore intermediate parameter regimes.
+
+Three representative situations arise:
+\begin{description}
+    \item[Low frequency] $\tau_a \gg T$: the ALP field is essentially coherent over the measurement. The signal grows linearly in time and the $T^{-1/4}$ sensitivity scaling is not yet reached.
+    \item[Medium frequency] $\tau_a \approx T$: the transition regime, treated numerically.
+    \item[High frequency] $T \gg \tau_a,\,T_2^*,\,T_2$: the analytical results apply. For hyperpolarized \ch{^{129}Xe}, $T_1$ relaxation limits the achievable polarization, introducing an additional reduction factor of approximately $1/3$ relative to the fully polarized case.
+\end{description}
+
+
+\subsection{Summary}\label{sec:theory:summary}
+
+Depending on the relative magnitudes of $T_2$, $T_2^*$, and $\tau_a$, four regimes are identified \cite{Yuzhe2023_FrequencyScanning}:
+\begin{enumerate}[label = (\arabic*)]
+    \item $\tau_a \ll T_2^*$;
+    \item $T_2^* \ll \tau_a \ll T_2 $;
+    \item $T_2^* \ll T_2 \ll \tau_a$;
+    \item $T_2^*=T_2 \ll \tau_a$.
+\end{enumerate}
+These regimes are illustrated in Figure~\ref{fig:T2star_T2_taua_regimes}. The key parameters for each regime are summarised in Table~\ref{tab:summary_of_regimes}, where $\nu_{\mathrm{start}}$ and $\nu_{\mathrm{end}}$ are the lower and upper limits of the target frequency band.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=.6\linewidth]{works/frequency-scanning/T2star_T2_taua_relations_20230413.png}
+    \caption{Regimes of the spin-precession experiment based on the relative magnitudes of $T_2$, $T_2^*$, and $\tau_a$. Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.}
+    \label{fig:T2star_T2_taua_regimes}
+\end{figure}
+
+\begin{table}[ht]
+    \centering
+    \caption{Summary of parameters for the four regimes. The normalised linewidth $\delta_\nu = \tau_a/(\pi Q_a T_2^*)$ is assumed constant in each regime. The optimal dwell time is derived in Appendix~\ref{app:dwell_time}.}
+    \begin{tabular}{cccccc}
+        \hline
+        & Regime & Optimal dwell time $T$ & Signal linewidth $\Gamma$ & Spectral factor $u_n$ & r.m.s.\ tipping angle $\sqrt{\langle \xi^2\rangle}$ \\
+        \hline
+        & & & & & \\
+        (1) & $\tau_a \ll T_2^*$
+            & $\dfrac{T_{\mathrm{tot}}}{Q_a \ln\!\left( \nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}$
+            & $\dfrac{2}{T_2^*}$ & $1$ & $\Omega_{a}\sqrt{\tau_a T_2^*}$\\
+        & & & & & \\
+        (2) & $T_2^* \ll \tau_a \ll T_2$
+            & $\dfrac{T_{\mathrm{tot}}\,\tau_a}{\pi Q_a T_2^*\ln\!\left( \nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}$
+            & $\dfrac{2\pi}{\tau_a}$ & $\dfrac{\pi T_2^*}{\tau_a}$ & $\Omega_a\dfrac{\tau_a}{\sqrt{\pi}}$ \\
+        & & & & & \\
+        (3) & $T_2^* \ll T_2 \ll \tau_a$
+            & $\dfrac{T_{\mathrm{tot}}\,\tau_a}{\pi Q_a T_2^*\ln\!\left( \nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}$
+            & $\dfrac{2\pi}{\tau_a}$ & $\dfrac{\pi T_2^*}{\tau_a}$ & $\Omega_a T_2$\\
+        & & & & & \\
+        (4) & $T_2^*=T_2 \ll \tau_a$
+            & $\dfrac{T_{\mathrm{tot}}\,\tau_a}{\pi Q_a T_2\ln\!\left(\nu_{\mathrm{end}}/\nu_{\mathrm{start}}\right)}$
+            & $\dfrac{2\pi}{\tau_a}$ & $\dfrac{\pi T_2}{\tau_a}$ & $\Omega_a T_2$ \\
+        & & & & & \\
+        \hline
+    \end{tabular}
+    \label{tab:summary_of_regimes}
+\end{table}

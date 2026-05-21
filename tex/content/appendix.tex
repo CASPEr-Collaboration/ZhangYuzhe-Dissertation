@@ -183,3 +183,61 @@ so that
 \]
 
 Hence, rejecting for large $\Lambda(x)$ is equivalent to rejecting for sufficiently large $x$.
+
+
+\chapter{Optimal dwell time in frequency scanning}\label{app:dwell_time}
+\begin{jointwork}
+    This appendix is adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.
+\end{jointwork}
+
+This appendix derives the optimal dwell-time allocation scheme for a frequency scan, following the treatment of Ref.\,\cite{Yuzhe2023_FrequencyScanning}. The goal is to maximise the sensitive area in the $\log\nu$--$\log|g_{\mathrm{aNN}}|$ parameter space over a total measurement time $T_{\mathrm{tot}}$.
+
+To simplify the notation, the frequency is normalised: $\hat{\nu} = \nu/\nu_{\mathrm{start}}$, with $\hat{\nu} \in [1,\,\hat{\nu}_{\mathrm{end}}]$ where $\hat{\nu}_{\mathrm{end}} = \nu_{\mathrm{end}}/\nu_{\mathrm{start}} > 1$. The dwell time is parametrised as
+\begin{equation}
+    T = \kappa\,\hat{\nu}^{\,n}
+    \,,\label{eq:T_kappa_n}
+\end{equation}
+where $\kappa$ is determined by $T_{\mathrm{tot}}$ and $n$, and the optimal value of $n$ is determined below.
+
+\section*{Regimes (1)--(3): step size proportional to $\nu$}
+
+In regimes~(1), (2), and~(3), the frequency-step size is proportional to $\hat{\nu}$ (either one ALP linewidth $\hat{\nu}/Q_a$ or one NMR linewidth $\delta_\nu\hat{\nu}$). The scan rate is
+\begin{equation}
+    \dfrac{d\hat{\nu}}{dt} = \dfrac{\Gamma_{\mathrm{scan}}}{T} \propto \hat{\nu}^{1-n}
+    \,,
+\end{equation}
+so that
+\begin{equation}
+    dt = \kappa\,C\,\hat{\nu}^{n-1}\,d\hat{\nu}
+    \,,
+\end{equation}
+where $C = Q_a$ in regime~(1) and $C = \delta_\nu^{-1}$ in regimes~(2) and~(3). Integrating over $[0,\,T_{\mathrm{tot}}]$ and $[1,\,\hat{\nu}_{\mathrm{end}}]$ gives
+\begin{equation}
+    \kappa = \dfrac{n\,T_{\mathrm{tot}}}{C(\hat{\nu}_{\mathrm{end}}^{n}-1)}
+    \,,\quad n \ne 0\,.
+\end{equation}
+At $n=0$: $\kappa|_{n=0} = T_{\mathrm{tot}}/[C\ln(\hat{\nu}_{\mathrm{end}})]$.
+
+\section*{Regime (4): step size independent of $\nu$}
+
+In regime~(4) ($T_2^*=T_2 \ll \tau_a$), the step size is one NMR linewidth $2/T_2$, independent of frequency. The scan rate is proportional to $\hat{\nu}^{-n}$, giving
+\begin{equation}
+    \kappa = \dfrac{2(n+1)\,T_{\mathrm{tot}}}{(\hat{\nu}_{\mathrm{end}}^{n+1}-1)\,T_2}
+    \,,\quad n \ne -1\,.
+\end{equation}
+At $n=-1$: $\kappa|_{n=-1} = 2T_{\mathrm{tot}}/[\ln(\hat{\nu}_{\mathrm{end}})\,T_2]$.
+
+\section*{Optimal exponent $n$}
+
+The sensitive area in log-log scale is
+\begin{equation}
+    A(n) = -\int_{1}^{\hat{\nu}_{\mathrm{end}}} \log f(\hat{\nu},\,n)\,d\log\hat{\nu}
+    \,,\label{eq:A_n}
+\end{equation}
+where $f(\hat{\nu},\,n)$ is the exclusion threshold from Equation~\eqref{eq:exclusion_threshold} with the dwell time from Equation~\eqref{eq:T_kappa_n}. Taking the derivative $A'(n)$ and setting it to zero shows:
+\begin{itemize}
+    \item For regimes~(1), (2), and~(3): $A'(n) > 0$ for $n < 0$ and $A'(n) < 0$ for $n > 0$, so the maximum is at $n = 0$ (uniform dwell time).
+    \item For regime~(4): the analysis shifts the effective exponent from $n$ to $n+1$, giving an optimum at $n = -1$ (dwell time $T \propto \hat{\nu}^{-1}$).
+\end{itemize}
+
+An intuitive restatement: when the sensitive bandwidth per step grows with frequency (regimes 1--3), the number of steps per unit $\log\nu$ is constant, and uniform dwell time is optimal. When the bandwidth is independent of frequency (regime 4), spending less time at higher frequencies---where the ALP coherence time is shorter and the signal integrates faster---maximises the covered area.

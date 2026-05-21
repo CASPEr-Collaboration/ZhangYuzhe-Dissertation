@@ -88,10 +88,20 @@ The QCD axion is a hypothetical pseudoscalar particle that appears when a global
 \subsection{Axionlike particles}
 Axionlike particles share the oscillatory and weakly coupled character of the QCD axion, but their mass range can be much wider. This flexibility makes them attractive targets for laboratory searches.
 
-\subsection{Non-gravitational interactions}
-The most relevant non-gravitational couplings for this thesis are the ones to photons, gluons, and fermions. Axion-fermion couplings are particularly interesting for spin-precession experiments because they can appear as an effective interaction with nuclear spins.
+On time scales shorter than the ALP coherence time, the ALP field can be treated as a classical oscillation:
+\begin{equation}
+    a(\mathbf{r},t) = a_0\cos(\nu_a t - \mathbf{k}\cdot\mathbf{r} + \phi)
+    \,,
+\end{equation}
+where $\nu_a = m_a c^2/\hbar$ is the ALP Compton frequency, $\mathbf{k} = m_a\mathbf{v}_a/\hbar$ is the wave vector, $a_0$ is the amplitude, and $\phi$ is a random phase. The amplitude $a_0$ is set by the local dark-matter density through $\rho_{DM} \approx c\,m_a^2 a_0^2/(2\hbar^3)$ \cite{Centers2021Stochastic}. Because the ALP number density is so high for ultralight masses, this classical-field description is appropriate.
 
-including \textit{Experiment design for axion research}
+\subsection{Non-gravitational interactions}
+The most relevant non-gravitational couplings for this thesis are the ones to photons, gluons, and fermions. Axion-fermion couplings are particularly interesting for spin-precession experiments because they appear as an effective oscillating interaction with nuclear spins:
+\begin{equation}
+    H_{\mathrm{aNN}} \sim g_{\mathrm{aNN}}\,{\boldsymbol\nabla}a\cdot\mathbf{I}
+    \,,
+\end{equation}
+where $g_{\mathrm{aNN}}$ is the coupling strength in $\SI{}{\GeV^{-1}}$ and $\mathbf{I}$ is the nuclear spin operator. This gradient coupling oscillates at the ALP Compton frequency and can drive resonant spin precession when the Larmor frequency matches $\nu_a$.
 
 \section{CASPEr project}
 CASPEr is a family of proposed experiments that use nuclear spins to search for axion-induced effects. The idea is to translate the tiny axion coupling into a measurable precession or phase shift in a carefully controlled NMR setup.
@@ -103,9 +113,19 @@ The central idea is to tune the NMR resonance to a frequency that matches the ax
 
 In practice, the method reduces to a frequency scan: either the signal appears at a particular resonance or the absence of a signal constrains the coupling strength over the scanned band.
 
-CASPEr-E
+\subsection{CASPEr-Electric}
+CASPEr-Electric (CASPEr-E) searches for an oscillating nuclear electric dipole moment induced by the ALP-gluon coupling. This moment generates an effective oscillating field along the nuclear spin axis in the presence of an electric field, enabling detection through NMR at the corresponding Compton frequency.
 
-CASPEr comagnetometers
+\subsection{CASPEr comagnetometers}
+Comagnetometer configurations use two nuclear spin species in the same volume to suppress common-mode noise from magnetic-field fluctuations. The differential signal between the two species enhances sensitivity to a pseudomagnetic ALP field while rejecting electromagnetic backgrounds.
 
-CASPEr LF, HF
+\subsection{CASPEr-Gradient}\label{sec:intro:CASPEr:gradient}
+CASPEr-Gradient searches for the ALP-fermion gradient coupling described by Equation~\eqref{eq:HaNN}. Several setups at Mainz cover different ALP-mass ranges. The CASPEr-Gradient-Low-Field experiment uses bias fields up to about \SI{0.1}{\tesla}, corresponding to proton Larmor frequencies up to approximately \SI{4.3}{\MHz}. The CASPEr-Gradient-High-Field experiment will use a tunable \SI{14.1}{\tesla} magnet to reach frequencies up to \SI{600}{\MHz}. A conceptual diagram of the low-field apparatus is shown in Figure~\ref{fig:CASPEr_Apparatus}. The cryostat contains a liquid helium reservoir, excitation and pickup coils, and a SQUID magnetometer. A superconducting magnet produces the bias field $\mathbf{B}_0$, which sets the Larmor frequency and can be varied to scan ALP masses.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.65\linewidth]{works/frequency-scanning/CASPEr_Apparatus_20230508.png}
+    \caption{Conceptual diagram of the CASPEr-Gradient-Low-Field setup. Superconducting devices (dark green) are submerged in a liquid helium bath (light green). The excitation and pickup coils characterise the sample and detect the spin-precession signal. The sample temperature can be controlled independently of the helium bath, enabling measurements with both thermal and hyperpolarized samples. Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.}
+    \label{fig:CASPEr_Apparatus}
+\end{figure}
 

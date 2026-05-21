@@ -1,10 +1,253 @@
-\chapter{Results and analysis}
-Key questions to be answered:
-    \begin{itemize}
-        \item 
-        \item 
-        \item 
-    \end{itemize}
+\chapter{Measurement and Results}\label{chap:results}
 \begin{jointwork}
-    
+    Sections~\ref{sec:results:single}--\ref{sec:results:optimization} are adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning}. Sections~\ref{sec:results:measurement}--\ref{sec:results:exclusion} are adapted from Ref.\,\cite{Walter2024_LFthermal}.
 \end{jointwork}
+
+With the signal model established in the previous chapter, this chapter derives the sensitivity of a single-frequency measurement and then assembles these results into an optimal strategy for scanning the target frequency band.
+
+\section{Single-frequency sensitivity}\label{sec:results:single}
+
+The transverse magnetization $M_1$ induced by the ALP field couples to the pickup coil and SQUID via the pickup transfer coefficient $\alpha$:
+\begin{equation}
+    \alpha = \dfrac{\Phi}{\mu_0 M_1}
+    \,,\label{eq:alpha}
+\end{equation}
+where $\Phi$ is the magnetic flux in the SQUID and $\mu_0$ is the vacuum permeability. Using Equations~\eqref{eq:M1_rms} and~\eqref{eq:rms_xi}, the average ALP-induced flux power is
+\begin{align}
+    \langle \Phi_a^2 \rangle
+    =\dfrac{1}{2}(\alpha\, u_n\, \mu_0 M_0 \Omega_a)^2 \left\{
+    \begin{array}{cl}
+    \tau_a T_2^* ,
+    &  \tau_a \ll T_2^*\\[6pt]
+    \dfrac{\tau_a^2}{\pi} ,
+    &  T_2^*\ll\tau_a \ll T_2\\[6pt]
+    T_2^2 ,
+    &  T_2 \ll \tau_a
+    \end{array} \right.
+    \,. \label{eq:Phia2}
+\end{align}
+The signal amplitude in the power spectral density (PSD) is
+\begin{align}
+    S = \dfrac{\langle \Phi_a^2 \rangle}{\Gamma /2\pi}
+    \,, \label{eq:S_PSD}
+\end{align}
+where $\Gamma$ is the expected signal linewidth. Depending on which linewidth is narrower,
+\begin{equation}
+    \Gamma = \left\{
+    \begin{array}{cl}
+    \Gamma_a ,
+    &  \Gamma_a \ll \Gamma_{n}\\[4pt]
+    \Gamma_{n},
+    & \Gamma_a  \gg \Gamma_{n}
+    \end{array} \right.
+    \,.\label{eq:Gamma_signal}
+\end{equation}
+Within a spectral bin of width $\Gamma$, the number of PSD values available for averaging from a measurement of dwell time $T$ is
+\begin{equation}
+    N_{\Gamma} = \dfrac{\Gamma T}{2\pi} \gg 1
+    \,,\label{eq:NGamma}
+\end{equation}
+and the noise standard deviation after averaging is
+\begin{equation}
+    \sigma = \sqrt{\dfrac{2\pi}{\Gamma T}}\,\sigma_{0}
+    \,,\label{eq:sigma}
+\end{equation}
+where $\sigma_{0}$ is the single-bin noise level of the SQUID system.
+
+Using a detection threshold of $S \geq 3.355\,\sigma$---corresponding to a true signal $5\,\sigma$ above the noise detected at 95\% confidence \cite{aybas2021_SolidStateNMR}---the ALP coupling strengths excluded when no signal is found satisfy
+\begin{equation}
+    |g_{\mathrm{aNN}}| \geqslant
+    \left\{
+    \begin{array}{cl}
+    \eta\, T^{-1/4}\, (T_2^*)^{-3/4}\, \tau_a^{-1/2} ,
+    & \tau_a\ll T_2^* \\[6pt]
+    \eta\, \pi^{-1/4}\, T^{-1/4}\, (T_2^*)^{-1}\, \tau_a^{-1/4} ,
+    &  T_2^*\ll\tau_a \ll T_2\\[6pt]
+    \eta\, \pi^{-3/4}\, T^{-1/4}\, T_2^{-1}\, (T_2^*)^{-1}\, \tau_a^{3/4}  ,
+    &  T_2^*\ll T_2\ll\tau_a \\[6pt]
+    \eta\, \pi^{-3/4}\, T^{-1/4}\, T_2^{-2}\, \tau_a^{3/4}   ,
+    &  T_2^*= T_2\ll\tau_a
+    \end{array} \right.
+    \,, \label{eq:exclusion_threshold}
+\end{equation}
+where the prefactor $\eta$ collects the apparatus-dependent constants:
+\begin{equation}
+    \eta = \dfrac{2\sqrt{3.355\,\sigma_0}}{\pi^{1/4}\,\alpha\,\mu_0\,M_0\,v_{\bot}\,\sqrt{\hbar c\,\rho_{DM}}}
+    \,.\label{eq:eta}
+\end{equation}
+Larger magnetization $M_0$ and lower noise $\sigma_0$ both improve $\eta$ and hence the sensitivity.
+
+
+\section{Scanning procedure}\label{sec:results:procedure}
+
+The CASPEr-Gradient-Low-Field experiment scans the ALP-mass parameter space by sweeping the magnitude of $\mathbf{B}_0$, which tunes the Larmor frequency of the sample to a series of values $\nu_i \in [\nu_{\mathrm{start}},\,\nu_{\mathrm{end}}]$. One step of the scan consists of:
+\begin{enumerate}[label=\Alph*.]
+    \item Pulsed-NMR measurement to determine the resonance frequency and the effective linewidth ($T_2^*$).
+    \item Spin-echo measurement to determine $T_2$.
+    \item Free-precession data acquisition with the SQUID magnetometer---no transverse pulse applied---to record the ALP-signal channel over the dwell time $T$.
+    \item Fourier transform of the magnetometer data to produce a power spectrum.
+    \item Binning of PSD values within frequency bins of width $\Gamma$, and averaging to reduce noise.
+    \item Statistical analysis of binned PSD values (e.g., histogram comparison with the expected noise distribution) to identify DM-candidate frequencies.
+    \item If a candidate is found: repeat the measurement at the same field value and perform additional checks.
+    \item If no candidate is found: record the exclusion contour for this frequency step and ramp $\mathbf{B}_0$ to the next value.
+\end{enumerate}
+The procedure is illustrated in Figure~\ref{fig:CASPEr_Procedure}. A significant excess surviving repeated measurement can be tested further using the daily and annual modulation signatures of ALP dark matter \cite{Gramolin2022Feb_SpectralSignatures}.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{works/frequency-scanning/CASPEr_Procedure_20230311.png}
+    \caption{Schematic of the experimental procedure. (a) One step of the scan: pulsed-NMR diagnostics, free-precession data acquisition, PSD computation and binning, and statistical analysis using a histogram of PSD values. (b) Example decay spectra (blue curves) and the resulting sensitivity region in the ALP mass-coupling space (reddish area) after scanning over a frequency range. Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.}
+    \label{fig:CASPEr_Procedure}
+\end{figure}
+
+The frequency-step size $\Gamma_{\mathrm{scan}}$ is set by the sensitive bandwidth of a single step. An experiment is sensitive to signals within a bandwidth equal to the maximum of $\Gamma_n$ and $\Gamma_a$ around a given Larmor frequency. Choosing a step size larger than $\Gamma_{\mathrm{scan}}$ leaves gaps; choosing a smaller step size multiplies the number of steps without improving coverage.
+
+\section{Scanning optimization}\label{sec:results:optimization}
+
+With fixed total measurement time $T_{\mathrm{tot}}$, the dwell time can in principle depend on frequency: $T \propto \nu^n$. Maximizing the sensitive area in the $\log\nu$--$\log|g_{\mathrm{aNN}}|$ parameter space over the full scan determines the optimal exponent $n$. The derivation is given in Appendix~\ref{app:dwell_time}; the result is $n=0$ (uniform dwell time) for regimes~(1)--(3) and $n=-1$ (dwell time decreasing as $1/\nu$) for regime~(4).
+
+With optimal dwell-time allocation, the scanning sensitivity is
+\begin{equation}
+    |g_{\mathrm{aNN}}| \geqslant \left\{
+    \begin{array}{ll}
+    \eta
+    \left(\dfrac{T_{\mathrm{tot}}}{Q_a\ln\!\left(\nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}\right)^{-1/4}
+     \times  (T_2^*)^{-3/4}\, \tau_a^{-1/2},
+    & \tau_a\ll T_2^* \text{ or }  T_2^*\ll\tau_a\ll T_2 \\[10pt]
+    \eta
+    \left(\dfrac{\pi^2 T_{\mathrm{tot}}}{Q_a\ln\!\left(\nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}\right)^{-1/4}
+     \times  (T_2^*)^{-3/4}\, T_2^{-1}\, \tau_a^{1/2},
+    & T_2^* \ll T_2 \ll \tau_a \text{ or } T_2^*=T_2 \ll \tau_a
+    \end{array} \right.
+    \,.\label{eq:gaNN_Ttot_optimal}
+\end{equation}
+
+Several conclusions follow directly:
+\begin{itemize}
+    \item \textbf{Time scaling.} The sensitivity scales as $T_{\mathrm{tot}}^{-1/4}$ in all regimes, a consequence of the long-dwell-time limit $T \gg \tau_a,\,T_2^*,\,T_2$ \cite{CASPErProposal2014,Aybas_2021_Quantum_sensitivity}. An order-of-magnitude increase in measurement time improves the exclusion bound by only a factor $10^{1/4}\approx1.8$.
+
+    \item \textbf{Effect of $T_2^*$.} Longer $T_2^*$ is beneficial in all regimes. When $\tau_a \ll T_2^*$, it increases the r.m.s.\ tipping angle and narrows the signal linewidth. When $T_2^* \ll \tau_a$, it increases the fraction $u_n$ of spins on resonance.
+
+    \item \textbf{Effect of $T_2$.} Longer $T_2$ improves sensitivity in the regime $T_2 \ll \tau_a$, where $T_2$ directly limits the r.m.s.\ tipping angle.
+\end{itemize}
+
+The sensitivity plots computed with uniform ($n=0$) and frequency-adaptive ($n=-1$) dwell-time allocation for an example scan range $\nu_{\mathrm{end}}/\nu_{\mathrm{start}}=10$ are shown in Figure~\ref{fig:UniVsAdpt}. The area covered in the $\log\nu$--$\log|g_{\mathrm{aNN}}|$ plane is larger with optimal $n$.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=.7\linewidth]{works/frequency-scanning/UniVsAdpt_20230412-3.png}
+    \caption{Sensitivity plots on a log-log scale for two dwell-time allocation schemes: uniform ($n=0$) and frequency-adaptive ($n=-1$). The shaded regions indicate the parameter space accessible to the experiment. The coupling strength is normalised in each regime so that the highest point equals 1. The scan range is $\nu_{\mathrm{end}}/\nu_{\mathrm{start}}=10$. Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.}
+    \label{fig:UniVsAdpt}
+\end{figure}
+
+In summary, the optimal strategy for a frequency-scanning ALP search is to work at the maximum achievable $T_2$ and $T_2^*$, use a step size equal to the sensitive bandwidth, and distribute the total measurement time uniformly across frequency steps (or as $T\propto\nu^{-1}$ in regime~(4)).
+
+
+\section{The methanol measurement}\label{sec:results:measurement}
+
+The scanning framework above was applied in a proof-of-concept ALP search using the CASPEr-Gradient-LF apparatus with a thermally polarized methanol sample. This section describes the measurement procedure and parameters.
+
+\subsection{Measurement parameters}
+
+The search covered a \SI{240}{\Hz} band centered at \SI{1.348570}{\MHz}, corresponding to proton Larmor frequencies driven by a bias field $|\mathbf{B}_0| \approx \SI{31.67}{\milli\tesla}$. This maps to ALP masses in the range $5.576741$--$5.577733\,\si{\neV}/c^2$. The frequency step size was \SI{6}{\Hz}, approximately half the NMR linewidth, so that the resonant windows of adjacent steps overlap. Three sequential scans over the same range were performed. The most sensitive scan was treated as the primary scan and the other two (scans A and B) as consistency checks.
+
+The ALP coherence time at the search frequency is $\tau_a \approx \SI{0.35}{\s}$, obtained from Equation~\eqref{eq:taua}. The measured relaxation times are $T_2^* = \SI{24.2\pm4}{\ms}$ and $T_2 = \SI{0.72(5)}{\s}$. Since $T_2^* \ll \tau_a \lesssim T_2$, the measurement falls in regime~(2) of Table~\ref{tab:summary_of_regimes}. The spectral factor is approximately $u \approx T_2^*/\tau_a \approx \SI{7}{\%}$.
+
+\subsection{Step sequence}
+
+At each frequency step the following actions were performed in order:
+\begin{enumerate}[label=\arabic*.]
+    \item Pulsed-NMR measurement (a $\pi/2$ pulse followed by free-induction decay) to determine the Larmor frequency, linewidth $\Delta\nu$ (and hence $T_2^* = 1/(\pi\Delta\nu)$), and NMR signal power. A Lorentzian fit to the resulting PSD peak extracts these parameters and calibrates the sensitivity at each step.
+    \item Carr-Purcell-Meiboom-Gill (CPMG) pulse sequence prior to the first scan step to determine $T_2$ from the exponential decay of spin-echo amplitudes.
+    \item \SI{5}{\s} dwell time to allow ring-down noise to decay and the magnetization to return close to its equilibrium value along $\mathbf{B}_0$.
+    \item \SI{100}{\s} data acquisition without any pulses, recording the SQUID feedback voltage $V_\mathrm{f}$ at \SI{13.4}{\kHz} sampling rate. This window corresponds to approximately 280 ALP coherence times and is the ALP-search channel.
+    \item Frequency step: the Larmor frequency is increased by \SI{\approx6}{\Hz} by ramping the Helmholtz coils or the superconducting magnet.
+    \item Another \SI{5}{\s} dwell time after the field ramp before repeating.
+\end{enumerate}
+The PSDs were recorded after demodulation of $V_\mathrm{f}$ by the lock-in amplifier; its reference frequency was detuned by \SI{820}{\Hz} from the Larmor frequency so that the NMR signal appears at a non-zero difference frequency, making it easily distinguishable from noise. Example PSD spectra and NMR characterisation plots are shown in Figure~\ref{fig:measurements}.
+
+\begin{figure*}[htb]
+    \centering
+    \includegraphics[width=\linewidth]{works/LF-thermal/figures/measurements.png}
+    \caption{
+    \textbf{(a)} PSD after a $\pi/2$ pulse. The NMR peak is fitted with a Lorentzian (red line); the center is at \SI{1348449.21(5)}{\Hz} with a FWHM of \SI{14.79(1)}{\Hz}.
+    \textbf{(b)} CPMG spin-echo amplitudes (blue dots) and exponential fit (red), giving $T_2 = \SI{0.72(5)}{\s}$.
+    \textbf{(c)} PSD of a \SI{100}{\s} ALP-search step. The grey analysis window (\SI{8}{\kHz} wide) excludes filter artefacts near the band edges; the green resonant window ($\pm5$ NMR linewidths $= \pm\SI{70}{\Hz}$) is where ALP signal candidates are sought.
+    \textbf{(d)} Histogram of normalized power excess (NPE) derived from (c), with the rescan threshold $\Theta_\mathrm{RE}$ (red line) at the \SI{95}{\%} confidence level for a $5\,\sigma$ ALP detection.
+    Reproduced from Ref.\,\cite{Walter2024_LFthermal}.}
+    \label{fig:measurements}
+\end{figure*}
+
+Due to Earth's rotation, the component of the ALP-field gradient perpendicular to $\mathbf{B}_0$ varies over the course of the measurement. The resulting daily modulation of the signal amplitude is predictable and was tracked over the approximately six-hour duration of the scans.
+
+
+\section{Data analysis}\label{sec:results:analysis}
+
+Each \SI{100}{\s} time series is converted to a PSD and processed through three successive steps.
+
+\subsection{Spike suppression}
+
+A narrow Savitzky-Golay (SG) filter with a window half-width equal to half the expected ALP linewidth at the scanned frequency is applied to the PSD. The residual between the raw PSD and the filter output is fitted with a $\chi^2$ distribution with two degrees of freedom. Bins that deviate from the filter response by more than the fitted threshold, together with their four nearest neighbours, are replaced by the local filter average. This step suppresses narrow EMI spikes while preserving potential ALP signals. In the primary scan, only \SI{0.002}{\%} of bins were modified in this way.
+
+\subsection{Baseline removal}
+
+A reduced chi-square test on the spike-corrected spectrum reveals a non-flat baseline. A second, broad SG filter with a window of 200 ALP linewidths is applied to estimate this baseline. The spike-corrected spectrum is then normalised by subtracting and dividing by this baseline, producing a spectrum with a flat expected noise floor.
+
+\subsection{Matched filtering and NPE}
+
+A matched filter using the expected ALP signal lineshape $\lambda_\perp(\nu,\nu_a)$---the normalised spectral lineshape of the ALP-field gradient component perpendicular to $\mathbf{B}_0$, as given in Ref.\,\cite{Gramolin2022Feb_SpectralSignatures}---is convolved with the normalised PSD. The result, normalised by its standard deviation, is the normalized power excess (NPE). The matched-filter step size is half the ALP linewidth.
+
+\subsection{Hypothesis test and rescan threshold}
+
+Frequency bins where the NPE exceeds the rescan threshold $\Theta_\mathrm{RE}$ are flagged as outliers. The threshold was determined via Monte Carlo simulations of the NPE distribution under the null hypothesis that a $5\,\sigma$ ALP signal is present, yielding $\Theta_\mathrm{RE} = 3.43$ at the \SI{95}{\%} confidence level (corresponding to a $p$-value of $0.001$).
+
+The overall analysis efficiency, accounting for the effect of baseline removal on signal recovery, was determined from simulations to be $\eta_\mathrm{rec} = \SI{88.2\pm4.6}{\%}$. This efficiency is applied when converting NPE values to coupling-constant limits.
+
+
+\section{Exclusion results}\label{sec:results:exclusion}
+
+\subsection{Candidates and consistency checks}
+
+Table~\ref{tab:candidates} lists the outlier counts and ALP signal candidates from all three scans. The total number of outliers in each scan exceeds the expectation for white noise, owing to non-white-noise structures that are neither narrow nor broad enough to be removed by the SG filters. By comparing the resonant window (within $\pm5$ NMR linewidths of the Larmor frequency) with off-resonance background, and by cross-checking the primary scan against scans A and B, these noise-induced outliers can be identified.
+
+\begin{table}[htb]
+    \centering
+    \caption{Results of the three ALP scans. $N_\mathrm{full}$: total NPE bins. $X_\mathrm{full}$: outliers above rescan threshold. $\langle X_\mathrm{full}\rangle$: expected value assuming white noise. $N_\mathrm{res}$: bins in resonant windows. $X_\mathrm{res}$: ALP signal candidates. $\langle X_\mathrm{res}\rangle$: expected value. $X'_\mathrm{res}$: candidates after merging those within one ALP linewidth. $X''_\mathrm{res}$: candidates in this scan also appearing in the primary scan within four ALP linewidths. Parenthetical fractions give the fraction of $N_\mathrm{full}$.}
+    \label{tab:candidates}
+    \begin{tabular}{lccc}
+        \hline\hline
+        & Primary scan & Scan A & Scan B \\
+        \hline
+        $N_\mathrm{full}$ & 481\,680 & 481\,680 & 481\,680 \\
+        $X_\mathrm{full}$ & 6393 (\SI{1.32}{\%}) & 5760 (\SI{1.20}{\%}) & 6202 (\SI{1.29}{\%}) \\
+        $\langle X_\mathrm{full}\rangle$ & 145 (\SI{0.03}{\%}) & 145 (\SI{0.03}{\%}) & 145 (\SI{0.03}{\%}) \\
+        \hline
+        $N_\mathrm{res}$ & 8430 & 8430 & 8430 \\
+        $X_\mathrm{res}$ & 5 & 7 & 3 \\
+        $\langle X_\mathrm{res}\rangle$ & 3 & 3 & 3 \\
+        $X'_\mathrm{res}$ & 5 & 5 & 3 \\
+        $X''_\mathrm{res}$ & --- & 0 & 0 \\
+        $\langle X''_\mathrm{res}\rangle$ & --- & 0 & 0 \\
+        \hline\hline
+    \end{tabular}
+\end{table}
+
+No candidate from the primary scan was found in either of the consistency-check scans within four ALP linewidths. The search therefore yields no statistically significant evidence for ALP dark matter at the detection sensitivity.
+
+\subsection{Coupling-constant limit}
+
+In the absence of a detection, an upper limit on the ALP-proton gradient coupling is obtained from
+\begin{equation}
+    |g_\mathrm{ap,\,lim}| = \sqrt{\frac{e_5}{\eta_\mathrm{rec}\,P_{\perp,1}}}
+    \,,\label{eq:limcouple}
+\end{equation}
+where $e_5$ is the signal power corresponding to the $5\,\sigma$ NPE threshold, $P_{\perp,1}$ is the reference signal power for $|g_\mathrm{ap}|=\SI{1}{\GeV^{-1}}$, and $\eta_\mathrm{rec}$ is the analysis efficiency defined above. The resulting exclusion limits are plotted in Figure~\ref{fig:ALPlimits}.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\linewidth]{works/LF-thermal/figures/ALPlimits.png}
+    \caption{ALP gradient-proton coupling excluded at \SI{95}{\%} confidence level by the three sequential scans. Each data point represents the sensitivity for one scan step. The variation in sensitivity between scans reflects the daily modulation of the ALP wind direction relative to the bias field. Reproduced from Ref.\,\cite{Walter2024_LFthermal}.}
+    \label{fig:ALPlimits}
+\end{figure}
+
+The measurement sets the limit $|g_\mathrm{ap}| \lesssim \SI{3e-2}{\GeV^{-1}}$ over the scanned ALP mass range $5.576741$--$5.577733\,\si{\neV}/c^2$. This is the first dedicated laboratory search in this mass range. The sensitivity is dominated by the small thermal polarization of the methanol sample; hyperpolarized samples are expected to improve it by several orders of magnitude.
