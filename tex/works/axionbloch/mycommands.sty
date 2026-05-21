@@ -1,0 +1,114 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mycommands}[define custom commands for easy commenting here]
+
+\usepackage{graphicx}% Include figure files
+% \graphicspath{{../figures/}}
+
+\usepackage{bm}% bold math
+
+%\usepackage[showframe,%Uncomment any one of the following lines to test 
+%%scale=0.7, marginratio={1:1, 2:3}, ignoreall,% default settings
+%%text={7in,10in},centering,
+%%margin=1.5in,
+%%total={6.5in,8.75in}, top=1.2in, left=0.9in, includefoot,
+%%height=10in,a5paper,hmargin={3cm,0.8in},
+%]{geometry}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ % For professional tables
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{booktabs} % if you're using \toprule, \midrule, \bottomrule
+\usepackage{tabularx}
+\usepackage{multirow}
+\renewcommand{\arraystretch}{1.5}
+\usepackage{threeparttable}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% for chemical forumals
+\usepackage{chemformula}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\usepackage{gensymb} % for degree ° symbol
+% \usepackage{float}
+%\usepackage{floatrow}
+% \usepackage{dblfloatfix}
+\usepackage{placeins}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SI unit
+\usepackage{siunitx}
+\DeclareSIUnit\torr{torr}
+\DeclareSIUnit\ppm{ppm}
+\DeclareSIUnit\ppb{ppb}
+\DeclareSIUnit\bar{bar}
+\DeclareSIUnit\gauss{G}
+\DeclareSIUnit\neV{\nano\electronvolt}
+\DeclareSIUnit\peV{\pico\electronvolt}
+\DeclareSIUnit\kms{km/s}
+\sisetup{print-unity-mantissa=false}  % To display only the exponent (i.e., 10⁻¹¹) 
+\sisetup{separate-uncertainty = false} % use parenthesis style for uncertainty
+% \sisetup{uncertainty-mode = separate} % use +/- style for uncertainty
+\sisetup{uncertainty-mode = compact-marker} % turn this on to use style like 123.45(1.20)
+% otherwise we  turn this on to use style like 123.45(120)
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[normalem]{ulem}
+\usepackage{changes}
+
+\usepackage{hyperref}% add hypertext capabilities
+\usepackage{cleveref}
+
+% cleveref label names
+\crefname{section}{Sec.}{Secs.}
+\Crefname{section}{Sec.}{Secs.}
+\crefname{figure}{Fig.}{Figs.}
+\Crefname{figure}{Fig.}{Figs.}
+\crefname{equation}{Eq.}{Eqs.}
+\Crefname{equation}{Eq.}{Eqs.}
+
+\newcommand{\s}{Sec.\,}
+\newcommand{\f}{Fig.\,}
+% \newcommand{\t2star}{$T_2^*$}
+% \newcommand{\t2}{$T_2$}
+
+\usepackage{xcolor}
+\newcommand{\JW}[2][cyan]{\textcolor{#1}{Julian: #2}}
+\newcommand{\OM}[2][purple]{\textcolor{#1}{Olympia: #2}}
+\newcommand{\HB}[2][orange]{\textcolor{#1}{Hendrik: #2}}
+\newcommand{\YZ}[2][brown]{\textcolor{#1}{Yuzhe: #2}}
+\newcommand{\kp}[2][red]{\textcolor{#1}{* #2}}
+\newcommand{\new}[2][red]{\textcolor{#1}{#2}}
+\newcommand{\NLF}[2][teal]{\textcolor{#1}{Nate: #2}}
+\newcommand{\YG}[2][magenta]{\textcolor{#1}{Younggeun: #2}}
+\newcommand{\DB}[2][blue]{\textcolor{#1}{Dima: #2}}
+
+
+% code formatting
+\newcommand{\code}{\texttt}
+\newcommand{\axionbloch}{\code{axionbloch}}
+% \newcommand{\astropy}{\code{astropy}}
+% \newcommand{\mpipy}{\code{mpi4py}}
+\newcommand{\python}{\code{Python}}
+\newcommand{\scipy}{\code{SciPy}}
+\newcommand{\numpy}{\code{NumPy}}
+\newcommand{\runtests}{\code{runtests}}
+\newcommand{\pytest}{\code{pytest}}
+% \newcommand{\kdcount}{\code{kdcount}}
+% \newcommand{\pmesh}{\code{pmesh}}
+% \newcommand{\Corrfunc}{\code{Corrfunc}}
+% \newcommand{\bigfile}{\code{bigfile}}
+% \newcommand{\halotools}{\code{Halotools}}
+% \newcommand{\dask}{\code{dask}}
+% \newcommand{\pandas}{\code{pandas}}
+% \newcommand{\fitsio}{\code{fitsio}}
+\newcommand{\hdfpy}{\code{h5py}}
+% \newcommand{\pfftpython}{\code{pfft-python}}
+% \newcommand{\classylss}{\code{classylss}}
+% \newcommand{\fastpm}{\code{fastpm-python}}
+\newcommand{\ipython}{\code{IPython}}
+\newcommand{\jupyter}{\code{Jupyter}}
+% \newcommand{\yt}{the \code{yt project}}
+
+\endinput
