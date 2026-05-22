@@ -145,7 +145,7 @@ In summary, the optimal strategy for a frequency-scanning ALP search is to work 
 
 \section{The methanol measurement}\label{sec:results:measurement}
 
-The scanning framework above was applied in a proof-of-concept ALP search using the CASPEr-Gradient-LF apparatus with a thermally polarized methanol sample. This section describes the measurement procedure and parameters.
+The scanning framework above was applied in a proof-of-concept ALP search using the CASPEr-Gradient-LF apparatus with a thermally polarized methanol sample. This section describes the measurement procedure and parameters. In the following, $g_\mathrm{ap}$ denotes the ALP-proton gradient coupling constant, i.e.\ $g_\mathrm{aNN}$ evaluated for proton spins.
 
 \subsection{Measurement parameters}
 
@@ -158,7 +158,7 @@ The ALP coherence time at the search frequency is $\tau_a \approx \SI{0.35}{\s}$
 At each frequency step the following actions were performed in order:
 \begin{enumerate}[label=\arabic*.]
     \item Pulsed-NMR measurement (a $\pi/2$ pulse followed by free-induction decay) to determine the Larmor frequency, linewidth $\Delta\nu$ (and hence $T_2^* = 1/(\pi\Delta\nu)$), and NMR signal power. A Lorentzian fit to the resulting PSD peak extracts these parameters and calibrates the sensitivity at each step.
-    \item Carr-Purcell-Meiboom-Gill (CPMG) pulse sequence prior to the first scan step to determine $T_2$ from the exponential decay of spin-echo amplitudes.
+    \item Carr-Purcell-Meiboom-Gill (CPMG) \cite{CPMG} pulse sequence prior to the first scan step to determine $T_2$ from the exponential decay of spin-echo amplitudes.
     \item \SI{5}{\s} dwell time to allow ring-down noise to decay and the magnetization to return close to its equilibrium value along $\mathbf{B}_0$.
     \item \SI{100}{\s} data acquisition without any pulses, recording the SQUID feedback voltage $V_\mathrm{f}$ at \SI{13.4}{\kHz} sampling rate. This window corresponds to approximately 280 ALP coherence times and is the ALP-search channel.
     \item Frequency step: the Larmor frequency is increased by \SI{\approx6}{\Hz} by ramping the Helmholtz coils or the superconducting magnet.
