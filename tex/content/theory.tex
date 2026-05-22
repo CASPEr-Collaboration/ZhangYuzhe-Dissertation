@@ -3,32 +3,76 @@
     Part of the content in this chapter related to frequency-scanning considerations is adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.
 \end{jointwork}
 
-The ALP field can be detected through its gradient coupling to nuclear spins, which acts as an effective oscillating pseudomagnetic field. Understanding the properties of this coupling---its frequency, amplitude, and coherence---is essential for designing a sensitive experiment and choosing an optimal measurement strategy. By answering the questions of what the signal looks like and how it depends on experimental parameters, this chapter lays the groundwork for the scanning strategy and sensitivity analysis of Chapter~\ref{chap:results}.
+The ALP field can be detected through its gradient coupling to nuclear spins, which acts as an effective oscillating pseudomagnetic field. Understanding the properties of this coupling---its frequency, amplitude, and coherence---is essential for designing a sensitive experiment and choosing an optimal measurement strategy. This chapter builds the signal model from first principles: starting from the quantum-mechanical description of a single ALP and showing how the superposition of many such quanta gives rise to a classical stochastic oscillating field, which then drives resonant spin precession in the NMR sample.
 
-\section{Stochasticity}\label{sec:theory:stochasticity}
 
-On time scales shorter than its coherence time $\tau_a$, the ALP field can be approximated as a coherent classical oscillation:
+\section{The ALP dark-matter field}\label{sec:theory:ALPfield}
+
+\subsection{Single-particle wavefunction}\label{sec:theory:singleparticle}
+
+In the non-relativistic limit appropriate for virialized dark matter ($v_a \ll c$), a single ALP with velocity $\mathbf{v}_a$ is described by a plane-wave state
+\begin{equation}
+    \psi(\mathbf{r}, t)
+    = a_1\, e^{\,i\left(\mathbf{k}\cdot\mathbf{r} - 2\pi\nu_a t\right)}
+    \,,\label{eq:single_ALP_wave}
+\end{equation}
+where the Compton frequency $\nu_a = m_a c^2/h$ is set by the rest mass alone, and the wavevector $\mathbf{k} = m_a \mathbf{v}_a/\hbar$ carries the kinetic information. The de~Broglie wavelength of such a particle is
+\begin{equation}
+    \lambda_{dB}
+    = \frac{h}{m_a v_a}
+    = \frac{hc}{m_a c^2}\cdot\frac{c}{v_a}
+    \,.\label{eq:lambda_dB}
+\end{equation}
+For $m_a = \SI{1}{\micro\eV}$ and $v_a = \SI{220}{\km\per\s}$, this gives $\lambda_{dB} \approx \SI{1.7}{\km}$. The wavelength grows as $m_a^{-1}$, so at the neV masses probed in this thesis it reaches hundreds of kilometres---far larger than any laboratory apparatus. This means the ALP field is spatially coherent across the entire experiment, and the spatial gradient $\boldsymbol{\nabla}a$ that couples to nuclear spins is well approximated as uniform over the sample volume.
+
+The enormous de~Broglie wavelength also implies an exceptionally high phase-space occupation number. The number density of ALPs in the local dark-matter halo is
+\begin{equation}
+    n_a = \frac{\rho_{DM}}{m_a c^2}
+    \approx \frac{\SI{0.4}{\GeV\per\cm^3}}{m_a c^2}
+    \,,\label{eq:na}
+\end{equation}
+so the mean occupation number per de~Broglie mode is
+\begin{equation}
+    \mathcal{N} \approx n_a\,\lambda_{dB}^3
+    = \frac{\rho_{DM}}{m_a c^2}\left(\frac{hc}{m_a c^2}\right)^3\!\left(\frac{c}{v_a}\right)^3
+    \,.\label{eq:occupation}
+\end{equation}
+For $m_a = \SI{1}{\micro\eV}$ and $\rho_{DM} = \SI{0.4}{\GeV\per\cm^3}$, one obtains $\mathcal{N} \approx 10^{30}$. Even for the lightest masses still in the particle regime ($m_a \sim \SI{e-22}{\eV}$, ``fuzzy'' dark matter), $\mathcal{N}$ is astronomically large. This is a direct consequence of the tiny ALP mass: for a fixed energy density, a lighter boson must be exponentially more abundant.
+
+\subsection{Classical-field limit from mode superposition}\label{sec:theory:classicallimit}
+
+Because ALPs are bosons and their occupation numbers are so large, quantum statistics strongly suppress number fluctuations relative to the mean: $\delta\mathcal{N}/\mathcal{N} \sim \mathcal{N}^{-1/2} \to 0$. In this regime the quantum field operator $\hat{a}$ can be replaced by a classical $c$-number field---the same approximation that turns a quantum electromagnetic field into a classical wave when the photon number is large.
+
+The dark-matter halo does not consist of a single momentum mode but of a superposition drawn from the Maxwell-Boltzmann velocity distribution. Each mode $i$ contributes a plane wave with amplitude $a_i$, wavevector $\mathbf{k}_i = m_a \mathbf{v}_i/\hbar$, and a random phase $\phi_i$:
+\begin{equation}
+    a(\mathbf{r}, t)
+    = \sum_i a_i\, \cos\!\bigl(\nu_i t - \mathbf{k}_i\cdot\mathbf{r} + \phi_i\bigr)
+    \,,\label{eq:ALP_sum}
+\end{equation}
+where $\nu_i = \nu_a + \tfrac{1}{2}m_a v_i^2/h \approx \nu_a$ is the total energy (including kinetic energy). On time scales short compared to the spread of phases accumulating from the slightly different $\nu_i$, the sum behaves as a single coherent oscillation at frequency $\nu_a$:
 \begin{equation}
     a(\mathbf{r},t) = a_0 \cos(\nu_a t - \mathbf{k}\cdot \mathbf{r} + \phi)
     \,.\label{eq:ALP_field}
 \end{equation}
-Here $a_0$ is the amplitude of the field, $\nu_a = m_a c^2/\hbar$ is the ALP Compton frequency where $c$ is the speed of light and $\hbar$ is the reduced Planck constant, $\mathbf{k} = m_a \mathbf{v}_a/\hbar$ is the wave vector ($\mathbf{v}_a$ is the relative velocity of the ALP field and the detector), $\mathbf{r}$ is the displacement vector, and $\phi$ is a random phase uniformly distributed in $[0,\, 2\pi)$. The amplitude $a_0$ follows a Rayleigh distribution. Its average root-mean-square (r.m.s.) value is set by the local dark-matter density $\rho_{DM}\approx\SI{0.4}{\GeV\cm^{-3}}$ \cite{BERGSTROM1998137,Jungman1992SupersymmetricDM,doi:10.1146/annurev.astro.39.1.137}:
+Here $\mathbf{k} = m_a \mathbf{v}_a/\hbar$ is an effective wavevector, $\phi$ is a random phase uniformly distributed in $[0,\,2\pi)$, and the amplitude $a_0$ follows a Rayleigh distribution because it is the magnitude of a sum of many random phasors \cite{Centers2021Stochastic}. Its r.m.s.\ value is set by the local dark-matter energy density \cite{BERGSTROM1998137,Jungman1992SupersymmetricDM,doi:10.1146/annurev.astro.39.1.137}:
 \begin{align}
     \rho_{DM} \approx \dfrac{c\, m_a^2 a_0^2}{2\hbar^3}
      \,.\label{eq:rhoDM}
 \end{align}
 
-The ALP field is stochastic in nature \cite{Centers2021Stochastic}. Assuming that ALP dark matter is virialized in the galactic potential and follows a Maxwell-Boltzmann velocity distribution with average speed $v_a \approx \SI{220}{\km\per\s}$ \cite{Evans2019_SHMRefined}, the spectral linewidth of the ALP field observed with a detector on Earth is
+\subsection{Coherence time}\label{sec:theory:stochasticity}
+
+The modes in Equation~\eqref{eq:ALP_sum} have slightly different frequencies due to the kinetic-energy spread. Their phases drift apart on a time scale set by the spectral width of the field. For a Maxwell-Boltzmann velocity distribution with average speed $v_a \approx \SI{220}{\km\per\s}$ \cite{Evans2019_SHMRefined}, the ALP field spectral linewidth (FWHM) observed by a detector on Earth is
 \begin{equation}
     \Gamma_a = \dfrac{\nu_a}{Q_a}
     \,,\label{eq:Gamma_a_Qa}
 \end{equation}
-where $Q_a \equiv (c/v_a)^2 \approx 1.8\times10^6$ is the ALP quality factor. The ALP coherence time $\tau_a$ is related to the linewidth by $\Gamma_a = 2\pi/\tau_a$, giving
+where $Q_a \equiv (c/v_a)^2 \approx 1.8\times10^6$ is the ALP quality factor. The ALP coherence time $\tau_a$, defined by $\Gamma_a = 2\pi/\tau_a$, is therefore
 \begin{equation}
     \tau_a = \dfrac{2\pi Q_a}{\nu_a}
     \,.\label{eq:taua}
 \end{equation}
-At any given search frequency, $\tau_a$ is fixed by the ALP mass and the dark-matter velocity model. For Compton frequencies above \SI{1}{\kHz}, $\tau_a \lesssim \SI{1000}{\second}$.
+Within one coherence time the superposition Equation~\eqref{eq:ALP_sum} is well approximated by the single coherent mode Equation~\eqref{eq:ALP_field}. On longer time scales the random phases between modes cause the amplitude and phase of the effective oscillation to drift, so the field must be treated as a stochastic process \cite{Centers2021Stochastic}. For Compton frequencies above \SI{1}{\kHz}, $\tau_a \lesssim \SI{1000}{\second}$; the interplay between $\tau_a$ and the NMR relaxation times determines the optimal measurement strategy in Chapter~\ref{chap:results}.
 
 
 \section{Periodic modulations}
@@ -124,7 +168,7 @@ In the third case, when $T_2 \ll \tau_a$ and the dwell time $T \gg \tau_a$, the 
 
 \subsection{Numerical simulation}\label{sec:theory:simulation}
 
-The analytical estimates above are valid in the limit $T \gg \tau_a,\,T_2^*,\,T_2$. At lower Compton frequencies, the ALP coherence time can become comparable to or longer than experimentally accessible dwell times, and the simple scaling laws no longer apply. Numerical simulations using the \texttt{axionbloch} package are used to validate the analytical estimates and to explore intermediate parameter regimes.
+The analytical estimates above are valid in the limit $T \gg \tau_a,\,T_2^*,\,T_2$. At lower Compton frequencies, the ALP coherence time can become comparable to or longer than experimentally accessible dwell times, and the simple scaling laws no longer apply. Numerical simulations using the \texttt{axionbloch} package (Appendix~\ref{app:axionbloch}) are used to validate the analytical estimates and to explore intermediate parameter regimes.
 
 Three representative situations arise:
 \begin{description}
