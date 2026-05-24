@@ -1,2 +1,70 @@
 % Add additional packages you would like to use here.
 
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ % For professional tables
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{booktabs} % if you're using \toprule, \midrule, \bottomrule
+\usepackage{tabularx}
+\usepackage{multirow}
+\renewcommand{\arraystretch}{1.5}
+\usepackage{threeparttable}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% for chemical forumals
+\usepackage{chemformula}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\usepackage{gensymb} % for degree ° symbol
+% \usepackage{mycommands}
+% \usepackage{float}
+%\usepackage{floatrow}
+% \usepackage{dblfloatfix}
+% \usepackage{placeins}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SI unit
+\usepackage{siunitx}
+\DeclareSIUnit\torr{torr}
+\DeclareSIUnit\ppm{ppm}
+\DeclareSIUnit\ppb{ppb}
+\DeclareSIUnit\bar{bar}
+\DeclareSIUnit\gauss{G}
+\DeclareSIUnit\neV{\nano\electronvolt}
+\DeclareSIUnit\peV{\pico\electronvolt}
+\DeclareSIUnit\kms{km/s}
+\sisetup{print-unity-mantissa=false}  % To display only the exponent (i.e., 10⁻¹¹) 
+\sisetup{separate-uncertainty=false} % use parenthesis style for uncertainty
+% \sisetup{uncertainty-mode=separate} % use +/- style for uncertainty
+\sisetup{uncertainty-mode=compact-marker} % turn this on to use style like 123.45(1.20)
+% otherwise we  turn this on to use style like 123.45(120)
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \usepackage[normalem]{ulem}
+\usepackage{changes}
+
+
+% \NeedsTeXFormat{LaTeX2e}
+% \ProvidesPackage{mycommands}[define custom commands for easy commenting here]
+\usepackage{xcolor}
+
+\newcommand{\JW}[2][cyan]{\textcolor{#1}{Julian: #2}}
+
+\newcommand{\OM}[2][purple]{\textcolor{#1}{Olympia: #2}}
+
+\newcommand{\HB}[2][orange]{\textcolor{#1}{Hendrik: #2}}
+
+\newcommand{\YZ}[1]{\textcolor{brown}{Yuzhe: #1}}
+
+\newcommand{\kp}[2][red]{\textcolor{#1}{* #2}}
+
+\newcommand{\new}[2][red]{\textcolor{#1}{#2}}
+
+\newcommand{\NLF}[2][teal]{\textcolor{#1}{Nate: #2}}
+
+\newcommand{\YG}[2][magenta]{\textcolor{#1}{Younggeun: #2}}
+
+\newcommand{\DB}[2][blue]{\textcolor{#1}{Dima: #2}}
+
+% \endinput
