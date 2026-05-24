@@ -53,4 +53,5 @@ fonts/
 *.run.xml
 *.soc
 *.synctex.gz
+*.synctex(busy)
 *.toc
