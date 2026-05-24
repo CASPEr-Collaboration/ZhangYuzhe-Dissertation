@@ -1,29 +1,144 @@
 % \chapter{Axionlike-particle-induced spin precession}\label{chap:theory}
 
-\section{Earth bound ALP}
+\section{Earth-bound ALPs}\label{sec:theory:earthALP}
 
-% \subsection{Gravitational atom}
+% % \subsection{Gravitational atom}
 
-mention total mass constrained by the astro observation. 
+% mention total mass constrained by the astro observation. 
 
-\YZ{include lambdadB of axion trapped in gravitational potential (mention earth potential first with plots) of items such as Sun or Earth. what can be the mechanism of trapping and accumulation of DM? }
+% \YZ{include lambdadB of axion trapped in gravitational potential (mention earth potential first with plots) of items such as Sun or Earth. what can be the mechanism of trapping and accumulation of DM? }
 
-in the case of earth, the wavelength is very large. It can be treated like an atom. 
+% in the case of earth, the wavelength is very large. It can be treated like an atom. 
 
-Schroedinger eq for deriving the probability / mass distribution. 
+% Schroedinger eq for deriving the probability / mass distribution. 
 
-numeric solution of schr. eq.
+% numeric solution of schr. eq.
 
-get gradient from the wavefunction -> corresponding Omega_a's. plus linewidth
+% get gradient from the wavefunction -> corresponding Omega_a's. plus linewidth
 
-with plots. 
+% with plots. 
 
-ground state, excitated states.... coherence time if multiple modes are interfering. 
+% ground state, excitated states.... coherence time if multiple modes are interfering. 
 
 
-% \subsection{Coherence time}  % for MW axion
+% % \subsection{Coherence time}  % for MW axion
 
-\subsection{Daily modulations}
+% \subsection{Daily modulations} % due to the earth rotation
 
-due to the earth rotation
+The galactic dark-matter halo provides the primary ALP signal target discussed in Chapter~\ref{chap:results}. However, a distinct and potentially enhanced source arises from ALPs that are gravitationally bound to the Earth. Such Earth-bound states are analogous to atomic bound states---the Earth's gravitational potential plays the role of the Coulomb well and the ALP plays the role of the electron---and can support a discrete spectrum of spatial eigenstates. This section derives the properties of these bound states, estimates the resulting spin-precession signal, and discusses the characteristic daily modulation that distinguishes this signal from the galactic background.
 
+\subsection{Gravitational potential and the Bohr radius}
+
+In the non-relativistic limit, an ALP of mass $m_a$ in the gravitational field of the Earth obeys the Schrödinger equation
+\begin{equation}
+    \left[-\frac{\hbar^2\nabla^2}{2m_a} + V_g(r)\right]\psi_{nlm}(\mathbf{r})
+    = E_n\,\psi_{nlm}(\mathbf{r})
+    \,,\label{eq:schrodinger_earth}
+\end{equation}
+where the gravitational potential is
+\begin{equation}
+    V_g(r) = -\frac{GM_E\,m_a}{r}
+    \label{eq:grav_potential}
+\end{equation}
+for $r$ measured from the Earth's centre, $G$ is Newton's constant, and $M_E$ is the Earth's mass. The formal analogy with the hydrogen atom is exact: the ALP-Earth system is a gravitational atom \YZ{cite: relevant paper on gravitational atom, e.g.\ Arvanitaki et al.}, with the fine-structure constant replaced by the gravitational coupling
+\begin{equation}
+    \alpha_g \equiv \frac{GM_E\,m_a}{\hbar c}
+    \approx 2\times10^{-5}\left(\frac{m_a}{\SI{1}{\micro\eV}}\right)
+    \,.\label{eq:alpha_g}
+\end{equation}
+The analogue of the Bohr radius is
+\begin{equation}
+    a_g = \frac{\hbar^2}{GM_E\,m_a^2}
+    = \frac{\hbar c}{m_a c^2\,\alpha_g}
+    \approx \SI{283}{\km}\left(\frac{\SI{5.58}{\nano\eV}}{m_a}\right)^2
+    \,,\label{eq:bohr_radius_grav}
+\end{equation}
+and the bound-state energy levels are
+\begin{equation}
+    E_n = -\frac{m_a c^2\,\alpha_g^2}{2n^2}
+    = -\frac{G^2M_E^2\,m_a^3}{2\hbar^2\,n^2}
+    \,,\quad n = 1,2,3,\ldots
+    \label{eq:energy_levels_earth}
+\end{equation}
+
+The Bohr radius $a_g$ sets the spatial extent of the ground state. Its scaling as $m_a^{-2}$ means it varies rapidly with mass:
+\begin{itemize}
+    \item For $m_a \lesssim \SI{1}{\nano\eV}$: $a_g \gtrsim R_E$ --- the ground-state wavefunction extends to or beyond the Earth's surface; the ALP is loosely bound and the signal at the surface is sensitive to the full volume integral.
+    \item For $m_a \sim \SI{5}{\nano\eV}$: $a_g \sim \SI{300}{\km} \ll R_E$ --- the ALP is tightly bound inside the Earth; the surface gradient is set by the exponential tail of the wavefunction.
+    \item For $m_a \gg \SI{10}{\nano\eV}$: $a_g \ll R_E$ --- increasingly localized deep inside the Earth; detectors at the surface probe only the far tail.
+\end{itemize}
+\YZ{Add figure: Earth gravitational potential well as a function of radius $r$, overlaid with the ground-state probability density $|\psi_{100}|^2$ for one or two representative masses. Script: \texttt{scripts-and-data/earth\_ALP\_wavefunction.py} (to be written).}
+
+
+\subsection{Trapping and accumulation mechanisms}\label{sec:theory:earthALP:trapping}
+
+For Earth-bound states to be populated, ALPs from the galactic halo must lose enough kinetic energy to fall below the local escape velocity ($v_\mathrm{esc} \approx \SI{11.2}{\km\per\s}$ for Earth). Several mechanisms have been proposed \YZ{cite: Banerjee et al.\ 2019 arXiv:1902.07720; OHare 2025 fine-grained; other relevant papers}:
+
+\begin{description}
+    \item[Gravitational three-body scattering] A galactic ALP passing near the Earth can scatter off a third body (e.g.\ the Sun or Moon), losing kinetic energy and becoming trapped in a bound orbit. The rate depends on the local density and the ALP-body cross section.
+    \item[Self-interaction or wave-packet spreading] \YZ{placeholder: if ALPs have self-interactions or if wave-packet decoherence provides an effective dissipation, this may also populate bound states.}
+    \item[Resonant capture] Near specific orbital resonances the exchange of energy between the ALP and the Earth-Moon or Earth-Sun system may be efficient.
+\end{description}
+
+The total mass $M_\mathrm{bound}$ of ALPs trapped in Earth-bound states is strongly constrained by astrophysical and geophysical observations \YZ{cite and expand: relevant constraints on exotic mass inside Earth from geophysics / seismology / gravitational measurements}. An upper bound comes from the requirement that the Earth's measured gravitational multipole moments not be distorted beyond current geodetic precision. \YZ{Add quantitative upper limit on $M_\mathrm{bound}$ once reference is identified.}
+
+
+\subsection{Bound-state wavefunctions and the ALP gradient}\label{sec:theory:earthALP:wavefunctions}
+
+The normalised radial wavefunctions follow the hydrogen-atom form
+\begin{equation}
+    \psi_{nlm}(\mathbf{r}) = R_{nl}(r)\,Y_l^m(\hat{\mathbf{r}})
+    \,,
+\end{equation}
+where $Y_l^m$ are spherical harmonics and the radial functions $R_{nl}$ are expressed in terms of associated Laguerre polynomials with $r$ scaled by $a_g$. The ground state ($n=1$, $l=m=0$) is
+\begin{equation}
+    \psi_{100}(\mathbf{r}) = \frac{1}{\sqrt{\pi}\,a_g^{3/2}}\,e^{-r/a_g}
+    \,.\label{eq:psi_ground}
+\end{equation}
+The local ALP field amplitude at the detector is proportional to $|\psi_{nlm}|$ evaluated at the detector position $\mathbf{r}_\mathrm{det}$ (for a mode carrying total energy $E_n$ and a fixed number of bound quanta).
+
+The gradient of the ALP field, which drives nuclear spin precession through Equation~\eqref{eq:HaNN}, is
+\begin{equation}
+    \boldsymbol{\nabla}a\big|_{\mathbf{r}_\mathrm{det}}
+    \propto \boldsymbol{\nabla}\psi_{nlm}\big|_{\mathbf{r}_\mathrm{det}}
+    \,.\label{eq:earth_ALP_gradient}
+\end{equation}
+For the ground state, $|\boldsymbol{\nabla}\psi_{100}| = |\psi_{100}|/a_g$, so the gradient and the amplitude are related by a factor $1/a_g$.
+
+The corresponding r.m.s.\ Rabi frequency \YZ{derive more carefully; the expression below assumes the total bound mass $M_\mathrm{bound}$ is known}
+\begin{equation}
+    \Omega_a^\mathrm{Earth} \approx g_\mathrm{aNN}\,\frac{|\boldsymbol{\nabla}\psi_{100}(\mathbf{r}_\mathrm{det})|}{\gamma}\,
+    \sqrt{\frac{2M_\mathrm{bound}\,c^2}{m_a}}
+    \,.\label{eq:Omega_earth}
+\end{equation}
+\YZ{Add numerical estimate for $\Omega_a^\mathrm{Earth}$ as a function of $m_a$ and $M_\mathrm{bound}$. Add comparison with the galactic-halo Rabi frequency $\Omega_a$ (Equation~\eqref{eq:Omega_a}).}
+
+
+\subsection{Excited states and coherence}\label{sec:theory:earthALP:coherence}
+
+Unlike the galactic halo signal, which has a broad Maxwell-Boltzmann spectrum, Earth-bound ALPs occupy discrete energy levels $E_n$. Each level $n$ contributes an ALP oscillation at a slightly different Compton frequency
+\begin{equation}
+    \nu_n = \nu_a + \frac{|E_n|}{h}
+    = \nu_a\left(1 + \frac{\alpha_g^2}{2n^2}\right)
+    \,,\label{eq:nu_bound}
+\end{equation}
+where $\nu_a = m_a c^2/h$ is the rest-mass Compton frequency. The level spacing between adjacent states $n$ and $n+1$ is
+\begin{equation}
+    \Delta\nu_n = \frac{m_a c^2\,\alpha_g^2}{h}\left(\frac{1}{2n^2} - \frac{1}{2(n+1)^2}\right)
+    \approx \frac{m_a c^2\,\alpha_g^2}{h\,n^3}
+    \,.\label{eq:level_spacing}
+\end{equation}
+\YZ{Add numerical value of $\Delta\nu_n$ for $n=1$ and the masses of interest.}
+
+If multiple modes are populated simultaneously, their superposition produces a beating pattern with a period $\tau_\mathrm{beat} \approx 1/\Delta\nu_n$. This plays the role of a coherence time for the multi-mode Earth-bound field: the signal amplitude fluctuates on the time scale $\tau_\mathrm{beat}$, analogous to the galactic-halo coherence time $\tau_a = Q_a/\nu_a$ but with a discrete rather than continuous spectrum.
+
+Numerical solutions of Equation~\eqref{eq:schrodinger_earth} are needed to determine the wavefunctions and gradients for non-spherical or higher-$l$ modes and to account for the finite density profile of the Earth \YZ{placeholder: add reference to numerical solutions and/or to the script used to compute them; planned figure showing probability density and gradient magnitude for selected $(n,l,m)$ modes}.
+
+
+\subsection{Daily modulations}\label{sec:theory:earthALP:daily}
+
+The Earth-bound ALP wavefunction $\psi_{nlm}$ is defined in the Earth-centred inertial frame, with the quantisation axis aligned with the Earth's rotation axis (or with some fixed direction in space, depending on the angular momentum quantum numbers $l,m$). As the Earth rotates, the laboratory co-rotates, so the orientation of the gradient $\boldsymbol{\nabla}a$ relative to the bias field $\mathbf{B}_0$ changes with a period of one sidereal day.
+
+The component of $\boldsymbol{\nabla}a$ perpendicular to $\mathbf{B}_0$ (which drives nuclear spin precession, cf.\ Equation~\eqref{eq:Omega_a}) therefore exhibits a daily modulation. For a bias field pointed along the local vertical, and a bound state with quantum numbers $(n, l, m)$, the perpendicular gradient component traces a specific daily pattern determined by the spherical harmonic $Y_l^m$ evaluated at the detector's co-latitude \YZ{add explicit formula for the modulation amplitude as a function of co-latitude and $(l,m)$}.
+
+This daily modulation is a powerful discriminant: its period (one sidereal day) and phase are fixed by Earth's rotation and the quantum numbers of the bound state, providing a strong consistency check that is qualitatively different from both the galactic-halo signal (which has a different daily modulation driven by the velocity of the halo wind, cf.\ Section~\ref{sec:theory:earthALP:daily}) and instrumental artefacts. \YZ{Add figure: predicted daily modulation envelope for the ground state at a mid-latitude detector, for one or two representative masses.}
