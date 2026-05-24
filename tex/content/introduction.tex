@@ -100,47 +100,89 @@ Axionlike particles share the oscillatory and weakly coupled character of the QC
 On time scales shorter than the ALP coherence time, the ALP field can be treated as a classical oscillation:
 \begin{equation}
     a(\mathbf{r},t) = a_0\cos(\nu_a t - \mathbf{k}\cdot\mathbf{r} + \phi)
-    \,,
+    \,,\label{eq:ALP_field}
 \end{equation}
-where $\nu_a = m_a c^2/\hbar$ is the ALP Compton frequency, $\mathbf{k} = m_a\mathbf{v}_a/\hbar$ is the wave vector, $a_0$ is the amplitude, and $\phi$ is a random phase. The amplitude $a_0$ is set by the local dark-matter density through $\rho_{DM} \approx c\,m_a^2 a_0^2/(2\hbar^3)$ \cite{Centers2021Stochastic}. Because the ALP number density is so high for ultralight masses, this classical-field description is appropriate.
+where $\nu_a = m_a c^2/\hbar$ is the ALP Compton frequency, $\mathbf{k} = m_a\mathbf{v}_a/\hbar$ is the wave vector, $a_0$ is the amplitude, and $\phi$ is a random phase. The amplitude $a_0$ is set by the local dark-matter density through \sout{$\rho_{DM} \approx c\,m_a^2 a_0^2/(2\hbar^3)$}\YZ{comment} \cite{Centers2021Stochastic}. Because the ALP number density is so high for ultralight masses, this classical-field description is appropriate.
 
 \subsubsection{Quantum nature}
 % mention the quantum nature of it here with a figure of wavelengths
+% \YZ{modify this and mention lambdadB. mention N axions in a lambdadB-cubed box}
+% The virialized ALP field is stochastic: individual ALP quanta have a spread of velocities following the Maxwell-Boltzmann distribution with dispersion $v_a \approx \SI{220}{\km\per\s}$ \cite{Evans2019_SHMRefined}. The resulting spectral width of the ALP field sets a coherence time
+% \begin{equation}
+%     \tau_a \approx \frac{Q_a}{\nu_a}
+%     \,,\quad
+%     Q_a \equiv \left(\frac{c}{v_a}\right)^2 \approx 1.8\times10^6
+%     \,.\label{eq:Qa_intro}
+% \end{equation}
+% For Compton frequencies above \SI{1}{\kHz}, $\tau_a \lesssim \SI{1000}{\second}$. The quality factor $Q_a$ is analogous to that of a driven oscillator: within one coherence time the ALP field behaves as a coherent monochromatic wave, but its phase randomises on longer time scales.
 
-The virialized ALP field is stochastic: individual ALP quanta have a spread of velocities following the Maxwell-Boltzmann distribution with dispersion $v_a \approx \SI{220}{\km\per\s}$ \cite{Evans2019_SHMRefined}. The resulting spectral width of the ALP field sets a coherence time
-\begin{equation}
-    \tau_a \approx \frac{Q_a}{\nu_a}
-    \,,\quad
-    Q_a \equiv \left(\frac{c}{v_a}\right)^2 \approx 1.8\times10^6
-    \,.\label{eq:Qa_intro}
-\end{equation}
-For Compton frequencies above \SI{1}{\kHz}, $\tau_a \lesssim \SI{1000}{\second}$. The quality factor $Q_a$ is analogous to that of a driven oscillator: within one coherence time the ALP field behaves as a coherent monochromatic wave, but its phase randomises on longer time scales.
 
 \subsection{Non-gravitational interactions}
-The most relevant non-gravitational couplings for this thesis are the gradient coupling to nucleons. The nucleon Hamiltonian in the presence of an ALP field background is \cite{GrahamNewobservables}
+The most relevant non-gravitational couplings for this thesis are the gradient coupling to nucleons. The nucleon Hamiltonian in the presence of an ALP field background can be written as \cite{GrahamNewobservables}
 \begin{equation}
-    H_{\mathrm{aNN}} \sim g_{\mathrm{aNN}}\,{\boldsymbol\nabla}a\cdot\mathbf{I}
-    \,,
+    H_{\mathrm{aNN}} = c g_{\mathrm{aNN}}\,{\boldsymbol\nabla}a\cdot\mathbf{I}
+    \,,\label{eq:HaNN}
 \end{equation}
-where $g_{\mathrm{aNN}}$ is the coupling strength in $\SI{}{\GeV^{-1}}$ and $\mathbf{I}$ is the nuclear spin operator. Comparing this with the NMR Hamiltonian $H_\mathrm{NMR} = \hbar\gamma\mathbf{B}\cdot\mathbf{I}$, the ALP gradient acts as an effective oscillating pseudomagnetic field
+where $g_{\mathrm{aNN}}$ is the coupling strength in $\SI{}{\GeV^{-1}}$ and $\mathbf{I}$ is the nuclear spin operator. 
+In this form of Hamiltonian, $g_{\mathrm{aNN}} a_0$ becomes dimensionless. 
+The r.m.s.\ value of ALP field amplitude is set by the local dark-matter energy density \cite{BERGSTROM1998137,Jungman1992SupersymmetricDM,doi:10.1146/annurev.astro.39.1.137}:
+% \begin{align}
+%     \rho_{DM} \approx \dfrac{c\, m_a^2 a_0^2}{2\hbar^3}
+%      \,.\label{}
+% \end{align}
+\begin{align}
+    %  \approx \dfrac{c\, m_a^2 a_0^2}{2\hbar^3}
+    a_0 = \dfrac{\sqrt{2 \rho_{DM} \hbar^3}}{m_a\sqrt{c}}
+     \,.\label{eq:a0_rhoDM}
+\end{align}
+The amplitude $a_0$ here has dimension of energy. 
+
+
+In some papers, nuclear spin operator $\mathbf{I}$ is substituted with $\hbar {\boldsymbol\sigma_n}$, where $ {\boldsymbol\sigma_n}$ is dimensionless nuclear spin operator. 
+Expanded: 
 \begin{equation}
-    \mathbf{B}_a(t) = \frac{g_{\mathrm{aNN}}\,{\boldsymbol\nabla}a}{\gamma}
+    H_{\mathrm{aNN}} = c g_{\mathrm{aNN}} a_0 \sin(\nu_a t - \mathbf{k}\cdot\mathbf{r} + \phi) m_a \,\mathbf{v}_a\cdot\mathbf{I}/ \hbar
+    \,,\label{eq:HaNN_vel}
+\end{equation}
+
+Comparing this with the NMR Hamiltonian $H_\mathrm{NMR} = \gamma\mathbf{B}\cdot\mathbf{I}$, the ALP gradient acts as an effective oscillating pseudomagnetic field
+\begin{equation}
+    \mathbf{B}_a(t) = \frac{c g_{\mathrm{aNN}}\,{\boldsymbol\nabla}a}{\gamma}
     \,.\label{eq:Bpseudo}
 \end{equation}
 This gradient coupling oscillates at the ALP Compton frequency and can drive resonant spin precession when the Larmor frequency matches $\nu_a$. The search for this coupling is the subject of Chapter~\ref{chap:results}.
+\YZ{add some examples to show equivalent Ba field magnitude?}
 
-\subsection{Models of axionlike dark matter}
+The r.m.s.\ Rabi frequency of the pseudomagnetic field can be found by the Hamiltonian in Equation~\eqref{eq:HaNN_vel} \cite{Centers2021Stochastic,Yuzhe2023_FrequencyScanning}
+% \begin{equation}
+%     \Omega_a = \dfrac{1}{2}\, g_{\mathrm{aNN}} \sqrt{2\hbar c\, \rho_{DM}}\, v_{\bot}
+%     \,,\label{eq:Omega_a}
+% \end{equation}
+\begin{equation}
+    \Omega_a = \dfrac{1}{2\hbar} c g_\mathrm{{aNN}} a_0 m_a v_{\bot} = \dfrac{1}{2} \mathrm{g_{aNN}} \sqrt{2\hbar c \rho_{DM}} v_{\bot}
+    \,,\label{eq:Omega_a}
+\end{equation}
+where $v_{\bot}$ is the component of the ALP-detector relative velocity perpendicular to $\mathbf{B}_0$. 
+Taking $v_{\bot} = \SI{220}{\km\per\second}$, we have $\Omega_a/2\pi = g_{\mathrm{aNN}} \times \SI{0.2}{\GeV\cdot\Hz}$. 
+For $g_{\mathrm{aNN}} \lesssim 10^{-10}\,\SI{}{\GeV^{-1}}$, the Rabi period $2\pi/\Omega_a \gtrsim 1000\,\mathrm{yr}$, confirming that the ALP field is a weak drive on the spins.
+\YZ{about that one half? btw check the values! }
 
-\subsubsection{Thermalized galatic axionlie dark matter}
+% \subsection{Models of axionlike dark matter}
 
-placeholder
+% \subsubsection{Thermalized galatic axionlie dark matter}
 
-\subsubsection{Gravitational atom}
+% placeholder
 
-earth or solar bound dark matter. 
+% \subsubsection{Gravitational atom}
+
+% earth or solar bound dark matter. 
 
 
 \section{CASPEr project}\label{sec:intro:CASPEr}
+
+first mention a lot of magnetic resonance searches. 
+\cite{Kimball2023_search}
+
 CASPEr (Cosmic Axion Spin Precession Experiment) is a family of experiments proposed in 2014 \cite{CASPErProposal2014} that use nuclear spins to search for axion-induced effects. The idea is to translate the tiny axion coupling in Equation~\eqref{eq:Bpseudo} into a measurable spin precession in a carefully controlled NMR setup.
 
 The project has several branches, including electric and gradient-based searches, and both low-field and high-field implementations. The low-field regime is especially relevant when the goal is to scan a wide frequency band with high sensitivity to weak couplings.
@@ -151,6 +193,8 @@ The central idea is to tune the NMR resonance to a frequency that matches the ax
 In practice, the method reduces to a frequency scan: either the signal appears at a particular resonance or the absence of a signal constrains the coupling strength over the scanned band.
 
 \subsection{CASPEr-Electric}
+
+\YZ{shoten these subsections}
 CASPEr-Electric (CASPEr-E) searches for an oscillating nuclear electric dipole moment induced by the ALP-gluon coupling. This moment generates an effective oscillating field along the nuclear spin axis in the presence of an electric field, enabling detection through NMR at the corresponding Compton frequency.
 
 \subsection{CASPEr comagnetometers}
@@ -165,3 +209,5 @@ CASPEr-Gradient searches for the ALP-fermion gradient coupling described by Equa
     \caption{Conceptual diagram of the CASPEr-Gradient-Low-Field setup. Superconducting devices (dark green) are submerged in a liquid helium bath (light green). The excitation and pickup coils characterise the sample and detect the spin-precession signal. The sample temperature can be controlled independently of the helium bath, enabling measurements with both thermal and hyperpolarized samples. Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.}
     \label{fig:CASPEr_Apparatus}
 \end{figure}
+
+\YZ{mention what are going to be included?}

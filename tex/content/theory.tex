@@ -1,6 +1,6 @@
 \chapter{Axionlike-particle-induced spin precession}\label{chap:theory}
 \begin{jointwork}
-    Part of the content in this chapter related to frequency-scanning considerations is adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.
+    Part of the content in this chapter related to frequency-scanning considerations is adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning}. \YZ{modify?}
 \end{jointwork}
 
 The ALP field can be detected through its gradient coupling to nuclear spins, which acts as an effective oscillating pseudomagnetic field. Understanding the properties of this coupling---its frequency, amplitude, and coherence---is essential for designing a sensitive experiment and choosing an optimal measurement strategy. This chapter builds the signal model from first principles: starting from the quantum-mechanical description of a single ALP and showing how the superposition of many such quanta gives rise to a classical stochastic oscillating field, which then drives resonant spin precession in the NMR sample.
@@ -8,22 +8,27 @@ The ALP field can be detected through its gradient coupling to nuclear spins, wh
 
 \section{The ALP dark-matter field}\label{sec:theory:ALPfield}
 
-\subsection{Single-particle wavefunction}\label{sec:theory:singleparticle}
 
-In the non-relativistic limit appropriate for virialized dark matter ($v_a \ll c$), a single ALP with velocity $\mathbf{v}_a$ is described by a plane-wave state
+\subsection{Single particle}\label{sec:theory:singleparticle}
+
+
+Non-relativistic ALP with velocity $\mathbf{v}_a \ll c$ can be described by a plane-wave state
 \begin{equation}
     \psi(\mathbf{r}, t)
     = a_1\, e^{\,i\left(\mathbf{k}\cdot\mathbf{r} - 2\pi\nu_a t\right)}
     \,,\label{eq:single_ALP_wave}
 \end{equation}
-where the Compton frequency $\nu_a = m_a c^2/h$ is set by the rest mass alone, and the wavevector $\mathbf{k} = m_a \mathbf{v}_a/\hbar$ carries the kinetic information. The de~Broglie wavelength of such a particle is
+where the Compton frequency $\nu_a = m_a c^2/h$ is set by the rest mass alone, and the wavevector $\mathbf{k} = m_a \mathbf{v}_a/\hbar$ carries the kinetic information. 
+The de~Broglie wavelength of such a particle is
 \begin{equation}
     \lambda_{dB}
     = \frac{h}{m_a v_a}
-    = \frac{hc}{m_a c^2}\cdot\frac{c}{v_a}
+    % = \frac{hc}{m_a c^2}\cdot\frac{c}{v_a}
     \,.\label{eq:lambda_dB}
 \end{equation}
-For $m_a = \SI{1}{\micro\eV}$ and $v_a = \SI{220}{\km\per\s}$, this gives $\lambda_{dB} \approx \SI{1.7}{\km}$. The wavelength grows as $m_a^{-1}$, so at the neV masses probed in this thesis it reaches hundreds of kilometres---far larger than any laboratory apparatus. This means the ALP field is spatially coherent across the entire experiment, and the spatial gradient $\boldsymbol{\nabla}a$ that couples to nuclear spins is well approximated as uniform over the sample volume.
+For $m_a < \SI{1}{\micro\eV}$ and $v_a < \SI{550}{\km\per\s}$\cite{Evans2019_SHMRefined}, this gives $\lambda_{dB} \approx \SI{1.7}{\km}$\YZ{check the numbers here. add a reference to calculation script}. 
+The wavelength grows as $m_a^{-1}$, so at the neV masses probed in this thesis it reaches hundreds of kilometres---far larger than any laboratory apparatus. 
+This means the ALP field is spatially coherent across the entire experiment, and the spatial gradient $\boldsymbol{\nabla}a$ that couples to nuclear spins is well approximated as uniform over the sample volume.
 
 The enormous de~Broglie wavelength also implies an exceptionally high phase-space occupation number. The number density of ALPs in the local dark-matter halo is
 \begin{equation}
@@ -39,69 +44,52 @@ so the mean occupation number per de~Broglie mode is
 \end{equation}
 For $m_a = \SI{1}{\micro\eV}$ and $\rho_{DM} = \SI{0.4}{\GeV\per\cm^3}$, one obtains $\mathcal{N} \approx 10^{30}$. Even for the lightest masses still in the particle regime ($m_a \sim \SI{e-22}{\eV}$, ``fuzzy'' dark matter), $\mathcal{N}$ is astronomically large. This is a direct consequence of the tiny ALP mass: for a fixed energy density, a lighter boson must be exponentially more abundant.
 
-\subsection{Classical-field limit from mode superposition}\label{sec:theory:classicallimit}
+\subsection{Ensemble}\label{sec:theory:classicallimit}
 
-Because ALPs are bosons and their occupation numbers are so large, quantum statistics strongly suppress number fluctuations relative to the mean: $\delta\mathcal{N}/\mathcal{N} \sim \mathcal{N}^{-1/2} \to 0$. In this regime the quantum field operator $\hat{a}$ can be replaced by a classical $c$-number field---the same approximation that turns a quantum electromagnetic field into a classical wave when the photon number is large.
-
-The dark-matter halo does not consist of a single momentum mode but of a superposition drawn from the Maxwell-Boltzmann velocity distribution. Each mode $i$ contributes a plane wave with amplitude $a_i$, wavevector $\mathbf{k}_i = m_a \mathbf{v}_i/\hbar$, and a random phase $\phi_i$:
+Because ALPs are bosons and their occupation numbers are so large, quantum statistics strongly suppress number fluctuations relative to the mean: $\delta\mathcal{N}/\mathcal{N} \sim \mathcal{N}^{-1/2} \to 0$. 
+In this regime, the quantum field operator $\hat{a}$ can be replaced by a classical field. 
+Each ALP contributes a plane wave with amplitude $a_i = a_0 / \sqrt{N_a}$, wavevector $\mathbf{k}_i = m_a \mathbf{v}_i/\hbar$, and a random phase $\phi_i$:
 \begin{equation}
     a(\mathbf{r}, t)
-    = \sum_i a_i\, \cos\!\bigl(\nu_i t - \mathbf{k}_i\cdot\mathbf{r} + \phi_i\bigr)
+    = \dfrac{a_0}{\sqrt{N_a}} \sum_i \, \cos\left(\nu_i t - \mathbf{k}_i\cdot\mathbf{r} + \phi_i\right)
     \,,\label{eq:ALP_sum}
 \end{equation}
-where $\nu_i = \nu_a + \tfrac{1}{2}m_a v_i^2/h \approx \nu_a$ is the total energy (including kinetic energy). On time scales short compared to the spread of phases accumulating from the slightly different $\nu_i$, the sum behaves as a single coherent oscillation at frequency $\nu_a$:
-\begin{equation}
-    a(\mathbf{r},t) = a_0 \cos(\nu_a t - \mathbf{k}\cdot \mathbf{r} + \phi)
-    \,.\label{eq:ALP_field}
-\end{equation}
-Here $\mathbf{k} = m_a \mathbf{v}_a/\hbar$ is an effective wavevector, $\phi$ is a random phase uniformly distributed in $[0,\,2\pi)$, and the amplitude $a_0$ follows a Rayleigh distribution because it is the magnitude of a sum of many random phasors \cite{Centers2021Stochastic}. Its r.m.s.\ value is set by the local dark-matter energy density \cite{BERGSTROM1998137,Jungman1992SupersymmetricDM,doi:10.1146/annurev.astro.39.1.137}:
+where $\nu_i = \nu_a + \tfrac{1}{2}m_a v_i^2/h $ is the total energy (including kinetic energy). 
+Note that the ALP amplitude here is normalized by $\sum_i a_i^2 = a_0^2$. 
+% On time scales short compared to the spread of phases accumulating from the slightly different $\nu_i$, the sum behaves as a single coherent oscillation at frequency $\nu_a$:
+% \begin{equation}
+%     a(\mathbf{r},t) = a_0 \cos(\nu_a t - \mathbf{k}\cdot \mathbf{r} + \phi)
+%     \,.
+% \end{equation}
+% Here $\mathbf{k} = m_a \mathbf{v}_a/\hbar$ is an effective wavevector, $\phi$ is a random phase uniformly distributed in $[0,\,2\pi)$, and the amplitude $a_0$ follows a Rayleigh distribution because it is the magnitude of a sum of many random phasors \cite{Centers2021Stochastic}. 
+% The interference of ALPs determines finite coherence time of the ALP field. On time scales much shorter than the coherence time, the ALP field can be simiplified to $a(\mathbf{r},t) = a_0\cos(\nu_a t - \mathbf{k}\cdot\mathbf{r} + \phi)$, where $$
+
+\subsection{Stochasticity}\label{sec:theory:stochasticity}
+
+The modes in Equation~\eqref{eq:ALP_sum} have slightly different frequencies due to the ALP ensemble velocity spread. Their phases drift apart over time, hence decoherence happens. 
+If the velocity spread, characterized by FWHM of the velocity distribution, is $\Delta v_a$, the corresponding kinetic-energy spread would be $\Delta E_k = \tfrac{1}{2} m_a (\Delta v_a)^2$. This results in a relative spread of ALP Compton frequencies of 
+% \begin{align}
+%     \Delta E_k = \tfrac{1}{2} m_a (\Delta v_a)^2\,.
+% \end{align}
 \begin{align}
-    \rho_{DM} \approx \dfrac{c\, m_a^2 a_0^2}{2\hbar^3}
-     \,.\label{eq:rhoDM}
+    \Delta \nu_a / \nu_a = \frac{\Delta E_k}{h \nu_a} = \left(\frac{\Delta v_a}{c}\right)^2\,.
 \end{align}
+The ALP quality factor $Q_a$ is defined as the inverse of this relative spread as $Q_a =\nu_a / \Delta \nu_a$. 
+The quality factor here estimates the number of oscillations after which the phases of ALPs diverge. 
+A rough estimation can be made considering two ALPs different in frequency by a factor of $\Delta \nu_a$. After $Q_a$ oscillations (so-called coherence time $\tau_a \approx Q_a / \nu_a = 1 / \Delta \nu_a$), the phase difference accumulated is arppoximately $2 \pi \Delta \nu_a \tau_a = 2 \pi$, which means these two ALPs are no longer coherent. 
 
-\subsection{Coherence time}\label{sec:theory:stochasticity}
-
-The modes in Equation~\eqref{eq:ALP_sum} have slightly different frequencies due to the kinetic-energy spread. Their phases drift apart on a time scale set by the spectral width of the field. For a Maxwell-Boltzmann velocity distribution with average speed $v_a \approx \SI{220}{\km\per\s}$ \cite{Evans2019_SHMRefined}, the ALP field spectral linewidth (FWHM) observed by a detector on Earth is
-\begin{equation}
-    \Gamma_a = \dfrac{\nu_a}{Q_a}
-    \,,\label{eq:Gamma_a_Qa}
-\end{equation}
-where $Q_a \equiv (c/v_a)^2 \approx 1.8\times10^6$ is the ALP quality factor. The ALP coherence time $\tau_a$, defined by $\Gamma_a = 2\pi/\tau_a$, is therefore
-\begin{equation}
-    \tau_a = \dfrac{2\pi Q_a}{\nu_a}
-    \,.\label{eq:taua}
-\end{equation}
-Within one coherence time the superposition Equation~\eqref{eq:ALP_sum} is well approximated by the single coherent mode Equation~\eqref{eq:ALP_field}. On longer time scales the random phases between modes cause the amplitude and phase of the effective oscillation to drift, so the field must be treated as a stochastic process \cite{Centers2021Stochastic}. For Compton frequencies above \SI{1}{\kHz}, $\tau_a \lesssim \SI{1000}{\second}$; the interplay between $\tau_a$ and the NMR relaxation times determines the optimal measurement strategy in Chapter~\ref{chap:results}.
+% add 2d random walk and the change in amplitude and phase and so on here
+On longer time scales the random phases between modes cause the amplitude and phase of the effective oscillation to drift, so the field must be treated as a stochastic process \cite{Centers2021Stochastic,Gramolin2022Feb_SpectralSignatures}. 
+For Compton frequencies above \SI{1}{\kHz}, $\tau_a \lesssim \SI{1000}{\second}$; the interplay between $\tau_a$ and the NMR relaxation times determines the optimal measurement strategy in Chapter~\ref{chap:results}.
+\YZ{here needs more input}
 
 
-\section{Periodic modulations}
+\subsection{Spin-precession signal}\label{sec:theory:signal}
 
-\subsection{Daily modulation}
-
-The ALP-field gradient driving spin precession depends on the direction of the relative velocity between the Earth and the local dark-matter halo. As the Earth rotates, this direction sweeps through space with a period of one sidereal day. An ALP signal therefore exhibits a daily modulation of its amplitude and phase \cite{Gramolin2022Feb_SpectralSignatures}.
-
-\subsection{Annual modulation}
-
-In addition to daily rotation, the Earth's orbital velocity around the Sun modulates the relative ALP-detector velocity with a period of one year. Both the daily and annual modulations have precisely predictable periods and phases, making them useful consistency checks for any claimed dark-matter-candidate signal \cite{Gramolin2022Feb_SpectralSignatures}.
+The ALP-induced signal is determined by the ALP gradient field amplitude (or effectively, the Rabi frequency of the pseudomagnetic field $\Omega_a$), the ALP field coherence and relaxations of the nuclear spin sample. 
 
 
-\section{Spin-precession signal}\label{sec:theory:signal}
-
-The nuclear-gradient coupling of the ALP field to nuclear spins is described by the Hamiltonian
-\begin{align}
-    H_{\mathrm{aNN}} \sim g_{\mathrm{aNN}}\, {\boldsymbol \nabla} a \cdot \mathbf{I}
-   \,,\label{eq:HaNN}
-\end{align}
-where $g_{\mathrm{aNN}}$ is the coupling strength in units of $\SI{}{\GeV^{-1}}$, ${\boldsymbol \nabla} a$ is the gradient of the ALP field and $\mathbf{I}$ is the nuclear spin operator. This coupling acts as a pseudomagnetic drive field for nuclear spins precessing at the Larmor frequency in a bias field $\mathbf{B}_0$. Its r.m.s.\ Rabi frequency is \cite{Centers2021Stochastic,Yuzhe2023_FrequencyScanning}
-\begin{equation}
-    \Omega_a \approx \dfrac{1}{2}\, g_{\mathrm{aNN}} \sqrt{2\hbar c\, \rho_{DM}}\, v_{\bot}
-    \,,\label{eq:Omega_a}
-\end{equation}
-where $v_{\bot}$ is the component of the ALP-detector relative velocity perpendicular to $\mathbf{B}_0$. Taking $v_{\bot} = \SI{220}{\km\per\second}$, we have $\Omega_a/2\pi = g_{\mathrm{aNN}} \times \SI{0.2}{\GeV\cdot\Hz}$. For $g_{\mathrm{aNN}} \lesssim 10^{-10}\,\SI{}{\GeV^{-1}}$, the Rabi period $2\pi/\Omega_a \gtrsim 1000\,\mathrm{yr}$, confirming that the ALP field is a weak drive on the spins.
-
-
-\subsection{Relaxations and coherence}\label{sec:theory:relaxations}
+\subsubsection{Relaxations and coherence}\label{sec:theory:relaxations}
 
 The transverse spin relaxation in the sample arises from homogeneous mechanisms (e.g., spin-spin interactions), characterised by the time $T_2$, and from inhomogeneous mechanisms (e.g., magnetic-field gradients across the sample), which cause additional dephasing. The total effective transverse relaxation time $T_2^* \leq T_2$ incorporates both contributions.
 
@@ -118,7 +106,7 @@ and the normalized linewidth is
 often expressed in parts per million (\SI{}{\ppm}). The inhomogeneous contribution to $1/T_2^*$ can be reduced by magnetic shimming, giving control over $T_2^*$ independently of the intrinsic $T_2$.
 
 
-\subsection{Estimation}\label{sec:theory:estimation}
+\subsubsection{Estimation}\label{sec:theory:estimation}
 
 For a sample with equilibrium longitudinal magnetization $M_0$ prepared along $\mathbf{B}_0$, the ALP-field drive tilts the magnetization by a small angle $\xi \ll 1$ (weak-drive regime, $\Omega_a T \ll 1$), generating a transverse magnetization $M_1 \approx M_0\xi$. The r.m.s.\ transverse magnetization is \cite{Yuzhe2023_FrequencyScanning}
 \begin{equation}
@@ -164,6 +152,26 @@ These cases combine into the r.m.s.\ transverse magnetization (for dwell time $T
     \,.\label{eq:M1_regimes}
 \end{equation}
 In the third case, when $T_2 \ll \tau_a$ and the dwell time $T \gg \tau_a$, the signal amplitude decreases because the ALP field cannot drive the spins coherently for longer than $T_2$, while off-resonance spins (those not within the narrow ALP linewidth) contribute negligibly.
+we include numeric simulation later....
+
+\section{MW axion}
+i deal gas....
+
+
+
+\subsection{Coherence time}  % for MW axion
+
+For a Maxwell-Boltzmann velocity distribution with average speed $v_a \approx \SI{220}{\km\per\s}$ \cite{Evans2019_SHMRefined}, the ALP field spectral linewidth (FWHM) observed by a detector on Earth is
+\begin{equation}
+    \Gamma_a = \dfrac{\nu_a}{Q_a}
+    \,,%\label{eq:Gamma_a_Qa}
+\end{equation}
+where $Q_a \equiv (c/v_a)^2 \approx 1.8\times10^6$ is the ALP quality factor. The ALP coherence time $\tau_a$, defined by $\Gamma_a = 2\pi/\tau_a$, is therefore
+\begin{equation}
+    \tau_a = \dfrac{2\pi Q_a}{\nu_a}
+    \,.%\label{eq:taua}
+\end{equation}
+Within one coherence time the superposition Equation~\eqref{eq:ALP_sum} is well approximated by the single coherent mode Equation~\eqref{eq:ALP_field}. On longer time scales the random phases between modes cause the amplitude and phase of the effective oscillation to drift, so the field must be treated as a stochastic process \cite{Centers2021Stochastic}. For Compton frequencies above \SI{1}{\kHz}, $\tau_a \lesssim \SI{1000}{\second}$; the interplay between $\tau_a$ and the NMR relaxation times determines the optimal measurement strategy in Chapter~\ref{chap:results}.
 
 
 \subsection{Numerical simulation}\label{sec:theory:simulation}
@@ -224,3 +232,27 @@ These regimes are illustrated in Figure~\ref{fig:T2star_T2_taua_regimes}. The ke
     \end{tabular}
     \label{tab:summary_of_regimes}
 \end{table}
+
+
+
+\section{Thermalized Milky Way ALP}
+
+\subsection{Periodic modulations}
+
+% \subsection{Daily modulation}
+
+The ALP-field gradient driving spin precession depends on the direction of the relative velocity between the Earth and the local dark-matter halo. As the Earth rotates, this direction sweeps through space with a period of one sidereal day. An ALP signal therefore exhibits a daily modulation of its amplitude and phase \cite{Gramolin2022Feb_SpectralSignatures}.
+
+% \subsection{Annual modulation}
+
+In addition to daily rotation, the Earth's orbital velocity around the Sun modulates the relative ALP-detector velocity with a period of one year. Both the daily and annual modulations have precisely predictable periods and phases, making them useful consistency checks for any claimed dark-matter-candidate signal \cite{Gramolin2022Feb_SpectralSignatures}.
+
+
+
+\section{Earth bound ALP}
+
+\subsection{Periodic modulations}
+
+% The ALP-field gradient driving spin precession depends on the direction of the relative velocity between the Earth and the local dark-matter halo. As the Earth rotates, this direction sweeps through space with a period of one sidereal day. An ALP signal therefore exhibits a daily modulation of its amplitude and phase \cite{Gramolin2022Feb_SpectralSignatures}.
+
+% In addition to daily rotation, the Earth's orbital velocity around the Sun modulates the relative ALP-detector velocity with a period of one year. Both the daily and annual modulations have precisely predictable periods and phases, making them useful consistency checks for any claimed dark-matter-candidate signal \cite{Gramolin2022Feb_SpectralSignatures}.
