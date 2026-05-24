@@ -8,28 +8,22 @@
 Analytical estimates of the ALP-induced spin-precession signal (Chapter~\ref{chap:theory}) are valid in the long-dwell-time limit $T \gg \tau_a,\,T_2^*,\,T_2$. At lower Compton frequencies, the ALP coherence time becomes comparable to or longer than experimentally accessible dwell times, and the scaling laws no longer apply. Numerical simulation is then the tool of choice. This appendix describes \texttt{axionbloch}, an open-source Python package that simulates spin dynamics under both magnetic and axion-induced pseudomagnetic fields.
 
 
-\section{Spin dynamics: the Bloch equations}\label{sec:axionbloch:bloch}
+% \section{Spin dynamics: the Bloch equations}\label{sec:axionbloch:bloch}
 
-The package models spin-$1/2$ ensembles through the Bloch equations. In the presence of a total effective magnetic field $\mathbf{B}_\mathrm{eff}$ (which includes both the laboratory bias field and the axion-induced pseudomagnetic field), the magnetization $\mathbf{M}$ evolves as
-\begin{align}
-    \frac{dM_x}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_x - \frac{M_x}{T_2}\,,\label{eq:bloch_x}\\
-    \frac{dM_y}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_y - \frac{M_y}{T_2}\,,\label{eq:bloch_y}\\
-    \frac{dM_z}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_z - \frac{M_z-M_0}{T_1}\,,\label{eq:bloch_z}
-\end{align}
-where $\gamma$ is the gyromagnetic ratio and $M_0$ is the equilibrium magnetization. The bias field is usually much stronger than the pseudomagnetic field, so the equations are solved in the rotating coordinate frame (RCF), which removes the fast Larmor precession and exposes the slow axion-induced dynamics. The effective transverse relaxation time $T_2^*$ (which includes inhomogeneous broadening) is simulated by sampling the spread of bias-field values from a \texttt{Magnet} instance and integrating the Bloch equations for each sampled field independently.
+% The package models spin-$1/2$ ensembles through the Bloch equations~\eqref{eq:bloch_x}--\eqref{eq:bloch_z} derived in Section~\ref{sec:theory:bloch}. The total effective field is $\mathbf{B}_\mathrm{eff} = \mathbf{B}_0 + \mathbf{B}_a(t)$, combining the laboratory bias field and the axion-induced pseudomagnetic field. The equations are solved in the rotating coordinate frame (RCF), which removes the fast Larmor precession and exposes the slow axion-induced dynamics. The effective transverse relaxation time $T_2^*$ (which includes inhomogeneous broadening) is simulated by sampling the spread of bias-field values from a \texttt{Magnet} instance and integrating the Bloch equations for each sampled field independently.
 
 
-\section{Numerical integration}\label{sec:axionbloch:rk4}
+% \section{Numerical integration}\label{sec:axionbloch:rk4}
 
-The time evolution of $\mathbf{M}$ is obtained by numerically integrating Equations~(\ref{eq:bloch_x}--\ref{eq:bloch_z}) with the fourth-order Runge--Kutta (RK4) method. Given a time step $\Delta t$ and initial magnetization $\mathbf{M}^n$, the update rule is
-\begin{equation}
-    \mathbf{M}^{n+1}
-    = \mathbf{M}^n
-    + \frac{\Delta t}{6}\bigl(\mathbf{k}_1 + 2\mathbf{k}_2 + 2\mathbf{k}_3 + \mathbf{k}_4\bigr)\,,
-\end{equation}
-where $\mathbf{k}_1 = d\mathbf{M}/dt|_{\mathbf{M}^n}$ and subsequent $\mathbf{k}_i$ are evaluated at intermediate half-steps following the standard RK4 prescription. The local truncation error is $\mathcal{O}(\Delta t^5)$ and the global accumulated error is $\mathcal{O}(\Delta t^4)$. The time step is set to be at least one order of magnitude smaller than the shortest characteristic timescale in the simulation (e.g., $T_1$, $T_2$, or $1/\nu_a$).
+% The time evolution of $\mathbf{M}$ is obtained by numerically integrating Equations~(\ref{eq:bloch_x}--\ref{eq:bloch_z}) with the fourth-order Runge--Kutta (RK4) method. Given a time step $\Delta t$ and initial magnetization $\mathbf{M}^n$, the update rule is
+% \begin{equation}
+%     \mathbf{M}^{n+1}
+%     = \mathbf{M}^n
+%     + \frac{\Delta t}{6}\bigl(\mathbf{k}_1 + 2\mathbf{k}_2 + 2\mathbf{k}_3 + \mathbf{k}_4\bigr)\,,
+% \end{equation}
+% where $\mathbf{k}_1 = d\mathbf{M}/dt|_{\mathbf{M}^n}$ and subsequent $\mathbf{k}_i$ are evaluated at intermediate half-steps following the standard RK4 prescription. The local truncation error is $\mathcal{O}(\Delta t^5)$ and the global accumulated error is $\mathcal{O}(\Delta t^4)$. The time step is set to be at least one order of magnitude smaller than the shortest characteristic timescale in the simulation (e.g., $T_1$, $T_2$, or $1/\nu_a$).
 
-The RK4 integration is implemented in a compiled C++ backend and exposed to Python through the \texttt{pybind11} interface, achieving runtimes of $\sim\SI{10}{\s}$ for $\approx4\times10^9$ integration steps on a modern desktop CPU.
+% The RK4 integration is implemented in a compiled C++ backend and exposed to Python through the \texttt{pybind11} interface, achieving runtimes of $\sim\SI{10}{\s}$ for $\approx4\times10^9$ integration steps on a modern desktop CPU.
 
 
 \section{Software architecture}\label{sec:axionbloch:arch}
