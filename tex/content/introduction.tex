@@ -32,6 +32,18 @@ At thermal equilibrium, the spin populations obey the Boltzmann distribution. In
 \end{equation}
 At $B_0 = \SI{31.67}{\milli\tesla}$ and $T = \SI{180}{\kelvin}$, the proton thermal polarization is only $p \approx \num{1.8e-7}$. Hyperpolarization techniques---such as spin-exchange optical pumping or parahydrogen-induced polarization---can boost $p$ by several orders of magnitude, which is the main route to improved sensitivity identified in this thesis.
 
+\subsection{Bloch equations}\label{sec:theory:bloch}
+The evolution of the nuclear spin magnetization $\mathbf{M}$ in the combined bias and pseudomagnetic fields is governed by the Bloch equations \cite{Abragam1961_NuclearMagnetism}:
+\begin{align}
+    \frac{dM_x}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_x - \frac{M_x}{T_2}\,,\label{eq:bloch_x}\\
+    \frac{dM_y}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_y - \frac{M_y}{T_2}\,,\label{eq:bloch_y}\\
+    \frac{dM_z}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_z - \frac{M_z-M_0}{T_1}\,,\label{eq:bloch_z}
+\end{align}
+where $\mathbf{B}_\mathrm{eff} = \mathbf{B}_0 + \mathbf{B}_a(t)$ is the total effective field, $M_0$ is the equilibrium magnetization, and $T_1$, $T_2$ are the longitudinal and transverse relaxation times. Because $|\mathbf{B}_0| \gg |\mathbf{B}_a|$ by many orders of magnitude, the equations are most efficiently solved in the rotating coordinate frame (RCF), which removes the fast Larmor precession at $\nu_L$ and exposes the much slower ALP-induced tipping dynamics.
+
+In the RCF, when the Larmor frequency is tuned to the ALP Compton frequency ($\nu_L = \nu_a$), the transverse component of $\mathbf{B}_a$ acts as a near-static drive. In the weak-drive limit ($\Omega_a T \ll 1$), the magnetization accumulates a small tipping angle $\xi$ and the transverse magnetization is $M_1 \approx M_0\xi$. The ALP field is stochastic (Section~\ref{sec:theory:stochasticity}), so $\xi$ and $M_1$ must be treated statistically; their r.m.s.\ values are derived in Section~\ref{sec:theory:signal}.
+
+
 \subsection{Spin-projection noise}\label{sec:NMR:SPN}
 Even in the absence of a leading field, an ensemble of $N$ spins does not cancel perfectly. Statistical fluctuations leave a residual transverse moment of order $\sqrt{N}\,\mu$ (where $\mu = \hbar\gamma/2$ is the nuclear magneton), giving a magnetization noise floor
 \begin{equation}
@@ -54,7 +66,7 @@ These time scales are central to the thesis because they set the window over whi
 Longitudinal relaxation governs how the population difference between spin states rebuilds after perturbation. In practice, a short $T_1$ is helpful for rapid repetition, while a long $T_1$ can preserve polarization for longer measurements.
 
 \subsubsection{$T_2^*$ relaxation}\label{sec:NMR:Relax:T2}
-Transverse relaxation combines microscopic spin-spin interactions ($T_2$) and macroscopic field inhomogeneity ($T_\delta$) as given in Equation~\eqref{eq:T2star}. It determines the decay of the free-induction signal and directly controls the linewidth in the frequency domain. For field searches, a narrower linewidth can improve sensitivity, but only if the coherence time remains long enough to integrate signal power efficiently.
+Transverse relaxation combines microscopic spin-spin interactions ($T_2$) and macroscopic field inhomogeneity ($T_\delta$) as given in Equation~\eqref{eq:T2star}. It determines the free-decay\footnote{\YZ{remove induction and mention there might not be any induction}} signal and directly controls the linewidth in the frequency domain. For field searches, a narrower linewidth can improve sensitivity, but only if the coherence time remains long enough to integrate signal power efficiently.
 
 \subsubsection{Cross relaxation}
 Cross relaxation is one of the mechanisms by which energy can be exchanged between coupled spin species or spin reservoirs. It is relevant whenever the sample or environment contains more than one spin system, because it can alter the effective relaxation rates seen in the measurement.
@@ -165,7 +177,7 @@ The r.m.s.\ Rabi frequency of the pseudomagnetic field can be found by the Hamil
 where $v_{\bot}$ is the component of the ALP-detector relative velocity perpendicular to $\mathbf{B}_0$. 
 Taking $v_{\bot} = \SI{220}{\km\per\second}$, we have $\Omega_a/2\pi = g_{\mathrm{aNN}} \times \SI{0.2}{\GeV\cdot\Hz}$. 
 For $g_{\mathrm{aNN}} \lesssim 10^{-10}\,\SI{}{\GeV^{-1}}$, the Rabi period $2\pi/\Omega_a \gtrsim 1000\,\mathrm{yr}$, confirming that the ALP field is a weak drive on the spins.
-\YZ{about that one half? btw check the values! }
+\YZ{about that one half? btw check the values! Mention weak-drive limit}
 
 % \subsection{Models of axionlike dark matter}
 

@@ -86,12 +86,12 @@ For Compton frequencies above \SI{1}{\kHz}, $\tau_a \lesssim \SI{1000}{\second}$
 
 \subsection{Spin-precession signal}\label{sec:theory:signal}
 
-The ALP-induced signal is determined by the ALP gradient field amplitude (or effectively, the Rabi frequency of the pseudomagnetic field $\Omega_a$), the ALP field coherence and relaxations of the nuclear spin sample. 
+The ALP-induced signal is determined by the ALP gradient field amplitude (or effectively, the Rabi frequency of the pseudomagnetic field $\Omega_a$), the ALP field coherence and relaxations of the nuclear spin sample. An estimation of the effects from these factors is made in the following. 
 
 
 \subsubsection{Relaxations and coherence}\label{sec:theory:relaxations}
-
-The transverse spin relaxation in the sample arises from homogeneous mechanisms (e.g., spin-spin interactions), characterised by the time $T_2$, and from inhomogeneous mechanisms (e.g., magnetic-field gradients across the sample), which cause additional dephasing. The total effective transverse relaxation time $T_2^* \leq T_2$ incorporates both contributions.
+\YZ{include alp COHERENCE AS well}
+The transverse spin relaxation in the sample arises from homogeneous mechanisms (e.g., spin-spin interactions), characterised by the time $T_2$, and from inhomogeneous mechanisms (e.g., magnetic-field gradients across the sample), which cause additional dephasing. The total effective transverse relaxation time $T_2^* \leq T_2$ incorporates both contributions. 
 
 The NMR linewidth (FWHM, assuming a Lorentzian lineshape) of the free-induction-decay spectrum is
 \begin{equation}
@@ -108,7 +108,7 @@ often expressed in parts per million (\SI{}{\ppm}). The inhomogeneous contributi
 
 \subsubsection{Estimation}\label{sec:theory:estimation}
 
-For a sample with equilibrium longitudinal magnetization $M_0$ prepared along $\mathbf{B}_0$, the ALP-field drive tilts the magnetization by a small angle $\xi \ll 1$ (weak-drive regime, $\Omega_a T \ll 1$), generating a transverse magnetization $M_1 \approx M_0\xi$. The r.m.s.\ transverse magnetization is \cite{Yuzhe2023_FrequencyScanning}
+For a sample with longitudinal magnetization $M_0$ prepared along the bias field $\mathbf{B}_0$, the ALP-field drive tilts the magnetization by a small angle $\xi \ll 1$ (weak-drive regime, $\Omega_a T \ll 1$), generating a transverse magnetization $M_1 \approx M_0\xi$. The r.m.s.\ transverse magnetization is \cite{Yuzhe2023_FrequencyScanning}
 \begin{equation}
     \sqrt{\langle M_{1}^2 \rangle} \approx \dfrac{1}{\sqrt{2}}\, u_n M_{0} \sqrt{\langle \xi^2 \rangle}
     \,,\label{eq:M1_rms}
@@ -154,8 +154,12 @@ These cases combine into the r.m.s.\ transverse magnetization (for dwell time $T
 In the third case, when $T_2 \ll \tau_a$ and the dwell time $T \gg \tau_a$, the signal amplitude decreases because the ALP field cannot drive the spins coherently for longer than $T_2$, while off-resonance spins (those not within the narrow ALP linewidth) contribute negligibly.
 we include numeric simulation later....
 
-\section{MW axion}
-i deal gas....
+
+\subsection{Numerical simulation}\label{sec:theory:simulation}
+
+\subsection{Periodic modulations}
+
+
 
 
 
@@ -174,16 +178,39 @@ where $Q_a \equiv (c/v_a)^2 \approx 1.8\times10^6$ is the ALP quality factor. Th
 Within one coherence time the superposition Equation~\eqref{eq:ALP_sum} is well approximated by the single coherent mode Equation~\eqref{eq:ALP_field}. On longer time scales the random phases between modes cause the amplitude and phase of the effective oscillation to drift, so the field must be treated as a stochastic process \cite{Centers2021Stochastic}. For Compton frequencies above \SI{1}{\kHz}, $\tau_a \lesssim \SI{1000}{\second}$; the interplay between $\tau_a$ and the NMR relaxation times determines the optimal measurement strategy in Chapter~\ref{chap:results}.
 
 
-\subsection{Numerical simulation}\label{sec:theory:simulation}
+\subsection{Numerical simulation}\label{sec:theory:MW:simulation}
 
 The analytical estimates above are valid in the limit $T \gg \tau_a,\,T_2^*,\,T_2$. At lower Compton frequencies, the ALP coherence time can become comparable to or longer than experimentally accessible dwell times, and the simple scaling laws no longer apply. Numerical simulations using the \texttt{axionbloch} package (Appendix~\ref{app:axionbloch}) are used to validate the analytical estimates and to explore intermediate parameter regimes.
+% Three representative situations arise:
+% \begin{description}
+%     \item[Low frequency] $\tau_a \gg T$: the ALP field is essentially coherent over the measurement. The signal grows linearly in time and the $T^{-1/4}$ sensitivity scaling is not yet reached.
+%     \item[Medium frequency] $\tau_a \approx T$: the transition regime, treated numerically.
+%     \item[High frequency] $T \gg \tau_a,\,T_2^*,\,T_2$: the analytical results apply. For hyperpolarized \ch{^{129}Xe}, $T_1$ relaxation limits the achievable polarization, introducing an additional reduction factor of approximately $1/3$ relative to the fully polarized case.
+% \end{description}
+Numerical simulation is then the tool of choice. 
 
-Three representative situations arise:
-\begin{description}
-    \item[Low frequency] $\tau_a \gg T$: the ALP field is essentially coherent over the measurement. The signal grows linearly in time and the $T^{-1/4}$ sensitivity scaling is not yet reached.
-    \item[Medium frequency] $\tau_a \approx T$: the transition regime, treated numerically.
-    \item[High frequency] $T \gg \tau_a,\,T_2^*,\,T_2$: the analytical results apply. For hyperpolarized \ch{^{129}Xe}, $T_1$ relaxation limits the achievable polarization, introducing an additional reduction factor of approximately $1/3$ relative to the fully polarized case.
-\end{description}
+
+% \section{Spin dynamics: the Bloch equations}\label{sec:axionbloch:bloch}
+
+The package models spin-$1/2$ ensembles through the Bloch equations~\eqref{eq:bloch_x}--\eqref{eq:bloch_z} derived in Section~\ref{sec:theory:bloch}. The total effective field is $\mathbf{B}_\mathrm{eff} = \mathbf{B}_0 + \mathbf{B}_a(t)$, combining the laboratory bias field and the axion-induced pseudomagnetic field. The equations are solved in the rotating coordinate frame (RCF), which removes the fast Larmor precession and exposes the slow axion-induced dynamics. The effective transverse relaxation time $T_2^*$ (which includes inhomogeneous broadening) is simulated by sampling the spread of bias-field values from a \texttt{Magnet} instance and integrating the Bloch equations for each sampled field independently.
+
+
+% \section{Numerical integration}\label{sec:axionbloch:rk4}
+
+The time evolution of $\mathbf{M}$ is obtained by numerically integrating Bloch equations [Equations~(\ref{eq:bloch_x}--\ref{eq:bloch_z})] with the fourth-order Runge--Kutta (RK4) method. 
+Given a time step $\Delta t$ and initial magnetization $\mathbf{M}^n$, the update rule is
+\begin{equation}
+    \mathbf{M}^{n+1}
+    = \mathbf{M}^n
+    + \frac{\Delta t}{6}\bigl(\mathbf{k}_1 + 2\mathbf{k}_2 + 2\mathbf{k}_3 + \mathbf{k}_4\bigr)\,,
+\end{equation}
+where $\mathbf{k}_1 = d\mathbf{M}/dt|_{\mathbf{M}^n}$ and subsequent $\mathbf{k}_i$ are evaluated at intermediate half-steps following the standard RK4 prescription. 
+The local truncation error is $\mathcal{O}(\Delta t^5)$ and the global accumulated error is $\mathcal{O}(\Delta t^4)$. 
+The time step is set to be at least one order of magnitude smaller than the shortest characteristic timescale in the simulation (e.g., $T_1$, $T_2$, or $1/\nu_a$).
+
+The RK4 integration is implemented in a compiled C++ backend and exposed to Python through the \texttt{pybind11} interface, achieving runtimes of $\sim\SI{10}{\s}$ for $\approx4\times10^9$ integration steps on a modern desktop CPU.
+The details of the implementations are included in the appendix. 
+This appendix describes \texttt{axionbloch}, an open-source Python package that simulates spin dynamics under both magnetic and axion-induced pseudomagnetic fields.
 
 
 \subsection{Summary}\label{sec:theory:summary}
