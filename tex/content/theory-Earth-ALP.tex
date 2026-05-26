@@ -27,7 +27,48 @@
 
 The galactic dark-matter halo provides the primary ALP signal target discussed in Chapter~\ref{chap:results}. However, a distinct and potentially enhanced source arises from ALPs that are gravitationally bound to the Earth. Such Earth-bound states are analogous to atomic bound states---the Earth's gravitational potential plays the role of the Coulomb well and the ALP plays the role of the electron---and can support a discrete spectrum of spatial eigenstates. This section derives the properties of these bound states, estimates the resulting spin-precession signal, and discusses the characteristic daily modulation that distinguishes this signal from the galactic background.
 
-\subsection{Gravitational potential and the Bohr radius}
+\subsection{Quantum picture}
+% include:
+% 1. ALP mass 
+
+
+\subsection{Gravitational potential}  %  and the Bohr radius
+
+To simplify the calculation, Earth is considered as a spherical object. The density of Earth varys over radii. From geophysical measurements on earthquake waves, Preliminary reference Earth model (PREM)\cite{Dziewonski1981_PREM} was constructed, giving the Earth density profile as shown in Figure~{fig:PREM}. 
+\begin{figure}
+    \includegraphics[width=\linewidth]{figures/Earth_Profiles_(PEM_Data).png}
+    \caption{to be modified later. }
+    \label{fig:PREM}
+\end{figure}
+
+The gravitational potential of Earth $V_g / m$ per unit mass can be found by
+\begin{equation}
+    V_g(r) / m = -\frac{G M_\mathrm{enclosed}}{r}~,
+    \label{eq:grav_potential}
+\end{equation}
+\YZ{check if we are wrong by a constant or so. }
+where $r$ is the distance measured from the Earth's centre, $G$ is Newton's constant, and $M_\mathrm{enclosed}$ is the Earth's mass enclosed by $r$. Here we take the infinity as the reference point and have potential $V_g(\infty)/m=\SI{0}{\joule\per\kg}$. 
+The potential over radii can be calculated numerically based on PREM (Figure~\ref{fig:PREM}). 
+The Earth escape velocity can therefore be found by
+\begin{equation}
+    v_\mathrm{escape} = \sqrt{-\frac{G M_\oplus\}{R_\oplus}~}, 
+    \label{eq:earth_escape_velocity}
+\end{equation}
+where $M_\oplus=\SI{6e24}{\kg}$ and $R_\oplus=\SI{6378.1}{\km}$ are the mass and average radius of Earth, respectively. 
+By plugging the values, the Earth escape velocity is found to be \SI{11.2}{\km/\second}. 
+
+\subsection{The quantum picture}  %  of Earth-bound ALP
+% why do we have to look at ALP bound by Earth in the quantum picture
+For ultralight dark matter particles bound by Earth, they can no longer be treated as classic objects due to their large de~Broglie wavelengths. A rough estimation is made as follows. 
+Consider particles with mass $<\SI{10}{\eV/c^2}$ trapped by the earth potential. 
+Their kinetic energy must be comparable or even smaller than the potential energy, as
+\begin{equation}
+    E_k = \frac{1}{2} m_a v_a^2 \lesssim \frac{G M_\mathrm{enclosed} m_a}{r}~.
+\end{equation}
+The maximum of the absolute potential energy ${G M_\mathrm{enclosed} m_a}/{r}$ is ${G M_\oplus \SI{10}{\eV/c^2}}/{R_\oplus} = \SI{7e-9}{\eV}$. This transfers to 
+
+, the mass is so small 
+
 
 In the non-relativistic limit, an ALP of mass $m_a$ in the gravitational field of the Earth obeys the Schrödinger equation
 \begin{equation}
@@ -38,7 +79,7 @@ In the non-relativistic limit, an ALP of mass $m_a$ in the gravitational field o
 where the gravitational potential is
 \begin{equation}
     V_g(r) = -\frac{GM_E\,m_a}{r}
-    \label{eq:grav_potential}
+    % \label{eq:grav_potential}
 \end{equation}
 for $r$ measured from the Earth's centre, $G$ is Newton's constant, and $M_E$ is the Earth's mass. The formal analogy with the hydrogen atom is exact: the ALP-Earth system is a gravitational atom \YZ{cite: relevant paper on gravitational atom, e.g.\ Arvanitaki et al.}, with the fine-structure constant replaced by the gravitational coupling
 \begin{equation}
