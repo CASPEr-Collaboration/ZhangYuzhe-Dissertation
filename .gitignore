@@ -55,3 +55,4 @@ fonts/
 *.synctex.gz
 *.synctex(busy)
 *.toc
+*.bbl-SAVE-ERROR
