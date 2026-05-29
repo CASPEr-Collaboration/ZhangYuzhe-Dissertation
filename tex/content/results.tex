@@ -136,7 +136,7 @@ The sensitivity plots computed with uniform ($n=0$) and frequency-adaptive ($n=-
 \begin{figure}[htb]
     \centering
     \includegraphics[width=.7\linewidth]{works/frequency-scanning/UniVsAdpt_20230412-3.png}
-    \caption{Sensitivity plots on a log-log scale for two dwell-time allocation schemes: uniform ($n=0$) and frequency-adaptive ($n=-1$). The shaded regions indicate the parameter space accessible to the experiment. The coupling strength is normalised in each regime so that the highest point equals 1. The scan range is $\nu_{\mathrm{end}}/\nu_{\mathrm{start}}=10$. Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.}
+    \caption{Sensitivity plots on a log-log scale for two dwell-time allocation schemes: uniform ($n=0$) and frequency-adaptive ($n=-1$). The shaded regions indicate the parameter space accessible to the experiment. The coupling strength is normalized in each regime so that the highest point equals 1. The scan range is $\nu_{\mathrm{end}}/\nu_{\mathrm{start}}=10$. Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.}
     \label{fig:UniVsAdpt}
 \end{figure}
 
@@ -191,11 +191,11 @@ A narrow Savitzky-Golay (SG) filter with a window half-width equal to half the e
 
 \subsection{Baseline removal}
 
-A reduced chi-square test on the spike-corrected spectrum reveals a non-flat baseline. A second, broad SG filter with a window of 200 ALP linewidths is applied to estimate this baseline. The spike-corrected spectrum is then normalised by subtracting and dividing by this baseline, producing a spectrum with a flat expected noise floor.
+A reduced chi-square test on the spike-corrected spectrum reveals a non-flat baseline. A second, broad SG filter with a window of 200 ALP linewidths is applied to estimate this baseline. The spike-corrected spectrum is then normalized by subtracting and dividing by this baseline, producing a spectrum with a flat expected noise floor.
 
 \subsection{Matched filtering and NPE}
 
-A matched filter using the expected ALP signal lineshape $\lambda_\perp(\nu,\nu_a)$---the normalised spectral lineshape of the ALP-field gradient component perpendicular to $\mathbf{B}_0$, as given in Ref.\,\cite{Gramolin2022Feb_SpectralSignatures}---is convolved with the normalised PSD. The result, normalised by its standard deviation, is the normalized power excess (NPE). The matched-filter step size is half the ALP linewidth.
+A matched filter using the expected ALP signal lineshape $\lambda_\perp(\nu,\nu_a)$---the normalized spectral lineshape of the ALP-field gradient component perpendicular to $\mathbf{B}_0$, as given in Ref.\,\cite{Gramolin2022Feb_SpectralSignatures}---is convolved with the normalized PSD. The result, normalized by its standard deviation, is the normalized power excess (NPE). The matched-filter step size is half the ALP linewidth.
 
 \subsection{Hypothesis test and rescan threshold}
 

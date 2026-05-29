@@ -27,14 +27,28 @@
 
 The galactic dark-matter halo provides the primary ALP signal target discussed in Chapter~\ref{chap:results}. However, a distinct and potentially enhanced source arises from ALPs that are gravitationally bound to the Earth. Such Earth-bound states are analogous to atomic bound states---the Earth's gravitational potential plays the role of the Coulomb well and the ALP plays the role of the electron---and can support a discrete spectrum of spatial eigenstates. This section derives the properties of these bound states, estimates the resulting spin-precession signal, and discusses the characteristic daily modulation that distinguishes this signal from the galactic background.
 
-\subsection{Quantum picture}
-% include:
-% 1. ALP mass 
+\subsection{Trapping and accumulation of dark matter}\label{sec:theory:earthALP:trapping}
 
+For Earth-bound states to be populated, ALPs from the galactic halo must lose enough kinetic energy to fall below the local escape velocity ($v_\mathrm{esc} \approx \SI{11.2}{\km\per\s}$ for Earth). Several mechanisms have been proposed \YZ{cite: Banerjee et al.\ 2019 arXiv:1902.07720; OHare 2025 fine-grained; other relevant papers}:
 
-\subsection{Gravitational potential}  %  and the Bohr radius
+\begin{description}
+    \item[Gravitational three-body scattering] A galactic ALP passing near the Earth can scatter off a third body (e.g.\ the Sun or Moon), losing kinetic energy and becoming trapped in a bound orbit. The rate depends on the local density and the ALP-body cross section.
+    \item[Self-interaction or wave-packet spreading] \YZ{placeholder: if ALPs have self-interactions or if wave-packet decoherence provides an effective dissipation, this may also populate bound states.}
+    \item[Resonant capture] Near specific orbital resonances the exchange of energy between the ALP and the Earth-Moon or Earth-Sun system may be efficient.
+\end{description}
 
-To simplify the calculation, Earth is considered as a spherical object. The density of Earth varys over radii. From geophysical measurements on earthquake waves, Preliminary reference Earth model (PREM)\cite{Dziewonski1981_PREM} was constructed, giving the Earth density profile as shown in Figure~{fig:PREM}. 
+The total mass $M_\mathrm{bound}$ of ALPs trapped in Earth-bound states is strongly constrained by astrophysical and geophysical observations \YZ{leave the plot here. cite and expand: relevant constraints on exotic mass inside Earth from geophysics / seismology / gravitational measurements}. An upper bound comes from the requirement that the Earth's measured gravitational multipole moments not be distorted beyond current geodetic precision. \YZ{Add quantitative upper limit on $M_\mathrm{bound}$ once reference is identified.}
+\YZ{We note that.... skip the mechanism of capturing...}
+\begin{figure}
+    \centering
+    \includegraphics[scale =0.9]{figures/MaxDensity_EH.pdf}
+    \caption{Density Distribution of ground state Earth-bound ALP halo. The solid line indicates the density at the Earth surface, whereas the dashed line represents the density at the center of the halo. The density value $\rho_\star$ is derived from the maximum Earth ALP halo mass permitted by gravitational constraints, as assessed in \cite{banerjee_relaxion_2020,banerjee_searching_2020}.}%
+    \label{fig:groundstate_density}%
+\end{figure}
+
+\subsection{Gravitational potential and the quantum picture}  %  and the Bohr radius
+
+To simplify the calculation, Earth is considered as a spherical object. The density of Earth varys over radii. From geophysical measurements on earthquake waves, Preliminary reference Earth model (PREM)\cite{Dziewonski1981_PREM} was constructed, giving the Earth density profile as shown in Figure~\ref{fig:PREM}. 
 \begin{figure}
     \includegraphics[width=\linewidth]{figures/Earth_Profiles_(PEM_Data).png}
     \caption{to be modified later. }
@@ -51,111 +65,223 @@ where $r$ is the distance measured from the Earth's centre, $G$ is Newton's cons
 The potential over radii can be calculated numerically based on PREM (Figure~\ref{fig:PREM}). 
 The Earth escape velocity can therefore be found by
 \begin{equation}
-    v_\mathrm{escape} = \sqrt{-\frac{G M_\oplus}{R_\oplus}~}, 
+    v_\mathrm{escape} = \sqrt{\frac{2 G M_\oplus}{R_\oplus}~}, 
     \label{eq:earth_escape_velocity}
 \end{equation}
 where $M_\oplus=\SI{6e24}{\kg}$ and $R_\oplus=\SI{6378.1}{\km}$ are the mass and average radius of Earth, respectively. 
-By plugging the values, the Earth escape velocity is found to be \SI{11.2}{\km/\second}. 
+By plugging the values, the Earth escape velocity is found to be \SI{11.2}{\km/\second}. Since the escape speed is much smaller than the speed of light, non-relativistic limit is assumed for the discussion. 
 
-\subsection{The quantum picture}  %  of Earth-bound ALP
+% \subsection{The quantum picture}  %  of Earth-bound ALP
 % why do we have to look at ALP bound by Earth in the quantum picture
-For ultralight dark matter particles bound by Earth, they can no longer be treated as classic objects due to their large de~Broglie wavelengths. A rough estimation is made as follows. 
-Consider particles with mass $<\SI{10}{\eV/c^2}$ trapped by the earth potential. 
-Their kinetic energy must be comparable or even smaller than the potential energy, as
-\begin{equation}
-    E_k = \frac{1}{2} m_a v_a^2 \lesssim \frac{G M_\mathrm{enclosed} m_a}{r}~.
-\end{equation}
-The maximum of the absolute potential energy ${G M_\mathrm{enclosed} m_a}/{r}$ is ${G M_\oplus \SI{10}{\eV/c^2}}/{R_\oplus} = \SI{7e-9}{\eV}$. This transfers to 
-
-, the mass is so small 
-
-
-In the non-relativistic limit, an ALP of mass $m_a$ in the gravitational field of the Earth obeys the Schrödinger equation
-\begin{equation}
-    \left[-\frac{\hbar^2\nabla^2}{2m_a} + V_g(r)\right]\psi_{nlm}(\mathbf{r})
-    = E_n\,\psi_{nlm}(\mathbf{r})
-    \,,\label{eq:schrodinger_earth}
-\end{equation}
-where the gravitational potential is
-\begin{equation}
-    V_g(r) = -\frac{GM_E\,m_a}{r}
-    % \label{eq:grav_potential}
-\end{equation}
-for $r$ measured from the Earth's centre, $G$ is Newton's constant, and $M_E$ is the Earth's mass. The formal analogy with the hydrogen atom is exact: the ALP-Earth system is a gravitational atom \YZ{cite: relevant paper on gravitational atom, e.g.\ Arvanitaki et al.}, with the fine-structure constant replaced by the gravitational coupling
-\begin{equation}
-    \alpha_g \equiv \frac{GM_E\,m_a}{\hbar c}
-    \approx 2\times10^{-5}\left(\frac{m_a}{\SI{1}{\micro\eV}}\right)
-    \,.\label{eq:alpha_g}
-\end{equation}
-The analogue of the Bohr radius is
-\begin{equation}
-    a_g = \frac{\hbar^2}{GM_E\,m_a^2}
-    = \frac{\hbar c}{m_a c^2\,\alpha_g}
-    \approx \SI{283}{\km}\left(\frac{\SI{5.58}{\nano\eV}}{m_a}\right)^2
-    \,,\label{eq:bohr_radius_grav}
-\end{equation}
-and the bound-state energy levels are
-\begin{equation}
-    E_n = -\frac{m_a c^2\,\alpha_g^2}{2n^2}
-    = -\frac{G^2M_E^2\,m_a^3}{2\hbar^2\,n^2}
-    \,,\quad n = 1,2,3,\ldots
-    \label{eq:energy_levels_earth}
-\end{equation}
-
-The Bohr radius $a_g$ sets the spatial extent of the ground state. Its scaling as $m_a^{-2}$ means it varies rapidly with mass:
+For ultralight dark matter particles bound by Earth, they can no longer be treated as classic objects due to their large de~Broglie wavelengths. 
+A rough estimation of the wavelength is made as follows. 
+% The speed of ALP should not exceed
+The ALP masses that CASPEr-G can probe range from $\sim\SI{4}{\pico\eV}$ to $\SI{2.5}{\micro\eV}$. 
+Consider ALPs trapped by the earth potential with velocities roughly smaller than the escape veclocity.
+% Consider ultralight particles with mass $<\SI{10}{\eV/c^2}$ trapped by the earth potential. 
+% Their kinetic energy must be comparable or even smaller than the potential energy, as
+% \begin{equation}
+%     E_k = \frac{1}{2} m_a v_a^2 \lesssim \frac{G M_\mathrm{enclosed} m_a}{r}~.
+% \end{equation}
+% The maximum of the absolute potential energy ${G M_\mathrm{enclosed} m_a}/{r}$\YZ{change enclosed mass to M(r)?} is ${G M_\oplus \SI{10}{\eV/c^2}}/{R_\oplus} = \SI{7e-9}{\eV}$. This transfers to $v_a\lesssim v_\mathrm{esc} = \SI{11.2}{\km/\second}$. 
+The de~Broglie wavelength as a function of particle mass $\lambda_\mathrm{dB}(m_a, v_a) = \frac{h}{m_a v_a}$ gives 
 \begin{itemize}
-    \item For $m_a \lesssim \SI{1}{\nano\eV}$: $a_g \gtrsim R_E$ --- the ground-state wavefunction extends to or beyond the Earth's surface; the ALP is loosely bound and the signal at the surface is sensitive to the full volume integral.
-    \item For $m_a \sim \SI{5}{\nano\eV}$: $a_g \sim \SI{300}{\km} \ll R_E$ --- the ALP is tightly bound inside the Earth; the surface gradient is set by the exponential tail of the wavefunction.
-    \item For $m_a \gg \SI{10}{\nano\eV}$: $a_g \ll R_E$ --- increasingly localized deep inside the Earth; detectors at the surface probe only the far tail.
+    \item $\lambda_\mathrm{dB}(\SI{4}{\pico\eV}, \SI{11.2}{\km/\second}) = \SI{8e9}{\m} = \SI{1260}{R_\oplus}$ and
+    \item $\lambda_\mathrm{dB}(\SI{2.5}{\micro\eV}, \SI{11.2}{\km/\second}) = \SI{3}{\mm}$.
 \end{itemize}
-\YZ{Add figure: Earth gravitational potential well as a function of radius $r$, overlaid with the ground-state probability density $|\psi_{100}|^2$ for one or two representative masses. Script: \texttt{scripts-and-data/earth\_ALP\_wavefunction.py} (to be written).}
+Therefore, in the scan range of CASPEr, the de~Broglie wavelength could be comparable to or much larger than the earth radius. 
+In later chapters, a measurement probing MHz ALPs is presented. This corresponds to a de~Broglie wavelength $\sim\SI{1}{R_\oplus}$. 
+To prepare for the analysis, we focus on this scenario and take the wave nature into account. 
 
 
-\subsection{Trapping and accumulation mechanisms}\label{sec:theory:earthALP:trapping}
+\subsection{Bound-state wavefunctions}\label{sec:theory:earthALP:wavefunctions}
 
-For Earth-bound states to be populated, ALPs from the galactic halo must lose enough kinetic energy to fall below the local escape velocity ($v_\mathrm{esc} \approx \SI{11.2}{\km\per\s}$ for Earth). Several mechanisms have been proposed \YZ{cite: Banerjee et al.\ 2019 arXiv:1902.07720; OHare 2025 fine-grained; other relevant papers}:
+The ALP field consists of superpositions of eigenstates
+\begin{equation}
+    a_0(\mathbf{r}, t) = \sqrt{\frac{N_a \hbar^3 c}{2 m_a}} \left(\Psi(\mathbf{r}, t) + \Psi^*(\mathbf{r}, t) \right)~, 
+    \label{eq:a0_Psi_real_imag}
+\end{equation}
+where
+\begin{equation}
+    \Psi(\mathbf{r}, t) = e^{-i m_a c^2 t / \hbar}\sum_{nlm}^{} c_{nlm} e^{-i E_n t / \hbar} \psi_{nlm}(\mathbf{r})\,.
+\end{equation}
+Here $N_a$ is the number of ALP particles, $\Psi(\mathbf{r}, t)$ is the wavefunction, $\psi_{nlm}$ and $E_n$ are the eigen-wavefunction and the eigen-energy of the eigenstate $(n,\,l,\,m)$, $c_{nlm}$ are the expansion coefficients determined by the population of eigenstates, $n$ is the principal quantum number, $l$ is the angular momentum quantum number, and $m$ is the magnetic quantum number.
+The fast oscillation at ALP Compton frequency is indicated by $e^{-i m_a c^2 t / \hbar}$, where the small variation of oscillation frequency is indicated by $e^{-i E_n t / \hbar}$.
+Since ALP is a real scalar field, Equation~\ref{eq:a0_Psi_real_imag} can be rewritten as
+\begin{equation}
+    a_0(\mathbf{r}, t) = \sqrt{\frac{2 N_a \hbar^3 c }{m_a}} \Re\left(\Psi(\mathbf{r}, t)\right)~,
+    \label{eq:a0_Psi_real}
+\end{equation}
+where $\Re$ indicates the real part. 
+The ALP dark matter energy density is $\rho_{DM}^{E} = m_a c^2 N_a \langle|\Psi|^2\rangle_t$, where $N_a \langle|\Psi|^2\rangle_t$ is the time-averaged ALP number density. With $\rho_{DM}^{E}$, the ALP field can be expressed as
+\begin{align}
+    a_0(\mathbf{r}, t) &= \sqrt{\frac{2 \hbar^3 \rho_{DM}^{E}}{m_a^2 c}} \frac{\Re\left[\Psi(\mathbf{r}, t)\right]}{\langle|\Psi(\mathbf{r}, t)|^2\rangle_t^{1/2}}\\ 
+    &= a_0 \dfrac{\Re\left[\Psi(\mathbf{r}, t)\right]}{\langle|\Psi(\mathbf{r}, t)|^2\rangle_t^{1/2}}~.
+    \label{eq:a0_rhoDM_Psi_real}
+\end{align}
+Here $a_0$ is the ALP field amplitude, of which the dimension is energy. 
+From astronomical observations, the local dark matter energy density can be estimated. 
+Therefore, the ALP field amplitude can be obtained by Equation~\ref{eq:a0_rhoDM_Psi_real} once the wavefunction is derived.
 
-\begin{description}
-    \item[Gravitational three-body scattering] A galactic ALP passing near the Earth can scatter off a third body (e.g.\ the Sun or Moon), losing kinetic energy and becoming trapped in a bound orbit. The rate depends on the local density and the ALP-body cross section.
-    \item[Self-interaction or wave-packet spreading] \YZ{placeholder: if ALPs have self-interactions or if wave-packet decoherence provides an effective dissipation, this may also populate bound states.}
-    \item[Resonant capture] Near specific orbital resonances the exchange of energy between the ALP and the Earth-Moon or Earth-Sun system may be efficient.
-\end{description}
+In the non-relativistic limit, the eigenstates can be found by the time-independent Schrödinger equation (TISE)
+\begin{equation}
+    \left[-\frac{\hbar^2}{2 m_a}\nabla^2 + V_g(r)\right]\psi_{nlm}(\mathbf{r})
+    = E_n\,\psi_{nlm}(\mathbf{r})
+    \,.\label{eq:schrodinger_earth}
+\end{equation} 
+In analogy to the hydrogen atom, the ALP-Earth system is a gravitational atom \YZ{cite: relevant paper on gravitational atom, e.g.\ Arvanitaki et al. and more...}. 
+\YZ{what about quantum number m? zero?}
 
-The total mass $M_\mathrm{bound}$ of ALPs trapped in Earth-bound states is strongly constrained by astrophysical and geophysical observations \YZ{cite and expand: relevant constraints on exotic mass inside Earth from geophysics / seismology / gravitational measurements}. An upper bound comes from the requirement that the Earth's measured gravitational multipole moments not be distorted beyond current geodetic precision. \YZ{Add quantitative upper limit on $M_\mathrm{bound}$ once reference is identified.}
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%   %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% 
+%%%% %%%% the following text is about the Bohr radius. We may or may not need to include it %%%% %%%% 
+% , with the fine-structure constant replaced by the gravitational coupling
+% \begin{equation}
+%     \alpha_g \equiv \frac{GM_E\,m_a}{\hbar c}
+%     \approx 2\times10^{-5}\left(\frac{m_a}{\SI{1}{\micro\eV}}\right)
+%     \,.\label{eq:alpha_g}
+% \end{equation}
+% The analogue of the Bohr radius is
+% \begin{equation}
+%     a_g = \frac{\hbar^2}{GM_E\,m_a^2}
+%     = \frac{\hbar c}{m_a c^2\,\alpha_g}
+%     \approx \SI{283}{\km}\left(\frac{\SI{5.58}{\nano\eV}}{m_a}\right)^2
+%     \,,\label{eq:bohr_radius_grav}
+% \end{equation}
+% and the bound-state energy levels are
+% \begin{equation}
+%     E_n = -\frac{m_a c^2\,\alpha_g^2}{2n^2}
+%     = -\frac{G^2M_E^2\,m_a^3}{2\hbar^2\,n^2}
+%     \,,\quad n = 1,2,3,\ldots
+%     \label{eq:energy_levels_earth}
+% \end{equation}
 
+% The Bohr radius $a_g$ sets the spatial extent of the ground state. Its scaling as $m_a^{-2}$ means it varies rapidly with mass:
+% \begin{itemize}
+%     \item For $m_a \lesssim \SI{1}{\nano\eV}$: $a_g \gtrsim R_E$ --- the ground-state wavefunction extends to or beyond the Earth's surface; the ALP is loosely bound and the signal at the surface is sensitive to the full volume integral.
+%     \item For $m_a \sim \SI{5}{\nano\eV}$: $a_g \sim \SI{300}{\km} \ll R_E$ --- the ALP is tightly bound inside the Earth; the surface gradient is set by the exponential tail of the wavefunction.
+%     \item For $m_a \gg \SI{10}{\nano\eV}$: $a_g \ll R_E$ --- increasingly localized deep inside the Earth; detectors at the surface probe only the far tail.
+% \end{itemize}
+% \YZ{Add figure: Earth gravitational potential well as a function of radius $r$, overlaid with the ground-state probability density $|\psi_{100}|^2$ for one or two representative masses. Script: \texttt{scripts-and-data/earth\_ALP\_wavefunction.py} (to be written).}
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% 
 
-\subsection{Bound-state wavefunctions and the ALP gradient}\label{sec:theory:earthALP:wavefunctions}
-
-The normalised radial wavefunctions follow the hydrogen-atom form
+Considering the spherical symmetry of the Earth gravitational potential, spherical coordinate system $(r, \theta, \varphi)$ is adopted, where $r$ is the radial distance from the origin, $\theta$ is the polar angle, and $\varphi$ is the azimuthal angle. 
+In spherical coordinates, 
+\begin{equation}
+    \nabla^2 = \frac{1}{{r}^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial}{\partial r}\right)+\frac{1}{r^2\sin\theta}\frac{\partial}{\partial \theta}\left(\sin\theta\frac{\partial}{\partial \theta}\right)+\frac{1}{r^2\sin^2\theta}\frac{\partial^2}{\partial \varphi^2}
+    \,,\label{eq:laplacian_spherical}
+\end{equation}
+so that TISE can be rewritten as
+\begin{equation}
+    \left[-\frac{\hbar^2}{2m}\left(\frac{1}{{r}^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial}{\partial r}\right)-\frac{{\hat{L}}^2}{\hbar^2r^2}\right)+V_g(r)\right]\psi_{nlm}\left(r,\ \theta,\varphi\right)=E_{n}\psi_{nlm}\left(r,\ \theta,\varphi\right)\,,
+\end{equation}
+where $\hat{L}$ is the angular momentum operator. 
+The eigen-function can be separated as
 \begin{equation}
     \psi_{nlm}(\mathbf{r}) = R_{nl}(r)\,Y_l^m(\hat{\mathbf{r}})
-    \,,
+    \,,\label{eq:psi_R_Y}
 \end{equation}
-where $Y_l^m$ are spherical harmonics and the radial functions $R_{nl}$ are expressed in terms of associated Laguerre polynomials with $r$ scaled by $a_g$. The ground state ($n=1$, $l=m=0$) is
+where $R_{nl}$ is the radial wavefunction and $Y_l^m$ is the spherical harmonic. 
+The spherical harmonics satisfies
 \begin{equation}
-    \psi_{100}(\mathbf{r}) = \frac{1}{\sqrt{\pi}\,a_g^{3/2}}\,e^{-r/a_g}
-    \,.\label{eq:psi_ground}
+    {\hat{L}}^2Y\left(\theta,\ \varphi\right)=l\left(l+1\right)\hbar^2Y\left(\theta,\varphi\right)\,.
 \end{equation}
-The local ALP field amplitude at the detector is proportional to $|\psi_{nlm}|$ evaluated at the detector position $\mathbf{r}_\mathrm{det}$ (for a mode carrying total energy $E_n$ and a fixed number of bound quanta).
+Therefore, to derive the radial wavefunction of eigen-state with angular quantum number $l$, TISE is transformed to
+\begin{equation}
+    -\frac{\hbar^2}{2m}\frac{1}{{r}^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial R_{nl}\left(r\right)}{\partial r}\right)+\left(\frac{l\left(l+1\right)\hbar^2}{2mr^2}+V\right)R_{nl}\left(r\right)=E_{n}R_{nl}\left(r\right)\,.
+    \label{eq:TISE_R}
+\end{equation}
+Since the earth density is not uniform, it is difficult to derive the radial wavefunction analytically. 
+Hence, numerical method is adopted. 
+In a discretized space, a matrix for the Hamiltonian in Equation\,\eqref{eq:TISE_R} is constructed. 
+The eigen-values (eigen-energies) and eigen-vectors (eigen-states) can be derived using Python package \texttt{SciPy}. 
+This method is implemented in the Python class \texttt{EarthBoundAxionHalo} of \texttt{axionbloch}. 
+% \YZ{mention numeric solution either here or in the appendix. }
 
-The gradient of the ALP field, which drives nuclear spin precession through Equation~\eqref{eq:HaNN}, is
+Note that normalization is necessary for deriving the right magnitude of the eigen-functions. 
+The wavefunctions are normalized so that the total probability integrates to unity,
 \begin{equation}
-    \boldsymbol{\nabla}a\big|_{\mathbf{r}_\mathrm{det}}
-    \propto \boldsymbol{\nabla}\psi_{nlm}\big|_{\mathbf{r}_\mathrm{det}}
-    \,.\label{eq:earth_ALP_gradient}
+    \int|\psi_{nlm}(\mathbf{r})|^2\,d^3r
+    = \int_0^\infty |R_{nl}(r)|^2\,r^2\,dr
+    \int|Y_l^m(\hat{\mathbf{r}})|^2\,d\Omega
+    = 1
+    \,.\label{eq:psi_norm}
 \end{equation}
-For the ground state, $|\boldsymbol{\nabla}\psi_{100}| = |\psi_{100}|/a_g$, so the gradient and the amplitude are related by a factor $1/a_g$.
+% \begin{align}
+%     \int_0^\infty |R_{nl}|^2 r^2\,dr = 1
+%     \,.\label{eq:psi_norm}
+% \end{align}
+% \begin{align}
+%     \int|Y_l^m|^2\,d\Omega = 1
+%     \,.\label{eq:psi_norm}
+% \end{align}
+Here $\Omega$ is solid angle coordinate. 
+% The two factors are independently normalized: $\int_0^\infty |R_{nl}|^2 r^2\,dr = 1$ and $\int|Y_l^m|^2\,d\Omega = 1$.
+Examples of normalized wavefunctions are illustrated in Figure~\ref{fig:wavefunctions}. 
+\begin{figure}
+    \includegraphics[width=0.45\textwidth]{figures/wavefunction-2p.png}
+    \includegraphics[width=0.45\textwidth]{figures/wavefunction-2p.png}
+    \caption{radial wavefunctions of 1s 2p... states. include higher states and mention that we are only interested in low energy states. }
+    \label{fig:wavefunctions}
+\end{figure}
 
-The corresponding r.m.s.\ Rabi frequency \YZ{derive more carefully; the expression below assumes the total bound mass $M_\mathrm{bound}$ is known}
+% in terms of associated Laguerre polynomials with $r$ scaled by $a_g$. The ground state ($n=1$, $l=m=0$) is
+% \begin{equation}
+%     \psi_{100}(\mathbf{r}) = \frac{1}{\sqrt{\pi}\,a_g^{3/2}}\,e^{-r/a_g}
+%     \,.\label{eq:psi_ground}
+% \end{equation}
+% The local ALP field amplitude at the detector is proportional to $|\psi_{nlm}|$ evaluated at the detector position $\mathbf{r}_\mathrm{det}$ (for a mode carrying total energy $E_n$ and a fixed number of bound quanta).
+
+% The gradient of the ALP field, which drives nuclear spin precession through Equation~\eqref{eq:HaNN}, is
+% \begin{equation}
+%     \boldsymbol{\nabla}a\big
+%     \propto \boldsymbol{\nabla}\psi_{nlm}\big
+%     \,.\label{eq:earth_ALP_gradient}
+% \end{equation}
+% For the ground state, $|\boldsymbol{\nabla}\psi_{100}| = |\psi_{100}|/a_g$, so the gradient and the amplitude are related by a factor $1/a_g$.
+
+% The corresponding r.m.s.\ Rabi frequency \YZ{derive more carefully; the expression below assumes the total bound mass $M_\mathrm{bound}$ is known}
+% \begin{equation}
+%     \Omega_a^\mathrm{Earth} \approx g_\mathrm{aNN}\,\frac{|\boldsymbol{\nabla}\psi_{100}(\mathbf{r}_\mathrm{det})|}{\gamma}\,
+%     \sqrt{\frac{2M_\mathrm{bound}\,c^2}{m_a}}
+%     \,.\label{eq:Omega_earth}
+% \end{equation}
+
+\subsection{ALP field gradient}\label{sec:theory:earthALP:gradient}
+
+The ALP field gradient at the detector can be derived from the spatial gradient of the wavefunction $\psi_{nlm}$ evaluated at the detector position. 
+The gradient operator in spherical coordinates is
 \begin{equation}
-    \Omega_a^\mathrm{Earth} \approx g_\mathrm{aNN}\,\frac{|\boldsymbol{\nabla}\psi_{100}(\mathbf{r}_\mathrm{det})|}{\gamma}\,
-    \sqrt{\frac{2M_\mathrm{bound}\,c^2}{m_a}}
-    \,.\label{eq:Omega_earth}
+    \boldsymbol{\nabla} = \hat{\mathbf{r}}\,\frac{\partial}{\partial r} + \hat{\boldsymbol{\theta}}\,\frac{1}{r}\frac{\partial}{\partial \theta} + \hat{\boldsymbol{\varphi}}\,\frac{1}{r\sin\theta}\frac{\partial}{\partial \varphi}
+    \,.\label{eq:gradient_spherical}
 \end{equation}
+The time-independent gradient of the ALP field contributed by the wavefunction $\psi_{nlm}$ is therefore
+\begin{equation}
+    \boldsymbol{\nabla}a_{nlm}(\mathbf{r})
+    = a_0 \boldsymbol{\nabla}\psi_{nlm}(\mathbf{r})       
+    = \hat{\mathbf{r}}\,\frac{\partial R_{nl}}{\partial r}Y_l^m + \hat{\boldsymbol{\theta}}\,\frac{R_{nl}}{r}\frac{\partial Y_l^m}{\partial \theta} + \hat{\boldsymbol{\varphi}}\,\frac{R_{nl}}{r\sin\theta}\frac{\partial Y_l^m}{\partial \varphi}
+    \,.\label{eq:gradient_psi}
+\end{equation}
+\YZ{is it really $a_0$ or a0 by a factor of sqrt 2? check it later. }
+The gradient magnitude depends on the quantum numbers $(n, l, m)$ and the detector location. 
+If multiple modes are populated, the total gradient is a superposition of the gradients from each mode, weights of which correspond to the population distribution. 
+The values of the gradients are computed numerically from the eigen-states and are used to estimate the expected signal strength in Chapter~\ref{chap:results}. 
+
+
+
+Examples of the gradient magnitude for selected modes are illustrated in Figure~\ref{fig:gradients}. 
+\begin{figure}
+    \includegraphics[width=0.45\textwidth]{figures/wavefunction-2p.png}
+    \includegraphics[width=0.45\textwidth]{figures/wavefunction-2p.png}
+    \caption{gradients of 1s 2p... states. Three rows would be enogh. }
+    \label{fig:gradients}
+\end{figure}
+
+% on the daily modulation
+The directionality of . 
+\YZ{about the choice of z-axis determining the magnitude of the gradient... add more discussion here. }
 \YZ{Add numerical estimate for $\Omega_a^\mathrm{Earth}$ as a function of $m_a$ and $M_\mathrm{bound}$. Add comparison with the galactic-halo Rabi frequency $\Omega_a$ (Equation~\eqref{eq:Omega_a}).}
 
-
-\subsection{Excited states and coherence}\label{sec:theory:earthALP:coherence}
+\subsection{Population and coherence}\label{sec:theory:earthALP:coherence}
 
 Unlike the galactic halo signal, which has a broad Maxwell-Boltzmann spectrum, Earth-bound ALPs occupy discrete energy levels $E_n$. Each level $n$ contributes an ALP oscillation at a slightly different Compton frequency
 \begin{equation}
@@ -177,6 +303,18 @@ Numerical solutions of Equation~\eqref{eq:schrodinger_earth} are needed to deter
 
 
 \subsection{Daily modulations}\label{sec:theory:earthALP:daily}
+
+
+
+
+In the resonance scheme, CASPEr-G is only sensitive to the component of $\boldsymbol{\nabla}a$ perpendicular to the bias field $\mathbf{B}_0$. 
+Since the bias field is always veritcal with repect to the ground, the setup is sensitive to gradient along $\hat{\boldsymbol{\theta}}$ and $\hat{\boldsymbol{\varphi}}$ directions, but not to the gradient along $\hat{\mathbf{r}}$ direction.
+
+
+ assuming the ALP halo is stationary while Earth is rotating at period of a day, daily modulation of the ALP signal amplitude is expected. 
+However, the numerical 
+
+
 
 The Earth-bound ALP wavefunction $\psi_{nlm}$ is defined in the Earth-centred inertial frame, with the quantisation axis aligned with the Earth's rotation axis (or with some fixed direction in space, depending on the angular momentum quantum numbers $l,m$). As the Earth rotates, the laboratory co-rotates, so the orientation of the gradient $\boldsymbol{\nabla}a$ relative to the bias field $\mathbf{B}_0$ changes with a period of one sidereal day.
 

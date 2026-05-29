@@ -14,8 +14,8 @@ The ALP field can be detected through its gradient coupling to nuclear spins, wh
 
 Non-relativistic ALP with velocity $\mathbf{v}_a \ll c$ can be described by a plane-wave state
 \begin{equation}
-    \psi(\mathbf{r}, t)
-    = a_1\, e^{\,i\left(\mathbf{k}\cdot\mathbf{r} - 2\pi\nu_a t\right)}
+    a(\mathbf{r}, t)
+    = a_0\, e^{\,i\left(\mathbf{k}\cdot\mathbf{r} - 2\pi\nu_a t\right)}
     \,,\label{eq:single_ALP_wave}
 \end{equation}
 where the Compton frequency $\nu_a = m_a c^2/h$ is set by the rest mass alone, and the wavevector $\mathbf{k} = m_a \mathbf{v}_a/\hbar$ carries the kinetic information. 
@@ -26,7 +26,7 @@ The de~Broglie wavelength of such a particle is
     % = \frac{hc}{m_a c^2}\cdot\frac{c}{v_a}
     \,.\label{eq:lambda_dB}
 \end{equation}
-For $m_a < \SI{1}{\micro\eV}$ and $v_a < \SI{550}{\km\per\s}$\cite{Evans2019_SHMRefined}, this gives $\lambda_{dB} \approx \SI{1.7}{\km}$\YZ{check the numbers here. add a reference to calculation script}. 
+For $m_a < \SI{2.5}{\micro\eV}$\YZ{mention CASPEr scan range} and $v_a < \SI{550}{\km\per\s}$\cite{Evans2019_SHMRefined}, this gives $\lambda_{dB} > \SI{1.7}{\km}$\YZ{check the numbers here. add a reference to calculation script}. 
 The wavelength grows as $m_a^{-1}$, so at the neV masses probed in this thesis it reaches hundreds of kilometres---far larger than any laboratory apparatus. 
 This means the ALP field is spatially coherent across the entire experiment, and the spatial gradient $\boldsymbol{\nabla}a$ that couples to nuclear spins is well approximated as uniform over the sample volume.
 
@@ -175,7 +175,7 @@ These regimes are illustrated in Figure~\ref{fig:T2star_T2_taua_regimes}. The ke
 
 \begin{table}[ht]
     \centering
-    \caption{Summary of parameters for the four regimes. The normalised linewidth $\delta_\nu = \tau_a/(\pi Q_a T_2^*)$ is assumed constant in each regime. The optimal dwell time is derived in Appendix~\ref{app:dwell_time}.}
+    \caption{Summary of parameters for the four regimes. The normalized linewidth $\delta_\nu = \tau_a/(\pi Q_a T_2^*)$ is assumed constant in each regime. The optimal dwell time is derived in Appendix~\ref{app:dwell_time}.}
     \begin{tabular}{cccccc}
         \hline
         & Regime & Optimal dwell time $T$ & Signal linewidth $\Gamma$ & Spectral factor $u_n$ & r.m.s.\ tipping angle $\sqrt{\langle \xi^2\rangle}$ \\
