@@ -1,17 +1,31 @@
 % \chapter{Axionlike-particle-induced spin precession}\label{chap:theory}
 
-\section{Thermalized Milky Way ALP}
+\section{Thermalized Milky Way ALP}\label{sec:theory:MWALP}
 
 \YZ{ideal gas treatment: discuss thermalized halo and velocity distribution.}
 
+% estimation of the Rabi frequency $\Omega_a^\mathrm{Earth}$ for the Earth-bound ALP
+
+The r.m.s.\ Rabi frequency $\Omega_a$ can be computed based on Equations~\eqref{eq:ALP_field}, \eqref{eq:a0_rhoDM}, and~\eqref{eq:HaNN} \cite{Centers2021Stochastic}:
+\begin{equation}
+    \Omega_a = \dfrac{1}{2\hbar} \mathrm{g_{aNN}} a_0 m_a c v_{\bot} \approx \dfrac{1}{2} \mathrm{g_{aNN}} \sqrt{2\hbar c \rho_{DM}} v_{\bot}
+    \,,
+    \label{eq:Omega_a_MW}
+\end{equation}
+%\AW{this is a stochastically varying quantity!}
+Here we assume that the ALP-field gradient comes exclusively from the relative motion of the field and the detector.\footnote{This is not necessarily the case, for instance, for ALPs gravitationally bound in stationary states like axion stars or ``axion atoms'' \cite{Lam2017_PhysRevD, Liang_Zhitnitsky2019_GravitationallyPhysRevD}. We do not consider such regimes here.}
+%\DK{The readers probably don't know what you're referencing here... perhaps use the term that appears more commonly in the literature, "axion stars," and include related references, for example:\cite{Braaten_2019_axionstars_RevModPhys, Eby_2019_QCDaxionstars_PhysRevD, Eby_2021_axionstarsPlanck_PhysRevD, Banerjee2020_Relaxionstars,Banerjee2020axionhalos}}
+%\DB{But, indeed, we were not thinking about axion stars that are bound states of ALPs themselves, but rather really Axion Atom with, say, the Sun in the center and a halo around it. The atomic analogy is quite strong here and this has been used in the literature…}
+% It is important to note that the ALP field is a stochastically varying quantity, so that the $\Omega_a$ in Equation~\eqref{eq:Omega_a} is the r.m.s value.
+If we take $v_{\bot} = \SI{220}{\km\per\second}$, we have $\Omega_a/2\pi=\mathrm{g_{aNN}}\times\SI{0.2}{\GeV\cdot\Hz}$. For an experiment searching for $\mathrm{g_{aNN}}\leq 10^{-10}\,\SI{}{\per\GeV}$, the Rabi period is $2\pi/\Omega_a \geq 1000\,\mathrm{yr}$; the ALP-field gradient is therefore a weak drive on the spins.
 
 
-\subsection{Coherence time}  % for MW axion
+\subsection{Coherence time}\label{sec:theory:MWALP:coherence}  % for MW axion
 
 For a Maxwell-Boltzmann velocity distribution with average speed $v_a \approx \SI{220}{\km\per\s}$ \cite{Evans2019_SHMRefined}, the ALP field spectral linewidth (FWHM) observed by a detector on Earth is
 \begin{equation}
     \Gamma_a = \dfrac{\nu_a}{Q_a}
-    \,,%\label{eq:Gamma_a_Qa}
+    \,,\label{eq:Gamma_a_Qa}
 \end{equation}
 where $Q_a \equiv (c/v_a)^2 \approx 1.8\times10^6$ is the ALP quality factor. The ALP coherence time $\tau_a$, defined by $\Gamma_a = 2\pi/\tau_a$, is therefore
 \begin{equation}
@@ -24,7 +38,7 @@ Within one coherence time the superposition Equation~\eqref{eq:ALP_sum} is well 
 
 
 
-\subsection{Periodic modulations}
+\subsection{Periodic modulations}\label{sec:theory:MWALP:modulations}
 
 % \subsection{Daily modulation}
 
@@ -33,7 +47,6 @@ The ALP-field gradient driving spin precession depends on the direction of the r
 % \subsection{Annual modulation}
 
 In addition to daily rotation, the Earth's orbital velocity around the Sun modulates the relative ALP-detector velocity with a period of one year. Both the daily and annual modulations have precisely predictable periods and phases, making them useful consistency checks for any claimed dark-matter-candidate signal \cite{Gramolin2022Feb_SpectralSignatures}.
-
 
 
 

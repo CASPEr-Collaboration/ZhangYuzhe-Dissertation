@@ -104,6 +104,7 @@ The ALP field consists of superpositions of eigenstates
 where
 \begin{equation}
     \Psi(\mathbf{r}, t) = e^{-i m_a c^2 t / \hbar}\sum_{nlm}^{} c_{nlm} e^{-i E_n t / \hbar} \psi_{nlm}(\mathbf{r})\,.
+    \label{eq:Psi_r_t}
 \end{equation}
 Here $N_a$ is the number of ALP particles, $\Psi(\mathbf{r}, t)$ is the wavefunction, $\psi_{nlm}$ and $E_n$ are the eigen-wavefunction and the eigen-energy of the eigenstate $(n,\,l,\,m)$, $c_{nlm}$ are the expansion coefficients determined by the population of eigenstates, $n$ is the principal quantum number, $l$ is the angular momentum quantum number, and $m$ is the magnetic quantum number.
 The fast oscillation at ALP Compton frequency is indicated by $e^{-i m_a c^2 t / \hbar}$, where the small variation of oscillation frequency is indicated by $e^{-i E_n t / \hbar}$.
@@ -120,7 +121,7 @@ The ALP dark matter energy density is $\rho_{DM}^{E} = m_a c^2 N_a \langle|\Psi|
     \label{eq:a0_rhoDM_Psi_real}
 \end{align}
 Here $a_0$ is the ALP field amplitude, of which the dimension is energy. 
-From astronomical observations, the local dark matter energy density can be estimated. 
+From astronomical observations, the local dark matter energy density can be estimated. \YZ{TODO: metion Na}
 Therefore, the ALP field amplitude can be obtained by Equation~\ref{eq:a0_rhoDM_Psi_real} once the wavefunction is derived.
 
 In the non-relativistic limit, the eigenstates can be found by the time-independent Schrödinger equation (TISE)
@@ -254,32 +255,77 @@ The gradient operator in spherical coordinates is
     \boldsymbol{\nabla} = \hat{\mathbf{r}}\,\frac{\partial}{\partial r} + \hat{\boldsymbol{\theta}}\,\frac{1}{r}\frac{\partial}{\partial \theta} + \hat{\boldsymbol{\varphi}}\,\frac{1}{r\sin\theta}\frac{\partial}{\partial \varphi}
     \,.\label{eq:gradient_spherical}
 \end{equation}
-The time-independent gradient of the ALP field contributed by the wavefunction $\psi_{nlm}$ is therefore
+The gradient of the ALP field can therefore be inferred from Equation~\eqref{eq:a0_Psi_real} and \eqref{eq:Psi_r_t} as
+\begin{align}
+    \boldsymbol{\nabla}a(\mathbf{r}, t)
+    &= \sqrt{\frac{N_a \hbar^3 c}{2 m_a}} \Re\left( \boldsymbol{\nabla} \Psi(\mathbf{r}, t) \right) \\
+    &= \sqrt{\frac{N_a \hbar^3 c}{2 m_a}} \Re\left( e^{-i m_a c^2 t / \hbar}\sum_{nlm}^{} c_{nlm} e^{-i E_n t / \hbar} \boldsymbol{\nabla}\psi_{nlm}(\mathbf{r}) \right)
+    \,,\label{eq:gradient_Psi_sum}
+\end{align}
+where
+% \begin{equation}
+%     a_0(\mathbf{r}, t) = \sqrt{\frac{N_a \hbar^3 c}{2 m_a}} \left(\Psi(\mathbf{r}, t) + \Psi^*(\mathbf{r}, t) \right)~, 
+%     \label{eq:a0_Psi_real_imag}
+% \end{equation}
+% where
+% \begin{equation}
+%     \Psi(\mathbf{r}, t) = e^{-i m_a c^2 t / \hbar}\sum_{nlm}^{} c_{nlm} e^{-i E_n t / \hbar} \psi_{nlm}(\mathbf{r})\,.
+%     \label{eq:Psi_r_t}
+% \end{equation}
 \begin{equation}
-    \boldsymbol{\nabla}a_{nlm}(\mathbf{r})
-    = a_0 \boldsymbol{\nabla}\psi_{nlm}(\mathbf{r})       
+    \boldsymbol{\nabla}\psi_{nlm}(\mathbf{r})       
     = \hat{\mathbf{r}}\,\frac{\partial R_{nl}}{\partial r}Y_l^m + \hat{\boldsymbol{\theta}}\,\frac{R_{nl}}{r}\frac{\partial Y_l^m}{\partial \theta} + \hat{\boldsymbol{\varphi}}\,\frac{R_{nl}}{r\sin\theta}\frac{\partial Y_l^m}{\partial \varphi}
-    \,.\label{eq:gradient_psi}
+    \,.\label{eq:gradient_psi_nlm}
 \end{equation}
-\YZ{is it really $a_0$ or a0 by a factor of sqrt 2? check it later. }
-The gradient magnitude depends on the quantum numbers $(n, l, m)$ and the detector location. 
-If multiple modes are populated, the total gradient is a superposition of the gradients from each mode, weights of which correspond to the population distribution. 
-The values of the gradients are computed numerically from the eigen-states and are used to estimate the expected signal strength in Chapter~\ref{chap:results}. 
+If multiple modes are populated, the total gradient is a superposition of the gradients from each mode, weights of which correspond to the population distribution, as can be seen in Equation~\eqref{eq:gradient_Psi_sum}.
+%  and Equation~\ref{eq:psi_R_Y} 
 
+contributed by the wavefunction $\psi_{nlm}$ 
 
+The gradient magnitude depends on the eigen-state $(n, l, m)$ and the detector location. 
+The characteristics of the gradient are addressed as follows:
+\begin{itemize}
+    \item For the eigen-states with zero angular momentum ($s$ state), the wavefunction is spherically symmetric, so the gradient is purely radial and its magnitude is proportional to the radial wavefunction gradient\YZ{is this paragraph right??}.
+    \item When angular momentum is non-zero ($l>=1$), the gradient has non-radial components may vary over different locations, depending on the angular structure of the wavefunction. 
+    \item The choice of the quantization axis is critical for considering $l>0$ states. Since the solar gravity breaks the rotational symmetry, the quantization axis ($z$-axis) is chosen along the direction from the Earth's centre to the Sun, which does not align with the Earth's rotational axis. This means that the gradient at the detector location will have a daily modulation as the Earth rotates, which is discussed in Section~\ref{sec:theory:earthALP:daily}.
+    \item \textbf{Azimuthal dependence} For modes with $m\neq 0$, the gradient has an azimuthal dependence. However, for the brevity of this discussion, only $m=0$ is considered in this work. 
+\end{itemize}
+The values of the gradients are computed numerically from the eigen-states and are used to estimate the expected signal strength in Chapter~\ref{chap:results}. \YZ{mention the time for computing the gradients.}
+% 
+Examples of the gradient magnitude for selected modes are illustrated in Figure~\ref{fig:wavefunctions}. 
 
-Examples of the gradient magnitude for selected modes are illustrated in Figure~\ref{fig:gradients}. 
 \begin{figure}
-    \includegraphics[width=0.45\textwidth]{figures/wavefunction-2p.png}
-    \includegraphics[width=0.45\textwidth]{figures/wavefunction-2p.png}
-    \caption{gradients of 1s 2p... states. Three rows would be enogh. }
+    \includegraphics[width=0.99\textwidth]{figures/gradients_comparison_1s.png}
+    \includegraphics[width=0.99\textwidth]{figures/gradients_comparison_2p.png}
+    \caption{gradients of 1s 2p... states. Three rows would be enogh.  }
     \label{fig:gradients}
 \end{figure}
 
-% on the daily modulation
-The directionality of . 
-\YZ{about the choice of z-axis determining the magnitude of the gradient... add more discussion here. }
 \YZ{Add numerical estimate for $\Omega_a^\mathrm{Earth}$ as a function of $m_a$ and $M_\mathrm{bound}$. Add comparison with the galactic-halo Rabi frequency $\Omega_a$ (Equation~\eqref{eq:Omega_a}).}
+% estimation of the Rabi frequency $\Omega_a^\mathrm{Earth}$ for the Earth-bound ALP
+A rough estimation of the Rabi frequency $\Omega_a^{\oplus}$ of the pseudomagnetic field can be made using Equation~\eqref{eq:Omega_a} and escape speed $v_\mathrm{esc}$ as the typical velocity of the Earth-bound ALP: 
+\begin{equation}
+    \Omega_a^{\oplus} / (2 \pi)\approx \frac{g_\mathrm{aNN}}{\SI{1e-9}{\GeV^{-1}}} \times \SI{6}{\mHz}~.
+\end{equation}
+A more accurate estimation can be made using the numerical values of the wavefunction gradients at the detector location. 
+With Equations~(\ref{eq:Bpseudo}, \ref{eq:Omega_a_earth}, {eq:gradient_Psi_sum}, \ref{eq:gradient_psi_nlm}), it can be estimated as
+\begin{equation}
+    \Omega_a^{\oplus} = c\, g_\mathrm{aNN} \sqrt{\frac{N_a \hbar^3 c}{2 m_a}}\,\left|(\boldsymbol{\nabla}\psi_{nlm})_\perp\right|
+    \,,\label{eq:Omega_a_earth}
+\end{equation}
+where theta_gradient $\left|(\boldsymbol{\nabla}\psi_{nlm})_\perp\right|$ is the magnitude of the wavefunction gradient component perpendicular to the bias field $\mathbf{B}_0$ (i.e., the $\hat{\boldsymbol{\theta}}$ and $\hat{\boldsymbol{\varphi}}$ terms from Equation~\eqref{eq:gradient_psi_nlm}).
+Using the numerical values of the wavefunction gradients, the value can be obtained as
+\begin{equation}
+    \Omega_a^{\oplus, \theta} / (2 \pi)\approx \frac{g_\mathrm{aNN}}{\SI{1e-9}{\GeV^{-1}}} \times \SI{3}{\mHz}~.
+\end{equation}
+\YZ{what about r gradient? TODO: add it}
+These two estimations yield consistent results within an order of magnitude. 
+The calculations can be found at \YZ{add reference to the script used for the calculation}. % scripts-and-data\grav_potential.ipynb #### Estimation of the ALP field gradient
+Note that due to the magnitude of the Rabi frequency can vary by \SI{100}{\percent} due to the time-changing alignment between the ALP gradient and the sensitive axis of detector. 
+
+Such Rabi frequency is $\sim$7 orders of magnitude larger than the expected Rabi frequency from the galactic halo ALP, which is $\Omega_a/(2\pi)=\frac{g_\mathrm{aNN}}{\SI{1e-9}{\GeV^{-1}}}\times\SI{2e-10}{\Hz}$, as estimated after Equation~\eqref{eq:Omega_a}\YZ{TODO: I may have to choose a different equation after finishing theory section}. 
+% TODO: mention local dm density and low axion speed
+If indeed such amount of axionlike dark matter can be accumulated in the Earth gravitational potential, it would produce a much stronger signal than the galactic halo ALP, making it an target that CASPEr-G is sensitive to. 
 
 \subsection{Population and coherence}\label{sec:theory:earthALP:coherence}
 

@@ -71,9 +71,9 @@ Hyperpolarization boosts the initial spin polarization above its thermal value. 
 
 \section{Axion simulation example}\label{sec:axionbloch:example}
 
-As a demonstration, the \texttt{MilkyWayAxionHalo} model simulates the pseudomagnetic field from virialized galactic dark matter following the standard halo model \cite{Evans2019_SHMRefined,Gramolin2022Feb_SpectralSignatures}. The axion field oscillates at the Compton frequency with a Maxwell-Boltzmann velocity distribution setting the spectral linewidth. The stochasticity of the field amplitude is accounted for by generating many independent realisations of the pseudomagnetic field.
+As a demonstration, the \texttt{MilkyWayAxionHalo} model simulates the pseudomagnetic field from virialized galactic dark matter following the standard halo model \cite{Evans2019_SHMRefined,Gramolin2022Feb_SpectralSignatures}. The axion field oscillates at the Compton frequency with a Maxwell-Boltzmann velocity distribution setting the spectral linewidth. The stochasticity of the field amplitude is accounted for by generating many independent realizations of the pseudomagnetic field.
 
-Figure~\ref{fig:axion_sim} shows results for a \ch{^{129}Xe} sample polarized to \SI{50}{\%}. A single realisation (left) illustrates the stochastic fluctuations in both the pseudomagnetic field and the induced transverse magnetization. An ensemble of 1000 realisations (right) yields the mean signal and its standard deviation band. The signal initially grows as the ALP field drives the magnetization away from equilibrium, and then decays on the $T_1$ timescale as the hyperpolarization is lost.
+Figure~\ref{fig:axion_sim} shows results for a \ch{^{129}Xe} sample polarized to \SI{50}{\%}. A single realisation (left) illustrates the stochastic fluctuations in both the pseudomagnetic field and the induced transverse magnetization. An ensemble of 1000 realizations (right) yields the mean signal and its standard deviation band. The signal initially grows as the ALP field drives the magnetization away from equilibrium, and then decays on the $T_1$ timescale as the hyperpolarization is lost.
 
 These simulations validate the three-regime picture in Equation~\eqref{eq:rms_xi}: at low frequencies where $\tau_a \gg T$, the signal grows linearly in dwell time; in the intermediate regime $\tau_a \sim T$, the signal departs from the analytical long-dwell-time scaling; and at high frequencies where $T \gg \tau_a$, the analytical results apply directly.
 
@@ -81,7 +81,7 @@ These simulations validate the three-regime picture in Equation~\eqref{eq:rms_xi
     \centering
     \includegraphics[width=0.49\linewidth]{works/axionbloch/figures/MilkyWayAxionHalo-1.pdf}
     \includegraphics[width=0.49\linewidth]{works/axionbloch/figures/MilkyWayAxionHalo-1000.pdf}
-    \caption{Simulated axion-induced NMR signals for a virialized Milky Way axion dark matter halo. Upper panels: pseudomagnetic fields $B_x$ and $B_y$ in the transverse plane. Lower panels: amplitude of the induced transverse magnetization $M_{xy}$, normalized by $M_0$. Left: single simulation realisation. Right: ensemble of 1000 realisations; solid lines show the mean and shaded bands show $\pm\sigma$. The sample is \ch{^{129}Xe} initially polarized to \SI{50}{\%}. Reproduced from Ref.\,\cite{Zhang_axionbloch}.}
+    \caption{Simulated axion-induced NMR signals for a virialized Milky Way axion dark matter halo. Upper panels: pseudomagnetic fields $B_x$ and $B_y$ in the transverse plane. Lower panels: amplitude of the induced transverse magnetization $M_{xy}$, normalized by $M_0$. Left: single simulation realisation. Right: ensemble of 1000 realizations; solid lines show the mean and shaded bands show $\pm\sigma$. The sample is \ch{^{129}Xe} initially polarized to \SI{50}{\%}. Reproduced from Ref.\,\cite{Zhang_axionbloch}.}
     \label{fig:axion_sim}
 \end{figure}
 
