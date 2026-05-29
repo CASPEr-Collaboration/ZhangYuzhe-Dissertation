@@ -10,7 +10,7 @@ This chapter introduces the key ingredients of the search. Section~\ref{sec:NMR}
 \section{Nuclear magnetic resonance}\label{sec:NMR}
 Nuclear magnetic resonance is a technique for studying nuclear spins in magnetic fields. In the presence of a leading field, spin states split by the Zeeman effect and a polarized sample acquires a net magnetization that precesses at the Larmor frequency. Because the resonant frequency is directly proportional to the magnetic field, NMR is a precision tool for field measurement.
 
-For the purposes of this thesis, the most important features of NMR are its sensitivity to weak fields, its applicability from zero to very high field, and its rich time-domain response. Those properties make it possible to reinterpret axionlike spin precession as a small perturbation on an otherwise standard NMR experiment.
+The properties most relevant to this thesis are sensitivity to weak fields, applicability from zero to very high field, and a rich time-domain response. These allow axionlike spin precession to be treated as a small perturbation on a standard NMR experiment.
 
 \subsection{Zeeman splitting and polarization}\label{sec:NMR:Zeeman}
 In a magnetic field $B_0$, a spin-$1/2$ nucleus splits into two energy levels separated by
@@ -69,17 +69,17 @@ Longitudinal relaxation governs how the population difference between spin state
 Transverse relaxation combines microscopic spin-spin interactions ($T_2$) and macroscopic field inhomogeneity ($T_\delta$) as given in Equation~\eqref{eq:T2star}. It determines the free-decay\footnote{\YZ{remove induction and mention there might not be any induction}} signal and directly controls the linewidth in the frequency domain. For field searches, a narrower linewidth can improve sensitivity, but only if the coherence time remains long enough to integrate signal power efficiently.
 
 \subsubsection{Cross relaxation}
-Cross relaxation is one of the mechanisms by which energy can be exchanged between coupled spin species or spin reservoirs. It is relevant whenever the sample or environment contains more than one spin system, because it can alter the effective relaxation rates seen in the measurement.
+Cross relaxation transfers energy between coupled spin species or spin reservoirs. In samples containing more than one spin system, it modifies the effective relaxation rates of each species.
 
 \subsection{Chemical shift}
-Chemical shielding changes the local magnetic field felt by a nucleus and therefore shifts the resonance frequency. The shift is typically small on an absolute scale, but it can be crucial in spectroscopy because it makes nuclei in different chemical environments distinguishable.
+Chemical shielding modifies the local field at a nucleus and shifts its resonance frequency. The shift is small in absolute terms but distinguishes nuclei in different chemical environments.
 
-In the current thesis, chemical shift matters mainly as a source of spectral structure and as a reminder that the resonant response is not determined by the external field alone.
+In this thesis, chemical shift contributes to the spectral structure of the sample and offsets the resonance from the bare Larmor value.
 
 \subsection{Spin-spin coupling}
-Coupling between nuclear spins splits resonance lines into multiplets. This effect is useful rather than harmful when the goal is signal verification, because the pattern of peaks can identify a particular molecular species and help distinguish genuine NMR signals from noise spikes.
+Coupling between nuclear spins splits resonance lines into multiplets. The resulting J-coupling pattern provides a spectral fingerprint for molecular identification, which helps distinguish genuine NMR signals from noise.
 
-For the calibration sample used later in the thesis, J-coupling provides a clear spectral signature that is much easier to recognize than a single unresolved line.
+For the calibration sample, J-coupling produces a resolved multiplet that serves as a reliable spectral reference.
 
 \subsection{Experimental schemes}
 Two pulse-based schemes are especially useful. Free induction decay measures the coherent response after a tipping pulse, while spin echo refocuses dephasing and gives access to the intrinsic transverse relaxation time. Both are diagnostic tools that help characterize the apparatus before an axion measurement.
@@ -95,7 +95,7 @@ Spin echo uses a $\pi$ pulse to reverse dephasing from static field inhomogeneit
 The concept of dark matter arose from astronomical observations that could not be explained by visible matter and standard gravity alone. Galaxy rotation curves are the classic example: the outer parts of galaxies rotate too quickly for the observed baryonic mass to provide the required gravitational binding \cite{rubin1970rotation,doi:10.1146/annurev.astro.39.1.137}. The Bullet Cluster provides direct evidence through the spatial separation between the gravitational mass (traced by lensing) and the baryonic mass (X-ray gas) after two galaxy clusters collide \cite{Clowe_2006}. The cosmic microwave background power spectrum and big-bang nucleosynthesis abundances independently constrain baryonic matter to roughly \SI{5}{\%} of the total energy budget, with dark matter contributing about \SI{27}{\%} \cite{ade2016planck}.
 
 \subsection{History}
-From early galaxy-dynamics studies to later lensing and large-scale structure measurements, the dark-matter hypothesis was strengthened by evidence from many independent observations. The basic conclusion is that a large fraction of the matter content of the universe is not directly visible.
+Evidence for dark matter accumulated from galaxy-dynamics studies, gravitational lensing, and large-scale structure surveys. Each line of evidence independently supports a non-baryonic matter component that dominates the mass budget of the universe.
 
 \subsection{Recent developments}
 Modern dark-matter searches span weakly interacting massive particles (WIMPs), ultralight bosons, and direct-detection strategies based on precision measurement \cite{Kimball2023_search}. WIMPs have been strongly constrained by direct-detection experiments; axions and axionlike particles have attracted increasing attention because they connect cosmology with laboratory-scale experiments through tiny but coherent effects.
@@ -192,8 +192,7 @@ For $g_{\mathrm{aNN}} \lesssim 10^{-10}\,\SI{}{\GeV^{-1}}$, the Rabi period $2\p
 
 \section{CASPEr project}\label{sec:intro:CASPEr}
 
-first mention a lot of magnetic resonance searches (haloscope). 
-\cite{Kimball2023_search}
+\YZ{first mention a lot of magnetic resonance searches (haloscope). \cite{Kimball2023_search}}
 
 CASPEr (Cosmic Axion Spin Precession Experiment) is a family of experiments proposed in 2014 \cite{CASPErProposal2014} that use nuclear spins to search for axion-induced effects. The idea is to translate the tiny axion coupling in Equation~\eqref{eq:Bpseudo} into a measurable spin precession in a carefully controlled NMR setup.
 
