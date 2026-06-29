@@ -261,8 +261,8 @@ The measurement sets the limit $|g_\mathrm{ap}| \lesssim \SI{3e-2}{\GeV^{-1}}$ o
 
 \section{Earth-bound ALP measurement}\label{sec:earthhalomeas}
 
-In this data taking, the bias field was ramped to ?? therefore the Larmor frequency of the sample was tuned to ??, corresponding to an ALP mass of \SI{}{\neV/c^2}. 
-The measurement lasted for ?? hours in total. In this section, the measurement procedure and results are presented. 
+% In this data taking, the bias field was ramped to ?? therefore the Larmor frequency of the sample was tuned to ??, corresponding to an ALP mass of \SI{}{\neV/c^2}. 
+% The measurement lasted for ?? hours in total. In this section, the measurement procedure and results are presented. 
 
 \subsection{Procedure and parameters}
 
@@ -277,29 +277,6 @@ This corresponds to an ALP mass range of
     \SI{5.577299}{\neV/c^2} \pm \SI{50}{\femto\electronvolt/c^2}\,. \nonumber
 \end{equation}
 The scanning took 8 steps. 
-A summary of the measurement parameters is given in Table~\ref{tab:earthmeas_params}. 
-
-\begin{table}[htb]
-    \centering
-    \caption{Technical parameters of the Earth-bound ALP measurement (December 14, 2022). Here SNR indicates the signal-to-noise ratio of the free decay signal after a $\pi/2$ pulse.}
-    \label{tab:earthmeas_params}
-    \begin{tabular}{lc}
-        \toprule
-        Parameter & Value \\
-        \hline
-        Sample & thermally polarized methanol \\
-        Number of scan steps & 8 \\
-        Sweep coil current increment & \SI{0.8}{\mA} \\
-        Frequency increment per step & \SI{6}{\Hz} \\
-        Frequency scan range & $\SI{1.348585}{\MHz} \pm \SI{24}{\Hz}$ \\
-        NMR linewidth (FWHM) in one step & $\approx\SI{10}{\Hz}$ \\
-        $T_2$ relaxation time & $\approx\SI{1}{\s}$ \\
-        Signal-to-noise ratio (SNR) & $\approx 120$ \\
-        Axion measurement duration per step & \SI{1}{\hour} \\
-        \bottomrule
-    \end{tabular}
-\end{table}
-
 In each scan step, the following actions were performed in order:
 \begin{enumerate}[label=\arabic*.]
     \item Set sweep coil current. 
@@ -319,6 +296,31 @@ Note that the 1-hour ALP measurement duration is much longer than the 100-second
     \caption{Schematic of the Earth-bound ALP measurement procedure.}
     \label{fig:earthhalomeas_procedure}
 \end{figure}
+A summary of the measurement parameters is given in Table~\ref{tab:earthmeas_params}. 
+Long measurement durations make this measurement sensitive to the long-coherence-time ALP fields. 
+Therefore, this measurement is chosen to demonstrate the sensitivity of the CASPEr-Gradient-LF apparatus to the Earth-bound ALP halo model. 
+
+\begin{table}[htb]
+    \centering
+    \caption{Technical parameters of the Earth-bound ALP measurement (December 14, 2022). Here SNR indicates the signal-to-noise ratio of the free decay signal after a $\pi/2$ pulse.}
+    \label{tab:earthmeas_params}
+    \begin{tabular}{lc}
+        \toprule
+        Parameter & Name or value \\
+        \hline
+        Sample & thermally polarized methanol \\
+        Number of scan steps & 8 \\
+        Sweep coil current increment & \SI{0.8}{\mA} \\
+        Frequency increment per step & \SI{6}{\Hz} \\
+        Frequency scan range & $\SI{1.348585}{\MHz} \pm \SI{24}{\Hz}$ \\
+        NMR linewidth (FWHM) in one step & $\approx\SI{10}{\Hz}$ \\
+        $T_2$ relaxation time & $\approx\SI{1}{\s}$ \\
+        Signal-to-noise ratio (SNR) & $\approx 120$ \\
+        Axion measurement duration per step & \SI{1}{\hour} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 
 
 \subsection{Expected signal and sensitivity}
@@ -328,10 +330,10 @@ Due to the daily rotation of the Earth, the component of the ALP-field gradient 
 Using the ALP signal model established in Chapter~\ref{sec:theory:earthALP}, the expected signal amplitude can be calculated. 
 In Figure~\ref{fig:earthhalomeas_signal}, the evolution of the expected Rabi frequency of the pseudomagnetic field is plotted. 
 
+
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.95\linewidth]{figures/earth_halo_expected_rabi_evolution.pdf}
-    \caption{Expected evolution of the ALP-induced Rabi frequency (pseudomagnetic field) over one sidereal day for the Earth-bound ALP halo model. The amplitude modulation is driven by the daily rotation of the laboratory frame relative to the ALP-field gradient; the plotted curve shows the combined effect of the geometry of \mathbf{B}_0 and the predicted halo profile.}
+    \caption{Expected evolution of the ALP-induced Rabi frequency (pseudomagnetic field) over one sidereal day for the Earth-bound ALP halo model. The amplitude modulation is driven by the daily rotation of the laboratory frame relative to the ALP-field gradient; the plotted curve shows the combined effect of the geometry of $\mathbf{B}_0$ and the predicted halo profile. }
     \label{fig:earthhalomeas_signal}
 \end{figure}
-

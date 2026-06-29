@@ -13,7 +13,7 @@
 {scrbook}
 
 
-\input{core/preamble/document_settings} % Contains commands that are used for certain information that is printed.
+\input{core/document_settings} % Contains commands that are used for certain information that is printed.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -65,18 +65,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\input{core/preamble/format}                        % Contains commands that define the general format and layout of the thesis.
-\input{core/bibliography/bibliography_format}       % Contains commands for the layout of the bibliography.
-\input{packages_and_commands/standard_packages}     % Contains the packages that this template provides.
-\input{packages_and_commands/general_commands}      % Contains newly defined commands useful for mathematics.
-\input{packages_and_commands/user-defined_commands} % This is where user-defined commands should go.
+\input{core/format}                % Contains commands that define the general format and layout of the thesis.
+\input{core/bibliography_format}   % Contains commands for the layout of the bibliography.
+\input{core/standard_packages}     % Contains the packages that this template provides.
+\input{core/general_commands}      % Contains newly defined commands useful for mathematics.
+\input{core/user-defined_commands} % This is where user-defined commands should go.
 
 
 % This is the thesis. The front matter as well as the references should not be changed. The main matter can be edited freely.
 \begin{document}
 
     \frontmatter
-    \include{core/title_page/title_page}
+    \include{core/title_page}
 
     \pagestyle{plain}
     
@@ -89,16 +89,16 @@
     \hfill Yuzhe Zhang
     \clearpage
     
-    \include{content/note}
-    \include{content/abstract}
+    \include{note}
+    \include{abstract}
 
     % \selectlanguage{ngerman}
     % \addchap{Zusammenfassung}
-    % \input{preface/abstractGerman}
+    % \input{abstractGerman}
     % \selectlanguage{american}
 
     \addchap{Acknowledgments}
-    \input{content/acknowledgments}
+    \input{acknowledgments}
 
     \setuptoc{toc}{totoc}
     \tableofcontents
@@ -108,13 +108,13 @@
 
     
     % \part{The Beginning of It All}
-    \include{content/introduction}
+    \include{introduction}
     
-    \include{content/theory}
-    \include{content/theory-MW-ALP}
-    \include{content/theory-Earth-ALP}
+    \include{theory}
+    \include{theory-MW-ALP}
+    \include{theory-Earth-ALP}
 
-    \include{content/apparatus}
+    \include{apparatus}
 
     % % Add the following chapters not to the current ›part‹ but one level above instead.
     % \makeatletter
@@ -122,13 +122,13 @@
     %     \def\toclevel@section{0}
     % \makeatother
 
-    \include{content/results}
+    \include{results}
     
-    \include{content/conclusions}
+    \include{conclusions}
 
-    \include{content/data}
+    \include{data}
 
-    \include{content/appendix}
+    \include{appendix}
 
     % Following are the files and commands for the bibliography and the author’s publications.
     \pagestyle{plain}
@@ -137,6 +137,6 @@
     \printbibheading
     \addcontentsline{toc}{chapter}{Bibliography}
     \printbibliography[heading = none]
-    % \bibliography{content/references}
+    % \bibliography{references}
     
 \end{document}
