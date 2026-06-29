@@ -4,7 +4,7 @@ The central observation motivating this thesis is that axionlike particles (ALPs
 
 Astrophysical evidence for dark matter comes from galaxy rotation curves, gravitational lensing, large-scale structure, and the cosmic microwave background: visible matter alone cannot account for the observed dynamics. Axions and axionlike particles are theoretically attractive candidates because they are weakly coupled, naturally light, and can generate coherent spin-precession signals accessible to precision NMR experiments.
 
-This chapter introduces the key ingredients of the search. Section~\ref{sec:NMR} reviews the NMR concepts most relevant to the experiment. Section~\ref{sec:intro:DM} summarises the dark-matter evidence. Section~\ref{sec:intro:axions} describes the axion and ALP framework, including the pseudomagnetic-field analogy that connects ALP physics to NMR. Section~\ref{sec:intro:CASPEr} outlines the CASPEr experimental programme. The theory of signal estimation and scanning optimisation is developed in Chapter~\ref{chap:theory}; the apparatus is described in Chapter~\ref{chap:apparatus}; measurements and results appear in Chapter~\ref{chap:results}.
+This chapter introduces the key ingredients of the search. Section~\ref{sec:NMR} reviews the NMR concepts most relevant to the experiment. Section~\ref{sec:intro:DM} summarizes the dark-matter evidence. Section~\ref{sec:intro:axions} describes the axion and ALP framework, including the pseudomagnetic-field analogy that connects ALP physics to NMR. Section~\ref{sec:intro:CASPEr} outlines the CASPEr experimental program. The theory of signal estimation and scanning optimization is developed in Chapter~\ref{chap:theory}; the apparatus is described in Chapter~\ref{chap:apparatus}; measurements and results appear in Chapter~\ref{chap:results}.
 
 % \section{Interaction with spins}
 \section{Nuclear magnetic resonance}\label{sec:NMR}
@@ -58,7 +58,7 @@ Relaxation describes the return of the spin ensemble toward equilibrium after it
     \frac{1}{T_2^*} = \frac{1}{T_2} + \frac{1}{T_\delta}
     \,,\label{eq:T2star}
 \end{equation}
-where $T_2$ characterises irreversible spin-spin interactions and $T_\delta$ quantifies the additional dephasing caused by magnetic-field inhomogeneity across the sample volume. Because field inhomogeneity can be reduced by shimming (Chapter~\ref{chap:apparatus}), $T_2^*$ is experimentally controllable, but $T_2$ sets an intrinsic upper bound.
+where $T_2$ characterizes irreversible spin-spin interactions and $T_\delta$ quantifies the additional dephasing caused by magnetic-field inhomogeneity across the sample volume. Because field inhomogeneity can be reduced by shimming (Chapter~\ref{chap:apparatus}), $T_2^*$ is experimentally controllable, but $T_2$ sets an intrinsic upper bound.
 
 These time scales are central to the thesis because they set the window over which the ALP-induced signal can be observed coherently. Longer $T_2^*$ improves sensitivity in all four signal regimes derived in Chapter~\ref{chap:theory}.
 
@@ -90,6 +90,9 @@ After a $\pi/2$ pulse, the magnetization is tipped into the transverse plane and
 \subsubsection{Spin echo}\label{sec:NMR:scheme:echo}
 Spin echo uses a $\pi$ pulse to reverse dephasing from static field inhomogeneity. By recovering the signal at the echo time, it separates true spin-spin relaxation from broadening caused by imperfect field homogeneity, yielding a direct measurement of $T_2$.
 
+\subsubsection{CPMG sequence}\label{sec:NMR:scheme:CPMG}
+The Carr--Purcell--Meiboom--Gill (CPMG) sequence extends the spin-echo scheme by applying a $\pi/2$ pulse followed by a train of $\pi$ refocusing pulses. Each refocusing pulse produces an echo, and the decay of the echo amplitudes gives a robust measurement of $T_2$. In this thesis, CPMG is used as a pulsed-NMR diagnostic to characterize the sample relaxation before and after long ALP-search measurements.
+
 
 \section{Dark matter hypothesis}\label{sec:intro:DM}
 The concept of dark matter arose from astronomical observations that could not be explained by visible matter and standard gravity alone. Galaxy rotation curves are the classic example: the outer parts of galaxies rotate too quickly for the observed baryonic mass to provide the required gravitational binding \cite{rubin1970rotation,doi:10.1146/annurev.astro.39.1.137}. The Bullet Cluster provides direct evidence through the spatial separation between the gravitational mass (traced by lensing) and the baryonic mass (X-ray gas) after two galaxy clusters collide \cite{Clowe_2006}. The cosmic microwave background power spectrum and big-bang nucleosynthesis abundances independently constrain baryonic matter to roughly \SI{5}{\%} of the total energy budget, with dark matter contributing about \SI{27}{\%} \cite{ade2016planck}.
@@ -101,7 +104,7 @@ Evidence for dark matter accumulated from galaxy-dynamics studies, gravitational
 Modern dark-matter searches span weakly interacting massive particles (WIMPs), ultralight bosons, and direct-detection strategies based on precision measurement \cite{Kimball2023_search}. WIMPs have been strongly constrained by direct-detection experiments; axions and axionlike particles have attracted increasing attention because they connect cosmology with laboratory-scale experiments through tiny but coherent effects.
 
 \section{Axions and axionlike particles}\label{sec:intro:axions}
-The QCD axion was originally proposed in 1977 by Peccei and Quinn as a solution to the strong $CP$ problem \cite{PecceiQuinn1977_CPConservation_PRL,PecceiQuinn1977_ConstraintsCP_PRD}. A global symmetry breaking at the scale $f_a$ generates a pseudo-Goldstone boson whose potential is minimised at the $CP$-conserving point, naturally explaining why the strong interaction conserves $CP$. The axion acquires a mass $m_a \sim \Lambda_\mathrm{QCD}^2/f_a$ from QCD dynamics.
+The QCD axion was originally proposed in 1977 by Peccei and Quinn as a solution to the strong $CP$ problem \cite{PecceiQuinn1977_CPConservation_PRL,PecceiQuinn1977_ConstraintsCP_PRD}. A global symmetry breaking at the scale $f_a$ generates a pseudo-Goldstone boson whose potential is minimized at the $CP$-conserving point, naturally explaining why the strong interaction conserves $CP$. The axion acquires a mass $m_a \sim \Lambda_\mathrm{QCD}^2/f_a$ from QCD dynamics.
 
 \subsection{QCD axion}
 The QCD axion is a hypothetical pseudoscalar particle that appears when a global symmetry is introduced to explain why strong interactions conserve $CP$ so well. Its properties are tightly linked to the QCD scale, which makes it a special case rather than the most general one. Cosmological production via the misalignment mechanism constrains $f_a \lesssim 10^{12}$ GeV (axion mass $\gtrsim \SI{6}{\micro\electronvolt}$) if the axion is to constitute all dark matter \cite{Preskill1983_invisible_axion,Abbott1982_Cosmological_Axion,Dine1983_not_so_harmless_axion}.
@@ -220,11 +223,10 @@ The resonance scheme is the main search strategy for CASPEr-Gradient-Low-Field. 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.65\linewidth]{works/frequency-scanning/CASPEr_Apparatus_20230508.png}
-    \caption{Conceptual diagram of the CASPEr-Gradient-Low-Field setup. Superconducting devices (dark green) are submerged in a liquid helium bath (light green). The excitation and pickup coils characterise the sample and detect the spin-precession signal. The sample temperature can be controlled independently of the helium bath, enabling measurements with both thermal and hyperpolarized samples. Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.}
+    \caption{Conceptual diagram of the CASPEr-Gradient-Low-Field setup. Superconducting devices (dark green) are submerged in a liquid helium bath (light green). The excitation and pickup coils characterize the sample and detect the spin-precession signal. The sample temperature can be controlled independently of the helium bath, enabling measurements with both thermal and hyperpolarized samples. Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.}
     \label{fig:CASPEr_Apparatus}
 \end{figure}
 
 \subsection{Scientific targets beyond gradient coupling}
 
 \YZ{mention what are going to be included? in the coming chapters? }
-

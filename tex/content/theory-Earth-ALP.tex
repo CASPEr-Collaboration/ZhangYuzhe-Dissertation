@@ -61,7 +61,7 @@ The gravitational potential of Earth $V_g / m$ per unit mass can be found by
     \label{eq:grav_potential}
 \end{equation}
 \YZ{check if we are wrong by a constant or so. }
-where $r$ is the distance measured from the Earth's centre, $G$ is Newton's constant, and $M_\mathrm{enclosed}$ is the Earth's mass enclosed by $r$. Here we take the infinity as the reference point and have potential $V_g(\infty)/m=\SI{0}{\joule\per\kg}$. 
+where $r$ is the distance measured from the Earth's center, $G$ is Newton's constant, and $M_\mathrm{enclosed}$ is the Earth's mass enclosed by $r$. Here we take the infinity as the reference point and have potential $V_g(\infty)/m=\SI{0}{\joule\per\kg}$. 
 The potential over radii can be calculated numerically based on PREM (Figure~\ref{fig:PREM}). 
 The Earth escape velocity can therefore be found by
 \begin{equation}
@@ -92,7 +92,7 @@ The de~Broglie wavelength as a function of particle mass $\lambda_\mathrm{dB}(m_
 Therefore, in the scan range of CASPEr, the de~Broglie wavelength could be comparable to or much larger than the earth radius. 
 In later chapters, a measurement probing MHz ALPs is presented. This corresponds to a de~Broglie wavelength $\sim\SI{1}{R_\oplus}$. 
 To prepare for the analysis, we focus on this scenario and take the wave nature into account. 
-
+\YZ{mention Na here. }
 
 \subsection{Bound-state wavefunctions}\label{sec:theory:earthALP:wavefunctions}
 
@@ -110,7 +110,7 @@ Here $N_a$ is the number of ALP particles, $\Psi(\mathbf{r}, t)$ is the wavefunc
 The fast oscillation at ALP Compton frequency is indicated by $e^{-i m_a c^2 t / \hbar}$, where the small variation of oscillation frequency is indicated by $e^{-i E_n t / \hbar}$.
 Since ALP is a real scalar field, Equation~\ref{eq:a0_Psi_real_imag} can be rewritten as
 \begin{equation}
-    a_0(\mathbf{r}, t) = \sqrt{\frac{2 N_a \hbar^3 c }{m_a}} \Re\left(\Psi(\mathbf{r}, t)\right)~,
+    a_0(\mathbf{r}, t) = \sqrt{\frac{2 N_a \hbar^3 c }{m_a}} \Re\left[\Psi(\mathbf{r}, t)\right]~,
     \label{eq:a0_Psi_real}
 \end{equation}
 where $\Re$ indicates the real part. 
@@ -188,7 +188,7 @@ The spherical harmonics satisfies
 \end{equation}
 Therefore, to derive the radial wavefunction of eigen-state with angular quantum number $l$, TISE is transformed to
 \begin{equation}
-    -\frac{\hbar^2}{2m}\frac{1}{{r}^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial R_{nl}\left(r\right)}{\partial r}\right)+\left(\frac{l\left(l+1\right)\hbar^2}{2mr^2}+V\right)R_{nl}\left(r\right)=E_{n}R_{nl}\left(r\right)\,.
+    -\frac{\hbar^2}{2m}\frac{1}{{r}^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial R_{nl}\left(r\right)}{\partial r}\right)+\left(\frac{l\left(l+1\right)\hbar^2}{2mr^2}+V_g\right)R_{nl}\left(r\right)=E_{n}R_{nl}\left(r\right)\,.
     \label{eq:TISE_R}
 \end{equation}
 Since the earth density is not uniform, it is difficult to derive the radial wavefunction analytically. 
@@ -224,6 +224,7 @@ Examples of normalized wavefunctions are illustrated in Figure~\ref{fig:wavefunc
     \caption{radial wavefunctions of 1s 2p... states. include higher states and mention that we are only interested in low energy states. }
     \label{fig:wavefunctions}
 \end{figure}
+\YZ{eigen states plotted here:} % C:\Users\zhenf\D\Yu0702\AxionBloch\examples\example_EarthBoundAxionHalo-plot-rR_nl.py
 
 % in terms of associated Laguerre polynomials with $r$ scaled by $a_g$. The ground state ($n=1$, $l=m=0$) is
 % \begin{equation}
@@ -287,7 +288,7 @@ The characteristics of the gradient are addressed as follows:
 \begin{itemize}
     \item For the eigen-states with zero angular momentum ($s$ state), the wavefunction is spherically symmetric, so the gradient is purely radial and its magnitude is proportional to the radial wavefunction gradient\YZ{is this paragraph right??}.
     \item When angular momentum is non-zero ($l>=1$), the gradient has non-radial components may vary over different locations, depending on the angular structure of the wavefunction. 
-    \item The choice of the quantization axis is critical for considering $l>0$ states. Since the solar gravity breaks the rotational symmetry, the quantization axis ($z$-axis) is chosen along the direction from the Earth's centre to the Sun, which does not align with the Earth's rotational axis. This means that the gradient at the detector location will have a daily modulation as the Earth rotates, which is discussed in Section~\ref{sec:theory:earthALP:daily}.
+    \item The choice of the quantization axis is critical for considering $l>0$ states. Since the solar gravity breaks the rotational symmetry, the quantization axis ($z$-axis) is chosen along the direction from the Earth's center to the Sun, which does not align with the Earth's rotational axis. This means that the gradient at the detector location will have a daily modulation as the Earth rotates, which is discussed in Section~\ref{sec:theory:earthALP:daily}.
     \item \textbf{Azimuthal dependence} For modes with $m\neq 0$, the gradient has an azimuthal dependence. However, for the brevity of this discussion, only $m=0$ is considered in this work. 
 \end{itemize}
 The values of the gradients are computed numerically from the eigen-states and are used to estimate the expected signal strength in Chapter~\ref{chap:results}. \YZ{mention the time for computing the gradients.}
@@ -362,8 +363,8 @@ However, the numerical
 
 
 
-The Earth-bound ALP wavefunction $\psi_{nlm}$ is defined in the Earth-centred inertial frame, with the quantisation axis aligned with the Earth's rotation axis (or with some fixed direction in space, depending on the angular momentum quantum numbers $l,m$). As the Earth rotates, the laboratory co-rotates, so the orientation of the gradient $\boldsymbol{\nabla}a$ relative to the bias field $\mathbf{B}_0$ changes with a period of one sidereal day.
+The Earth-bound ALP wavefunction $\psi_{nlm}$ is defined in the Earth-centered inertial frame, with the quantization axis aligned with the Earth's rotation axis (or with some fixed direction in space, depending on the angular momentum quantum numbers $l,m$). As the Earth rotates, the laboratory co-rotates, so the orientation of the gradient $\boldsymbol{\nabla}a$ relative to the bias field $\mathbf{B}_0$ changes with a period of one sidereal day.
 
 The component of $\boldsymbol{\nabla}a$ perpendicular to $\mathbf{B}_0$ (which drives nuclear spin precession, cf.\ Equation~\eqref{eq:Omega_a}) therefore exhibits a daily modulation. For a bias field pointed along the local vertical, and a bound state with quantum numbers $(n, l, m)$, the perpendicular gradient component traces a specific daily pattern determined by the spherical harmonic $Y_l^m$ evaluated at the detector's co-latitude \YZ{add explicit formula for the modulation amplitude as a function of co-latitude and $(l,m)$}.
 
-This daily modulation is a powerful discriminant: its period (one sidereal day) and phase are fixed by Earth's rotation and the quantum numbers of the bound state, providing a strong consistency check that is qualitatively different from both the galactic-halo signal (which has a different daily modulation driven by the velocity of the halo wind, cf.\ Section~\ref{sec:theory:earthALP:daily}) and instrumental artefacts. \YZ{Add figure: predicted daily modulation envelope for the ground state at a mid-latitude detector, for one or two representative masses.}
+This daily modulation is a powerful discriminant: its period (one sidereal day) and phase are fixed by Earth's rotation and the quantum numbers of the bound state, providing a strong consistency check that is qualitatively different from both the galactic-halo signal (which has a different daily modulation driven by the velocity of the halo wind, cf.\ Section~\ref{sec:theory:earthALP:daily}) and instrumental artifacts. \YZ{Add figure: predicted daily modulation envelope for the ground state at a mid-latitude detector, for one or two representative masses.}
