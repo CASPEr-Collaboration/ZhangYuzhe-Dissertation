@@ -1,6 +1,6 @@
 \chapter{Axionlike-particle-induced spin precession}\label{chap:theory}
 \begin{jointwork}
-    Part of the content in this chapter related to frequency-scanning considerations is adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning}. \YZ{modify?}
+    Part of the content in this chapter related to frequency-scanning considerations is adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning} and Earth bound halo paper \YZ{to be cited here}. \YZ{modify?}
 \end{jointwork}
 
 The ALP field can be detected through its gradient coupling to nuclear spins, which acts as an effective oscillating pseudomagnetic field. Understanding the properties of this coupling---its frequency, amplitude, and coherence---is essential for designing a sensitive experiment and choosing an optimal measurement strategy. This chapter builds the signal model from first principles: starting from the quantum-mechanical description of a single ALP and showing how the superposition of many such quanta gives rise to a classical stochastic oscillating field, which then drives resonant spin precession in the NMR sample.
@@ -12,13 +12,13 @@ The ALP field can be detected through its gradient coupling to nuclear spins, wh
 \subsection{Single particle}\label{sec:theory:singleparticle}
 
 
-Non-relativistic ALP with velocity $\mathbf{v}_a \ll c$ can be described by a plane-wave state
+Non-relativistic ALP with speed $v_a \ll c$ can be described by a plane wave
 \begin{equation}
     a(\mathbf{r}, t)
-    = a_0\, e^{\,i\left(\mathbf{k}\cdot\mathbf{r} - 2\pi\nu_a t\right)}
+    = a_0\, \cos{\left(2\pi\nu_a t - \mathbf{k}\cdot\mathbf{r}\right)}
     \,,\label{eq:single_ALP_wave}
 \end{equation}
-where the Compton frequency $\nu_a = m_a c^2/h$ is set by the rest mass alone, and the wavevector $\mathbf{k} = m_a \mathbf{v}_a/\hbar$ carries the kinetic information. 
+where the effective Compton frequency $\nu_a = m_a (c^2 + \frac{1}{2}v_a^2)/h$ is set by the mass and speed, and the wavevector $\mathbf{k} = m_a \mathbf{v}_a/\hbar$ carries the kinetic information. 
 The de~Broglie wavelength of such a particle is
 \begin{equation}
     \lambda_{dB}
@@ -26,11 +26,14 @@ The de~Broglie wavelength of such a particle is
     % = \frac{hc}{m_a c^2}\cdot\frac{c}{v_a}
     \,.\label{eq:lambda_dB}
 \end{equation}
-For $m_a < \SI{2.5}{\micro\eV}$\YZ{mention CASPEr scan range} and $v_a < \SI{550}{\km\per\s}$\cite{Evans2019_SHMRefined}, this gives $\lambda_{dB} > \SI{1.7}{\km}$\YZ{check the numbers here. add a reference to calculation script}. 
-The wavelength grows as $m_a^{-1}$, so at the neV masses probed in this thesis it reaches hundreds of kilometres---far larger than any laboratory apparatus. 
-This means the ALP field is spatially coherent across the entire experiment, and the spatial gradient $\boldsymbol{\nabla}a$ that couples to nuclear spins is well approximated as uniform over the sample volume.
+For $m_a < \SI{2.5}{\micro\eV}$\footnote{scan range of CASPEr} and $v_a < \SI{550}{\km\per\s}$\footnote{escape speed of the Milky Way\,\cite{Evans2019_SHMRefined}}, this gives $\lambda_{dB} > \SI{1.7}{\km}$\YZ{check the numbers here. add a reference to calculation script}. 
+% The wavelength grows as $(m_a v_a)^{-1}$, so at the 
+For \unit{\neV} masses probed in this thesis, the wavelength reaches hundreds of kilometres---far larger than any laboratory apparatus. 
+This means the ALP field is spatially coherent across the entire apparatus, and the spatial gradient $\boldsymbol{\nabla}a$ that couples to nuclear spins is well approximated as uniform over the sample volume.
 
-The enormous de~Broglie wavelength also implies an exceptionally high phase-space occupation number. The number density of ALPs in the local dark-matter halo is
+% The enormous de~Broglie wavelength also implies an exceptionally high phase-space occupation number.
+\YZ{decide which dm density to use later.} 
+The number density of ALPs in the local dark-matter halo is
 \begin{equation}
     n_a = \frac{\rho_{DM}}{m_a c^2}
     \approx \frac{\SI{0.4}{\GeV\per\cm^3}}{m_a c^2}
@@ -230,9 +233,7 @@ The package models spin-$1/2$ ensembles through the Bloch equations~\eqref{eq:bl
 The time evolution of $\mathbf{M}$ is obtained by numerically integrating Bloch equations [Equations~(\ref{eq:bloch_x}--\ref{eq:bloch_z})] with the fourth-order Runge--Kutta (RK4) method. 
 Given a time step $\Delta t$ and initial magnetization $\mathbf{M}^n$, the update rule is
 \begin{equation}
-    \mathbf{M}^{n+1}
-    = \mathbf{M}^n
-    + \frac{\Delta t}{6}\bigl(\mathbf{k}_1 + 2\mathbf{k}_2 + 2\mathbf{k}_3 + \mathbf{k}_4\bigr)\,,
+    \mathbf{M}^{n+1} = \mathbf{M}^n + \frac{\Delta t}{6}\left(\mathbf{k}_1 + 2\mathbf{k}_2 + 2\mathbf{k}_3 + \mathbf{k}_4\right)\,,
 \end{equation}
 where $\mathbf{k}_1 = d\mathbf{M}/dt|_{\mathbf{M}^n}$ and subsequent $\mathbf{k}_i$ are evaluated at intermediate half-steps following the standard RK4 prescription. 
 The local truncation error is $\mathcal{O}(\Delta t^5)$ and the global accumulated error is $\mathcal{O}(\Delta t^4)$. 
