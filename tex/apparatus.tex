@@ -1,9 +1,9 @@
-\chapter{Sample and Apparatus}\label{chap:apparatus}
+\chapter{Experiment}\label{chap:experiment}
 \begin{jointwork}
-    The content of this chapter is adapted from Ref.\,\cite{Walter2024_LFthermal}.
+    The apparatus description is adapted from Ref.\,\cite{Walter2024_LFthermal}. Sections~\ref{sec:experiment:single}--\ref{sec:experiment:optimization} are adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.
 \end{jointwork}
 
-The CASPEr-Gradient-Low-Field apparatus converts a nuclear-spin signal into a detectable electrical output through three functional blocks: the magnet system sets the operating bias field and thereby the Larmor frequency of the sample; the sample and pickup coil generate and capture the magnetic response; and the SQUID and lock-in amplifier chain convert, amplify, and record the signal. This chapter describes each block in turn and closes with a summary of the key parameters.
+The CASPEr-Gradient-Low-Field apparatus converts a nuclear-spin signal into a detectable electrical output through three functional blocks: the magnet system sets the operating bias field and thereby the Larmor frequency of the sample; the sample and pickup coil generate and capture the magnetic response; and the SQUID and lock-in amplifier chain convert, amplify, and record the signal. This chapter describes each block, summarizes the key parameters, and then develops the strategy used to scan an ALP-mass range efficiently.
 
 \section{Magnet system}\label{sec:apparatus:magnet}
 
@@ -192,3 +192,141 @@ $|g_\mathrm{aNN}|$ sensitivity (\unit{\GeV^{-1}}) & \num{3e-2} & \num{1.0e-6}--\
 \end{tablenotes}
 \end{threeparttable}
 \end{table*}
+
+
+\section{Single-frequency sensitivity}\label{sec:experiment:single}
+
+The transverse magnetization $M_1$ induced by the ALP field couples to the pickup coil and SQUID via the pickup transfer coefficient $\alpha$:
+\begin{equation}
+    \alpha = \dfrac{\Phi}{\mu_0 M_1}
+    \,,\label{eq:alpha}
+\end{equation}
+where $\Phi$ is the magnetic flux in the SQUID and $\mu_0$ is the vacuum permeability. Using Equations~\eqref{eq:M1_rms} and~\eqref{eq:rms_xi}, the average ALP-induced flux power is
+\begin{align}
+    \langle \Phi_a^2 \rangle
+    =\dfrac{1}{2}(\alpha\, u_n\, \mu_0 M_0 \Omega_a)^2 \left\{
+    \begin{array}{cl}
+    \tau_a T_2^* ,
+    &  \tau_a \ll T_2^*\\[6pt]
+    \dfrac{\tau_a^2}{\pi} ,
+    &  T_2^*\ll\tau_a \ll T_2\\[6pt]
+    T_2^2 ,
+    &  T_2 \ll \tau_a
+    \end{array} \right.
+    \,. \label{eq:Phia2}
+\end{align}
+The signal amplitude in the power spectral density (PSD) is
+\begin{align}
+    S = \dfrac{\langle \Phi_a^2 \rangle}{\Gamma /2\pi}
+    \,, \label{eq:S_PSD}
+\end{align}
+where $\Gamma$ is the expected signal linewidth. Depending on which linewidth is narrower,
+\begin{equation}
+    \Gamma = \left\{
+    \begin{array}{cl}
+    \Gamma_a ,
+    &  \Gamma_a \ll \Gamma_{n}\\[4pt]
+    \Gamma_{n},
+    & \Gamma_a  \gg \Gamma_{n}
+    \end{array} \right.
+    \,.\label{eq:Gamma_signal}
+\end{equation}
+Within a spectral bin of width $\Gamma$, the number of PSD values available for averaging from a measurement of dwell time $T$ is
+\begin{equation}
+    N_{\Gamma} = \dfrac{\Gamma T}{2\pi} \gg 1
+    \,,\label{eq:NGamma}
+\end{equation}
+and the noise standard deviation after averaging is
+\begin{equation}
+    \sigma = \sqrt{\dfrac{2\pi}{\Gamma T}}\,\sigma_{0}
+    \,,\label{eq:sigma}
+\end{equation}
+where $\sigma_{0}$ is the single-bin noise level of the SQUID system.
+
+Using a detection threshold of $S \geq 3.355\,\sigma$---corresponding to a true signal $5\,\sigma$ above the noise detected at 95\% confidence \cite{aybas2021_SolidStateNMR}---the ALP coupling strengths excluded when no signal is found satisfy
+\begin{equation}
+    |g_{\mathrm{aNN}}| \geqslant
+    \left\{
+    \begin{array}{cl}
+    \eta\, T^{-1/4}\, (T_2^*)^{-3/4}\, \tau_a^{-1/2} ,
+    & \tau_a\ll T_2^* \\[6pt]
+    \eta\, \pi^{-1/4}\, T^{-1/4}\, (T_2^*)^{-1}\, \tau_a^{-1/4} ,
+    &  T_2^*\ll\tau_a \ll T_2\\[6pt]
+    \eta\, \pi^{-3/4}\, T^{-1/4}\, T_2^{-1}\, (T_2^*)^{-1}\, \tau_a^{3/4}  ,
+    &  T_2^*\ll T_2\ll\tau_a \\[6pt]
+    \eta\, \pi^{-3/4}\, T^{-1/4}\, T_2^{-2}\, \tau_a^{3/4}   ,
+    &  T_2^*= T_2\ll\tau_a
+    \end{array} \right.
+    \,, \label{eq:exclusion_threshold}
+\end{equation}
+where the prefactor $\eta$ collects the apparatus-dependent constants:
+\begin{equation}
+    \eta = \dfrac{2\sqrt{3.355\,\sigma_0}}{\pi^{1/4}\,\alpha\,\mu_0\,M_0\,v_{\bot}\,\sqrt{\hbar c\,\rho_{DM}}}
+    \,.\label{eq:eta}
+\end{equation}
+Larger magnetization $M_0$ and lower noise $\sigma_0$ both improve $\eta$ and hence the sensitivity.
+
+
+\section{Scanning procedure}\label{sec:experiment:procedure}
+
+The CASPEr-Gradient-Low-Field experiment scans the ALP-mass parameter space by sweeping the magnitude of $\mathbf{B}_0$, which tunes the Larmor frequency of the sample to a series of values $\nu_i \in [\nu_{\mathrm{start}},\,\nu_{\mathrm{end}}]$. One step of the scan consists of:
+\begin{enumerate}[label=\Alph*.]
+    \item Pulsed-NMR measurement to determine the resonance frequency and the effective linewidth ($T_2^*$).
+    \item Spin-echo measurement to determine $T_2$.
+    \item Free-precession data acquisition with the SQUID magnetometer---no transverse pulse applied---to record the ALP-signal channel over the dwell time $T$.
+    \item Fourier transform of the magnetometer data to produce a power spectrum.
+    \item Binning of PSD values within frequency bins of width $\Gamma$, and averaging to reduce noise.
+    \item Statistical analysis of binned PSD values (e.g., histogram comparison with the expected noise distribution) to identify DM-candidate frequencies.
+    \item If a candidate is found: repeat the measurement at the same field value and perform additional checks.
+    \item If no candidate is found: record the exclusion contour for this frequency step and ramp $\mathbf{B}_0$ to the next value.
+\end{enumerate}
+The procedure is illustrated in Figure~\ref{fig:CASPEr_Procedure}. A significant excess surviving repeated measurement can be tested further using the daily and annual modulation signatures of ALP dark matter \cite{Gramolin2022Feb_SpectralSignatures}.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{works/frequency-scanning/CASPEr_Procedure_20230311.png}
+    \caption{Schematic of the experimental procedure. (a) One step of the scan: pulsed-NMR diagnostics, free-precession data acquisition, PSD computation and binning, and statistical analysis using a histogram of PSD values. (b) Example decay spectra (blue curves) and the resulting sensitivity region in the ALP mass-coupling space (reddish area) after scanning over a frequency range. Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.}
+    \label{fig:CASPEr_Procedure}
+\end{figure}
+
+The frequency-step size $\Gamma_{\mathrm{scan}}$ is set by the sensitive bandwidth of a single step. An experiment is sensitive to signals within a bandwidth equal to the maximum of $\Gamma_n$ and $\Gamma_a$ around a given Larmor frequency. Choosing a step size larger than $\Gamma_{\mathrm{scan}}$ leaves gaps; choosing a smaller step size multiplies the number of steps without improving coverage.
+
+\section{Scanning optimization}\label{sec:experiment:optimization}
+
+With fixed total measurement time $T_{\mathrm{tot}}$, the dwell time can in principle depend on frequency: $T \propto \nu^n$. Maximizing the sensitive area in the $\log\nu$--$\log|g_{\mathrm{aNN}}|$ parameter space over the full scan determines the optimal exponent $n$. The derivation is given in Appendix~\ref{app:dwell_time}; the result is $n=0$ (uniform dwell time) for regimes~(1)--(3) and $n=-1$ (dwell time decreasing as $1/\nu$) for regime~(4).
+
+With optimal dwell-time allocation, the scanning sensitivity is
+\begin{equation}
+    |g_{\mathrm{aNN}}| \geqslant \left\{
+    \begin{array}{ll}
+    \eta
+    \left(\dfrac{T_{\mathrm{tot}}}{Q_a\ln\!\left(\nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}\right)^{-1/4}
+     \times  (T_2^*)^{-3/4}\, \tau_a^{-1/2},
+    & \tau_a\ll T_2^* \text{ or }  T_2^*\ll\tau_a\ll T_2 \\[10pt]
+    \eta
+    \left(\dfrac{\pi^2 T_{\mathrm{tot}}}{Q_a\ln\!\left(\nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}\right)^{-1/4}
+     \times  (T_2^*)^{-3/4}\, T_2^{-1}\, \tau_a^{1/2},
+    & T_2^* \ll T_2 \ll \tau_a \text{ or } T_2^*=T_2 \ll \tau_a
+    \end{array} \right.
+    \,.\label{eq:gaNN_Ttot_optimal}
+\end{equation}
+
+Several conclusions follow directly:
+\begin{itemize}
+    \item \textbf{Time scaling.} The sensitivity scales as $T_{\mathrm{tot}}^{-1/4}$ in all regimes, a consequence of the long-dwell-time limit $T \gg \tau_a,\,T_2^*,\,T_2$ \cite{CASPErProposal2014,Aybas_2021_Quantum_sensitivity}. An order-of-magnitude increase in measurement time improves the exclusion bound by only a factor $10^{1/4}\approx1.8$.
+
+    \item \textbf{Effect of $T_2^*$.} Longer $T_2^*$ is beneficial in all regimes. When $\tau_a \ll T_2^*$, it increases the r.m.s.\ tipping angle and narrows the signal linewidth. When $T_2^* \ll \tau_a$, it increases the fraction $u_n$ of spins on resonance.
+
+    \item \textbf{Effect of $T_2$.} Longer $T_2$ improves sensitivity in the regime $T_2 \ll \tau_a$, where $T_2$ directly limits the r.m.s.\ tipping angle.
+\end{itemize}
+
+The sensitivity plots computed with uniform ($n=0$) and frequency-adaptive ($n=-1$) dwell-time allocation for an example scan range $\nu_{\mathrm{end}}/\nu_{\mathrm{start}}=10$ are shown in Figure~\ref{fig:UniVsAdpt}. The area covered in the $\log\nu$--$\log|g_{\mathrm{aNN}}|$ plane is larger with optimal $n$.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=.7\linewidth]{works/frequency-scanning/UniVsAdpt_20230412-3.png}
+    \caption{Sensitivity plots on a log-log scale for two dwell-time allocation schemes: uniform ($n=0$) and frequency-adaptive ($n=-1$). The shaded regions indicate the parameter space accessible to the experiment. The coupling strength is normalized in each regime so that the highest point equals 1. The scan range is $\nu_{\mathrm{end}}/\nu_{\mathrm{start}}=10$. Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.}
+    \label{fig:UniVsAdpt}
+\end{figure}
+
+In summary, the optimal strategy for a frequency-scanning ALP search is to work at the maximum achievable $T_2$ and $T_2^*$, use a step size equal to the sensitive bandwidth, and distribute the total measurement time uniformly across frequency steps (or as $T\propto\nu^{-1}$ in regime~(4)).
