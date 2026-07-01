@@ -18,7 +18,7 @@ Here is just some filler text.\footnote[-0.2][][15]{Here is a footnote with a st
 We now state a theorem and restate it later on again. Have a look at the source code in order to see how the theorem is written. Many macros are used, and all of them can be used without using math mode explicitly. Note that we can refer to \cref{eq:variableDrift} as an inequality through the magic of an option in its label.
 \begin{restatable}[Variable Drift]{theorem}{variableDrift}
     \label{thm:variableDrift}
-    Let $(\filtration_\timePoint)_{\timePoint \in \N}$ be a filtration, $(\randomProcess_\timePoint)_{\timePoint \in \N}$ be a random process over~$\R^+_0$ adapted to~\filtration\!\!, $\target > 0$, and let $\firstHittingTime = \inf\set{\timePoint}{\randomProcess_\timePoint < \target}$. Additionally, let~\functionDomain denote the smallest real interval that contains at least all values $x \geq \target$ that, for all $\timePoint \leq \firstHittingTime$, any $\randomProcess_\timePoint$ can take. Furthermore, suppose that
+    Let $(\filtration_\timePoint)_{\timePoint \in \N}$ be a filtration, $(\randomProcess_\timePoint)_{\timePoint \in \N}$ be a random process over~$\R^+_0$ adapted to~\filtration, $\target > 0$, and let $\firstHittingTime = \inf\set{\timePoint}{\randomProcess_\timePoint < \target}$. Additionally, let~\functionDomain denote the smallest real interval that contains at least all values $x \geq \target$ that, for all $\timePoint \leq \firstHittingTime$, any $\randomProcess_\timePoint$ can take. Furthermore, suppose that
     \begin{enumerate}
         \item $\randomProcess_0 \geq \target$ and that
         

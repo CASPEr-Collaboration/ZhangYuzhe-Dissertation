@@ -5,7 +5,10 @@
     This appendix is adapted from Ref.\,\cite{Zhang_axionbloch}.
 \end{jointwork}
 
-Analytical estimates of the ALP-induced spin-precession signal (Chapter~\ref{chap:theory}) are valid in the long-dwell-time limit $T \gg \tau_a,\,T_2^*,\,T_2$. At lower Compton frequencies, the ALP coherence time becomes comparable to or longer than experimentally accessible dwell times, and the scaling laws no longer apply. Numerical simulation is then the tool of choice. This appendix describes \texttt{axionbloch}, an open-source Python package that simulates spin dynamics under both magnetic and axion-induced pseudomagnetic fields.
+Analytical estimates of the ALP-induced spin-precession signal (Chapter~\ref{chap:theory}) are valid in the long-dwell-time limit $T \gg \tau_a,\,T_2^*,\,T_2$.
+At lower Compton frequencies, the ALP coherence time becomes comparable to or longer than experimentally accessible dwell times, and the scaling laws no longer apply.
+Numerical simulation is then the tool of choice.
+This appendix describes \texttt{axionbloch}, an open-source Python package that simulates spin dynamics under both magnetic and axion-induced pseudomagnetic fields.
 
 
 % \section{Spin dynamics: the Bloch equations}\label{sec:axionbloch:bloch}
@@ -28,12 +31,18 @@ Analytical estimates of the ALP-induced spin-precession signal (Chapter~\ref{cha
 
 \section{Software architecture}\label{sec:axionbloch:arch}
 
-The package uses an object-oriented design separating three concerns: experimental configuration (\texttt{Sample}, \texttt{Magnet}), field generation (\texttt{MagField}), and simulation management (\texttt{Simulation}, \texttt{Simulations}). Axion-field models are encapsulated in dedicated classes (e.g., \texttt{MilkyWayAxionHalo}), allowing new models to be added without modifying the simulation framework. The architecture is illustrated in Figure~\ref{fig:axionbloch_arch}.
+The package uses an object-oriented design separating three concerns: experimental configuration (\texttt{Sample}, \texttt{Magnet}), field generation (\texttt{MagField}), and simulation management (\texttt{Simulation}, \texttt{Simulations}).
+Axion-field models are encapsulated in dedicated classes (e.g., \texttt{MilkyWayAxionHalo}), allowing new models to be added without modifying the simulation framework.
+The architecture is illustrated in Figure~\ref{fig:axionbloch_arch}.
 
 \begin{figure}[htb]
     \centering
     \fbox{\includegraphics[width=0.95\linewidth]{works/axionbloch/figures/diagram_v0.4.pdf}}
-    \caption{Architecture of \texttt{axionbloch}. Each \texttt{Simulation} instance receives parameters from \texttt{Magnet}, \texttt{Sample}, and \texttt{MagField}. For axion simulations, an axion-model object is required both to configure the simulation and to generate the pseudomagnetic field. Numerical integration is performed via the \texttt{blochSimulation} API, which provides Python access to the C++ backend. Reproduced from Ref.\,\cite{Zhang_axionbloch}.}
+    \caption{Architecture of \texttt{axionbloch}.
+    Each \texttt{Simulation} instance receives parameters from \texttt{Magnet}, \texttt{Sample}, and \texttt{MagField}.
+    For axion simulations, an axion-model object is required both to configure the simulation and to generate the pseudomagnetic field.
+    Numerical integration is performed via the \texttt{blochSimulation} API, which provides Python access to the C++ backend.
+    Reproduced from Ref.\,\cite{Zhang_axionbloch}.}
     \label{fig:axionbloch_arch}
 \end{figure}
 
@@ -44,36 +53,56 @@ Three standard NMR experiments are used to benchmark the simulation against know
 
 \subsection{Pulsed NMR: free decay and spin echo}
 
-After a $\SI{90}{\degree}$ pulse, the magnetization tips into the transverse plane and decays with the dephasing time $T_2^*$ (free-induction decay). A subsequent $\SI{180}{\degree}$ pulse refocuses the inhomogeneous dephasing, producing a spin echo whose amplitude decays with the true $T_2$. The simulated signals reproduce both behaviors, calibrating the pulse-induced rotation, Larmor precession, and transverse relaxations. The simulated magnetization is shown in Figure~\ref{fig:calibration_NMR}\,(a).
+After a $\SI{90}{\degree}$ pulse, the magnetization tips into the transverse plane and decays with the dephasing time $T_2^*$ (free-induction decay).
+A subsequent $\SI{180}{\degree}$ pulse refocuses the inhomogeneous dephasing, producing a spin echo whose amplitude decays with the true $T_2$.
+The simulated signals reproduce both behaviors, calibrating the pulse-induced rotation, Larmor precession, and transverse relaxations.
+The simulated magnetization is shown in Figure~\ref{fig:calibration_NMR}\,(a).
 
 \subsection{Continuous-wave NMR}
 
-For a weak oscillating field on resonance ($\gamma B T_2^* \ll 1$), the transverse magnetization grows as $\gamma B T_2^*(1 - e^{-t/T_2^*})$ \cite{Abragam1961_NuclearMagnetism}. The simulation reproduces this analytical form, as shown in Figure~\ref{fig:calibration_NMR}\,(b). This benchmark calibrates both the Larmor precession and the $T_2^*$ relaxation under continuous driving---the same physical regime as the ALP-induced signal.
+For a weak oscillating field on resonance ($\gamma B T_2^* \ll 1$), the transverse magnetization grows as $\gamma B T_2^*(1 - e^{-t/T_2^*})$ \cite{Abragam1961_NuclearMagnetism}.
+The simulation reproduces this analytical form, as shown in Figure~\ref{fig:calibration_NMR}\,(b).
+This benchmark calibrates both the Larmor precession and the $T_2^*$ relaxation under continuous driving---the same physical regime as the ALP-induced signal.
 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\linewidth]{works/axionbloch/figures/SpinEcho_and_CW.pdf}
-    \caption{Calibration of \texttt{axionbloch} against analytical NMR results. Upper rows: applied transverse magnetic fields; lower rows: normalized simulated magnetization. \textbf{(a)} After $\SI{90}{\degree}$ and $\SI{180}{\degree}$ pulses, the simulation produces free-induction decay (timescale $T_2^*$) and a spin echo (timescale $T_2$). \textbf{(b)} Under a weak continuous-wave drive on resonance, the transverse magnetization grows as $\gamma B T_2^*(1-e^{-t/T_2^*})$ (dashed line). Reproduced from Ref.\,\cite{Zhang_axionbloch}.}
+    \caption{Calibration of \texttt{axionbloch} against analytical NMR results.
+    Upper rows: applied transverse magnetic fields; lower rows: normalized simulated magnetization.
+    \textbf{(a)} After $\SI{90}{\degree}$ and $\SI{180}{\degree}$ pulses, the simulation produces free-induction decay (timescale $T_2^*$) and a spin echo (timescale $T_2$).
+    \textbf{(b)} Under a weak continuous-wave drive on resonance, the transverse magnetization grows as $\gamma B T_2^*(1-e^{-t/T_2^*})$ (dashed line).
+    Reproduced from Ref.\,\cite{Zhang_axionbloch}.}
     \label{fig:calibration_NMR}
 \end{figure}
 
 \subsection{Hyperpolarized sample and $T_1$ relaxation}
 
-Hyperpolarization boosts the initial spin polarization above its thermal value. In the simulation, the initial polarization is set as a parameter of the \texttt{Sample} class. A sample polarized significantly above thermal equilibrium relaxes toward $M_0$ with the longitudinal time constant $T_1$. The simulated $M_z(t) = M_0[1-(M_0^\mathrm{init}/M_0 - 1)e^{-t/T_1}]$ reproduces the expected exponential approach to equilibrium, as illustrated in Figure~\ref{fig:calibration_T1}.
+Hyperpolarization boosts the initial spin polarization above its thermal value.
+In the simulation, the initial polarization is set as a parameter of the \texttt{Sample} class.
+A sample polarized significantly above thermal equilibrium relaxes toward $M_0$ with the longitudinal time constant $T_1$.
+The simulated $M_z(t) = M_0[1-(M_0^\mathrm{init}/M_0 - 1)e^{-t/T_1}]$ reproduces the expected exponential approach to equilibrium, as illustrated in Figure~\ref{fig:calibration_T1}.
 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.75\linewidth]{works/axionbloch/figures/T1_hyperpolarized.pdf}
-    \caption{Simulated $T_1$ relaxation of a hyperpolarized sample in a static bias field. The axial magnetization $M_z$ is normalized by the equilibrium magnetization $M_0$. The exponential approach to equilibrium calibrates the longitudinal relaxation in the simulation. Reproduced from Ref.\,\cite{Zhang_axionbloch}.}
+    \caption{Simulated $T_1$ relaxation of a hyperpolarized sample in a static bias field.
+    The axial magnetization $M_z$ is normalized by the equilibrium magnetization $M_0$.
+    The exponential approach to equilibrium calibrates the longitudinal relaxation in the simulation.
+    Reproduced from Ref.\,\cite{Zhang_axionbloch}.}
     \label{fig:calibration_T1}
 \end{figure}
 
 
 \section{Axion simulation example}\label{sec:axionbloch:example}
 
-As a demonstration, the \texttt{MilkyWayAxionHalo} model simulates the pseudomagnetic field from virialized galactic dark matter following the standard halo model \cite{Evans2019_SHMRefined,Gramolin2022Feb_SpectralSignatures}. The axion field oscillates at the Compton frequency with a Maxwell-Boltzmann velocity distribution setting the spectral linewidth. The stochasticity of the field amplitude is accounted for by generating many independent realizations of the pseudomagnetic field.
+As a demonstration, the \texttt{MilkyWayAxionHalo} model simulates the pseudomagnetic field from virialized galactic dark matter following the standard halo model \cite{Evans2019_SHMRefined,Gramolin2022Feb_SpectralSignatures}.
+The axion field oscillates at the Compton frequency with a Maxwell-Boltzmann velocity distribution setting the spectral linewidth.
+The stochasticity of the field amplitude is accounted for by generating many independent realizations of the pseudomagnetic field.
 
-Figure~\ref{fig:axion_sim} shows results for a \ch{^{129}Xe} sample polarized to \SI{50}{\%}. A single realisation (left) illustrates the stochastic fluctuations in both the pseudomagnetic field and the induced transverse magnetization. An ensemble of 1000 realizations (right) yields the mean signal and its standard deviation band. The signal initially grows as the ALP field drives the magnetization away from equilibrium, and then decays on the $T_1$ timescale as the hyperpolarization is lost.
+Figure~\ref{fig:axion_sim} shows results for a \ch{^{129}Xe} sample polarized to \SI{50}{\%}.
+A single realisation (left) illustrates the stochastic fluctuations in both the pseudomagnetic field and the induced transverse magnetization.
+An ensemble of 1000 realizations (right) yields the mean signal and its standard deviation band.
+The signal initially grows as the ALP field drives the magnetization away from equilibrium, and then decays on the $T_1$ timescale as the hyperpolarization is lost.
 
 These simulations validate the three-regime picture in Equation~\eqref{eq:rms_xi}: at low frequencies where $\tau_a \gg T$, the signal grows linearly in dwell time; in the intermediate regime $\tau_a \sim T$, the signal departs from the analytical long-dwell-time scaling; and at high frequencies where $T \gg \tau_a$, the analytical results apply directly.
 
@@ -81,7 +110,13 @@ These simulations validate the three-regime picture in Equation~\eqref{eq:rms_xi
     \centering
     \includegraphics[width=0.49\linewidth]{works/axionbloch/figures/MilkyWayAxionHalo-1.pdf}
     \includegraphics[width=0.49\linewidth]{works/axionbloch/figures/MilkyWayAxionHalo-1000.pdf}
-    \caption{Simulated axion-induced NMR signals for a virialized Milky Way axion dark matter halo. Upper panels: pseudomagnetic fields $B_x$ and $B_y$ in the transverse plane. Lower panels: amplitude of the induced transverse magnetization $M_{xy}$, normalized by $M_0$. Left: single simulation realisation. Right: ensemble of 1000 realizations; solid lines show the mean and shaded bands show $\pm\sigma$. The sample is \ch{^{129}Xe} initially polarized to \SI{50}{\%}. Reproduced from Ref.\,\cite{Zhang_axionbloch}.}
+    \caption{Simulated axion-induced NMR signals for a virialized Milky Way axion dark matter halo.
+    Upper panels: pseudomagnetic fields $B_x$ and $B_y$ in the transverse plane.
+    Lower panels: amplitude of the induced transverse magnetization $M_{xy}$, normalized by $M_0$.
+    Left: single simulation realisation.
+    Right: ensemble of 1000 realizations; solid lines show the mean and shaded bands show $\pm\sigma$.
+    The sample is \ch{^{129}Xe} initially polarized to \SI{50}{\%}.
+    Reproduced from Ref.\,\cite{Zhang_axionbloch}.}
     \label{fig:axion_sim}
 \end{figure}
 
@@ -90,11 +125,13 @@ These simulations validate the three-regime picture in Equation~\eqref{eq:rms_xi
 
 \section{The Neyman--Pearson Lemma}
 
-The \emph{Neyman--Pearson lemma} is a foundational result in statistical hypothesis testing. It establishes the form of the most powerful test for discriminating between two simple hypotheses at a fixed significance level.
+The \emph{Neyman--Pearson lemma} is a foundational result in statistical hypothesis testing.
+It establishes the form of the most powerful test for discriminating between two simple hypotheses at a fixed significance level.
 
 \subsection{Problem setup}
 
-Suppose we observe data $x$ drawn from a probability distribution. We wish to test
+Suppose we observe data $x$ drawn from a probability distribution.
+We wish to test
 \[
 H_0 : x \sim f_0(x)
 \]
@@ -102,7 +139,8 @@ against
 \[
 H_1 : x \sim f_1(x),
 \]
-where both $f_0(x)$ and $f_1(x)$ are fully specified probability density functions. The goal is to construct a test that maintains a fixed false-alarm probability (Type~I error) while maximizing the probability of correctly detecting the alternative hypothesis (power).
+where both $f_0(x)$ and $f_1(x)$ are fully specified probability density functions.
+The goal is to construct a test that maintains a fixed false-alarm probability (Type~I error) while maximizing the probability of correctly detecting the alternative hypothesis (power).
 
 \subsection{Likelihood ratio and the lemma}
 
@@ -110,19 +148,25 @@ The key quantity is the likelihood ratio
 \[
 \Lambda(x) = \frac{f_1(x)}{f_0(x)}.
 \]
-For a fixed significance level $\alpha$, the Neyman--Pearson lemma states that the most powerful test rejects $H_0$ when $\Lambda(x) > k$, where $k$ satisfies $P(\Lambda(x)>k\mid H_0)=\alpha$. The likelihood-ratio test is therefore optimal among all tests with the same false-positive rate.
+For a fixed significance level $\alpha$, the Neyman--Pearson lemma states that the most powerful test rejects $H_0$ when $\Lambda(x) > k$, where $k$ satisfies $P(\Lambda(x)>k\mid H_0)=\alpha$.
+The likelihood-ratio test is therefore optimal among all tests with the same false-positive rate.
 
 \subsection{Type I error and power}
 
-The significance level $\alpha = P(\text{reject }H_0\mid H_0\text{ true})$ is the false-alarm probability. The power $1-\beta = P(\text{reject }H_0\mid H_1\text{ true})$ is the probability of correctly detecting an ALP signal. The Neyman--Pearson lemma guarantees that the likelihood-ratio test maximizes the power for fixed $\alpha$.
+The significance level $\alpha = P(\text{reject }H_0\mid H_0\text{ true})$ is the false-alarm probability.
+The power $1-\beta = P(\text{reject }H_0\mid H_1\text{ true})$ is the probability of correctly detecting an ALP signal.
+The Neyman--Pearson lemma guarantees that the likelihood-ratio test maximizes the power for fixed $\alpha$.
 
 \subsection{Application to the ALP search}
 
-In the ALP data analysis described in Section~\ref{sec:results:analysis}, the normalized power excess (NPE) plays the role of the test statistic. The null hypothesis is that a $5\,\sigma$ ALP signal is present; the alternative is that no signal is present. Monte Carlo simulations of the NPE distribution under the null hypothesis determine the threshold $\Theta_\mathrm{RE} = 3.43$ corresponding to the \SI{95}{\%} confidence level (see Section~\ref{sec:results:analysis}).
+In the ALP data analysis described in Section~\ref{sec:results:analysis}, the normalized power excess (NPE) plays the role of the test statistic.
+The null hypothesis is that a $5\,\sigma$ ALP signal is present; the alternative is that no signal is present.
+Monte Carlo simulations of the NPE distribution under the null hypothesis determine the threshold $\Theta_\mathrm{RE} = 3.43$ corresponding to the \SI{95}{\%} confidence level (see Section~\ref{sec:results:analysis}).
 
 \subsection{Gaussian example}
 
-For $X\sim\mathcal{N}(\mu,\sigma^2)$ with $H_0:\mu=0$ versus $H_1:\mu=1$, the log-likelihood ratio simplifies to $\log\Lambda(x) = x/\sigma^2 - 1/(2\sigma^2)$, so rejecting for large $\Lambda(x)$ is equivalent to rejecting for large $x$. This confirms that the sample mean is the optimal test statistic for Gaussian location testing.
+For $X\sim\mathcal{N}(\mu,\sigma^2)$ with $H_0:\mu=0$ versus $H_1:\mu=1$, the log-likelihood ratio simplifies to $\log\Lambda(x) = x/\sigma^2 - 1/(2\sigma^2)$, so rejecting for large $\Lambda(x)$ is equivalent to rejecting for large $x$.
+This confirms that the sample mean is the optimal test statistic for Gaussian location testing.
 
 
 \chapter{Optimal dwell time in frequency scanning}\label{app:dwell_time}
@@ -130,9 +174,11 @@ For $X\sim\mathcal{N}(\mu,\sigma^2)$ with $H_0:\mu=0$ versus $H_1:\mu=1$, the lo
     This appendix is adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.
 \end{jointwork}
 
-This appendix derives the optimal dwell-time allocation scheme for a frequency scan, following the treatment of Ref.\,\cite{Yuzhe2023_FrequencyScanning}. The goal is to maximize the sensitive area in the $\log\nu$--$\log|g_{\mathrm{aNN}}|$ parameter space over a total measurement time $T_{\mathrm{tot}}$.
+This appendix derives the optimal dwell-time allocation scheme for a frequency scan, following the treatment of Ref.\,\cite{Yuzhe2023_FrequencyScanning}.
+The goal is to maximize the sensitive area in the $\log\nu$--$\log|g_{\mathrm{aNN}}|$ parameter space over a total measurement time $T_{\mathrm{tot}}$.
 
-To simplify the notation, the frequency is normalized: $\hat{\nu} = \nu/\nu_{\mathrm{start}}$, with $\hat{\nu} \in [1,\,\hat{\nu}_{\mathrm{end}}]$ where $\hat{\nu}_{\mathrm{end}} = \nu_{\mathrm{end}}/\nu_{\mathrm{start}} > 1$. The dwell time is parameterized as
+To simplify the notation, the frequency is normalized: $\hat{\nu} = \nu/\nu_{\mathrm{start}}$, with $\hat{\nu} \in [1,\,\hat{\nu}_{\mathrm{end}}]$ where $\hat{\nu}_{\mathrm{end}} = \nu_{\mathrm{end}}/\nu_{\mathrm{start}} > 1$.
+The dwell time is parameterized as
 \begin{equation}
     T = \kappa\,\hat{\nu}^{\,n}
     \,,\label{eq:T_kappa_n}
@@ -141,7 +187,8 @@ where $\kappa$ is determined by $T_{\mathrm{tot}}$ and $n$, and the optimal valu
 
 \section*{Regimes (1)--(3): step size proportional to $\nu$}
 
-In regimes~(1), (2), and~(3), the frequency-step size is proportional to $\hat{\nu}$ (either one ALP linewidth $\hat{\nu}/Q_a$ or one NMR linewidth $\delta_\nu\hat{\nu}$). The scan rate is
+In regimes~(1), (2), and~(3), the frequency-step size is proportional to $\hat{\nu}$ (either one ALP linewidth $\hat{\nu}/Q_a$ or one NMR linewidth $\delta_\nu\hat{\nu}$).
+The scan rate is
 \begin{equation}
     \dfrac{d\hat{\nu}}{dt} = \dfrac{\Gamma_{\mathrm{scan}}}{T} \propto \hat{\nu}^{1-n}
     \,,
@@ -151,7 +198,8 @@ so that
     dt = \kappa\,C\,\hat{\nu}^{n-1}\,d\hat{\nu}
     \,,
 \end{equation}
-where $C = Q_a$ in regime~(1) and $C = \delta_\nu^{-1}$ in regimes~(2) and~(3). Integrating over $[0,\,T_{\mathrm{tot}}]$ and $[1,\,\hat{\nu}_{\mathrm{end}}]$ gives
+where $C = Q_a$ in regime~(1) and $C = \delta_\nu^{-1}$ in regimes~(2) and~(3).
+Integrating over $[0,\,T_{\mathrm{tot}}]$ and $[1,\,\hat{\nu}_{\mathrm{end}}]$ gives
 \begin{equation}
     \kappa = \dfrac{n\,T_{\mathrm{tot}}}{C(\hat{\nu}_{\mathrm{end}}^{n}-1)}
     \,,\quad n \ne 0\,.
@@ -160,7 +208,8 @@ At $n=0$: $\kappa|_{n=0} = T_{\mathrm{tot}}/[C\ln(\hat{\nu}_{\mathrm{end}})]$.
 
 \section*{Regime (4): step size independent of $\nu$}
 
-In regime~(4) ($T_2^*=T_2 \ll \tau_a$), the step size is one NMR linewidth $2/T_2$, independent of frequency. The scan rate is proportional to $\hat{\nu}^{-n}$, giving
+In regime~(4) ($T_2^*=T_2 \ll \tau_a$), the step size is one NMR linewidth $2/T_2$, independent of frequency.
+The scan rate is proportional to $\hat{\nu}^{-n}$, giving
 \begin{equation}
     \kappa = \dfrac{2(n+1)\,T_{\mathrm{tot}}}{(\hat{\nu}_{\mathrm{end}}^{n+1}-1)\,T_2}
     \,,\quad n \ne -1\,.
@@ -174,10 +223,12 @@ The sensitive area in log-log scale is
     A(n) = -\int_{1}^{\hat{\nu}_{\mathrm{end}}} \log f(\hat{\nu},\,n)\,d\log\hat{\nu}
     \,,\label{eq:A_n}
 \end{equation}
-where $f(\hat{\nu},\,n)$ is the exclusion threshold from Equation~\eqref{eq:exclusion_threshold} with the dwell time from Equation~\eqref{eq:T_kappa_n}. Taking the derivative $A'(n)$ and setting it to zero shows:
+where $f(\hat{\nu},\,n)$ is the exclusion threshold from Equation~\eqref{eq:exclusion_threshold} with the dwell time from Equation~\eqref{eq:T_kappa_n}.
+Taking the derivative $A'(n)$ and setting it to zero shows:
 \begin{itemize}
     \item For regimes~(1), (2), and~(3): $A'(n) > 0$ for $n < 0$ and $A'(n) < 0$ for $n > 0$, so the maximum is at $n = 0$ (uniform dwell time).
     \item For regime~(4): the analysis shifts the effective exponent from $n$ to $n+1$, giving an optimum at $n = -1$ (dwell time $T \propto \hat{\nu}^{-1}$).
 \end{itemize}
 
-An intuitive restatement: when the sensitive bandwidth per step grows with frequency (regimes 1--3), the number of steps per unit $\log\nu$ is constant, and uniform dwell time is optimal. When the bandwidth is independent of frequency (regime 4), spending less time at higher frequencies---where the ALP coherence time is shorter and the signal integrates faster---maximizes the covered area.
+An intuitive restatement: when the sensitive bandwidth per step grows with frequency (regimes 1--3), the number of steps per unit $\log\nu$ is constant, and uniform dwell time is optimal.
+When the bandwidth is independent of frequency (regime 4), spending less time at higher frequencies---where the ALP coherence time is shorter and the signal integrates faster---maximizes the covered area.
