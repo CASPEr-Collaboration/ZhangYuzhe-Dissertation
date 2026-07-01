@@ -207,8 +207,8 @@ Its de~Broglie wavelength is
 \end{equation}
 For an ultralight ALP this wavelength can be macroscopic. 
 Assuming axionlike dark matter is cold, its velocity is expected to be smaller than the escape velocity of the Milky Way halo $v_\mathrm{esc} = \SI{550}{\km/\s}$\,\cite{Evans2019_SHMRefined}.
-The minimum de~Broglie wavelength is $\lambda_{\mathrm{dB}} \sim \SI{7e-5}{\meter}$ for ALPs in the Milky Way ($m_a \leq \SI{10}{\eV/c^2}$)\,\footnote{dB-wavelength.ipnb}. 
-For the ALP mass range relevant to this thesis ($m_a \leq \SI{2.5}{\ueV}$), the de~Broglie wavelength $\lambda_{\mathrm{dB}} \geq \SI{270}{\meter}$, much larger than the size of the laboratory.
+The minimum de~Broglie wavelength is $\lambda_{\mathrm{dB}} \sim \SI{7e-5}{\meter}$ for ALPs in the Milky Way ($m_a \leq \SI{10}{\eV/c^2}$)\,\footnote{dB-wavelength.ipynb}.
+For the ALP mass range relevant to this thesis ($m_a \leq \SI{2.5}{\micro\electronvolt}$), the de~Broglie wavelength $\lambda_{\mathrm{dB}} \geq \SI{270}{\meter}$, much larger than the size of the laboratory.
 Therefore, the amplitude of the ALP field can be approximated as uniform over the experimental volume. 
 
 The ALP field of a single free ALP mode can be written as a real field: 
@@ -236,7 +236,7 @@ and the mean occupation number within a de~Broglie volume is approximately
 \end{equation}
 \YZ{check if dm density has been mentioned before}
 If the ALP is the dominant dark-matter component, $\rho_a$ can be replaced by the local dark-matter density $\rho_\mathrm{DM} \sim \SI{0.4}{\GeV/\cm^3}$\,\cite{Evans2019_SHMRefined}. 
-Considering ALP mass relevant to this thesis $m_a \leq \SI{2.5}{\ueV}$ and velocity $v_a \leq v_\mathrm{esc} = \SI{550}{\km/\s}$, the occupation number is $\mathcal{N} \geq \SI{3e27}{}$, much larger than unity\,\footnote{dB-wavelength.ipnb}. 
+Considering ALP mass relevant to this thesis $m_a \leq \SI{2.5}{\micro\electronvolt}$ and velocity $v_a \leq v_\mathrm{esc} = \SI{550}{\km/\s}$, the occupation number is $\mathcal{N} \geq \SI{3e27}{}$, much larger than unity\,\footnote{dB-wavelength.ipynb}.
 Therefore, what is measured in the experiment is the collective effect of many ALPs instead of rare single-particle events. 
 % The highly occupied quantum field can therefore be approximated by a classical field. \YZ{really?}
 % The ensemble is coherent over a length scale set by the de~Broglie wavelength.
@@ -295,8 +295,11 @@ The stochasticity is characterized by the coherence time.
 Chapter~\ref{chap:theory} develops this behavior for thermalized Milky Way halo Earth-bound halo.
 
 \subsection{Non-gravitational interactions}
-The most relevant non-gravitational couplings for this thesis are the gradient coupling to nucleons.
-The nucleon Hamiltonian in the presence of an ALP field background can be written as \cite{GrahamNewobservables}
+An oscillating ALP field can produce three spin-sensitive non-gravitational interactions: its coupling to gluons induces oscillating $CP$-odd nuclear moments such as a nuclear electric dipole moment, while its derivative couplings to nucleons and electrons act as oscillating axial fields on nuclear and electron spins, respectively \cite{GrahamNewobservables}.
+All three effects oscillate at a frequency set primarily by the ALP mass and can therefore be sought with resonant precision measurements.
+
+This thesis focuses on the derivative coupling to nucleons, commonly called the gradient or ``axion-wind'' coupling.
+The nucleon Hamiltonian in the presence of an ALP field background can be written as
 \begin{equation}
     H_{\mathrm{aNN}} = c g_{\mathrm{aNN}}\,{\boldsymbol\nabla}a\cdot\mathbf{I}
     \,,\label{eq:HaNN}
