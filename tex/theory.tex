@@ -1,100 +1,39 @@
 \chapter{Axionlike-particle-induced spin precession}\label{chap:theory}
 \begin{jointwork}
-    Part of the content in this chapter related to frequency-scanning considerations is adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning} and Earth bound halo paper \YZ{to be cited here}. \YZ{modify?}
+    Part of the content in this chapter related to frequency-scanning considerations is adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning} and Earth bound halo paper \YZ{to be cited here}.
+    \YZ{modify?}
 \end{jointwork}
 
-The ALP field can be detected through its gradient coupling to nuclear spins, which acts as an effective oscillating pseudomagnetic field. Understanding the properties of this coupling---its frequency, amplitude, and coherence---is essential for designing a sensitive experiment and choosing an optimal measurement strategy. This chapter builds the signal model from first principles: starting from the quantum-mechanical description of a single ALP and showing how the superposition of many such quanta gives rise to a classical stochastic oscillating field, which then drives resonant spin precession in the NMR sample.
+The ALP field can be detected through its gradient coupling to nuclear spins, which acts as an effective oscillating pseudomagnetic field.
+Understanding the properties of this coupling---its frequency, amplitude, and coherence---is essential for designing a sensitive experiment and choosing an optimal measurement strategy.
+Chapter~\ref{chap:introduction} introduced the wave nature, classical-field limit, and multimode superposition of ALP dark matter.
+This chapter develops the resulting spin-precession signal and then treats two models in detail: a thermalized Milky Way halo with a continuous velocity distribution and an Earth-bound halo composed of discrete eigenstates.
 
 
-\section{The ALP dark-matter field}\label{sec:theory:ALPfield}
+\section{ALP-field stochasticity and spin response}\label{sec:theory:ALPfield}
 
+\subsection{Stochastic multimode fields}\label{sec:theory:stochasticity}
 
-\subsection{Single particle}\label{sec:theory:singleparticle}
+The complex wavefunction $\Psi(\mathbf{r},t)$ in Equation~\eqref{eq:ALP_sum} provides a common description of both ALP models considered in this chapter.
+Its measurable real part is determined by the mode amplitudes, frequencies, wave vectors, and phases.
+Interference between these modes makes the effective field amplitude and phase time dependent, even when every individual mode evolves coherently.
 
-
-Non-relativistic ALP with speed $v_a \ll c$ can be described by a plane wave
-\begin{equation}
-    a(\mathbf{r}, t)
-    = a_0\, \cos{\left(2\pi\nu_a t - \mathbf{k}\cdot\mathbf{r}\right)}
-    \,,\label{eq:single_ALP_wave}
-\end{equation}
-where the effective Compton frequency $\nu_a = m_a (c^2 + \frac{1}{2}v_a^2)/h$ is set by the mass and speed, and the wavevector $\mathbf{k} = m_a \mathbf{v}_a/\hbar$ carries the kinetic information. 
-The de~Broglie wavelength of such a particle is
-\begin{equation}
-    \lambda_{dB}
-    = \frac{h}{m_a v_a}
-    % = \frac{hc}{m_a c^2}\cdot\frac{c}{v_a}
-    \,.\label{eq:lambda_dB}
-\end{equation}
-For $m_a < \SI{2.5}{\micro\eV}$\footnote{scan range of CASPEr} and $v_a < \SI{550}{\km\per\s}$\footnote{escape speed of the Milky Way\,\cite{Evans2019_SHMRefined}}, this gives $\lambda_{dB} > \SI{1.7}{\km}$\YZ{check the numbers here. add a reference to calculation script}. 
-% The wavelength grows as $(m_a v_a)^{-1}$, so at the 
-For \unit{\neV} masses probed in this thesis, the wavelength reaches hundreds of kilometres---far larger than any laboratory apparatus. 
-This means the ALP field is spatially coherent across the entire apparatus, and the spatial gradient $\boldsymbol{\nabla}a$ that couples to nuclear spins is well approximated as uniform over the sample volume.
-
-% The enormous de~Broglie wavelength also implies an exceptionally high phase-space occupation number.
-\YZ{decide which dm density to use later.} 
-The number density of ALPs in the local dark-matter halo is
-\begin{equation}
-    n_a = \frac{\rho_{DM}}{m_a c^2}
-    \approx \frac{\SI{0.4}{\GeV\per\cm^3}}{m_a c^2}
-    \,,\label{eq:na}
-\end{equation}
-so the mean occupation number per de~Broglie mode is
-\begin{equation}
-    \mathcal{N} \approx n_a\,\lambda_{dB}^3
-    = \frac{\rho_{DM}}{m_a c^2}\left(\frac{hc}{m_a c^2}\right)^3\!\left(\frac{c}{v_a}\right)^3
-    \,.\label{eq:occupation}
-\end{equation}
-For $m_a = \SI{1}{\micro\eV}$ and $\rho_{DM} = \SI{0.4}{\GeV\per\cm^3}$, one obtains $\mathcal{N} \approx 10^{30}$. Even for the lightest masses still in the particle regime ($m_a \sim \SI{e-22}{\eV}$, ``fuzzy'' dark matter), $\mathcal{N}$ is astronomically large. This is a direct consequence of the tiny ALP mass: for a fixed energy density, a lighter boson must be exponentially more abundant.
-
-\subsection{Ensemble}\label{sec:theory:classicallimit}
-
-Because ALPs are bosons and their occupation numbers are so large, quantum statistics strongly suppress number fluctuations relative to the mean: $\delta\mathcal{N}/\mathcal{N} \sim \mathcal{N}^{-1/2} \to 0$. 
-In this regime, the quantum field operator $\hat{a}$ can be replaced by a classical field. 
-Each ALP contributes a plane wave with amplitude $a_i = a_0 / \sqrt{N_a}$, wavevector $\mathbf{k}_i = m_a \mathbf{v}_i/\hbar$, and a random phase $\phi_i$:
-\begin{equation}
-    a(\mathbf{r}, t)
-    = \dfrac{a_0}{\sqrt{N_a}} \sum_i \, \cos\left(\nu_i t - \mathbf{k}_i\cdot\mathbf{r} + \phi_i\right)
-    \,,\label{eq:ALP_sum}
-\end{equation}
-where $\nu_i = \nu_a + \tfrac{1}{2}m_a v_i^2/h $ is the total energy (including kinetic energy). 
-Note that the ALP amplitude here is normalized by $\sum_i a_i^2 = a_0^2$. 
-% On time scales short compared to the spread of phases accumulating from the slightly different $\nu_i$, the sum behaves as a single coherent oscillation at frequency $\nu_a$:
-% \begin{equation}
-%     a(\mathbf{r},t) = a_0 \cos(\nu_a t - \mathbf{k}\cdot \mathbf{r} + \phi)
-%     \,.
-% \end{equation}
-% Here $\mathbf{k} = m_a \mathbf{v}_a/\hbar$ is an effective wavevector, $\phi$ is a random phase uniformly distributed in $[0,\,2\pi)$, and the amplitude $a_0$ follows a Rayleigh distribution because it is the magnitude of a sum of many random phasors \cite{Centers2021Stochastic}. 
-% The interference of ALPs determines finite coherence time of the ALP field. On time scales much shorter than the coherence time, the ALP field can be simiplified to $a(\mathbf{r},t) = a_0\cos(\nu_a t - \mathbf{k}\cdot\mathbf{r} + \phi)$, where $$
-
-\subsection{Stochasticity}\label{sec:theory:stochasticity}
-
-The modes in Equation~\eqref{eq:ALP_sum} have slightly different frequencies due to the ALP ensemble velocity spread. Their phases drift apart over time, hence decoherence happens. 
-If the velocity spread, characterized by FWHM of the velocity distribution, is $\Delta v_a$, the corresponding kinetic-energy spread would be $\Delta E_k = \tfrac{1}{2} m_a (\Delta v_a)^2$. This results in a relative spread of ALP Compton frequencies of 
-% \begin{align}
-%     \Delta E_k = \tfrac{1}{2} m_a (\Delta v_a)^2\,.
-% \end{align}
-\begin{align}
-    \Delta \nu_a / \nu_a = \frac{\Delta E_k}{h \nu_a} = \left(\frac{\Delta v_a}{c}\right)^2\,.
-\end{align}
-The ALP quality factor $Q_a$ is defined as the inverse of this relative spread as $Q_a =\nu_a / \Delta \nu_a$. 
-The quality factor here estimates the number of oscillations after which the phases of ALPs diverge. 
-A rough estimation can be made considering two ALPs different in frequency by a factor of $\Delta \nu_a$. After $Q_a$ oscillations (so-called coherence time $\tau_a \approx Q_a / \nu_a = 1 / \Delta \nu_a$), the phase difference accumulated is approximately $2 \pi \Delta \nu_a \tau_a = 2 \pi$, which means these two ALPs are no longer coherent. 
-
-% add 2d random walk and the change in amplitude and phase and so on here
-On longer time scales the random phases between modes cause the amplitude and phase of the effective oscillation to drift, so the field must be treated as a stochastic process \cite{Centers2021Stochastic,Gramolin2022Feb_SpectralSignatures}. 
-For Compton frequencies above \SI{1}{\kHz}, $\tau_a \lesssim \SI{1000}{\second}$; the interplay between $\tau_a$ and the NMR relaxation times determines the optimal measurement strategy in Chapter~\ref{chap:results}.
-\YZ{here needs more input}
+The statistics of the resulting field depend on the physical mode population.
+In a thermalized Milky Way halo, a continuous velocity distribution produces a continuous spectral line and a stochastic coherence time, as derived in Section~\ref{sec:theory:MWALP}.
+In an Earth-bound halo, the modes are discrete gravitational eigenstates; interference between populated levels instead produces resolvable splittings or beating, as discussed in Section~\ref{sec:theory:earthALP}.
+The signal estimates below are written in terms of the r.m.s.\ drive amplitude $\Omega_a$ and an appropriate coherence time, so that the same spin-response framework can be applied to either model.
 
 
 \subsection{Spin-precession signal}\label{sec:theory:signal}
 
-The ALP-induced signal is determined by the ALP gradient field amplitude (or effectively, the Rabi frequency of the pseudomagnetic field $\Omega_a$), the ALP field coherence and relaxations of the nuclear spin sample. An estimation of the effects from these factors is made in the following. 
+The ALP-induced signal is determined by the ALP gradient field amplitude (or effectively, the Rabi frequency of the pseudomagnetic field $\Omega_a$), the ALP field coherence and relaxations of the nuclear spin sample.
+An estimation of the effects from these factors is made in the following.
 
 
 \subsubsection{Relaxations and coherence}\label{sec:theory:relaxations}
 \YZ{include alp COHERENCE AS well}
-The transverse spin relaxation in the sample arises from homogeneous mechanisms (e.g., spin-spin interactions), characterized by the time $T_2$, and from inhomogeneous mechanisms (e.g., magnetic-field gradients across the sample), which cause additional dephasing. The total effective transverse relaxation time $T_2^* \leq T_2$ incorporates both contributions. 
+The transverse spin relaxation in the sample arises from homogeneous mechanisms (e.g., spin-spin interactions), characterized by the time $T_2$, and from inhomogeneous mechanisms (e.g., magnetic-field gradients across the sample), which cause additional dephasing.
+The total effective transverse relaxation time $T_2^* \leq T_2$ incorporates both contributions.
 
 The NMR linewidth (FWHM, assuming a Lorentzian lineshape) of the free-induction-decay spectrum is
 \begin{equation}
@@ -106,17 +45,20 @@ and the normalized linewidth is
     \delta_\nu \equiv \dfrac{\Gamma_{n}}{\nu} = \dfrac{2}{\nu T_2^*}
     \,,\label{eq:delta_nu}
 \end{equation}
-often expressed in parts per million (\SI{}{\ppm}). The inhomogeneous contribution to $1/T_2^*$ can be reduced by magnetic shimming, giving control over $T_2^*$ independently of the intrinsic $T_2$.
+often expressed in parts per million (\SI{}{\ppm}).
+The inhomogeneous contribution to $1/T_2^*$ can be reduced by magnetic shimming, giving control over $T_2^*$ independently of the intrinsic $T_2$.
 
 
 \subsubsection{Estimation}\label{sec:theory:estimation}
 
-For a sample with longitudinal magnetization $M_0$ prepared along the bias field $\mathbf{B}_0$, the ALP-field drive tilts the magnetization by a small angle $\xi \ll 1$ (weak-drive regime, $\Omega_a T \ll 1$), generating a transverse magnetization $M_1 \approx M_0\xi$. The r.m.s.\ transverse magnetization is \cite{Yuzhe2023_FrequencyScanning}
+For a sample with longitudinal magnetization $M_0$ prepared along the bias field $\mathbf{B}_0$, the ALP-field drive tilts the magnetization by a small angle $\xi \ll 1$ (weak-drive regime, $\Omega_a T \ll 1$), generating a transverse magnetization $M_1 \approx M_0\xi$.
+The r.m.s.\ transverse magnetization is \cite{Yuzhe2023_FrequencyScanning}
 \begin{equation}
     \sqrt{\langle M_{1}^2 \rangle} \approx \dfrac{1}{\sqrt{2}}\, u_n M_{0} \sqrt{\langle \xi^2 \rangle}
     \,,\label{eq:M1_rms}
 \end{equation}
-where $u_n$ is the fraction of nuclear spins on resonance with the ALP field. Approximating both the NMR and ALP lineshapes as rectangles,
+where $u_n$ is the fraction of nuclear spins on resonance with the ALP field.
+Approximating both the NMR and ALP lineshapes as rectangles,
 \begin{equation}
     u_n \approx \left\{
     \begin{array}{cl}
@@ -128,7 +70,9 @@ where $u_n$ is the fraction of nuclear spins on resonance with the ALP field. Ap
     \,.\label{eq:un}
 \end{equation}
 
-The r.m.s.\ tipping angle $\sqrt{\langle\xi^2\rangle}$ is limited by the interplay between ALP decoherence and spin relaxation. Modeling the ALP decoherence as a random phase that resets on the time scale $\tau_a$, the tipping angle executes a two-dimensional random walk in the rotating frame with step size $\Omega_a\tau_a$ \cite{Yuzhe2023_FrequencyScanning}. Combining this with the three relevant relaxation scales,
+The r.m.s.\ tipping angle $\sqrt{\langle\xi^2\rangle}$ is limited by the interplay between ALP decoherence and spin relaxation.
+Modeling the ALP decoherence as a random phase that resets on the time scale $\tau_a$, the tipping angle executes a two-dimensional random walk in the rotating frame with step size $\Omega_a\tau_a$ \cite{Yuzhe2023_FrequencyScanning}.
+Combining this with the three relevant relaxation scales,
 \begin{equation}
     \sqrt{\langle \xi^2\rangle}  = \left\{
     \begin{array}{cl}
@@ -167,37 +111,41 @@ Depending on the relative magnitudes of $T_2$, $T_2^*$, and $\tau_a$, four regim
     \item $T_2^* \ll T_2 \ll \tau_a$;
     \item $T_2^*=T_2 \ll \tau_a$.
 \end{enumerate}
-These regimes are illustrated in Figure~\ref{fig:T2star_T2_taua_regimes}. The key parameters for each regime are summarized in Table~\ref{tab:summary_of_regimes}, where $\nu_{\mathrm{start}}$ and $\nu_{\mathrm{end}}$ are the lower and upper limits of the target frequency band.
+These regimes are illustrated in Figure~\ref{fig:T2star_T2_taua_regimes}.
+The key parameters for each regime are summarized in Table~\ref{tab:summary_of_regimes}, where $\nu_{\mathrm{start}}$ and $\nu_{\mathrm{end}}$ are the lower and upper limits of the target frequency band.
 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=.6\linewidth]{works/frequency-scanning/T2star_T2_taua_relations_20230413.png}
-    \caption{Regimes of the spin-precession experiment based on the relative magnitudes of $T_2$, $T_2^*$, and $\tau_a$. Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.}
+    \caption{Regimes of the spin-precession experiment based on the relative magnitudes of $T_2$, $T_2^*$, and $\tau_a$.
+    Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.}
     \label{fig:T2star_T2_taua_regimes}
 \end{figure}
 
 \begin{table}[ht]
     \centering
-    \caption{Summary of parameters for the four regimes. The normalized linewidth $\delta_\nu = \tau_a/(\pi Q_a T_2^*)$ is assumed constant in each regime. The optimal dwell time is derived in Appendix~\ref{app:dwell_time}.}
+    \caption{Summary of parameters for the four regimes.
+    The normalized linewidth $\delta_\nu = \tau_a/(\pi Q_a T_2^*)$ is assumed constant in each regime.
+    The optimal dwell time is derived in Appendix~\ref{app:dwell_time}.}
     \begin{tabular}{cccccc}
         \hline
         & Regime & Optimal dwell time $T$ & Signal linewidth $\Gamma$ & Spectral factor $u_n$ & r.m.s.\ tipping angle $\sqrt{\langle \xi^2\rangle}$ \\
         \hline
         & & & & & \\
         (1) & $\tau_a \ll T_2^*$
-            & $\dfrac{T_{\mathrm{tot}}}{Q_a \ln\!\left( \nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}$
+            & $\dfrac{T_{\mathrm{tot}}}{Q_a \ln\left( \nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}$
             & $\dfrac{2}{T_2^*}$ & $1$ & $\Omega_{a}\sqrt{\tau_a T_2^*}$\\
         & & & & & \\
         (2) & $T_2^* \ll \tau_a \ll T_2$
-            & $\dfrac{T_{\mathrm{tot}}\,\tau_a}{\pi Q_a T_2^*\ln\!\left( \nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}$
+            & $\dfrac{T_{\mathrm{tot}}\,\tau_a}{\pi Q_a T_2^*\ln\left( \nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}$
             & $\dfrac{2\pi}{\tau_a}$ & $\dfrac{\pi T_2^*}{\tau_a}$ & $\Omega_a\dfrac{\tau_a}{\sqrt{\pi}}$ \\
         & & & & & \\
         (3) & $T_2^* \ll T_2 \ll \tau_a$
-            & $\dfrac{T_{\mathrm{tot}}\,\tau_a}{\pi Q_a T_2^*\ln\!\left( \nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}$
+            & $\dfrac{T_{\mathrm{tot}}\,\tau_a}{\pi Q_a T_2^*\ln\left( \nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}$
             & $\dfrac{2\pi}{\tau_a}$ & $\dfrac{\pi T_2^*}{\tau_a}$ & $\Omega_a T_2$\\
         & & & & & \\
         (4) & $T_2^*=T_2 \ll \tau_a$
-            & $\dfrac{T_{\mathrm{tot}}\,\tau_a}{\pi Q_a T_2\ln\!\left(\nu_{\mathrm{end}}/\nu_{\mathrm{start}}\right)}$
+            & $\dfrac{T_{\mathrm{tot}}\,\tau_a}{\pi Q_a T_2\ln\left(\nu_{\mathrm{end}}/\nu_{\mathrm{start}}\right)}$
             & $\dfrac{2\pi}{\tau_a}$ & $\dfrac{\pi T_2}{\tau_a}$ & $\Omega_a T_2$ \\
         & & & & & \\
         \hline
@@ -209,37 +157,43 @@ These regimes are illustrated in Figure~\ref{fig:T2star_T2_taua_regimes}. The ke
 
 \subsection{Periodic modulations}
 
-\YZ{Use Gramolin paper and mention briefly about Periodic modulation. mention the modulation that terrestrial detectors can feel. }
+\YZ{Use the Gramolin paper and briefly discuss periodic modulation.
+Mention the modulation observable by terrestrial detectors.}
 
 \subsection{Numerical simulation}\label{sec:theory:simulation}
 
-The analytical estimates above are valid in the limit $T \gg \tau_a,\,T_2^*,\,T_2$. At lower Compton frequencies, the ALP coherence time can become comparable to or longer than experimentally accessible dwell times, and the simple scaling laws no longer apply. Numerical simulations using the \texttt{axionbloch} package (Appendix~\ref{app:axionbloch}) are used to validate the analytical estimates and to explore intermediate parameter regimes.
+The analytical estimates above are valid in the limit $T \gg \tau_a,\,T_2^*,\,T_2$.
+At lower Compton frequencies, the ALP coherence time can become comparable to or longer than experimentally accessible dwell times, and the simple scaling laws no longer apply.
+Numerical simulations using the \texttt{axionbloch} package (Appendix~\ref{app:axionbloch}) are used to validate the analytical estimates and to explore intermediate parameter regimes.
 % Three representative situations arise:
 % \begin{description}
 %     \item[Low frequency] $\tau_a \gg T$: the ALP field is essentially coherent over the measurement. The signal grows linearly in time and the $T^{-1/4}$ sensitivity scaling is not yet reached.
 %     \item[Medium frequency] $\tau_a \approx T$: the transition regime, treated numerically.
 %     \item[High frequency] $T \gg \tau_a,\,T_2^*,\,T_2$: the analytical results apply. For hyperpolarized \ch{^{129}Xe}, $T_1$ relaxation limits the achievable polarization, introducing an additional reduction factor of approximately $1/3$ relative to the fully polarized case.
 % \end{description}
-Numerical simulation is then the tool of choice. 
+Numerical simulation is then the tool of choice.
 
 
 % \section{Spin dynamics: the Bloch equations}\label{sec:axionbloch:bloch}
 
-The package models spin-$1/2$ ensembles through the Bloch equations~\eqref{eq:bloch_x}--\eqref{eq:bloch_z} derived in Section~\ref{sec:theory:bloch}. The total effective field is $\mathbf{B}_\mathrm{eff} = \mathbf{B}_0 + \mathbf{B}_a(t)$, combining the laboratory bias field and the axion-induced pseudomagnetic field. The equations are solved in the rotating coordinate frame (RCF), which removes the fast Larmor precession and exposes the slow axion-induced dynamics. The effective transverse relaxation time $T_2^*$ (which includes inhomogeneous broadening) is simulated by sampling the spread of bias-field values from a \texttt{Magnet} instance and integrating the Bloch equations for each sampled field independently.
+The package models spin-$1/2$ ensembles through the Bloch equations~\eqref{eq:bloch_x}--\eqref{eq:bloch_z} derived in Section~\ref{sec:theory:bloch}.
+The total effective field is $\mathbf{B}_\mathrm{eff} = \mathbf{B}_0 + \mathbf{B}_a(t)$, combining the laboratory bias field and the axion-induced pseudomagnetic field.
+The equations are solved in the rotating coordinate frame (RCF), which removes the fast Larmor precession and exposes the slow axion-induced dynamics.
+The effective transverse relaxation time $T_2^*$ (which includes inhomogeneous broadening) is simulated by sampling the spread of bias-field values from a \texttt{Magnet} instance and integrating the Bloch equations for each sampled field independently.
 
 
 % \section{Numerical integration}\label{sec:axionbloch:rk4}
 
-The time evolution of $\mathbf{M}$ is obtained by numerically integrating Bloch equations [Equations~(\ref{eq:bloch_x}--\ref{eq:bloch_z})] with the fourth-order Runge--Kutta (RK4) method. 
+The time evolution of $\mathbf{M}$ is obtained by numerically integrating Bloch equations [Equations~(\ref{eq:bloch_x}--\ref{eq:bloch_z})] with the fourth-order Runge--Kutta (RK4) method.
 Given a time step $\Delta t$ and initial magnetization $\mathbf{M}^n$, the update rule is
 \begin{equation}
     \mathbf{M}^{n+1} = \mathbf{M}^n + \frac{\Delta t}{6}\left(\mathbf{k}_1 + 2\mathbf{k}_2 + 2\mathbf{k}_3 + \mathbf{k}_4\right)\,,
 \end{equation}
-where $\mathbf{k}_1 = d\mathbf{M}/dt|_{\mathbf{M}^n}$ and subsequent $\mathbf{k}_i$ are evaluated at intermediate half-steps following the standard RK4 prescription. 
-The local truncation error is $\mathcal{O}(\Delta t^5)$ and the global accumulated error is $\mathcal{O}(\Delta t^4)$. 
+where $\mathbf{k}_1 = d\mathbf{M}/dt|_{\mathbf{M}^n}$ and subsequent $\mathbf{k}_i$ are evaluated at intermediate half-steps following the standard RK4 prescription.
+The local truncation error is $\mathcal{O}(\Delta t^5)$ and the global accumulated error is $\mathcal{O}(\Delta t^4)$.
 The time step is set to be at least one order of magnitude smaller than the shortest characteristic timescale in the simulation (e.g., $T_1$, $T_2$, or $1/\nu_a$).
 
 The RK4 integration is implemented in a compiled C++ backend and exposed to Python through the \texttt{pybind11} interface, achieving runtimes of $\sim\SI{10}{\s}$ for $\approx4\times10^9$ integration steps on a modern desktop CPU.
-The details of the implementations are included in the appendix. 
+The details of the implementations are included in the appendix.
 This appendix describes \texttt{axionbloch}, an open-source Python package that simulates spin dynamics under both magnetic and axion-induced pseudomagnetic fields.
 
