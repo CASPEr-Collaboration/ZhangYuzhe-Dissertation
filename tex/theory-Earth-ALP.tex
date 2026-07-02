@@ -258,11 +258,74 @@ The gradient operator in spherical coordinates is
     \boldsymbol{\nabla} = \hat{\mathbf{r}}\,\frac{\partial}{\partial r} + \hat{\boldsymbol{\theta}}\,\frac{1}{r}\frac{\partial}{\partial \theta} + \hat{\boldsymbol{\varphi}}\,\frac{1}{r\sin\theta}\frac{\partial}{\partial \varphi}
     \,.\label{eq:gradient_spherical}
 \end{equation}
-The gradient of the ALP field can therefore be inferred from Equation~\eqref{eq:a0_Psi_real} and \eqref{eq:Psi_r_t} as
+The eigenstates are defined in the Earth-rest frame, whereas the gradient coupling is measured in the laboratory frame $L$.
+Since the ALP field is a Lorentz scalar, $a'(x')=a(x)$, while its derivatives transform according to the inverse Lorentz transformation.
+Applying the chain rule, $\partial'_\mu=(\Lambda^{-1})^\nu{}_\mu\partial_\nu$, mixes the temporal derivative with the component of the spatial gradient parallel to the laboratory velocity.
+Separating the spatial gradient into components parallel and perpendicular to $\mathbf{v}$ gives
+\begin{equation}
+    \boldsymbol{\nabla}_{L}a
+    =
+    \boldsymbol{\nabla}a
+    +\frac{\gamma_L-1}{v^2}\mathbf{v}
+    \left(\mathbf{v}\cdot\boldsymbol{\nabla}a\right)
+    +\gamma_L\frac{\mathbf{v}}{c^2}\partial_t a
+    \,,\label{eq:gradient_lorentz_boost}
+\end{equation}
+where $\mathbf{v}$ is the velocity of the laboratory relative to the Earth-rest frame and $\gamma_L=(1-v^2/c^2)^{-1/2}$.
+In the limit $v/c\to0$, the laboratory and Earth-rest frames coincide.
+Although the second term in Equation~\eqref{eq:gradient_lorentz_boost} contains $v^2$ in the denominator, $\gamma_L-1\propto v^2/c^2$, and the complete term has the regular limit
+\begin{equation}
+    \lim_{v\to0}
+    \frac{\gamma_L-1}{v^2}\mathbf{v}
+    \left(\mathbf{v}\cdot\boldsymbol{\nabla}a\right)
+    =0
+    \,.
+\end{equation}
+The temporal-gradient term also vanishes, so Equation~\eqref{eq:gradient_lorentz_boost} reduces to
+\begin{equation}
+    \boldsymbol{\nabla}_{L}a=\boldsymbol{\nabla}a
+    \qquad (v=0)
+    \,,
+\end{equation}
+as expected.
+
+For $v/c\ll1$, the Lorentz factor can be expanded as
+\begin{equation}
+    \gamma_L
+    =1+\frac{1}{2}\frac{v^2}{c^2}
+    +\mathcal{O}\left(\frac{v^4}{c^4}\right),
+    \qquad
+    \frac{\gamma_L-1}{v^2}
+    =\frac{1}{2c^2}
+    +\mathcal{O}\left(\frac{v^2}{c^4}\right)
+    \,.
+\end{equation}
+Consequently,
+\begin{equation}
+    \boldsymbol{\nabla}_{L}a
+    =
+    \boldsymbol{\nabla}a
+    +\frac{\mathbf{v}}{c^2}\partial_t a
+    +\frac{\mathbf{v}}{2c^2}
+    \left(\mathbf{v}\cdot\boldsymbol{\nabla}a\right)
+    +\cdots
+    \,.
+\end{equation}
+To first order in $v/c$, this becomes
+\begin{equation}
+    \boldsymbol{\nabla}_{L}a
+    \simeq
+    \boldsymbol{\nabla}a
+    +\frac{\mathbf{v}}{c^2}\partial_t a
+    \,.
+\end{equation}
+The condition $v/c\ll1$ does not necessarily make the temporal-gradient contribution negligible because $\partial_t a$ contains the rapid ALP Compton oscillation.
+It is the laboratory-frame gradient $\boldsymbol{\nabla}_{L}a$ that enters the interaction Hamiltonian in Equation~\eqref{eq:HaNN}.
+The unboosted gradient can be inferred from Equations~\eqref{eq:a0_Psi_real} and~\eqref{eq:Psi_r_t} as
 \begin{align}
     \boldsymbol{\nabla}a(\mathbf{r}, t)
-    &= \sqrt{\frac{N_a \hbar^3 c}{2 m_a}} \Re\left( \boldsymbol{\nabla} \Psi(\mathbf{r}, t) \right) \\
-    &= \sqrt{\frac{N_a \hbar^3 c}{2 m_a}} \Re\left( e^{-i m_a c^2 t / \hbar}\sum_{nlm}^{} c_{nlm} e^{-i E_n t / \hbar} \boldsymbol{\nabla}\psi_{nlm}(\mathbf{r}) \right)
+    &= \sqrt{\frac{N_a \hbar^3 c}{2 m_a}} \Re\left[ \boldsymbol{\nabla} \Psi(\mathbf{r}, t) \right] \\
+    &= \sqrt{\frac{N_a \hbar^3 c}{2 m_a}} \Re\left[ e^{-i m_a c^2 t / \hbar}\sum_{nlm}^{} c_{nlm} e^{-i E_n t / \hbar} \boldsymbol{\nabla}\psi_{nlm}(\mathbf{r}) \right]
     \,,\label{eq:gradient_Psi_sum}
 \end{align}
 where
@@ -280,6 +343,55 @@ where
     = \hat{\mathbf{r}}\,\frac{\partial R_{nl}}{\partial r}Y_l^m + \hat{\boldsymbol{\theta}}\,\frac{R_{nl}}{r}\frac{\partial Y_l^m}{\partial \theta} + \hat{\boldsymbol{\varphi}}\,\frac{R_{nl}}{r\sin\theta}\frac{\partial Y_l^m}{\partial \varphi}
     \,.\label{eq:gradient_psi_nlm}
 \end{equation}
+Using Equation~\eqref{eq:Psi_r_t}, the two Lorentz-boost terms in Equation~\eqref{eq:gradient_lorentz_boost} become
+\begin{align}
+    \frac{\gamma_L-1}{v^2}\mathbf{v}
+    \left(\mathbf{v}\cdot\boldsymbol{\nabla}a\right)
+    &=
+    \sqrt{\frac{N_a \hbar^3 c}{2 m_a}}
+    \Re\left[
+    e^{-i m_a c^2 t/\hbar}
+    \sum_{nlm} c_{nlm}e^{-iE_nt/\hbar}
+    \frac{\gamma_L-1}{v^2}\mathbf{v}
+    \left(\mathbf{v}\cdot\boldsymbol{\nabla}\psi_{nlm}\right)
+    \right],
+    \\
+    \gamma_L\frac{\mathbf{v}}{c^2}\partial_t a
+    &=
+    \sqrt{\frac{N_a \hbar^3 c}{2 m_a}}
+    \Re\left[
+    e^{-i m_a c^2 t/\hbar}
+    \sum_{nlm} c_{nlm}e^{-iE_nt/\hbar}
+    \left(
+    -i\gamma_L\frac{m_a c^2+E_n}{\hbar c^2}
+    \mathbf{v}\,\psi_{nlm}
+    \right)
+    \right]
+    \,.\label{eq:gradient_boost_terms_Psi}
+\end{align}
+For an observer rotating with the Earth,
+\begin{equation}
+    \mathbf{v}=v_\varphi\hat{\boldsymbol{\varphi}},
+    \qquad
+    v_\varphi=\Omega_\oplus r\sin\theta
+    \,,
+\end{equation}
+where $\Omega_\oplus$ is the angular rotation frequency of the Earth.
+The boost correction to the complex gradient amplitude of one mode is then
+\begin{equation}
+    \delta\boldsymbol{\mathcal{G}}_{nlm}
+    =
+    (\gamma_L-1)\hat{\boldsymbol{\varphi}}
+    \frac{R_{nl}}{r\sin\theta}
+    \frac{\partial Y_l^m}{\partial\varphi}
+    -i\gamma_L\frac{\omega_n v_\varphi}{c^2}
+    \hat{\boldsymbol{\varphi}}R_{nl}Y_l^m
+    \,,
+    \qquad
+    \omega_n=\frac{m_a c^2+E_n}{\hbar}
+    \,.\label{eq:gradient_boost_mode}
+\end{equation}
+For $m=0$, the first correction vanishes, while the contribution from the temporal derivative remains.
 If multiple modes are populated, the total gradient is a superposition of the gradients from each mode, weights of which correspond to the population distribution, as can be seen in Equation~\eqref{eq:gradient_Psi_sum}.
 %  and Equation~\ref{eq:psi_R_Y} 
 
