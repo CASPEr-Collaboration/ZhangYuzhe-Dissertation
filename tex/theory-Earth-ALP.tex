@@ -55,7 +55,7 @@ An upper bound comes from the requirement that the Earth's measured gravitationa
     The density value $\rho_\star$ is derived from the maximum Earth ALP halo mass permitted by gravitational constraints, as assessed in \cite{banerjee_relaxion_2020,banerjee_searching_2020}.}%
     \label{fig:groundstate_density}%
 \end{figure}
-
+\YZ{check if max dm mass is mentioned}
 \subsection{Gravitational potential and the quantum picture}  %  and the Bohr radius
 
 To simplify the calculation, Earth is considered as a spherical object.
@@ -130,7 +130,7 @@ In the non-relativistic limit, the eigenstates can be found by the time-independ
     \left[-\frac{\hbar^2}{2 m_a}\nabla^2 + V_g(r)\right]\psi_{nlm}(\mathbf{r})
     = E_n\,\psi_{nlm}(\mathbf{r})
     \,.\label{eq:schrodinger_earth}
-\end{equation} 
+\end{equation}
 In analogy to the hydrogen atom, the ALP-Earth system is a gravitational atom \YZ{cite: relevant paper on gravitational atom, e.g.\ Arvanitaki et al. and more...}.
 \YZ{what about quantum number m? zero?}
 
@@ -197,7 +197,6 @@ Hence, numerical method is adopted.
 In a discretized space, a matrix for the Hamiltonian in Equation\,\eqref{eq:TISE_R} is constructed.
 The eigen-values (eigen-energies) and eigen-vectors (eigen-states) can be derived using Python package \texttt{SciPy}.
 This method is implemented in the Python class \texttt{EarthBoundAxionHalo} of \texttt{axionbloch}.
-% \YZ{mention numeric solution either here or in the appendix. }
 
 Note that normalization is necessary for deriving the right magnitude of the eigen-functions.
 The wavefunctions are normalized so that the total probability integrates to unity,
@@ -431,9 +430,15 @@ For an ALP field oscillating at ordinary frequency $\nu_a$, the time-derivative 
     \left(\frac{\nu_a}{\SI{1}{\mega\hertz}}\right)
     \,.
 \end{equation}
-For an intrinsic bound-state gradient characterized by a speed $v_\mathrm{bound}$, the ratio of the temporal boost contribution to the intrinsic gradient is approximately $v_\mathrm{rot}/v_\mathrm{bound}$.
-Taking $v_\mathrm{bound}\sim v_\mathrm{esc}=\SI{11.2}{\kilo\meter\per\second}$ gives a representative estimate of about $4\%$ at the equator.
-Thus, the relativistic correction proportional to $\gamma_L-1$ is extremely small, whereas the temporal boost term can give a percent-level correction and may be more important when the intrinsic transverse gradient is suppressed.
+Relative to an intrinsic bound-state gradient characterized by a speed
+$v_\mathrm{bound}$, the temporal boost contribution is approximately
+$v_\mathrm{rot}/v_\mathrm{bound}$.
+For $v_\mathrm{bound}\sim v_\mathrm{esc}=\SI{11.2}{\kilo\meter\per\second}$,
+this ratio is about $4\%$ at the equator.
+The correction proportional to $\gamma_L-1$ is therefore of order
+$10^{-12}$, whereas the temporal boost correction is of order $4\%$ for
+this velocity scale and can be larger when the intrinsic transverse
+gradient is suppressed.
 
 The laboratory velocity relative to the Earth-bound halo is written generally as
 \begin{equation}
@@ -485,7 +490,7 @@ The characteristics of the gradient are addressed as follows:
     Since the solar gravity breaks the rotational symmetry, the $z$-axis is chosen along the Earth--Sun line.
     The $x$-axis is chosen along the instantaneous velocity of the Earth in the Solar System, and the $y$-axis is defined by $\hat{\mathbf{y}}=\hat{\mathbf{z}}\times\hat{\mathbf{x}}$.
     This coordinate system generally does not align with the Earth's rotation axis, so the laboratory velocity is retained in all three spherical components, $v_r$, $v_\theta$, and $v_\varphi$.
-    The gradient at the detector location therefore exhibits a daily modulation as the Earth rotates, as discussed in Section~\ref{sec:theory:earthALP:daily}.
+    The gradient at the detector location therefore exhibits a daily modulation as the Earth rotates, as discussed in Section~\ref{sec:theory:earthALP:periodic}.
     \item \textbf{Azimuthal dependence} For modes with $m\neq 0$, the gradient has an azimuthal dependence.
     However, for the brevity of this discussion, only $m=0$ is considered in this work.
 \end{itemize}
@@ -495,8 +500,7 @@ The values of the gradients are computed numerically from the eigen-states and a
 Examples of the gradient magnitude for selected modes are illustrated in Figure~\ref{fig:wavefunctions}.
 
 \begin{figure}
-    \includegraphics[width=0.99\textwidth]{figures/gradients_comparison_1s.png}
-    \includegraphics[width=0.99\textwidth]{figures/gradients_comparison_2p.png}
+    \includegraphics[width=0.99\textwidth]{figures/gradients_Omega_a_comparison_2p.png}
     \caption{gradients of 1s 2p... states.
     Three rows would be enogh.}
     \label{fig:gradients}
@@ -534,7 +538,13 @@ If indeed such amount of axionlike dark matter can be accumulated in the Earth g
 
 \subsection{Population and coherence}\label{sec:theory:earthALP:coherence}
 
-Unlike the galactic halo signal, which has a continuous Maxwell-Boltzmann spectrum, Earth-bound ALPs occupy discrete energy levels $E_n$.
+Unlike the galactic halo signal, which has a continuous Maxwell-Boltzmann spectrum, Earth-bound ALPs occupy discrete energy levels. 
+Only the lowest few eigen-states are of interest because the higher eigen-states have small wavefunction amplitudes at the detector location.
+The population of the eigen-states is determined by the dark matter capture / accumulation process and potential ALP self-interaction or interactions with other particles, which is not well understood. 
+The population distribution is therefore treated as a free parameter in this thesis. 
+A few simple scenarios are considered: (1) only one of the lowest eigenstates are populated; (2) the first few eigenstates are populated uniformly.
+
+
 Each level $n$ contributes an ALP oscillation at a slightly different Compton frequency
 \begin{equation}
     \nu_n = \nu_a + \frac{|E_n|}{h}
@@ -552,31 +562,56 @@ where $\nu_a = m_a c^2/h$ is the rest-mass Compton frequency.
 
 If multiple modes are populated simultaneously, the phases of the individual oscillations drift relative to each other over time. 
 % their superposition produces a beating pattern with a period $\tau_\mathrm{beat} \approx 1/\Delta\nu_n$.
-This leads to finite coherence time for the multi-mode ALP field.
-% : the signal amplitude fluctuates on the time scale $\tau_\mathrm{beat}$, analogous to the galactic-halo coherence time $\tau_a = Q_a/\nu_a$ but with a discrete rather than continuous spectrum.
-Numerical solutions of Equation~\eqref{eq:schrodinger_earth} are needed to determine the wavefunctions and gradients considering the density profile of the Earth \YZ{placeholder: add reference to numerical solutions and/or to the script used to compute them; planned figure showing probability density and gradient magnitude for selected $(n,l,m)$ modes}.
+This leads to finite coherence time for the multi-mode ALP field. 
+% : the signal amplitude fluctuates on the time scale $\tau_\mathrm{beat}$, analogous to the galactic-halo coherence time $\tau_a = Q_a/\nu_a$ but with a discrete rather than continuous spectrum. 
+A rough estimate of the coherence time can be made from the spacing $\Delta E$ between eigen-states:
+\begin{equation}
+    \tau_\mathrm{coh} \approx \frac{1}{\Delta \nu} = \frac{h}{\Delta E}
+    \,.\label{eq:coherence_time_estimate}
+\end{equation}
+The maximum spacing can be estimated from the ALP mass and the Earth gravitational potential which is $|\Delta V_g| = \SI{125}{\mega\joule\per\kg}$:
+\begin{align}
+    \Delta E &\approx m_a\,\Delta V_g \approx m_a\,\frac{G M_\oplus}{R_\oplus}\\
+    & = \SI{6e-18}{\eV}\frac{\nu_a}{\SI{1}{\mega\hertz}}
+    \,.\label{eq:coherence_time_estimate_max}
+\end{align}
+\YZ{check the value of Vg later.}
+The corresponding frequency spacing and coherence time are
+\begin{equation}
+    \Delta\nu = \frac{\Delta E_\mathrm{max}}{h} \approx \SI{1e-9}{}\nu_a
+    \,\label{eq:coherence_time_estimate_max_freq}
+\end{equation}
+and
+\begin{equation}
+    \tau_\mathrm{coh} \approx \frac{1}{\Delta\nu} = \frac{10^9}{\nu_a}
+    \,.\label{eq:coherence_time_estimate_max_value}
+\end{equation}
+\footnote{Calculations can be found at \url{scripts-and-data/Theory-EarthHaloALP.ipynb}.}
+It can be seen that the coherence time is $\sim 10^3$ times longer than the galactic-halo coherence time $\tau_a = Q_a/\nu_a \sim 10^6/\nu_a$ due to the much smaller velocity spread of the Earth-bound ALP. 
+
+To determine the exact coherence time, numerical solutions of Equation~\eqref{eq:schrodinger_earth} and simulations of eigen-states interference are needed. 
+However, when the ALP mass is small, the level spacing is small and the coherence time can be very long, which may exceed the relaxation times of the NMR sample and duration of a typical CASPEr-G measurement. 
+In such scnarios, the ALP field will result in a one-bin signal in the frequency spectrum, and the amplitude of the signal will be limited by the relaxation times of the NMR sample. 
+Therefore, the exact value of the coherence time is not always needed for the analysis of the CASPEr-G data. 
 
 
-\subsection{Daily modulations}\label{sec:theory:earthALP:daily}
+\subsection{Periodic modulations}\label{sec:theory:earthALP:periodic}
 
-
-
-
-In the resonance scheme, CASPEr-G is only sensitive to the component of $\boldsymbol{\nabla}a$ perpendicular to the bias field $\mathbf{B}_0$.
-Since the bias field is always veritcal with repect to the ground, the setup is sensitive to gradient along $\hat{\boldsymbol{\theta}}$ and $\hat{\boldsymbol{\varphi}}$ directions, but not to the gradient along $\hat{\mathbf{r}}$ direction.
-
-
- assuming the ALP halo is stationary while Earth is rotating at period of a day, daily modulation of the ALP signal amplitude is expected.
- However, the numerical
-
-
+% assuming the ALP halo is stationary while Earth is rotating at period of a day, daily modulation of the ALP signal amplitude is expected.
+% However, the numerical
 
 The Earth-bound ALP wavefunction $\psi_{nlm}$ is defined in the Earth-centered frame introduced above, with the $z$-axis along the Earth--Sun line, the $x$-axis along the instantaneous velocity of the Earth in the Solar System, and $\hat{\mathbf{y}}=\hat{\mathbf{z}}\times\hat{\mathbf{x}}$.
 This frame is generally not aligned with the Earth's rotation axis.
-As the Earth rotates, the laboratory co-rotates, so the orientation of the gradient $\boldsymbol{\nabla}a$ relative to the bias field $\mathbf{B}_0$ changes with a period of one sidereal day.
-
-The component of $\boldsymbol{\nabla}a$ perpendicular to $\mathbf{B}_0$ (which drives nuclear spin precession, cf.\ Equation~\eqref{eq:Omega_a}) therefore exhibits a daily modulation.
-For a bias field pointed along the local vertical, and a bound state with quantum numbers $(n, l, m)$, the perpendicular gradient component traces a specific daily pattern determined by the spherical harmonic $Y_l^m$ evaluated at the detector's co-latitude \YZ{add explicit formula for the modulation amplitude as a function of co-latitude and $(l,m)$}.
-
-This daily modulation is a powerful discriminant: its period (one sidereal day) and phase are fixed by Earth's rotation and the quantum numbers of the bound state, providing a strong consistency check that is qualitatively different from both the galactic-halo signal (which has a different daily modulation driven by the velocity of the halo wind, cf.\ Section~\ref{sec:theory:earthALP:daily}) and instrumental artifacts.
+As the Earth rotates, the laboratory co-rotates, so the orientation of the component of $\boldsymbol{\nabla}a$ at any given location therefore exhibits a daily modulation. 
+% For a bias field pointed along the local vertical, and a bound state with quantum numbers $(n, l, m)$, the perpendicular gradient component traces a specific daily pattern determined by the spherical harmonic $Y_l^m$ evaluated at the detector's co-latitude \YZ{add explicit formula for the modulation amplitude as a function of co-latitude and $(l,m)$}.
+% This daily modulation is a powerful discriminant: its period (one sidereal day) and phase are fixed by Earth's rotation and the quantum numbers of the bound state, providing a strong consistency check that is qualitatively different from both the galactic-halo signal (which has a different daily modulation driven by the velocity of the halo wind, cf.\ Section~\ref{sec:theory:earthALP:periodic}) and instrumental artifacts.
 \YZ{Add figure: predicted daily modulation envelope for the ground state at a mid-latitude detector, for one or two representative masses.}
+
+One example of daily modulation is illustrated in Figure~\ref{fig:earthALP_daily_modulation}, which shows the daily modulation of gradient component for the $2p$ state $(n, l, m) = (2, 1, 0)$ at the location of CASPEr-G. 
+
+\begin{figure}
+    \includegraphics[width=0.99\textwidth]{figures/gradients_Omega_a_comparison_2p.png}
+    \caption{Daily modulation of the gradient component for the $2p$ state $(n, l, m) = (2, 1, 0)$ at the location of CASPEr-G (Helmholtz Institute Mainz). 
+    The modulation is due to the rotation of the Earth.}
+    \label{fig:earthALP_daily_modulation}
+\end{figure}
