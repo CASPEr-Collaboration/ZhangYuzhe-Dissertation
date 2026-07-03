@@ -189,7 +189,7 @@ The spherical harmonics satisfies
 \end{equation}
 Therefore, to derive the radial wavefunction of eigen-state with angular quantum number $l$, TISE is transformed to
 \begin{equation}
-    -\frac{\hbar^2}{2m}\frac{1}{{r}^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial R_{nl}\left(r\right)}{\partial r}\right)+\left(\frac{l\left(l+1\right)\hbar^2}{2mr^2}+V_g\right)R_{nl}\left(r\right)=E_{n}R_{nl}\left(r\right)\,.
+    -\frac{\hbar^2}{2m}\frac{1}{{r}^2}\frac{\partial}{\partial r}\left[r^2\frac{\partial R_{nl}\left(r\right)}{\partial r}\right]+\left[\frac{l\left(l+1\right)\hbar^2}{2mr^2}+V_g\right]R_{nl}\left(r\right)=E_{n}R_{nl}\left(r\right)\,.
     \label{eq:TISE_R}
 \end{equation}
 Since the earth density is not uniform, it is difficult to derive the radial wavefunction analytically.
@@ -261,7 +261,37 @@ The gradient operator in spherical coordinates is
 The eigenstates are defined in the Earth-rest frame, whereas the gradient coupling is measured in the laboratory frame $L$.
 Since the ALP field is a Lorentz scalar, $a'(x')=a(x)$, while its derivatives transform according to the inverse Lorentz transformation.
 Applying the chain rule, $\partial'_\mu=(\Lambda^{-1})^\nu{}_\mu\partial_\nu$, mixes the temporal derivative with the component of the spatial gradient parallel to the laboratory velocity.
-Separating the spatial gradient into components parallel and perpendicular to $\mathbf{v}$ gives
+Here $\Lambda^\mu{}_\nu$ is the $4\times4$ Lorentz-boost matrix relating the Earth-rest-frame coordinates $x^\mu=(ct,\mathbf{r})$ to the laboratory-frame coordinates through $x'^\mu=\Lambda^\mu{}_\nu x^\nu$.
+Its inverse appears because the derivative basis transforms oppositely to the coordinates; the Greek indices run over the temporal and three spatial components.
+To obtain the spatial transformation explicitly, the unboosted gradient is decomposed into components parallel and perpendicular to $\mathbf{v}$:
+\begin{equation}
+    \boldsymbol{\nabla}_{\parallel}a
+    =
+    \frac{\mathbf{v}}{v^2}
+    \left(\mathbf{v}\cdot\boldsymbol{\nabla}a\right),
+    \qquad
+    \boldsymbol{\nabla}_{\perp}a
+    =
+    \boldsymbol{\nabla}a-\boldsymbol{\nabla}_{\parallel}a
+    \,.
+\end{equation}
+The inverse Lorentz boost leaves the perpendicular component unchanged and transforms the parallel component as
+\begin{equation}
+    \left(\boldsymbol{\nabla}_{L}a\right)_{\perp}
+    =
+    \boldsymbol{\nabla}_{\perp}a,
+    \qquad
+    \left(\boldsymbol{\nabla}_{L}a\right)_{\parallel}
+    =
+    \gamma_L
+    \left(
+    \boldsymbol{\nabla}_{\parallel}a
+    +
+    \frac{\mathbf{v}}{c^2}\partial_t a
+    \right)
+    \,.
+\end{equation}
+Adding these two components gives
 \begin{equation}
     \boldsymbol{\nabla}_{L}a
     =
@@ -289,7 +319,7 @@ The temporal-gradient term also vanishes, so Equation~\eqref{eq:gradient_lorentz
 \end{equation}
 as expected.
 
-For $v/c\ll1$, the Lorentz factor can be expanded as
+For $0<v/c\ll1$, the Lorentz factor can be expanded as
 \begin{equation}
     \gamma_L
     =1+\frac{1}{2}\frac{v^2}{c^2}
@@ -369,29 +399,78 @@ Using Equation~\eqref{eq:Psi_r_t}, the two Lorentz-boost terms in Equation~\eqre
     \right]
     \,.\label{eq:gradient_boost_terms_Psi}
 \end{align}
-For an observer rotating with the Earth,
+The size of these corrections can be estimated from the rotation of the Earth.
+Using $R_\oplus\simeq\SI{6.37e6}{\meter}$ and the sidereal rotation period $T_\oplus\simeq\SI{8.62e4}{\second}$ gives the maximum surface speed
 \begin{equation}
-    \mathbf{v}=v_\varphi\hat{\boldsymbol{\varphi}},
+    v_\mathrm{rot}^{\max}
+    =
+    \frac{2\pi R_\oplus}{T_\oplus}
+    \simeq\SI{4.65e2}{\meter\per\second},
     \qquad
-    v_\varphi=\Omega_\oplus r\sin\theta
+    \frac{v_\mathrm{rot}^{\max}}{c}
+    \simeq 1.55\times10^{-6}
+    \,.
+\end{equation}
+At latitude $\lambda$, this speed is reduced by a factor $\cos\lambda$.
+The corresponding Lorentz factor satisfies
+\begin{equation}
+    \gamma_L-1
+    \simeq
+    \frac{1}{2}\left(\frac{v_\mathrm{rot}^{\max}}{c}\right)^2
+    \simeq 1.2\times10^{-12}
     \,,
 \end{equation}
-where $\Omega_\oplus$ is the angular rotation frequency of the Earth.
+so the first correction in Equation~\eqref{eq:gradient_boost_terms_Psi} is negligible compared with the unboosted gradient.
+For an ALP field oscillating at ordinary frequency $\nu_a$, the time-derivative term instead produces an effective gradient
+\begin{equation}
+    \frac{\left|\delta\boldsymbol{\nabla}a\right|_t}{|a|}
+    \sim
+    \frac{2\pi\nu_a v_\mathrm{rot}^{\max}}{c^2}
+    \simeq
+    \frac{0.21}{R_\oplus}
+    \left(\frac{\nu_a}{\SI{1}{\mega\hertz}}\right)
+    \,.
+\end{equation}
+For an intrinsic bound-state gradient characterized by a speed $v_\mathrm{bound}$, the ratio of the temporal boost contribution to the intrinsic gradient is approximately $v_\mathrm{rot}/v_\mathrm{bound}$.
+Taking $v_\mathrm{bound}\sim v_\mathrm{esc}=\SI{11.2}{\kilo\meter\per\second}$ gives a representative estimate of about $4\%$ at the equator.
+Thus, the relativistic correction proportional to $\gamma_L-1$ is extremely small, whereas the temporal boost term can give a percent-level correction and may be more important when the intrinsic transverse gradient is suppressed.
+
+The laboratory velocity relative to the Earth-bound halo is written generally as
+\begin{equation}
+    \mathbf{v}
+    =
+    v_r\hat{\mathbf{r}}
+    +v_\theta\hat{\boldsymbol{\theta}}
+    +v_\varphi\hat{\boldsymbol{\varphi}},
+    \qquad
+    v^2=v_r^2+v_\theta^2+v_\varphi^2
+    \,,
+\end{equation}
+where the radial, polar, and azimuthal components are all retained.
 The boost correction to the complex gradient amplitude of one mode is then
 \begin{equation}
-    \delta\boldsymbol{\mathcal{G}}_{nlm}
-    =
-    (\gamma_L-1)\hat{\boldsymbol{\varphi}}
-    \frac{R_{nl}}{r\sin\theta}
-    \frac{\partial Y_l^m}{\partial\varphi}
-    -i\gamma_L\frac{\omega_n v_\varphi}{c^2}
-    \hat{\boldsymbol{\varphi}}R_{nl}Y_l^m
-    \,,
-    \qquad
-    \omega_n=\frac{m_a c^2+E_n}{\hbar}
-    \,.\label{eq:gradient_boost_mode}
+    \begin{aligned}
+        \delta\boldsymbol{\mathcal{G}}_{nlm}
+        &=
+        \frac{\gamma_L-1}{v^2}\mathbf{v}
+        \left(
+        v_r\frac{\partial R_{nl}}{\partial r}Y_l^m
+        +v_\theta\frac{R_{nl}}{r}\frac{\partial Y_l^m}{\partial\theta}
+        +v_\varphi\frac{R_{nl}}{r\sin\theta}\frac{\partial Y_l^m}{\partial\varphi}
+        \right)
+        \\
+        &\quad
+        -i\gamma_L\frac{\omega_n}{c^2}
+        \mathbf{v}R_{nl}Y_l^m
+        \,,
+        \qquad
+        \omega_n=\frac{m_a c^2+E_n}{\hbar}
+        \,.
+    \end{aligned}
+    \label{eq:gradient_boost_mode}
 \end{equation}
-For $m=0$, the first correction vanishes, while the contribution from the temporal derivative remains.
+For the spherically symmetric state with $l=m=0$, the angular derivatives vanish, but the first correction retains a radial contribution proportional to $v_r\,\partial R_{n0}/\partial r$.
+It vanishes only when $v_r=0$, while the contribution from the temporal derivative remains.
 If multiple modes are populated, the total gradient is a superposition of the gradients from each mode, weights of which correspond to the population distribution, as can be seen in Equation~\eqref{eq:gradient_Psi_sum}.
 %  and Equation~\ref{eq:psi_R_Y} 
 
@@ -403,8 +482,10 @@ The characteristics of the gradient are addressed as follows:
     \item For the eigen-states with zero angular momentum ($s$ state), the wavefunction is spherically symmetric, so the gradient is purely radial and its magnitude is proportional to the radial wavefunction gradient\YZ{is this paragraph right??}.
     \item When angular momentum is non-zero ($l>=1$), the gradient has non-radial components may vary over different locations, depending on the angular structure of the wavefunction.
     \item The choice of the quantization axis is critical for considering $l>0$ states.
-    Since the solar gravity breaks the rotational symmetry, the quantization axis ($z$-axis) is chosen along the direction from the Earth's center to the Sun, which does not align with the Earth's rotational axis.
-    This means that the gradient at the detector location will have a daily modulation as the Earth rotates, which is discussed in Section~\ref{sec:theory:earthALP:daily}.
+    Since the solar gravity breaks the rotational symmetry, the $z$-axis is chosen along the Earth--Sun line.
+    The $x$-axis is chosen along the instantaneous velocity of the Earth in the Solar System, and the $y$-axis is defined by $\hat{\mathbf{y}}=\hat{\mathbf{z}}\times\hat{\mathbf{x}}$.
+    This coordinate system generally does not align with the Earth's rotation axis, so the laboratory velocity is retained in all three spherical components, $v_r$, $v_\theta$, and $v_\varphi$.
+    The gradient at the detector location therefore exhibits a daily modulation as the Earth rotates, as discussed in Section~\ref{sec:theory:earthALP:daily}.
     \item \textbf{Azimuthal dependence} For modes with $m\neq 0$, the gradient has an azimuthal dependence.
     However, for the brevity of this discussion, only $m=0$ is considered in this work.
 \end{itemize}
@@ -427,21 +508,23 @@ Add a comparison with the galactic-halo Rabi frequency $\Omega_a$ (Equation~\eqr
 A rough estimation of the Rabi frequency $\Omega_a^{\oplus}$ of the pseudomagnetic field can be made using Equation~\eqref{eq:Omega_a} and escape speed $v_\mathrm{esc}$ as the typical velocity of the Earth-bound ALP:
 \begin{equation}
     \Omega_a^{\oplus} / (2 \pi)\approx \frac{g_\mathrm{aNN}}{\SI{1e-9}{\GeV^{-1}}} \times \SI{6}{\mHz}~.
+    \label{eq:Omega_a_earth_rough}
 \end{equation}
 A more accurate estimation can be made using the numerical values of the wavefunction gradients at the detector location.
 With Equations~(\ref{eq:Bpseudo}, \ref{eq:gradient_Psi_sum}, \ref{eq:gradient_psi_nlm}), it can be estimated as
 \begin{equation}
-    \Omega_a^{\oplus} = c\, g_\mathrm{aNN} \sqrt{\frac{N_a \hbar^3 c}{2 m_a}}\,\left|(\boldsymbol{\nabla}\psi_{nlm})_\perp\right|
+    \Omega_a^{\oplus} = c\, g_\mathrm{aNN} \sqrt{\frac{N_a \hbar^3 c}{2 m_a}}\,\left|\left(\boldsymbol{\nabla}\psi_{nlm}\right)_\perp\right|
     \,,\label{eq:Omega_a_earth}
 \end{equation}
 where $\left|(\boldsymbol{\nabla}\psi_{nlm})_\perp\right|$ is the magnitude of the wavefunction gradient component perpendicular to the bias field $\mathbf{B}_0$ (i.e., the $\hat{\boldsymbol{\theta}}$ and $\hat{\boldsymbol{\varphi}}$ terms from Equation~\eqref{eq:gradient_psi_nlm}).
 Using the numerical values of the wavefunction gradients, the value can be obtained as
 \begin{equation}
     \Omega_a^{\oplus, \theta} / (2 \pi)\approx \frac{g_\mathrm{aNN}}{\SI{1e-9}{\GeV^{-1}}} \times \SI{3}{\mHz}~.
+    \label{eq:Omega_a_earth_theta}
 \end{equation}
 \YZ{What about the radial gradient?
 TODO: add it.}
-These two estimations yield consistent results within an order of magnitude.
+The two estimations in Equation~\eqref{eq:Omega_a_earth_rough} and \eqref{eq:Omega_a_earth_theta} yield consistent results within an order of magnitude.
 The calculations can be found at \YZ{add reference to the script used for the calculation}.
 % scripts-and-data\grav_potential.ipynb #### Estimation of the ALP field gradient Note that due to the magnitude of the Rabi frequency can vary by \SI{100}{\percent} due to the time-changing alignment between the ALP gradient and the sensitive axis of detector.
 
@@ -451,26 +534,27 @@ If indeed such amount of axionlike dark matter can be accumulated in the Earth g
 
 \subsection{Population and coherence}\label{sec:theory:earthALP:coherence}
 
-Unlike the galactic halo signal, which has a broad Maxwell-Boltzmann spectrum, Earth-bound ALPs occupy discrete energy levels $E_n$.
+Unlike the galactic halo signal, which has a continuous Maxwell-Boltzmann spectrum, Earth-bound ALPs occupy discrete energy levels $E_n$.
 Each level $n$ contributes an ALP oscillation at a slightly different Compton frequency
 \begin{equation}
     \nu_n = \nu_a + \frac{|E_n|}{h}
-    = \nu_a\left(1 + \frac{\alpha_g^2}{2n^2}\right)
+    % = \nu_a\left(1 + \frac{\alpha_g^2}{2n^2}\right)
     \,,\label{eq:nu_bound}
 \end{equation}
 where $\nu_a = m_a c^2/h$ is the rest-mass Compton frequency.
-The level spacing between adjacent states $n$ and $n+1$ is
-\begin{equation}
-    \Delta\nu_n = \frac{m_a c^2\,\alpha_g^2}{h}\left(\frac{1}{2n^2} - \frac{1}{2(n+1)^2}\right)
-    \approx \frac{m_a c^2\,\alpha_g^2}{h\,n^3}
-    \,.\label{eq:level_spacing}
-\end{equation}
-\YZ{Add numerical value of $\Delta\nu_n$ for $n=1$ and the masses of interest.}
+% The level spacing between adjacent states $n$ and $n+1$ is
+% \begin{equation}
+%     \Delta\nu_n = \frac{m_a c^2\,\alpha_g^2}{h}\left(\frac{1}{2n^2} - \frac{1}{2(n+1)^2}\right)
+%     \approx \frac{m_a c^2\,\alpha_g^2}{h\,n^3}
+%     \,.\label{eq:level_spacing}
+% \end{equation}
+% \YZ{Add numerical value of $\Delta\nu_n$ for $n=1$ and the masses of interest.}
 
-If multiple modes are populated simultaneously, their superposition produces a beating pattern with a period $\tau_\mathrm{beat} \approx 1/\Delta\nu_n$.
-This plays the role of a coherence time for the multi-mode Earth-bound field: the signal amplitude fluctuates on the time scale $\tau_\mathrm{beat}$, analogous to the galactic-halo coherence time $\tau_a = Q_a/\nu_a$ but with a discrete rather than continuous spectrum.
-
-Numerical solutions of Equation~\eqref{eq:schrodinger_earth} are needed to determine the wavefunctions and gradients for non-spherical or higher-$l$ modes and to account for the finite density profile of the Earth \YZ{placeholder: add reference to numerical solutions and/or to the script used to compute them; planned figure showing probability density and gradient magnitude for selected $(n,l,m)$ modes}.
+If multiple modes are populated simultaneously, the phases of the individual oscillations drift relative to each other over time. 
+% their superposition produces a beating pattern with a period $\tau_\mathrm{beat} \approx 1/\Delta\nu_n$.
+This leads to finite coherence time for the multi-mode ALP field.
+% : the signal amplitude fluctuates on the time scale $\tau_\mathrm{beat}$, analogous to the galactic-halo coherence time $\tau_a = Q_a/\nu_a$ but with a discrete rather than continuous spectrum.
+Numerical solutions of Equation~\eqref{eq:schrodinger_earth} are needed to determine the wavefunctions and gradients considering the density profile of the Earth \YZ{placeholder: add reference to numerical solutions and/or to the script used to compute them; planned figure showing probability density and gradient magnitude for selected $(n,l,m)$ modes}.
 
 
 \subsection{Daily modulations}\label{sec:theory:earthALP:daily}
@@ -487,7 +571,8 @@ Since the bias field is always veritcal with repect to the ground, the setup is 
 
 
 
-The Earth-bound ALP wavefunction $\psi_{nlm}$ is defined in the Earth-centered inertial frame, with the quantization axis aligned with the Earth's rotation axis (or with some fixed direction in space, depending on the angular momentum quantum numbers $l,m$).
+The Earth-bound ALP wavefunction $\psi_{nlm}$ is defined in the Earth-centered frame introduced above, with the $z$-axis along the Earth--Sun line, the $x$-axis along the instantaneous velocity of the Earth in the Solar System, and $\hat{\mathbf{y}}=\hat{\mathbf{z}}\times\hat{\mathbf{x}}$.
+This frame is generally not aligned with the Earth's rotation axis.
 As the Earth rotates, the laboratory co-rotates, so the orientation of the gradient $\boldsymbol{\nabla}a$ relative to the bias field $\mathbf{B}_0$ changes with a period of one sidereal day.
 
 The component of $\boldsymbol{\nabla}a$ perpendicular to $\mathbf{B}_0$ (which drives nuclear spin precession, cf.\ Equation~\eqref{eq:Omega_a}) therefore exhibits a daily modulation.
