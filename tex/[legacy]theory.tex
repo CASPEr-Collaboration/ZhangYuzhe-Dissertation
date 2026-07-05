@@ -1,0 +1,199 @@
+\chapter{ALP models}\label{chap:theory}
+\begin{jointwork}
+    Part of the content in this chapter related to frequency-scanning considerations is adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning} and Earth bound halo paper \YZ{to be cited here}.
+    \YZ{modify?}
+\end{jointwork}
+
+The ALP field can be detected through its gradient coupling to nuclear spins, which acts as an effective oscillating pseudomagnetic field.
+Understanding the properties of this coupling---its frequency, amplitude, and coherence---is essential for designing a sensitive experiment and choosing an optimal measurement strategy.
+Chapter~\ref{chap:introduction} introduced the wave nature, classical-field limit, and multimode superposition of ALP dark matter.
+This chapter develops the resulting spin-precession signal and then treats two models in detail: a thermalized Milky Way halo with a continuous velocity distribution and an Earth-bound halo composed of discrete eigenstates.
+
+
+\section{ALP-field stochasticity and spin response}\label{sec:theory:ALPfield}
+
+\subsection{Stochastic multimode fields}\label{sec:theory:stochasticity}
+
+The complex wavefunction $\Psi(\mathbf{r},t)$ in Equation~\eqref{eq:ALP_sum} provides a common description of both ALP models considered in this chapter.
+Its measurable real part is determined by the mode amplitudes, frequencies, wave vectors, and phases.
+Interference between these modes makes the effective field amplitude and phase time dependent, even when every individual mode evolves coherently.
+
+The statistics of the resulting field depend on the physical mode population.
+In a thermalized Milky Way halo, a continuous velocity distribution produces a continuous spectral line and a stochastic coherence time, as derived in Section~\ref{sec:theory:MWALP}.
+In an Earth-bound halo, the modes are discrete gravitational eigenstates; interference between populated levels instead produces resolvable splittings or beating, as discussed in Section~\ref{sec:theory:earthALP}.
+The signal estimates below are written in terms of the r.m.s.\ drive amplitude $\Omega_a$ and an appropriate coherence time, so that the same spin-response framework can be applied to either model.
+
+
+\subsection{Spin-precession signal}\label{sec:theory:signal}
+
+The ALP-induced signal is determined by the ALP gradient field amplitude (or effectively, the Rabi frequency of the pseudomagnetic field $\Omega_a$), the ALP field coherence and relaxations of the nuclear spin sample.
+An estimation of the effects from these factors is made in the following.
+
+
+\subsubsection{Relaxations and coherence}\label{sec:theory:relaxations}
+\YZ{include alp COHERENCE AS well}
+The transverse spin relaxation in the sample arises from homogeneous mechanisms (e.g., spin-spin interactions), characterized by the time $T_2$, and from inhomogeneous mechanisms (e.g., magnetic-field gradients across the sample), which cause additional dephasing.
+The total effective transverse relaxation time $T_2^* \leq T_2$ incorporates both contributions.
+
+The NMR linewidth (FWHM, assuming a Lorentzian lineshape) of the free-induction-decay spectrum is
+\begin{equation}
+    \Gamma_{n} = \dfrac{2}{T_2^*}
+    \,,\label{eq:Gamma_n}
+\end{equation}
+and the normalized linewidth is
+\begin{equation}
+    \delta_\nu \equiv \dfrac{\Gamma_{n}}{\nu} = \dfrac{2}{\nu T_2^*}
+    \,,\label{eq:delta_nu}
+\end{equation}
+often expressed in parts per million (\SI{}{\ppm}).
+The inhomogeneous contribution to $1/T_2^*$ can be reduced by magnetic shimming, giving control over $T_2^*$ independently of the intrinsic $T_2$.
+
+
+\subsubsection{Estimation}\label{sec:theory:estimation}
+
+For a sample with longitudinal magnetization $M_0$ prepared along the bias field $\mathbf{B}_0$, the ALP-field drive tilts the magnetization by a small angle $\xi \ll 1$ (weak-drive regime, $\Omega_a T \ll 1$), generating a transverse magnetization $M_1 \approx M_0\xi$.
+The r.m.s.\ transverse magnetization is \cite{Yuzhe2023_FrequencyScanning}
+\begin{equation}
+    \sqrt{\langle M_{1}^2 \rangle} \approx \dfrac{1}{\sqrt{2}}\, u_n M_{0} \sqrt{\langle \xi^2 \rangle}
+    \,,\label{eq:M1_rms}
+\end{equation}
+where $u_n$ is the fraction of nuclear spins on resonance with the ALP field.
+Approximating both the NMR and ALP lineshapes as rectangles,
+\begin{equation}
+    u_n \approx \left\{
+    \begin{array}{cl}
+    1\,,
+    &  \tau_a \ll T_2^* \\[6pt]
+    \dfrac{\Gamma_a}{\Gamma_{n}} = \dfrac{\pi T_2^*}{\tau_a}\,,
+    &  T_2^* \ll \tau_a
+    \end{array} \right.
+    \,.\label{eq:un}
+\end{equation}
+
+The r.m.s.\ tipping angle $\sqrt{\langle\xi^2\rangle}$ is limited by the interplay between ALP decoherence and spin relaxation.
+Modeling the ALP decoherence as a random phase that resets on the time scale $\tau_a$, the tipping angle executes a two-dimensional random walk in the rotating frame with step size $\Omega_a\tau_a$ \cite{Yuzhe2023_FrequencyScanning}.
+Combining this with the three relevant relaxation scales,
+\begin{equation}
+    \sqrt{\langle \xi^2\rangle}  = \left\{
+    \begin{array}{cl}
+    \Omega_{a}\sqrt{\tau_a T_2^*} ,
+    &  \tau_a \ll T_2^*\\[6pt]
+    \Omega_a\dfrac{\tau_a}{\sqrt{\pi}} ,
+    &  T_2^*\ll\tau_a \ll T_2\\[6pt]
+    \Omega_a T_2 ,
+    &  T_2 \ll \tau_a
+    \end{array} \right.
+    \,.\label{eq:rms_xi}
+\end{equation}
+These cases combine into the r.m.s.\ transverse magnetization (for dwell time $T \gg \tau_a,\,T_2^*,\,T_2$):
+\begin{equation}
+    \sqrt{\langle M_{1}^2 \rangle} \approx \dfrac{M_{0}\Omega_a}{\sqrt{2}}\left\{
+    \begin{array}{cl}
+    \sqrt{\tau_a T_2^*}\, ,
+    &  \tau_a \ll T_2^*\\[6pt]
+    \dfrac{T_2^*}{\sqrt{\pi}}\, ,
+    &  T_2^*\ll\tau_a \ll T_2\\[6pt]
+    \dfrac{T_2^* T_2}{\sqrt{\pi}\,\tau_a}\, ,
+    &  T_2 \ll \tau_a
+    \end{array} \right.
+    \,.\label{eq:M1_regimes}
+\end{equation}
+In the third case, when $T_2 \ll \tau_a$ and the dwell time $T \gg \tau_a$, the signal amplitude decreases because the ALP field cannot drive the spins coherently for longer than $T_2$, while off-resonance spins (those not within the narrow ALP linewidth) contribute negligibly.
+\YZ{Add numerical simulation results here; reference Appendix~\ref{app:axionbloch} for details.}
+
+
+\subsection{Summary of relaxation and coherence effects}\label{sec:theory:summary}
+
+Depending on the relative magnitudes of $T_2$, $T_2^*$, and $\tau_a$, four regimes are identified \cite{Yuzhe2023_FrequencyScanning}:
+\begin{enumerate}[label = (\arabic*)]
+    \item $\tau_a \ll T_2^*$;
+    \item $T_2^* \ll \tau_a \ll T_2 $;
+    \item $T_2^* \ll T_2 \ll \tau_a$;
+    \item $T_2^*=T_2 \ll \tau_a$.
+\end{enumerate}
+These regimes are illustrated in Figure~\ref{fig:T2star_T2_taua_regimes}.
+The key parameters for each regime are summarized in Table~\ref{tab:summary_of_regimes}, where $\nu_{\mathrm{start}}$ and $\nu_{\mathrm{end}}$ are the lower and upper limits of the target frequency band.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=.6\linewidth]{works/frequency-scanning/T2star_T2_taua_relations_20230413.png}
+    \caption{Regimes of the spin-precession experiment based on the relative magnitudes of $T_2$, $T_2^*$, and $\tau_a$.
+    Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.}
+    \label{fig:T2star_T2_taua_regimes}
+\end{figure}
+
+\begin{table}[ht]
+    \centering
+    \caption{Summary of parameters for the four regimes.
+    The normalized linewidth $\delta_\nu = \tau_a/(\pi Q_a T_2^*)$ is assumed constant in each regime.
+    The optimal dwell time is derived in Appendix~\ref{app:dwell_time}.}
+    \begin{tabular}{cccccc}
+        \hline
+        & Regime & Optimal dwell time $T$ & Signal linewidth $\Gamma$ & Spectral factor $u_n$ & r.m.s.\ tipping angle $\sqrt{\langle \xi^2\rangle}$ \\
+        \hline
+        & & & & & \\
+        (1) & $\tau_a \ll T_2^*$
+            & $\dfrac{T_{\mathrm{tot}}}{Q_a \ln\left( \nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}$
+            & $\dfrac{2}{T_2^*}$ & $1$ & $\Omega_{a}\sqrt{\tau_a T_2^*}$\\
+        & & & & & \\
+        (2) & $T_2^* \ll \tau_a \ll T_2$
+            & $\dfrac{T_{\mathrm{tot}}\,\tau_a}{\pi Q_a T_2^*\ln\left( \nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}$
+            & $\dfrac{2\pi}{\tau_a}$ & $\dfrac{\pi T_2^*}{\tau_a}$ & $\Omega_a\dfrac{\tau_a}{\sqrt{\pi}}$ \\
+        & & & & & \\
+        (3) & $T_2^* \ll T_2 \ll \tau_a$
+            & $\dfrac{T_{\mathrm{tot}}\,\tau_a}{\pi Q_a T_2^*\ln\left( \nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}$
+            & $\dfrac{2\pi}{\tau_a}$ & $\dfrac{\pi T_2^*}{\tau_a}$ & $\Omega_a T_2$\\
+        & & & & & \\
+        (4) & $T_2^*=T_2 \ll \tau_a$
+            & $\dfrac{T_{\mathrm{tot}}\,\tau_a}{\pi Q_a T_2\ln\left(\nu_{\mathrm{end}}/\nu_{\mathrm{start}}\right)}$
+            & $\dfrac{2\pi}{\tau_a}$ & $\dfrac{\pi T_2}{\tau_a}$ & $\Omega_a T_2$ \\
+        & & & & & \\
+        \hline
+    \end{tabular}
+    \label{tab:summary_of_regimes}
+\end{table}
+\YZ{check if optimal scan strategy is mentioned in this subsection}
+
+
+\subsection{Periodic modulations}
+
+\YZ{Use the Gramolin paper and briefly discuss periodic modulation.
+Mention the modulation observable by terrestrial detectors.}
+
+\subsection{Numerical simulation}\label{sec:theory:simulation}
+
+The analytical estimates above are valid in the limit $T \gg \tau_a,\,T_2^*,\,T_2$.
+At lower Compton frequencies, the ALP coherence time can become comparable to or longer than experimentally accessible dwell times, and the simple scaling laws no longer apply.
+Numerical simulations using the \texttt{axionbloch} package (Appendix~\ref{app:axionbloch}) are used to validate the analytical estimates and to explore intermediate parameter regimes.
+% Three representative situations arise:
+% \begin{description}
+%     \item[Low frequency] $\tau_a \gg T$: the ALP field is essentially coherent over the measurement. The signal grows linearly in time and the $T^{-1/4}$ sensitivity scaling is not yet reached.
+%     \item[Medium frequency] $\tau_a \approx T$: the transition regime, treated numerically.
+%     \item[High frequency] $T \gg \tau_a,\,T_2^*,\,T_2$: the analytical results apply. For hyperpolarized \ch{^{129}Xe}, $T_1$ relaxation limits the achievable polarization, introducing an additional reduction factor of approximately $1/3$ relative to the fully polarized case.
+% \end{description}
+Numerical simulation is then the tool of choice.
+
+
+% \section{Spin dynamics: the Bloch equations}\label{sec:axionbloch:bloch}
+
+The package models spin-$1/2$ ensembles through the Bloch equations~\eqref{eq:bloch_x}--\eqref{eq:bloch_z} derived in Section~\ref{sec:theory:bloch}.
+The total effective field is $\mathbf{B}_\mathrm{eff} = \mathbf{B}_0 + \mathbf{B}_a(t)$, combining the laboratory bias field and the axion-induced pseudomagnetic field.
+The equations are solved in the rotating coordinate frame (RCF), which removes the fast Larmor precession and exposes the slow axion-induced dynamics.
+The effective transverse relaxation time $T_2^*$ (which includes inhomogeneous broadening) is simulated by sampling the spread of bias-field values from a \texttt{Magnet} instance and integrating the Bloch equations for each sampled field independently.
+
+
+% \section{Numerical integration}\label{sec:axionbloch:rk4}
+
+The time evolution of $\mathbf{M}$ is obtained by numerically integrating Bloch equations [Equations~(\ref{eq:bloch_x}--\ref{eq:bloch_z})] with the fourth-order Runge--Kutta (RK4) method.
+Given a time step $\Delta t$ and initial magnetization $\mathbf{M}^n$, the update rule is
+\begin{equation}
+    \mathbf{M}^{n+1} = \mathbf{M}^n + \frac{\Delta t}{6}\left(\mathbf{k}_1 + 2\mathbf{k}_2 + 2\mathbf{k}_3 + \mathbf{k}_4\right)\,,
+\end{equation}
+where $\mathbf{k}_1 = d\mathbf{M}/dt|_{\mathbf{M}^n}$ and subsequent $\mathbf{k}_i$ are evaluated at intermediate half-steps following the standard RK4 prescription.
+The local truncation error is $\mathcal{O}(\Delta t^5)$ and the global accumulated error is $\mathcal{O}(\Delta t^4)$.
+The time step is set to be at least one order of magnitude smaller than the shortest characteristic timescale in the simulation (e.g., $T_1$, $T_2$, or $1/\nu_a$).
+
+The RK4 integration is implemented in a compiled C++ backend and exposed to Python through the \texttt{pybind11} interface, achieving runtimes of $\sim\SI{10}{\s}$ for $\approx4\times10^9$ integration steps on a modern desktop CPU.
+The details of the implementations are included in the appendix.
+This appendix describes \texttt{axionbloch}, an open-source Python package that simulates spin dynamics under both magnetic and axion-induced pseudomagnetic fields.
+
