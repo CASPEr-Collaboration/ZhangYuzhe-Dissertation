@@ -52,7 +52,7 @@ An upper bound comes from the requirement that the Earth's measured gravitationa
     \includegraphics[scale =0.9]{figures/MaxDensity_EH.pdf}
     \caption{Density Distribution of ground state Earth-bound ALP halo.
     The solid line indicates the density at the Earth surface, whereas the dashed line represents the density at the center of the halo.
-    The density value $\rho_\star$ is derived from the maximum Earth ALP halo mass permitted by gravitational constraints, as assessed in \cite{banerjee_relaxion_2020,banerjee_searching_2020}.}%
+    The density value $\rho_\star$ is derived from the maximum Earth ALP halo mass permitted by gravitational constraints, as assessed in \cite{banerjee_relaxion_2020,banerjee_searching_2020}.\YZ{discard this pic?}}%
     \label{fig:groundstate_density}%
 \end{figure}
 \YZ{check if max dm mass is mentioned}
@@ -536,7 +536,7 @@ Such Rabi frequency is $\sim$7 orders of magnitude larger than the expected Rabi
 % TODO: mention local dm density and low axion speed
 If indeed such amount of axionlike dark matter can be accumulated in the Earth gravitational potential, it would produce a much stronger signal than the galactic halo ALP, making it an target that CASPEr-G is sensitive to.
 
-\subsection{Population and coherence}\label{sec:theory:earthALP:coherence}
+\subsection{Population, interference and coherence}\label{sec:theory:earthALP:coherence}
 
 Unlike the galactic halo signal, which has a continuous Maxwell-Boltzmann spectrum, Earth-bound ALPs occupy discrete energy levels. 
 Only the lowest few eigen-states are of interest because the higher eigen-states have small wavefunction amplitudes at the detector location.
@@ -559,7 +559,6 @@ where $\nu_a = m_a c^2/h$ is the rest-mass Compton frequency.
 %     \,.\label{eq:level_spacing}
 % \end{equation}
 % \YZ{Add numerical value of $\Delta\nu_n$ for $n=1$ and the masses of interest.}
-
 If multiple modes are populated simultaneously, the phases of the individual oscillations drift relative to each other over time. 
 % their superposition produces a beating pattern with a period $\tau_\mathrm{beat} \approx 1/\Delta\nu_n$.
 This leads to finite coherence time for the multi-mode ALP field. 
@@ -578,7 +577,7 @@ The maximum spacing can be estimated from the ALP mass and the Earth gravitation
 \YZ{check the value of Vg later.}
 The corresponding frequency spacing and coherence time are
 \begin{equation}
-    \Delta\nu = \frac{\Delta E_\mathrm{max}}{h} \approx \SI{1e-9}{}\nu_a
+    \Delta\nu \approx \frac{\Delta E_\mathrm{max}}{h} \approx \SI{1e-9}{}\nu_a
     \,\label{eq:coherence_time_estimate_max_freq}
 \end{equation}
 and
@@ -588,6 +587,17 @@ and
 \end{equation}
 \footnote{Calculations can be found at \url{scripts-and-data/Theory-EarthHaloALP.ipynb}.}
 It can be seen that the coherence time is $\sim 10^3$ times longer than the galactic-halo coherence time $\tau_a = Q_a/\nu_a \sim 10^6/\nu_a$ due to the much smaller velocity spread of the Earth-bound ALP. 
+A more precise estimate of the coherence time can be made by computing the eigen-energies numerically from the Earth gravitational potential, as shown in Figure~\ref{fig:state-amplitude-vs-eigenenergy}. 
+The relative frequency spacing of the lowest 6 eigen-states is $\sim \SI{1e-9}{}$ or \SI{1}{ppb}, which is consistent with the rough estimate in Equation~\eqref{eq:coherence_time_estimate_max_freq}. 
+
+\begin{figure}
+    \includegraphics[width=0.99\textwidth]{figures/state-amplitude-vs-eigenenergy-1s-to-4f-1.348585-MHz.pdf}
+    \caption{ALP eigen-energy for the lowest few eigen-states.
+    The ALP mass is chosen to be $m_a c^2 = h \times \SI{1.348585}{\mega\hertz}$, which is close to the Larmor frequency of the CASPEr-G measurements.
+    The eigen-energies are computed numerically from the Earth gravitational potential.
+    }
+    \label{fig:state-amplitude-vs-eigenenergy}
+\end{figure}
 
 To determine the exact coherence time, numerical solutions of Equation~\eqref{eq:schrodinger_earth} and simulations of eigen-states interference are needed. 
 However, when the ALP mass is small, the level spacing is small and the coherence time can be very long, which may exceed the relaxation times of the NMR sample and duration of a typical CASPEr-G measurement. 
@@ -603,15 +613,31 @@ Therefore, the exact value of the coherence time is not always needed for the an
 The Earth-bound ALP wavefunction $\psi_{nlm}$ is defined in the Earth-centered frame introduced above, with the $z$-axis along the Earth--Sun line, the $x$-axis along the instantaneous velocity of the Earth in the Solar System, and $\hat{\mathbf{y}}=\hat{\mathbf{z}}\times\hat{\mathbf{x}}$.
 This frame is generally not aligned with the Earth's rotation axis.
 As the Earth rotates, the laboratory co-rotates, so the orientation of the component of $\boldsymbol{\nabla}a$ at any given location therefore exhibits a daily modulation. 
+Due to Earth's orbital motion, the orientation of the Earth--Sun line also changes over the course of a year, producing an annual modulation of the gradient component at a given location. 
 % For a bias field pointed along the local vertical, and a bound state with quantum numbers $(n, l, m)$, the perpendicular gradient component traces a specific daily pattern determined by the spherical harmonic $Y_l^m$ evaluated at the detector's co-latitude \YZ{add explicit formula for the modulation amplitude as a function of co-latitude and $(l,m)$}.
 % This daily modulation is a powerful discriminant: its period (one sidereal day) and phase are fixed by Earth's rotation and the quantum numbers of the bound state, providing a strong consistency check that is qualitatively different from both the galactic-halo signal (which has a different daily modulation driven by the velocity of the halo wind, cf.\ Section~\ref{sec:theory:earthALP:periodic}) and instrumental artifacts.
-\YZ{Add figure: predicted daily modulation envelope for the ground state at a mid-latitude detector, for one or two representative masses.}
-
-One example of daily modulation is illustrated in Figure~\ref{fig:earthALP_daily_modulation}, which shows the daily modulation of gradient component for the $2p$ state $(n, l, m) = (2, 1, 0)$ at the location of CASPEr-G. 
+Examples of daily and annual modulations are illustrated in Figure~\ref{fig:earthALP_daily_modulation} and Figure~\ref{fig:earthALP_annual_modulation}, which show the daily and annual modulations of the gradient component for the $2p$ state $(n, l, m) = (2, 1, 0)$ at the location of CASPEr-G. 
+In summary, the Rabi frequency exhibits changes within one order of magnitude due to periodic modulations. 
+Therefore, the date and time of measurements would not have a significant effect for the sensitivity of CASPEr-G. 
 
 \begin{figure}
     \includegraphics[width=0.99\textwidth]{figures/gradients_Omega_a_comparison_2p.png}
     \caption{Daily modulation of the gradient component for the $2p$ state $(n, l, m) = (2, 1, 0)$ at the location of CASPEr-G (Helmholtz Institute Mainz). 
-    The modulation is due to the rotation of the Earth.}
+    The modulation is due to the rotation of the Earth. 
+    Calculations with and without Lorentz boost are shown for comparison.
+    In general, Lorentz boost modifies the Rabi frequency by less than \SI{1}{\mHz} at \SI{1}{\MHz} ALP Compton frequency. 
+    Note that for $\Omega_a^\phi$, which is zero without Lorentz boost (since magnetic quantum number $m$ is zero), is non-zero with Lorentz boost due to Earth rotation.
+    }
     \label{fig:earthALP_daily_modulation}
 \end{figure}
+
+\begin{figure}
+    \includegraphics[width=0.99\textwidth]{figures/EarthHalo-axion-annual-modulation-Omega_a-2p-365-days.pdf}
+    \caption{Annual modulation of the gradient component for the $2p$ state $(n, l, m) = (2, 1, 0)$ at the location of CASPEr-G (Helmholtz Institute Mainz). 
+    The modulation is due to the Earth's orbit around the Sun. 
+    Lorentz boost is considered in the calculation.}
+    \label{fig:earthALP_annual_modulation}
+\end{figure}
+
+
+% note: for one-column wide figure, figure width is recommended to be 7 cm, and the fontsize is recommended to be 8 pt. For two-column wide figure, figure width is recommended to be 14 cm, and the fontsize is recommended to be 10 pt.
