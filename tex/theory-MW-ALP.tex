@@ -1,6 +1,6 @@
 % \chapter{Axionlike-particle-induced spin precession}\label{chap:theory}
 
-\section{Milky Way halo}\label{sec:theory:MWALP}
+\section{Milky Way ALP DM halo}\label{sec:theory:MWALP}
 
 \subsection{Virialized dark matter halo}
 
@@ -9,8 +9,24 @@ In the standard halo model (SHM)\,\cite{Evans2019_SHMRefined}, the Milky Way dar
 In the Galactic rest frame, the dark-matter velocity distribution is approximated by a Maxwell--Boltzmann distribution truncated near the Galactic escape speed \cite{Evans2019_SHMRefined}.\footnote{The velocity dispersion characterizes the width of the distribution; it is not another name for an individual velocity.}
 The average speed of local dark matter\footnote{Here, ``local'' refers to the solar radius in the Milky Way.} is $v_\mathrm{DM} \approx \SI{220}{\km\per\s}$.
 The local dark matter density is estimated to be $\rho_{DM}\approx\SI{0.4}{\GeV\per\centi\meter^3}$. 
+\YZ{check if rms is written in a consistent way}
+% For a local halo density $\rho_{DM}$, 
+The r.m.s.\ Rabi frequency $\Omega_a$ can be computed from Equations~\eqref{eq:ALP_field}, \eqref{eq:a0_rhoDM}, and~\eqref{eq:HaNN}\,\cite{Centers2021Stochastic}:
+\begin{equation}
+    \Omega_a
+    = \dfrac{1}{2\hbar} g_{\mathrm{aNN}} a_0 m_a c v_{\bot}
+    \approx \dfrac{1}{2} g_{\mathrm{aNN}}
+    \sqrt{2\hbar c \rho_{DM}}\,v_{\bot}
+    \,,
+    \label{eq:Omega_a_MW}
+\end{equation}
+Here it is assumed that the ALP-field gradient comes exclusively from the relative motion of the field and the detector.
+It is important to note that the ALP field is a stochastically varying quantity, so that the $\Omega_a$ in Equation~\eqref{eq:Omega_a} is the r.m.s value.
+For $v_{\bot} = \SI{220}{\km\per\second}$, $\Omega_a/2\pi=g_{\mathrm{aNN}}\times\SI{0.2}{\GeV\cdot\Hz}$.
+For an experiment searching for $g_{\mathrm{aNN}}\leq 10^{-10}\,\SI{}{\per\GeV}$, the Rabi period is $2\pi/\Omega_a \geq 1000\,\mathrm{yr}$; the ALP-field gradient is therefore a weak drive on the spins.
 
-Though it is ``standard'' halo model, it is not a perfect description of the Milky Way dark matter halo. It is more of a model built on phenomenological observations, rather than a model tested through direct measurements. 
+
+Though it is named ``standard'' halo model, it is not a perfect description of the Milky Way dark matter halo. It is more of a model built on phenomenological observations, rather than a model tested through direct measurements. 
 Not every question about the Milky Way halo can be answered by the SHM. For example, the SHM does not account for the presence of substructure in galaxies. 
 There have been alternative models or modifications to the SHM, including SHM$^{++}$\,\cite{Evans2019_SHMRefined}, caustic rings\,\footnote{$Sikivie caustic rings$}, and the presence of substructure in the form of streams\,\footnote{$Freese2004_Streams$, $Savage2006_Streams$, $Kuhlen2010_Streams$, $Lisanti2011_Streams$}. 
 This thesis focuses on the SHM for simplicity. 
@@ -27,14 +43,7 @@ In the future, CASPEr can explore more complex models of the dark matter halo.
 \subsection{Stochasticity due to inteference}\label{sec:theory:MWALP:stochasticity}
 
 If the ALP constitutes the dominant component of the Milky Way dark matter, the local ALP field is a superposition of many modes with different velocities and phases. 
-The relative spread of velocities is on the order of $v_a/c \sim 10^{-3}$.
-Due to the second-order Doppler effect, the relative spread of kinetic energies is on the order of $(v_a/c)^2 \sim 10^{-6}$. 
-
-
-so the ALP field is approximately monochromatic, with a fractional linewidth $\Delta\nu_a/\nu_a \sim 10^{-6}$.
-
-
-A terrestrial detector samples the distribution after the velocity of the laboratory has been added \cite{Evans2019_SHMRefined}. 
+Here the phases of the occupied modes are assumed to be uncorrelated.
 Each velocity class contributes one term to the multimode field in Equation~\eqref{eq:ALP_sum}, with
 \begin{equation}
     \nu(\mathbf{v})
@@ -43,55 +52,46 @@ Each velocity class contributes one term to the multimode field in Equation~\eqr
     \mathbf{k}(\mathbf{v})=\frac{m_a\mathbf{v}}{\hbar}
     \,.
 \end{equation}
-The continuous velocity distribution therefore maps directly onto a continuous frequency distribution.
+% The interference between the multiple modes causes the amplitude and phase of the ALP oscillation to drift stochastically and determines a finite coherence time for the ALP field.
+The relative spread of velocities is on the order of $v_a/c \sim 10^{-3}$.
+Due to the second-order Doppler effect, the relative spread of kinetic energies is on the order of $(v_a/c)^2 \sim 10^{-6}$. 
+The inverse of this spread is defined as the quality factor of the ALP field, $Q_a =(c/v_a)^2 \sim 10^6$.
+Therefore, in the frequency domain, the ALP field is a narrowband signal with a fractional linewidth $\Delta\nu_a/\nu_a \sim 10^{-6}$. 
+Considering the Maxwell--Boltzmann velocity distribution, the sum of the modes as shown in \eqref{eq:ALP_sum} is a random walk in the complex $\Psi$ plane: the two quadratures approach Gaussian random variables, while the field (average) envelope follows a Rayleigh distribution\,\cite{Centers2021Stochastic,Gramolin2022Feb_SpectralSignatures}. 
 
-The phases of the occupied modes are assumed to be uncorrelated. 
-
-
-
-Their sum is a random walk in the complex $\Psi$ plane: the two quadratures approach Gaussian random variables, while the instantaneous field envelope follows a Rayleigh distribution.
-As modes with different kinetic energies accumulate relative phase, both the envelope and phase change stochastically \cite{Centers2021Stochastic,Gramolin2022Feb_SpectralSignatures}.
-The field is approximately a coherent oscillation only on times short compared with its coherence time.
-
-For a local halo density $\rho_{DM}$, the r.m.s.\ Rabi frequency $\Omega_a$ can be computed from Equations~\eqref{eq:ALP_field}, \eqref{eq:a0_rhoDM}, and~\eqref{eq:HaNN} \cite{Centers2021Stochastic}:
+Consequently, in the time domain, the ALP field is a coherent oscillation only on times short compared with its coherence time; on longer time scales, the amplitude and phase drift stochastically, due to the spread of frequencies in the multimode superposition. 
+% \subsection{Coherence time}\label{sec:theory:MWALP:coherence}  % for MW axion
+The ALP coherence time $\tau_a$ can be estimated by the quality factor:
 \begin{equation}
-    \Omega_a
-    = \dfrac{1}{2\hbar} g_{\mathrm{aNN}} a_0 m_a c v_{\bot}
-    \approx \dfrac{1}{2} g_{\mathrm{aNN}}
-    \sqrt{2\hbar c \rho_{DM}}\,v_{\bot}
-    \,,
-    \label{eq:Omega_a_MW}
-\end{equation}
-%\AW{this is a stochastically varying quantity!}
-Here we assume that the ALP-field gradient comes exclusively from the relative motion of the field and the detector.\footnote{This is not necessarily the case, for instance, for ALPs gravitationally bound in stationary states like axion stars or ``axion atoms'' \cite{Lam2017_PhysRevD, Liang_Zhitnitsky2019_GravitationallyPhysRevD}.
-We do not consider such regimes here.}
-%\DK{The readers probably don't know what you're referencing here... perhaps use the term that appears more commonly in the literature, "axion stars," and include related references, for example:\cite{Braaten_2019_axionstars_RevModPhys, Eby_2019_QCDaxionstars_PhysRevD, Eby_2021_axionstarsPlanck_PhysRevD, Banerjee2020_Relaxionstars,Banerjee2020axionhalos}}
-%\DB{But, indeed, we were not thinking about axion stars that are bound states of ALPs themselves, but rather really Axion Atom with, say, the Sun in the center and a halo around it. The atomic analogy is quite strong here and this has been used in the literature…}
-% It is important to note that the ALP field is a stochastically varying quantity, so that the $\Omega_a$ in Equation~\eqref{eq:Omega_a} is the r.m.s value.
-If we take $v_{\bot} = \SI{220}{\km\per\second}$, we have $\Omega_a/2\pi=g_{\mathrm{aNN}}\times\SI{0.2}{\GeV\cdot\Hz}$.
-For an experiment searching for $g_{\mathrm{aNN}}\leq 10^{-10}\,\SI{}{\per\GeV}$, the Rabi period is $2\pi/\Omega_a \geq 1000\,\mathrm{yr}$; the ALP-field gradient is therefore a weak drive on the spins.
-
-
-\subsection{Coherence time}\label{sec:theory:MWALP:coherence}  % for MW axion
-
-For a Maxwell-Boltzmann velocity distribution with average speed $v_a \approx \SI{220}{\km\per\s}$ \cite{Evans2019_SHMRefined}, the ALP field spectral linewidth (FWHM) observed by a detector on Earth is
-\begin{equation}
-    \Gamma_a = \dfrac{\nu_a}{Q_a}
-    \,,\label{eq:Gamma_a_Qa}
-\end{equation}
-where $Q_a \equiv (c/v_a)^2 \approx 1.8\times10^6$ is the ALP quality factor.
-The ALP coherence time $\tau_a$, defined by $\Gamma_a = 2\pi/\tau_a$, is therefore
-\begin{equation}
-    \tau_a = \dfrac{2\pi Q_a}{\nu_a}
+    \tau_a = \frac{2\pi Q_a}{\nu_a}
     \,.
-    \label{eq:taua}
+    \label{eq:taua_Qa_nua}
 \end{equation}
-Within one coherence time, the superposition in Equation~\eqref{eq:ALP_sum} is well approximated by the coherent mode in Equation~\eqref{eq:ALP_field}.
-On longer time scales, the random phases between modes cause the amplitude and phase of the effective oscillation to drift, so the field must be treated as a stochastic process \cite{Centers2021Stochastic}.
-For Compton frequencies above \SI{1}{\kHz}, $\tau_a \lesssim \SI{1000}{\second}$; the interplay between $\tau_a$ and the NMR relaxation times determines the optimal measurement strategy in Chapter~\ref{chap:results}.
+% Within one coherence time, the superposition in Equation~\eqref{eq:ALP_sum} is well approximated by the coherent mode in Equation~\eqref{eq:ALP_field}.
+% On longer time scales, the random phases between modes cause the amplitude and phase of the effective oscillation to drift, so the field must be treated as a stochastic process \cite{Centers2021Stochastic}.
+% For Compton frequencies above \SI{1}{\kHz}, $\tau_a \lesssim \SI{1000}{\second}$; the interplay between $\tau_a$ and the NMR relaxation times determines the optimal measurement strategy in Chapter~\ref{chap:results}.
 
 
+% The continuous velocity distribution therefore maps directly onto a continuous frequency distribution.
+One example of stochasitc AlP field in time and frequency domains is shown in Figure~\ref{fig:MWAxion-time-domain-stochastic}. 
 
+\begin{figure}
+    \includegraphics[width=0.99\textwidth]{figures/MW-axion-time-frequency-domain.pdf}
+    \caption{
+    Simulated axion fields in the time and frequency domains. 
+    (a) Time-domain axion field $a(t)$, with a magnified view showing the oscillation at axion Compton frequency in the inset. 
+    The envelope of the $a(t)$ changes over time, indicating the coherence time $\tau_a$ is finite. Here $\tau_a$ is chosen as $Q_a / \nu_a $. 
+    (b) The stochastic lineshape in the frequency domain is computed as $|F[a(t)]|^2$, where $F[a(t)]$ denotes the Fourier transform of the time-domain signal shown in (a). 
+    The average lineshape represents the expected amplitude spectrum after sufficient averaging. 
+    The linewidth $\Delta \nu_a$ is approximated as $\nu_a / Q_a $.
+    The figure is generated by the script \url{scripts-and-data/MW-axion-time-frequency-domain.py}. 
+    Reproduced from Ref.\,\cite{YGK2026_CavityLumpedSpin} with permission. }
+\end{figure}
+ 
+
+% so the ALP field is approximately monochromatic, with a fractional linewidth $\Delta\nu_a/\nu_a \sim 10^{-6}$.
+
+\YZ{should I write a lot about this? a lot of the jobs are done at Gramolin's paper. }
 
 \subsection{Periodic modulations}\label{sec:theory:MWALP:modulations}
 
@@ -109,11 +109,15 @@ An ALP signal therefore exhibits a daily modulation of its amplitude and phase \
 % \subsection{Annual modulation}
 
 In addition to daily rotation, the Earth's orbital velocity around the Sun modulates the relative ALP-detector velocity with a period of one year.
-Both the daily and annual modulations have precisely predictable periods and phases, making them useful consistency checks for any claimed dark-matter-candidate signal \cite{Gramolin2022Feb_SpectralSignatures}.
+Both the daily and annual modulations have precisely predictable periods and phases, making them useful consistency checks for any claimed dark-matter-candidate signal.
+Examples of daily and annual modulations are shown in Figure~\ref{fig:MWAxion-annual-daily-modulations}, reproduced from Ref.\,\cite{Gramolin2022Feb_SpectralSignatures}. 
+
+\begin{figure}
+    \includegraphics[width=0.99\textwidth]{figures/MWAxion-annual-daily-modulations.pdf}
+    \caption{Periodic (annual and daily) modulations reproduced from Ref.\,\cite{Gramolin2022Feb_SpectralSignatures}. (a) Annual modulation of laboratory speed due to the Earth's orbital motion around the Sun. (b) Daily modulations of angles between the ALP field and the three orthogonal orientations: towards the north, the west, and the zenith. The location is the Boston University and the date is January 1 (local time). \YZ{can we use figure width 6 or 6.5 for making font larger? TODO}}
+\end{figure}
 
 
+% \subsection{Numerical simulation}\label{sec:theory:MW:simulation}
 
-
-\subsection{Numerical simulation}\label{sec:theory:MW:simulation}
-
-\YZ{include several important examples and give a summary of signal dependence. }
+% \YZ{include several important examples and give a summary of signal dependence. }
