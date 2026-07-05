@@ -37,7 +37,7 @@ venv/
 # *.jpeg
 
 # Ignore internal files
-# _internal/
+_internal/
 fonts/
 
 # ignore tex temp / log files
