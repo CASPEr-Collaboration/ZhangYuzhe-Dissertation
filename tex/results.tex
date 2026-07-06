@@ -1,15 +1,56 @@
 \chapter{Results}\label{chap:results}
 \begin{jointwork}
-    Sections~\ref{sec:results:analysis-procedure}--\ref{sec:results:exclusion} are adapted from Ref.\,\cite{Walter2024_LFthermal}.
+    Data analysis procedures and searches for Milky Way ALP are adapted from Ref.\,\cite{Walter2024_LFthermal}, while the Earth-bound ALP search is adapted from Ref.\,\cite{}. \YZ{to be cited here}
 \end{jointwork}
 
-The scanning strategy developed in Chapter~\ref{chap:experiment} is applied here to the proof-of-concept methanol search.
-This chapter presents the measurement, data-analysis pipeline, candidate evaluation, and resulting exclusion limits.
+This chapter presents data-analysis pipeline, candidate evaluation, the measurement, and resulting exclusion limits.
 
 
-\section{Data analysis}\label{sec:results:analysis-procedure}
+\section{Data analysis}\label{sec:results:data-analysis}
 
-The analysis follows the procedure developed for the CASPEr-Gradient-LowField search, which is similar to the pipelines used by HAYSTAC, SHAFT, and CASPEr-Electric\,\cite{Walter2024_LFthermal, Brubaker2017_HAYSTAC,Gramolin2021_Ferromagnetic,aybas2021_SolidStateNMR}.
+% purpose of the data analysis
+The data analysis of CASPEr-Gradient aims at identifying potential ALP signals in the frequency spectra obtained from the time-domain measurements and setting exclusion / sensitivity limits on the ALP-nuclear spin gradient coupling in the absence of a detection.
+
+The development of analysis framework took the data analysis pipelines of HAYSTAC, SHAFT, and CASPEr-Electric\,\cite{Brubaker2017_HAYSTAC, Gramolin2021_Ferromagnetic, aybas2021_SolidStateNMR} as reference. 
+
+\subsection{Methodology}\label{sec:results:data-analysis:methodology}
+
+% summary of the data analysis procedure
+In general, the raw time-series data are first converted to the frequency domain using a Fourier transform, and then processed with filters to suppress noise. 
+The outliers in the filtered spectra, judged by a threshold determined from Monte-Carlo (MC) simulations, are later evaluated for their consistency across repeated scans. 
+Outliers that survive the consistency checks are considered as ALP candidates. 
+If no candidate is found at a frequency band, the analysis sets an exclusion limit on the ALP-nuclear spin gradient coupling in this band. 
+
+% more details about the general data analysis procedure
+A more detailed description of the data-analysis procedure is given below and summarized in Figure~\ref{fig:casper_g_data_analysis_pipeline}.
+In addition to the general procedure, the analysis also includes procedures such as data sanity checks and calibration by artificial signal injection. 
+The technical details of these procedures are discussed as follows. 
+\begin{figure}
+    \includegraphics[width=0.99\linewidth]{figures/CASPEr-G-data-analysis-pipeline.drawio.pdf}
+    \caption{Data-analysis pipeline for the CASPEr-Gradient search. Details of this pipeline are discussed in Section~\ref{sec:results:data-analysis:procedure}.}
+    \label{fig:casper_g_data_analysis_pipeline}
+\end{figure}
+% the figure is made with draw.io
+% figure width 130 mm
+% font: Times New Roman, 15 px
+
+\subsection{Procedure}\label{sec:results:data-analysis:procedure}
+
+
+\subsubsection{Time-series sanity check}
+
+
+
+
+\subsubsection{Measurement characterization}
+
+The sample and the bias magnetic field are characterized by the following parameters and measurements:
+\begin{enumerate}[label=\arabic*.]
+    \item Larmor frequency, $T_2^*$, NMR linewidth and lineshape, polarization, and signal power measured by pulsed-NMR. 
+    \item $T_2$ measured by CPMG pulse sequence. 
+\end{enumerate}
+These parameters are used to determine the sensitivity to ALP signals in the frequency band of interest.
+
 For each scan step, the procedure is:
 \begin{enumerate}[label=\arabic*.]
     \item \textbf{Calibrate the measurement.}
@@ -53,6 +94,45 @@ For the \SI{100}{\s} standard-halo search, $\delta\nu_{\mathrm{FFT}}=\SI{0.01}{\
 This conclusion must be reassessed for a narrower signal or a shorter record.
 
 
+\section{Data-analysis details}\label{sec:results:analysis}
+
+This section gives the implementation details for the resolved standard-halo signal considered in the methanol search.
+Each \SI{100}{\s} time series is converted to a PSD and processed according to the procedure summarized in Section~\ref{sec:results:data-analysis}.
+
+\subsection{Spike suppression}
+
+A narrow Savitzky-Golay (SG) filter with a window half-width equal to half the expected ALP linewidth at the scanned frequency is applied to the PSD.
+The residual between the raw PSD and the filter output is fitted with a $\chi^2$ distribution with two degrees of freedom.
+Bins that deviate from the filter response by more than the fitted threshold, together with their four nearest neighbors, are replaced by the local filter average.
+This step suppresses narrow EMI spikes while preserving potential ALP signals.
+In the primary scan, only \SI{0.002}{\%} of bins were modified in this way.
+
+\subsection{Baseline removal}
+
+A reduced chi-square test on the spike-corrected spectrum reveals a non-flat baseline.
+A second, broad SG filter with a window of 200 ALP linewidths is applied to estimate this baseline.
+The spike-corrected spectrum is then normalized by subtracting and dividing by this baseline, producing a spectrum with a flat expected noise floor.
+
+\subsection{Matched filtering and NPE}
+
+For the \SI{100}{\s} methanol data, the expected standard-halo ALP linewidth is much larger than the \SI{0.01}{\Hz} FFT-bin width, so the signal lineshape is spectrally resolved.
+A matched filter using the expected ALP signal lineshape $\lambda_\perp(\nu,\nu_a)$---the normalized spectral lineshape of the ALP-field gradient component perpendicular to $\mathbf{B}_0$, as given in Ref.\,\cite{Gramolin2022Feb_SpectralSignatures}---is therefore convolved with the normalized PSD.
+The result, normalized by its standard deviation, is the normalized power excess (NPE).
+The matched-filter step size is half the ALP linewidth.
+This filtering step would be omitted for an unresolved signal with $\Delta\nu_{\mathrm{sig}}\lesssim\delta\nu_{\mathrm{FFT}}$.
+
+\subsection{Hypothesis test and rescan threshold}
+
+Frequency bins where the NPE exceeds the rescan threshold $\Theta_\mathrm{RE}$ are flagged as outliers.
+The threshold was determined via Monte Carlo simulations of the NPE distribution under the null hypothesis that a $5\,\sigma$ ALP signal is present, yielding $\Theta_\mathrm{RE} = 3.43$ at the \SI{95}{\%} confidence level (corresponding to a $p$-value of $0.001$).
+
+The overall analysis efficiency, accounting for the effect of baseline removal on signal recovery, was determined from simulations to be $\eta_\mathrm{rec} = \SI{88.2\pm4.6}{\%}$.
+This efficiency is applied when converting NPE values to coupling-constant limits.
+
+
+
+
+
 \section{The methanol measurement}\label{sec:results:measurement}
 
 The scanning framework developed in Sections~\ref{sec:experiment:single}--\ref{sec:experiment:optimization} was applied in a proof-of-concept ALP search using the CASPEr-Gradient-LF apparatus with a thermally polarized methanol sample.
@@ -67,7 +147,7 @@ The frequency step size was \SI{6}{\Hz}, approximately half the NMR linewidth, s
 Three sequential scans over the same range were performed.
 The most sensitive scan was treated as the primary scan and the other two (scans A and B) as consistency checks.
 
-The ALP coherence time at the search frequency is $\tau_a \approx \SI{0.35}{\s}$, obtained from Equation~\eqref{eq:taua}.
+The ALP coherence time at the search frequency is $\tau_a \approx \SI{0.35}{\s}$, obtained from Equation~\eqref{eq:taua_Qa_nua}.
 The measured relaxation times are $T_2^* = \SI{24.2\pm4}{\ms}$ and $T_2 = \SI{0.72(5)}{\s}$.
 Since $T_2^* \ll \tau_a \lesssim T_2$, the measurement falls in regime~(2) of Table~\ref{tab:summary_of_regimes}.
 The spectral factor is approximately $u \approx T_2^*/\tau_a \approx \SI{7}{\%}$.
@@ -103,43 +183,6 @@ Example PSD spectra and NMR characterization plots are shown in Figure~\ref{fig:
 
 Due to Earth's rotation, the component of the ALP-field gradient perpendicular to $\mathbf{B}_0$ varies over the course of the measurement.
 The resulting daily modulation of the signal amplitude is predictable and was tracked over the approximately six-hour duration of the scans.
-
-
-\section{Data-analysis details}\label{sec:results:analysis}
-
-This section gives the implementation details for the resolved standard-halo signal considered in the methanol search.
-Each \SI{100}{\s} time series is converted to a PSD and processed according to the procedure summarized in Section~\ref{sec:results:analysis-procedure}.
-
-\subsection{Spike suppression}
-
-A narrow Savitzky-Golay (SG) filter with a window half-width equal to half the expected ALP linewidth at the scanned frequency is applied to the PSD.
-The residual between the raw PSD and the filter output is fitted with a $\chi^2$ distribution with two degrees of freedom.
-Bins that deviate from the filter response by more than the fitted threshold, together with their four nearest neighbors, are replaced by the local filter average.
-This step suppresses narrow EMI spikes while preserving potential ALP signals.
-In the primary scan, only \SI{0.002}{\%} of bins were modified in this way.
-
-\subsection{Baseline removal}
-
-A reduced chi-square test on the spike-corrected spectrum reveals a non-flat baseline.
-A second, broad SG filter with a window of 200 ALP linewidths is applied to estimate this baseline.
-The spike-corrected spectrum is then normalized by subtracting and dividing by this baseline, producing a spectrum with a flat expected noise floor.
-
-\subsection{Matched filtering and NPE}
-
-For the \SI{100}{\s} methanol data, the expected standard-halo ALP linewidth is much larger than the \SI{0.01}{\Hz} FFT-bin width, so the signal lineshape is spectrally resolved.
-A matched filter using the expected ALP signal lineshape $\lambda_\perp(\nu,\nu_a)$---the normalized spectral lineshape of the ALP-field gradient component perpendicular to $\mathbf{B}_0$, as given in Ref.\,\cite{Gramolin2022Feb_SpectralSignatures}---is therefore convolved with the normalized PSD.
-The result, normalized by its standard deviation, is the normalized power excess (NPE).
-The matched-filter step size is half the ALP linewidth.
-This filtering step would be omitted for an unresolved signal with $\Delta\nu_{\mathrm{sig}}\lesssim\delta\nu_{\mathrm{FFT}}$.
-
-\subsection{Hypothesis test and rescan threshold}
-
-Frequency bins where the NPE exceeds the rescan threshold $\Theta_\mathrm{RE}$ are flagged as outliers.
-The threshold was determined via Monte Carlo simulations of the NPE distribution under the null hypothesis that a $5\,\sigma$ ALP signal is present, yielding $\Theta_\mathrm{RE} = 3.43$ at the \SI{95}{\%} confidence level (corresponding to a $p$-value of $0.001$).
-
-The overall analysis efficiency, accounting for the effect of baseline removal on signal recovery, was determined from simulations to be $\eta_\mathrm{rec} = \SI{88.2\pm4.6}{\%}$.
-This efficiency is applied when converting NPE values to coupling-constant limits.
-
 
 \section{Exclusion results}\label{sec:results:exclusion}
 
@@ -248,7 +291,7 @@ Note that the 1-hour ALP measurement duration is much longer than the 100-second
 The long measurement duration results in a much narrower PSD bin width, which is beneficial for the sensitivity to ALP signals with long coherence time, such as the Earth-bound ALP halo.
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.99\linewidth]{figures/20221214_meas_diagram_v0.3.drawio.pdf}
+    \includegraphics[width=0.99\linewidth]{figures/20221214_meas_diagram_15px.drawio.pdf}
     \caption{Schematic of the Earth-bound ALP measurement procedure.}
     \label{fig:earthhalomeas_procedure}
 \end{figure}
@@ -290,7 +333,7 @@ Since the Rabi frequency $\Omega_a \approx 2 \pi \times \SI{1}{\mHz}$, the tippi
 
 For the \SI{1}{\hour} records used here, the FFT-bin width is $\delta\nu_{\mathrm{FFT}}\approx\SI{2.8e-4}{\Hz}$.
 Before applying an optimal filter to these data, the predicted Earth-bound-halo linewidth must be compared with this resolution.
-If the signal occupies only one FFT resolution element, the single-element excess-power statistic described in Section~\ref{sec:results:analysis-procedure} should be used instead of a lineshape convolution.
+If the signal occupies only one FFT resolution element, the single-element excess-power statistic described in Section~\ref{sec:results:data-analysis} should be used instead of a lineshape convolution.
 
 \begin{figure}[htb]
     \centering
