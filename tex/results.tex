@@ -4,7 +4,7 @@
 \end{jointwork}
 
 This chapter presents data-analysis pipeline, candidate evaluation, the measurement, and resulting exclusion limits.
-
+Two CASPEr-Gradient-LF science runs in the year of 2022 are presented and analyzed. 
 
 \section{Data analysis}\label{sec:results:data-analysis}
 
@@ -27,7 +27,7 @@ In addition to the general procedure, the analysis also includes procedures such
 The technical details of these procedures are discussed as follows. 
 \begin{figure}
     \includegraphics[width=0.99\linewidth]{figures/CASPEr-G-data-analysis-pipeline.drawio.pdf}
-    \caption{Data-analysis pipeline for the CASPEr-Gradient search. Details of this pipeline are discussed in Section~\ref{sec:results:data-analysis:procedure}.}
+    \caption{Data-analysis pipeline for the CASPEr-Gradient search. Details of this pipeline are discussed in Section~\ref{sec:results:data-analysis:procedure}.\YZ{to be updated}}
     \label{fig:casper_g_data_analysis_pipeline}
 \end{figure}
 % the figure is made with draw.io
@@ -42,7 +42,7 @@ The technical details of these procedures are discussed as follows.
 
 
 
-\subsubsection{Measurement characterization}
+\subsubsection{Characterization of measurement}
 
 The sample and the bias magnetic field are characterized by the following parameters and measurements:
 \begin{enumerate}[label=\arabic*.]
@@ -133,7 +133,7 @@ This efficiency is applied when converting NPE values to coupling-constant limit
 
 
 
-\section{The methanol measurement}\label{sec:results:measurement}
+\section{MW ALP measurement}\label{sec:results:MWALP20221223}
 
 The scanning framework developed in Sections~\ref{sec:experiment:single}--\ref{sec:experiment:optimization} was applied in a proof-of-concept ALP search using the CASPEr-Gradient-LF apparatus with a thermally polarized methanol sample.
 This section describes the measurement procedure and parameters.
@@ -168,6 +168,29 @@ At each frequency step the following actions were performed in order:
 The PSDs were recorded after demodulation of $V_\mathrm{f}$ by the lock-in amplifier; its reference frequency was detuned by \SI{820}{\Hz} from the Larmor frequency so that the NMR signal appears at a non-zero difference frequency, making it easily distinguishable from noise.
 Example PSD spectra and NMR characterization plots are shown in Figure~\ref{fig:measurements}.
 
+
+\begin{table}[htb]
+    \centering
+    \caption{Technical parameters of the MW ALP measurement (December 23, 2022).
+    Here SNR indicates the signal-to-noise ratio of the free decay signal after a $\pi/2$ pulse. \YZ{to be updated with real params}}
+    \label{tab:MWALPmeas}
+    \begin{tabular}{lc}
+        \toprule
+        Parameter & Name or value \\
+        \hline
+        Sample & thermally polarized methanol \\
+        Number of scan steps & 8 \\
+        Sweep coil current increment & \SI{0.8}{\mA} \\
+        Frequency increment per step & \SI{6}{\Hz} \\
+        Frequency scan range & $\SI{1.348585}{\MHz} \pm \SI{24}{\Hz}$ \\
+        NMR linewidth (FWHM) in one step & $\approx\SI{10}{\Hz}$ \\
+        $T_2$ relaxation time & $\approx\SI{1}{\s}$ \\
+        Signal-to-noise ratio (SNR) & $\approx 120$ \\
+        Axion measurement duration per step & \SI{1}{\hour} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 \begin{figure*}[htb]
     \centering
     \includegraphics[width=\linewidth]{works/LF-thermal/figures/measurements.png}
@@ -184,7 +207,7 @@ Example PSD spectra and NMR characterization plots are shown in Figure~\ref{fig:
 Due to Earth's rotation, the component of the ALP-field gradient perpendicular to $\mathbf{B}_0$ varies over the course of the measurement.
 The resulting daily modulation of the signal amplitude is predictable and was tracked over the approximately six-hour duration of the scans.
 
-\section{Exclusion results}\label{sec:results:exclusion}
+\subsection{Exclusion results}\label{sec:results:exclusion}
 
 \subsection{Candidates and consistency checks}
 
@@ -257,7 +280,7 @@ This is the first dedicated laboratory search in this mass range.
 The sensitivity is dominated by the small thermal polarization of the methanol sample; hyperpolarized samples are expected to improve it by several orders of magnitude.
 
 
-\section{Earth-bound ALP measurement}\label{sec:earthhalomeas}
+\section{Earth-bound ALP measurement}\label{sec:results:EarthALP20221214}
 
 % In this data taking, the bias field was ramped to ?? therefore the Larmor frequency of the sample was tuned to ??, corresponding to an ALP mass of \SI{}{\neV/c^2}. 
 % The measurement lasted for ?? hours in total. In this section, the measurement procedure and results are presented. 
@@ -287,7 +310,7 @@ In each scan step, the following actions were performed in order:
 \end{enumerate} 
 Delays ($\gg T_1$) were inserted between pulsed-NMR measurements to allow the magnetization to return close to its equilibrium value along $\mathbf{B}_0$.
 A schematic of the measurement procedure is shown in Figure~\ref{fig:earthhalomeas_procedure}.
-Note that the 1-hour ALP measurement duration is much longer than the 100-second duration used in the data taking described in Section~\ref{sec:results:measurement}.
+Note that the 1-hour ALP measurement duration is much longer than the 100-second duration used in the data taking described in Section~\ref{sec:results:MWALP20221223}.
 The long measurement duration results in a much narrower PSD bin width, which is beneficial for the sensitivity to ALP signals with long coherence time, such as the Earth-bound ALP halo.
 \begin{figure}[htb]
     \centering
