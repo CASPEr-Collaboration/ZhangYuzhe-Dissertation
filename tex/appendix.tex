@@ -104,7 +104,7 @@ A single realisation (left) illustrates the stochastic fluctuations in both the 
 An ensemble of 1000 realizations (right) yields the mean signal and its standard deviation band.
 The signal initially grows as the ALP field drives the magnetization away from equilibrium, and then decays on the $T_1$ timescale as the hyperpolarization is lost.
 
-These simulations validate the three-regime picture in Equation~\eqref{eq:rms_xi}: at low frequencies where $\tau_a \gg T$, the signal grows linearly in dwell time; in the intermediate regime $\tau_a \sim T$, the signal departs from the analytical long-dwell-time scaling; and at high frequencies where $T \gg \tau_a$, the analytical results apply directly.
+These simulations validate the three-regime picture \YZ{add reference to the analytical three-regime expression}: at low frequencies where $\tau_a \gg T$, the signal grows linearly in dwell time; in the intermediate regime $\tau_a \sim T$, the signal departs from the analytical long-dwell-time scaling; and at high frequencies where $T \gg \tau_a$, the analytical results apply directly.
 
 \begin{figure}[htb]
     \centering
@@ -159,14 +159,51 @@ The Neyman--Pearson lemma guarantees that the likelihood-ratio test maximizes th
 
 \subsection{Application to the ALP search}
 
-In the ALP data analysis described in Section~\ref{sec:results:analysis}, the normalized power excess (NPE) plays the role of the test statistic.
+In the ALP data analysis described in Section~\ref{sec:results:data-analysis}, the normalized power excess (NPE) plays the role of the test statistic.
 The null hypothesis is that a $5\,\sigma$ ALP signal is present; the alternative is that no signal is present.
-Monte Carlo simulations of the NPE distribution under the null hypothesis determine the threshold $\Theta_\mathrm{RE} = 3.43$ corresponding to the \SI{95}{\%} confidence level (see Section~\ref{sec:results:analysis}).
+Monte Carlo simulations of the NPE distribution under the null hypothesis determine the threshold $\Theta_\mathrm{RE} = 3.43$ corresponding to the \SI{95}{\%} confidence level (see Section~\ref{sec:results:data-analysis}).
 
 \subsection{Gaussian example}
 
 For $X\sim\mathcal{N}(\mu,\sigma^2)$ with $H_0:\mu=0$ versus $H_1:\mu=1$, the log-likelihood ratio simplifies to $\log\Lambda(x) = x/\sigma^2 - 1/(2\sigma^2)$, so rejecting for large $\Lambda(x)$ is equivalent to rejecting for large $x$.
 This confirms that the sample mean is the optimal test statistic for Gaussian location testing.
+
+\section{Optimal filter as a weighted average}\label{sec:app:optimal-filter}
+
+The optimal filter used in the ALP search can be understood as the linear combination of frequency bins that maximizes the signal-to-noise ratio.
+Consider a baseline-subtracted spectrum with bin values $x_i$ near a trial ALP frequency.
+If the expected ALP lineshape in these bins is $s_i$, the signal model can be written as
+\begin{equation}
+    x_i = A s_i + n_i\,,
+\end{equation}
+where $A$ is the signal amplitude and $n_i$ is noise.
+The noise in a power spectrum follows a $\chi^2$ distribution with two degrees of freedom before averaging.
+After subtracting the local mean, the noise fluctuations have zero mean but are not Gaussian.
+The following result therefore states optimality among linear filters, rather than optimality among all possible statistical tests.
+
+For a general linear statistic $T=\sum_i w_i x_i$, the signal-to-noise ratio is
+\begin{equation}
+    \mathrm{SNR}(T)
+    =
+    \frac{A\sum_i w_i s_i}
+         {\left(\sum_{ij} w_i C_{ij} w_j\right)^{1/2}}\,,
+\end{equation}
+where $C_{ij}=\langle n_i n_j\rangle$ is the noise covariance matrix.
+Maximizing this expression gives
+\begin{equation}
+    \mathbf{w}\propto \mathbf{C}^{-1}\mathbf{s}\,.
+    \label{eq:optimal_filter_covariance}
+\end{equation}
+If the frequency bins are independent, $C_{ij}=\sigma_i^2\delta_{ij}$, and the optimal linear estimator combines the bins as
+\begin{equation}
+    \hat{A} =
+    \frac{\sum_i s_i x_i/\sigma_i^2}
+         {\sum_i s_i^2/\sigma_i^2}\,.
+    \label{eq:optimal_filter_estimator}
+\end{equation}
+Equivalently, the filtered spectrum is a weighted average of the neighboring bins, with weights proportional to $s_i/\sigma_i^2$.
+If the noise variance is approximately constant across the linewidth, the weights are proportional to the expected ALP lineshape.
+Thus the optimal linear filter is matched to the expected ALP lineshape and reduces to a lineshape-weighted average when the local noise level is uniform.
 
 
 \chapter{Optimal dwell time in frequency scanning}\label{app:dwell_time}
