@@ -350,17 +350,17 @@ The derivation is given in Appendix~\ref{app:dwell_time}; the result is $n=0$ (u
 
 With optimal dwell-time allocation, the scanning sensitivity is
 \begin{equation}
-    |g_{\mathrm{aNN}}| \geqslant \left\{
-    \begin{array}{ll}
+    |g_{\mathrm{aNN}}| \geqslant
+    \begin{cases}
     \eta
     \left(\dfrac{T_{\mathrm{tot}}}{Q_a\ln\left(\nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}\right)^{-1/4}
-     \times  (T_2^*)^{-3/4}\, \tau_a^{-1/2},
-    & \tau_a\ll T_2^* \text{ or }  T_2^*\ll\tau_a\ll T_2 \\[10pt]
+    (T_2^*)^{-3/4}\, \tau_a^{-1/2},
+    & \substack{\tau_a\ll T_2^* \text{ or}\\ T_2^*\ll\tau_a\ll T_2} \\[10pt]
     \eta
     \left(\dfrac{\pi^2 T_{\mathrm{tot}}}{Q_a\ln\left(\nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}\right)^{-1/4}
-     \times  (T_2^*)^{-3/4}\, T_2^{-1}\, \tau_a^{1/2},
-    & T_2^* \ll T_2 \ll \tau_a \text{ or } T_2^*=T_2 \ll \tau_a
-    \end{array} \right.
+    (T_2^*)^{-3/4}\, T_2^{-1}\, \tau_a^{1/2},
+    & \substack{T_2^* \ll T_2 \ll \tau_a \text{ or}\\ T_2^*=T_2 \ll \tau_a}
+    \end{cases}
     \,.\label{eq:gaNN_Ttot_optimal}
 \end{equation}
 
