@@ -22,8 +22,15 @@ Outliers that survive the consistency checks are considered as ALP candidates.
 If no candidate is found at a frequency band, the analysis sets an exclusion limit on the ALP-nuclear spin gradient coupling in this band. 
 
 % more details about the general data analysis procedure
-A more detailed description of the data-analysis procedure is given below and summarized in Figure~\ref{fig:casper_g_data_analysis_pipeline}.
-In addition to the general procedure, the analysis also includes procedures such as data sanity checks and calibration by artificial signal injection. 
+A more detailed description of the data-analysis procedure is given below and summarized in Figure~\ref{fig:casper_g_data_analysis_pipeline}. 
+There are four main blocks of the analysis:
+\begin{itemize}
+    \item \textbf{Frequency spectra generation and filtering. }Recorded time-series are evaluated by its sanity. Sane data will generate frequency spectra by Fourier transform. Digital filtering, such as SG filter and optimal filters are applied to the spectra to remove the baseline and optimize SNR. The filtered spectra are later used for finding outliers. 
+    \item \textbf{Monte-Carlo simulation for determining outlier threshold.} To determine the threshold in picking up outliers in the frequency domain, MC simulation are ran. Artificial ALP signals are generated in simulations in determining the threshold. 
+    \item \textbf{NMR charaterization.} The NMR sample, bias magnetic field, and detection chain are characterized by pulsed-NMR measurements. These NMR configurations are later used for examining the outliers and determining experimental sensitivity to ALP. 
+    \item \textbf{Outlier examination.} Based on the information from previous steps, outliers in the frequency spectra are picked up and examined. The valided outliers become ALP signal candidates for further investigation. Exclusion or sensitivity plots can also be generated after the validation check. 
+\end{itemize}
+In addition to these procedures, the analysis also includes procedures such as data sanity checks and calibration by artificial signal injection. 
 The technical details of these procedures are discussed as follows. 
 \begin{figure}
     \includegraphics[width=0.99\linewidth]{figures/CASPEr-G-data-analysis-pipeline.drawio.pdf}
@@ -36,13 +43,144 @@ The technical details of these procedures are discussed as follows.
 
 \subsection{Procedure}\label{sec:results:data-analysis:procedure}
 
+\subsection{Frequency spectra generation and filtering}
 
-\subsubsection{Time-series sanity check}
+\textbf{Time-series sanity check}
+
+Data with Gaussian noise are expected from the SQUID and LIA in the absence of ALP signal. 
+In the presence of ALP signal:
+\begin{itemize}
+    \item If the ALP signal is weak compared to the noise, the data is approximately Gaussian. 
+    \item If the ALP signal is strong, the data is no longer Gaussian, and stochastic drift with a characteristic period of ALP coherence time is expected. % TODO do not use itemize?? 
+\end{itemize}
+Moreover, when recording the data, instability and fluctuations in hardware and software could result in insane data. 
+Therefore, the first step in data processing is to check the sanity of time-series. 
+The time-series are checked for
+\begin{enumerate}
+    \item \textbf{finite values.} The data are first checked for \texttt{NaN} (not-a-number) or infinite values. Since the time-series are stored as \texttt{numpy} arrays, NaN and infinity are examined by \texttt{numpy.isfinite} and \texttt{numpy.isnan}. 
+    \item \textbf{long-term stability (``drift'').} Slow (compared with the ALP coherence time) changes of the mean or variance due to instable SQUID flux-lock-loop mode are tested within individual scan steps. 
+    \item \textbf{short-term stability (``jumps'').} Local discontinuities or clusters of outlying samples in chunks much shorter than the ALP coherence time are searched for after the drift check. Such jumps may originate from magnetic noise due to mechanical or accoustic vibration, and can produce spectral leakage and artificial outliers in the search spectrum. 
+    \item \textbf{Gaussianity.} Drift-clear data are tested for consistency with the Gaussian-noise assumption used in the threshold estimation. 
+\end{enumerate}
+Depending on the problems found, the following approaches may be applied:
+\begin{enumerate}
+    \item \textbf{Window or mask on the time-series.} If values in the data are found to be \texttt{NaN}, infinite values, jumps exceeding a certain threshold, or drifts, a window or a mask is applied on the time-series to set the values to zeros, so their effects are excluded. 
+    The window is designed in a way so that its envelope is smooth. 
+    The effects of the window on the average power of the data is later considered in the Fourier transform. 
+    \item \textbf{Baseline correction.} The baseline of the time-series is corrected by setting the mean values of chunks of data to consistent if the drift is diagnosed to arise from instable SQUID. Otherwise, a window with zero values is applied to exclude the data. Otherwise low-frequency spectral structures would be created. 
+    \item \textbf{Discarding.} If the amount of insane data exceeds a certain ratio of the total data, the corresponding measurement should be discarded. This ratio is arbitrarily chosen to be \SI{1}{\percent}. 
+\end{enumerate}
+
+Note that features that do not match ALP models investigated in this thesis, such as fluctuations in period much shorter than ALP coherence time, may not be noise or faulty hardware/software behavior, but signals of new physics. 
+It is wise to keep track of these features for future considerations. 
+
+% Data with unresolved drift would be reported.         for the discarded because it can create low-frequency spectral structure.
+
+% Before constructing the frequency spectra, each recorded time series is tested for numerical validity and stability. 
+% The checks are applied to the organized time-series segments and determine whether a segment can be used directly, should be masked, or should be paused for manual inspection. 
+
+\textbf{Fourier transform and digital filtering}
+
+Frequency spectra are generated by the Fourier transform from time-series data that can pass the sanity check. 
+There are several forms of the frequency spectra, including power spectrum (PS), power spectral density (PSD), and amplitude / linear spectra density (ASD or LSD). 
+The definition of these spectra are
+\begin{equation}
+    \mathrm{PS} \propto \left|\mathrm{FT}[\mathrm{window(t)} \cdot s(t)]\right|^2, 
+\end{equation}
+\begin{equation}
+    \mathrm{PSD} = \frac{\mathrm{PS}}{\mathrm{ENBW}}, 
+\end{equation}
+and
+\begin{equation}
+    \mathrm{ASD} = \mathrm{LSD} = \sqrt{\mathrm{PSD}}, 
+\end{equation}
+where $\mathrm{FT}$ is Fourier transform, $\mathrm{window(t)}$ is the window function, $s(t)$ is the time-series, and $\mathrm{ENBW}$ is effective noise bandwidth. 
+The formula of $\mathrm{ENBW}$ can be found at Equation (22) of Ref.\,\cite{Heinzel2002_SpectrumSpectralDensity}. 
+In the data analysis of CASPEr, $\mathrm{ENBW}$ is approximately the resolution bandwidth (RBW) \footnote{as known as spectral resolution or binwidth} since the applied window function is roughly rectangle. 
+The power spectrum is normalized in a way that the sum of the spectra is the average ``power'' of the signal:\footnote{Usually, power is defined as the amount of energy transferred or converted per unit time, in units of  . For a voltage signal in unit of \unit{\volt}, the power is in the units of \unit{\volt^2\per\ohm}. However, the ``power'' in the spectral analysis is defined as the square of the signal, therefore the ``power'' of the signal has units of \unit{\volt^2}. This special but common definition is adopted in this thesis unless otherwise noted. } 
+\begin{equation}
+    \mathrm{Average power} = \frac{\sum_{k=0}^{N-1}\left|\mathrm{window(t_k)} \cdot s(t_k)\right|^2}{\sum_{k=0}^{N-1}\left|\mathrm{window(t_k)}\right|^2}\,,
+\end{equation}
+where $N$ is the number of samples in the time-series, and $t_k$ is the time of the $k$-th sample. 
+When window function is rectangular ($\mathrm{window(t)} = 1$ for all $t$), the average power is simply the sum of the power spectrum divided by the number of samples.
+When window function is not rectangular, the amplification or attenuation due to the window function is corrected by the sum of the window function squared in the denominator.
+% Hence, the integral of $\mathrm{PSD}$ is also the average power, which explains why it is named as the density of power spectra. 
+
+After the frequency spectra are obtained, digital filterings are applied for correction and SNR optimization. 
+Specifically, filterings here consist of low-pass filter attenuation correction, baseline removal, and optimal filtering. 
+
+% First, the normalization of the frequency spectra is done under the convention that the 
+% after the time series are converted to a PSD with the DTRC attenuation and window corrections described in Ref.\,\cite{Heinzel2002_SpectrumSpectralDensity}, additional digital filters are applied to the spectrum for correction and SNR optimization.
+
+% A window may be applied to the time-series ($\mathrm{window}\times\mathrm{time-series}$) to exclude insane data and avoid spectral leakage. 
+
+% There are many options how to implement digital low-pass filters. One common filter type is the
+% exponential running average filter. Its characteristics are very close to those of an analog resistorcapacitor RC filter, which is why this filter is sometimes called a discrete-time RC filter. The
+% exponential running average filter has the time constant as its only adjustable parameter. It
+% operates on an input signal defined at discrete times , etc., spaced at
+% the sampling time . Its output can be calculated using the following recursive formula,
+% Second, the frequency-dependent attenuation due to low-pass filter is corrected. 
+The demodulated lock-in time-series experience digital low-pass filtering by the Zurich Instrument LIA~\cite{ZurichInstruments_MFIA_UserManual}. 
+The output time-series can be calculated using the following recursive formula
+\begin{equation}
+    X_\mathrm{out}[k]=e^{-T_s/T_C} X_\mathrm{out}[k-1] + (1 - e^{-T_s/T_C}) X_\mathrm{in}[k] \,,
+    \label{eq:XoutXinTC}
+\end{equation}
+where $X_\mathrm{in}$ and $X_\mathrm{out}$ are the input and output time-series arrays, $k$ is the sample index, $T_s$ is the sampling time, and $T_C$ is the time constant configured by the user. 
+% The recurrence requires an initial filter state. 
+For the first stored sample $X_\mathrm{out}[-1]$ is chosen to be $X_\mathrm{in}[0]$ by convention, 
+This exponential moving average is also described as digital discrete-Time RC (DTRC) Filter as it resembles the low-pass response of analog resistor-capacitor (RC) filters. 
+The time constant $T_C$ determines the \SI{3}{\decibel} bandwidth in the frequency domain. 
+Equation \eqref{eq:XoutXinTC} describe a first order DTRC filter. 
+Higher-order filters are implemented by cascading several filters in practice for suppressing signals of frequencies much larger than the Larmor frequency ($|\mathrm{frequency}-\mathrm{Larmor frequency}|\gg\mathrm{NMR linewidth}$).   
+The response of the n-th order filter in the frequency domain is approximated by the formula
+\begin{equation}
+    H_n(\nu)=\frac{1}{(1+i2\pi\nu T_C)^n} \,,
+    \label{eq:H_nu_attenuation}
+\end{equation}
+where $H_n(\nu)$ is the n-th order attenuation at frequency $\nu$. 
+This attenuation is corrected by dividing the PSD by the square of the absolute value of the attenuation.
+% TODO check if the attenuation is H^2 or H^4 for PSD
+% , including the bandwidth, time constant, and settling behavior of the selected filter order. 
+If the time-series is Gaussian noise, the frequency spectra should be white noise (flat noise in the frequency domain) after the low-pass filter correction, and the distribution of the PSD should follow a $\chi^2$ distribution. Since there are two channels in the lock-in amplifier, the degrees of freedom of the distribution should be two.
+
+Since the frequency-dependent attenuation in \eqref{eq:H_nu_attenuation} is only an approximation, the baseline of the PSD is not absolutely flat. 
+The curve of the baseline is estimated by a Savitzky--Golay (SG) filter and removed from the PSD.
+In practice, the spectrum is divided into chunks of a bandwidth much larger than the expected ALP linewidth, and the SG filter of the first order is applied to each chunk to estimate the baseline. 
+Later, the baseline is removed by subtracting and dividing the spectrum by the estimated baseline, the product of which is also called the normalized power excess (NPE):
+\[
+  \mathrm{NPE}(\nu) = \frac{\mathrm{PSD}(\nu)}{\mathrm{Baseline}(\nu)} - 1\,.
+  \label{eq:NPE_baseline}
+\]
+
+% The script calls \code{step.optimalFilter(filterStepX=OPTIMAL\_FILTER\_STEP\_X)}
+% to convert the normalized excess spectrum into an axion-search statistic.
+% The method supports two regimes. If the axion linewidth is smaller than the
+% NoPulse RBW, the signal is treated as unresolved and each bin is converted
+% directly to excess power. If the axion linewidth is resolved, the
+% RBW-normalized AxionBloch template is used as the matched-filter kernel and is
+% shifted across the search spectrum in steps of \code{filterStepX} axion
+% linewidths.
+
+% The method stores the filtered frequency grid, excess-power estimate,
+% global and local noise estimates, filter stride, realized step size, and
+% filtered normalized power excess \code{filteredNPE}. The example injects a few
+% large artificial excursions into \code{filteredNPE} for debugging and then
+% calls \code{plotOptimalFilterResult}, which plots the axion template, the mean
+% of \code{onePulseSignal.PSD\_90deg}, raw PSD plus baseline, and filtered
+% statistic.
+
+The next step is to decide whether optimal filtering\footnote{as known as matched filtering} should be applied or not.  
+If the ALP linewidth is broader than the RBW of the spectrum, the signal is resolved, which means the signal is spread over multiple frequency bins. 
+In this case, optimal filtering is applied to combine the signal power into a single bin.
 
 
+After the baseline removal, optimal filtering is applied when the expected ALP signal is resolved by the FFT bins; otherwise the analysis uses the normalized excess power in the corresponding independent resolution element.
+
+% Spike removal: to be verified if this step is necessary
 
 
-\subsubsection{Characterization of measurement}
+\textbf{NMR characterization}
 
 The sample and the bias magnetic field are characterized by the following parameters and measurements:
 \begin{enumerate}[label=\arabic*.]
@@ -92,6 +230,20 @@ For each scan step, the procedure is:
 The resolution check in step~5 is essential.
 For the \SI{100}{\s} standard-halo search, $\delta\nu_{\mathrm{FFT}}=\SI{0.01}{\Hz}$, whereas the expected ALP linewidth near \SI{1.35}{\MHz} is of order \SI{1}{\Hz}; the line therefore spans many FFT bins and the matched filter used in Ref.\,\cite{Walter2024_LFthermal} is appropriate.
 This conclusion must be reassessed for a narrower signal or a shorter record.
+
+
+\subsubsection{Monte-Carlo simulation and outlier threshold}
+
+
+
+\subsubsection{Find outliers by threshold }
+
+\subsubsection{Validation check}
+Candidates Constraints and Outliers
+\subsubsection{Digital filtering}
+Filtered spectra
+
+
 
 
 \section{Data-analysis details}\label{sec:results:analysis}
@@ -149,7 +301,7 @@ The most sensitive scan was treated as the primary scan and the other two (scans
 
 The ALP coherence time at the search frequency is $\tau_a \approx \SI{0.35}{\s}$, obtained from Equation~\eqref{eq:taua_Qa_nua}.
 The measured relaxation times are $T_2^* = \SI{24.2\pm4}{\ms}$ and $T_2 = \SI{0.72(5)}{\s}$.
-Since $T_2^* \ll \tau_a \lesssim T_2$, the measurement falls in regime~(2) of Table~\ref{tab:summary_of_regimes}.
+Since $T_2^* \ll \tau_a \lesssim T_2$, the measurement falls in regime~(2) of Table~\ref{}.
 The spectral factor is approximately $u \approx T_2^*/\tau_a \approx \SI{7}{\%}$.
 
 \subsection{Step sequence}
