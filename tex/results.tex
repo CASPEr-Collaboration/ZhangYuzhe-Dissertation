@@ -344,8 +344,8 @@ Delays to allow ring-down noise to decay or the magnetization to return close to
 The measurement procedure is illustrated in Figure~\ref{fig:MWALP-meas_procedure}. 
 % The PSDs were recorded after demodulation of $V_\mathrm{f}$ by the lock-in amplifier; its reference frequency was detuned by \SI{820}{\Hz} from the Larmor frequency so that the NMR signal appears at a non-zero difference frequency, making it easily distinguishable from noise.
 % Example PSD spectra and NMR characterization plots are shown in Figure~\ref{fig:measurements}.
-One example of the PSD spectra and NMR characterization from one of the scan steps is shown in Figure~\ref{fig:measurements}. 
-The experimental parameters, along with NMR and ALP characteristics are summarized in Table~\ref{tab:MWALP-meas}.
+An example of the PSD spectra and NMR characterization from one scan step is shown in Figure~\ref{fig:measurements}.
+The experimental parameters and the relevant NMR and ALP characteristics are summarized in Table~\ref{tab:MWALP-meas}.
 
 \begin{figure}[htb]
     \centering
@@ -398,12 +398,17 @@ The experimental parameters, along with NMR and ALP characteristics are summariz
     \label{fig:measurements}
 \end{figure}
 
+\subsection{Expected ALP signal}
+
+For a virialized Milky Way ALP field, the expected linewidth near \SI{1.35}{\MHz} is approximately \SI{1}{\Hz}, corresponding to a coherence time of approximately \SI{0.3}{\s}.
+Thus, each \SI{100}{\s} acquisition spans roughly 300 coherence times and measures the time-averaged stochastic signal power.
+The signal power also varies between scan steps because Earth's rotation changes the component of the ALP-field gradient perpendicular to the bias field.
+This predictable daily modulation, together with the measured NMR response at each step, is included when converting a spectral excess into an estimated coupling strength.
+
 % Due to Earth's rotation, the component of the ALP-field gradient perpendicular to $\mathbf{B}_0$ varies over the course of the measurement.
 % The resulting daily modulation of the signal amplitude is predictable and was tracked over the approximately six-hour duration of the scans.
 
 
-
-\ref{fig:MC_simu-empirical_CDF}
 
 \begin{figure}[htb]
     \centering
@@ -431,6 +436,16 @@ The experimental parameters, along with NMR and ALP characteristics are summariz
 %     \YZ{a narrow frequency range for a and c? }}
 %     \label{fig:ALP_wind_modulation}
 % \end{figure}
+\subsection{Spectrum processing and outlier threshold}
+
+After the time-series sanity checks described in Section~\ref{sec:results:data-analysis:procedure}, each \SI{100}{\s} record was Fourier transformed and corrected for the lock-in low-pass response.
+The smooth spectral baseline was estimated with a Savitzky--Golay filter and removed to form the NPE spectrum.
+For this search, $\delta\nu_\mathrm{FFT}=\SI{0.01}{\Hz}$, whereas the expected ALP linewidth is approximately \SI{1}{\Hz}; the signal is therefore resolved over many Fourier bins.
+The NPE spectrum was consequently convolved with the expected ALP lineshape using the matched filter described in Section~\ref{sec:results:data-analysis:procedure}.
+
+Frequency bins where the filtered NPE exceeds the rescan threshold $\Theta_\mathrm{RE}$ are flagged as outliers.
+Monte Carlo simulations determined the threshold for recovering a $5\,\sigma$ ALP signal with \SI{95}{\%} probability, yielding $\Theta_\mathrm{RE} = 3.43$ (with a noise-only tail probability of approximately $0.001$), as shown in Figure~\ref{fig:MC_simu-empirical_CDF}.
+
 \begin{figure}[ht]
     \centering
     \includegraphics[width=\linewidth]{works/LF-thermal/figures/Hypothesis.png}
@@ -449,14 +464,7 @@ The threshold was determined via Monte Carlo simulations of the NPE distribution
 
 % The overall analysis efficiency, accounting for the effect of baseline removal on signal recovery, was determined from simulations to be $\eta_\mathrm{rec} = \SI{88.2\pm4.6}{\%}$. This efficiency is applied when converting NPE values to coupling-constant limits.
 
-For the \SI{100}{\s} standard-halo search, $\delta\nu_{\mathrm{FFT}}=\SI{0.01}{\Hz}$, whereas the expected ALP linewidth near \SI{1.35}{\MHz} is of order \SI{1}{\Hz}; the line therefore spans many FFT bins and the matched filter used in Ref.\,\cite{Walter2024_LFthermal} is appropriate.
-This conclusion must be reassessed for a narrower signal or a shorter record.
-
-
-
-
-
-\subsection{Candidates and constraints}
+\subsection{Outlier validation}
 % \subsubsection{Candidates and consistency checks}
 
 Table~\ref{tab:candidates} lists the outlier counts and ALP signal candidates from all three scans.
@@ -494,15 +502,12 @@ By comparing the resonant window (within $\pm5$ NMR linewidths of the Larmor fre
     \end{tabular}
 \end{table}
 
-No candidate from the primary scan was found in either of the consistency-check scans within four ALP linewidths.
-The search therefore yields no statistically significant evidence for ALP dark matter at the detection sensitivity.
+Following the validation procedure described in Section~\ref{sec:results:data-analysis:procedure}, nearby outliers within one ALP linewidth were first merged.
+The remaining outliers were then compared across the three scans at consistent Compton frequencies.
+No candidate from the primary scan was found in either consistency-check scan within four ALP linewidths.
+The search therefore finds no statistically significant evidence for Milky Way ALP dark matter at the achieved sensitivity.
 
-
-
-\begin{equation}
-    |g_\mathrm{aNN}| \leq \sqrt{\frac{e_5}{\eta_\mathrm{rec}\,P_{\perp,1}}}
-    \,,\label{eq:limcouple}
-\end{equation}
+\subsection{Exclusion limits}\label{sec:results:exclusion}
 
 In the absence of a detection, an upper limit on the ALP-proton gradient coupling is obtained from
 \begin{equation}
