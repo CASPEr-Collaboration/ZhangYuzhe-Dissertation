@@ -3,8 +3,14 @@
     Data analysis procedures and searches for Milky Way ALP are adapted from Ref.\,\cite{Walter2024_LFthermal}, while the Earth-bound ALP search is adapted from \YZ{add Earth-bound ALP search reference here}.
 \end{jointwork}
 
-This chapter presents data-analysis pipeline, candidate evaluation, the measurement, and resulting exclusion limits.
-Two CASPEr-Gradient-LF science runs in the year of 2022 are presented and analyzed. 
+This chapter first presents the data analysis pipeline including data processing and outlier validation check.
+The data analysis pipeline is later applied to two proof-of-principle ALP searches using the CASPEr-Gradient-LF apparatus with a thermally polarized methanol sample. 
+% The scanning framework developed in Sections~\ref{sec:experiment:single}--\ref{sec:experiment:optimization}\YZ{check these sections later} was applied in proof-of-concept ALP searchs using the CASPEr-Gradient-LF apparatus with a thermally polarized methanol sample. 
+% This chapter describes the measurements 
+% and the results.
+Since the search is sensitive to the proton NMR signal in methanol, the results are interpreted in terms of the ALP-proton gradient coupling constant $g_\mathrm{ap}$, i.e.\ $g_\mathrm{aNN}$ evaluated for proton spins.
+% Two proof-of-principle science runs in the year of 2022 are presented and analyzed. 
+
 
 \section{Data analysis}\label{sec:results:data-analysis}
 
@@ -306,77 +312,134 @@ Otherwise, the constraints are set by the coupling strength of the ALP candidate
 
 \section{Milky Way ALP measurement}\label{sec:results:MWALP20221223}
 
-The scanning framework developed in Sections~\ref{sec:experiment:single}--\ref{sec:experiment:optimization} was applied in a proof-of-concept ALP search using the CASPEr-Gradient-LF apparatus with a thermally polarized methanol sample.
-This section describes the measurement procedure and parameters.
-In the following, $g_\mathrm{ap}$ denotes the ALP-proton gradient coupling constant, i.e.\ $g_\mathrm{aNN}$ evaluated for proton spins.
+One proof-of-principle measurement was performed on December 23, 2022. This measurement is ideal for Milky Way ALP search because it scanned a frequency range for three times and the duration of each scan step are long enough to cover multiple ALP coherence times. 
+Relevant calculations can be found at \url{scripts-and-data/Result-MW-ALP.ipynb}\YZ{link to be modified}.
 
-\subsection{Measurement parameters}
+\subsection{Experimental and ALP parameters}
 
-The search covered a \SI{240}{\Hz} band centered at \SI{1.348570}{\MHz}, corresponding to proton Larmor frequencies driven by a bias field $|\mathbf{B}_0| \approx \SI{31.67}{\milli\tesla}$.
-This maps to ALP masses in the range $5.576741$--$5.577733\,\si{\neV}/c^2$.
-The frequency step size was \SI{6}{\Hz}, approximately half the NMR linewidth, so that the resonant windows of adjacent steps overlap.
-Three sequential scans over the same range were performed.
-The most sensitive scan was treated as the primary scan and the other two (scans A and B) as consistency checks.
+% parameters of the scans and covered frequency / mass range
+The search covered a frequency band of 
+\begin{equation}
+    \SI{1.348570}{\MHz}\pm\SI{120}{\Hz}\,,\nonumber
+\end{equation}
+corresponding to proton Larmor frequencies driven by a bias field $|\mathbf{B}_0| \approx \SI{31.67}{\milli\tesla}$.
+This maps to ALP masses in a range of
+\begin{equation}
+    \SI{5.577237}{\neV/c^2}\pm\SI{496}{\femto\eV/c^2}\,.\nonumber
+\end{equation}
+% $5.576741$--$5.577733\,\unit{\neV}/c^2$
+Three sequential scans over the same range were performed. 
+In each scan, there were over 40 scan steps, and the frequency step size was \SI{6}{\Hz}, approximately half the NMR linewidth, so that the NMR resonant windows of adjacent steps overlap. 
+% The most sensitive scan was treated as the primary scan and the other two (scans A and B) as consistency checks.
 
-The ALP coherence time at the search frequency is $\tau_a \approx \SI{0.35}{\s}$, obtained from Equation~\eqref{eq:taua_Qa_nua}.
-The measured relaxation times are $T_2^* = \SI{24.2\pm4}{\ms}$ and $T_2 = \SI{0.72(5)}{\s}$.
-Since $T_2^* \ll \tau_a \lesssim T_2$, the measurement falls in regime~(2) of Table~ref{}.
-The spectral factor is approximately $u \approx T_2^*/\tau_a \approx \SI{7}{\%}$.
-
-\subsection{Step sequence}
-
+% about each scan step
 At each frequency step the following actions were performed in order:
 \begin{enumerate}[label=\arabic*.]
-    \item Pulsed-NMR measurement (a $\pi/2$ pulse followed by free-induction decay) to determine the Larmor frequency, linewidth $\Delta\nu$ (and hence $T_2^* = 1/(\pi\Delta\nu)$), and NMR signal power.
-    A Lorentzian fit to the resulting PSD peak extracts these parameters and calibrates the sensitivity at each step.
-    \item Carr-Purcell-Meiboom-Gill (CPMG) \cite{CPMG} pulse sequence prior to the first scan step to determine $T_2$ from the exponential decay of spin-echo amplitudes.
-    \item \SI{5}{\s} dwell time to allow ring-down noise to decay and the magnetization to return close to its equilibrium value along $\mathbf{B}_0$.
-    \item \SI{100}{\s} data acquisition without any pulses, recording the SQUID feedback voltage $V_\mathrm{f}$ at \SI{13.4}{\kHz} sampling rate.
-    This window corresponds to approximately 280 ALP coherence times and is the ALP-search channel.
-    \item Frequency step: the Larmor frequency is increased by \SI{\approx6}{\Hz} by ramping the Helmholtz coils or the superconducting magnet.
-    \item Another \SI{5}{\s} dwell time after the field ramp before repeating.
+    \item Free decay measurement (one $\pi/2$ excitation pulse followed by free decay signal) to determine the Larmor frequency, linewidth, and NMR signal power. A Lorentzian fit to the resulting PSD peak extracts these parameters. %  $\Delta\nu$ (and hence $T_2^* = 1/(\pi\Delta\nu)$)
+    \item $T_2$ measurement by CPMG pulse sequence. 
+    \item \SI{100}{\s} measurement without any pulses. %, recording the SQUID feedback voltage $V_\mathrm{f}$ at \SI{13.4}{\kHz} sampling rate. 
+    \item Frequency step: the Larmor frequency is increased by $\approx \SI{6}{\Hz}$ by ramping the Helmholtz coils.
 \end{enumerate}
-The PSDs were recorded after demodulation of $V_\mathrm{f}$ by the lock-in amplifier; its reference frequency was detuned by \SI{820}{\Hz} from the Larmor frequency so that the NMR signal appears at a non-zero difference frequency, making it easily distinguishable from noise.
-Example PSD spectra and NMR characterization plots are shown in Figure~\ref{fig:measurements}.
+Delays to allow ring-down noise to decay or the magnetization to return close to its equilibrium are applied between steps.
+The measurement procedure is illustrated in Figure~\ref{fig:MWALP-meas_procedure}. 
+% The PSDs were recorded after demodulation of $V_\mathrm{f}$ by the lock-in amplifier; its reference frequency was detuned by \SI{820}{\Hz} from the Larmor frequency so that the NMR signal appears at a non-zero difference frequency, making it easily distinguishable from noise.
+% Example PSD spectra and NMR characterization plots are shown in Figure~\ref{fig:measurements}.
+One example of the PSD spectra and NMR characterization from one of the scan steps is shown in Figure~\ref{fig:measurements}. 
+The experimental parameters, along with NMR and ALP characteristics are summarized in Table~\ref{tab:MWALP-meas}.
 
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.99\linewidth]{figures/20221223_meas_diagram.drawio.pdf}
+    \caption{Schematic of the MW ALP measurement procedure.}
+    \label{fig:MWALP-meas_procedure}
+\end{figure}
+
+% The measured relaxation times are $T_2^* = \SI{24.2\pm4}{\ms}$ and $T_2 = \SI{0.72(5)}{\s}$.
+% Since $T_2^* \ll \tau_a \lesssim T_2$, the measurement falls in regime~(2) of Table~ref{}.
+% The spectral factor is approximately $u \approx T_2^*/\tau_a \approx \SI{7}{\%}$.
+% The ALP coherence time at the search frequency is $\tau_a \approx \SI{0.3}{\s}$, obtained from the ALP linewidth and Equation~\eqref{eq:taua_Qa_nua}.
 
 \begin{table}[htb]
     \centering
-    \caption{Technical parameters of the MW ALP measurement (December 23, 2022).
-    Here SNR indicates the signal-to-noise ratio of the free decay signal after a $\pi/2$ pulse. \YZ{to be updated with real params}}
-    \label{tab:MWALPmeas}
+    \caption{Technical parameters of the MW ALP measurement (December 23, 2022).  }
+    \label{tab:MWALP-meas}
     \begin{tabular}{lc}
         \toprule
         Parameter & Name or value \\
         \hline
         Sample & thermally polarized methanol \\
-        Number of scan steps & 8 \\
+        Number of scans & 3 \\
+        Number of steps per scan & 45 \\
         Sweep coil current increment & \SI{0.8}{\mA} \\
         Frequency increment per step & \SI{6}{\Hz} \\
-        Frequency scan range & $\SI{1.348585}{\MHz} \pm \SI{24}{\Hz}$ \\
-        NMR linewidth (FWHM) in one step & $\approx\SI{10}{\Hz}$ \\
-        $T_2$ relaxation time & $\approx\SI{1}{\s}$ \\
-        Signal-to-noise ratio (SNR) & $\approx 120$ \\
-        Axion measurement duration per step & \SI{1}{\hour} \\
+        Frequency scan range & $\SI{1.348570}{\MHz}\pm\SI{120}{\Hz}$ \\
+        NMR linewidth in one step & $\approx\SI{10}{\Hz}$ \\
+        $T_2$ & $\SI{0.72(5)}{\s}$ \\
+        ALP mass scan range & $\SI{5.577237}{\neV/c^2}\pm\SI{496}{\femto\eV/c^2}$ \\
+        ALP linewidth $\Delta\nu_a$ & $\approx \SI{1}{\Hz}$ \\
+        ALP coherence time $\tau_a$ & $\approx \SI{0.3}{\s}$ \\
+        % Signal-to-noise ratio (SNR) & $\approx 120$ \\
+        Measurement duration per step & $\SI{100}{\s} \approx \SI{300}{\tau_a}$ \\
+        spectral factor $u$ & $\approx \SI{10}{\percent}$ \\
         \bottomrule
     \end{tabular}
 \end{table}
 
-\begin{figure*}[htb]
+\begin{figure}[htb]
     \centering
-    \includegraphics[width=\linewidth]{works/LF-thermal/figures/measurements.png}
+    \includegraphics[width=.99\linewidth]{works/LF-thermal/figures/measurements.png}
     \caption{\textbf{(a)} PSD after a $\pi/2$ pulse.
-    The NMR peak is fitted with a Lorentzian (red line); the center is at \SI{1348449.21(5)}{\Hz} with a FWHM of \SI{14.79(1)}{\Hz}.
+    The NMR peak is fitted with a Lorentzian (red line); the center is at \SI{1.34844921(5)}{\MHz} with a FWHM of \SI{14.79(1)}{\Hz}.
     \textbf{(b)} CPMG spin-echo amplitudes (blue dots) and exponential fit (red), giving $T_2 = \SI{0.72(5)}{\s}$.
     \textbf{(c)} PSD of a \SI{100}{\s} ALP-search step.
     The gray analysis window (\SI{8}{\kHz} wide) excludes filter artifacts near the band edges; the green resonant window ($\pm5$ NMR linewidths $= \pm\SI{70}{\Hz}$) is where ALP signal candidates are sought.
-    \textbf{(d)} Histogram of normalized power excess (NPE) derived from (c), with the rescan threshold $\Theta_\mathrm{RE}$ (red line) at the \SI{95}{\%} confidence level for a $5\,\sigma$ ALP detection.
-    Reproduced from Ref.\,\cite{Walter2024_LFthermal}.}
+    \textbf{(d)} Histogram of normalized power excess (NPE) derived from (c), with the rescan threshold $\Theta_\mathrm{RE}$ (red line) at the \SI{95}{\%} confidence level for a $\SI{5}{\sigma}$ ALP detection.
+    Reproduced from Ref.\,\cite{Walter2024_LFthermal}.\YZ{a narrow frequency range for a and c? }}
     \label{fig:measurements}
-\end{figure*}
+\end{figure}
 
-Due to Earth's rotation, the component of the ALP-field gradient perpendicular to $\mathbf{B}_0$ varies over the course of the measurement.
-The resulting daily modulation of the signal amplitude is predictable and was tracked over the approximately six-hour duration of the scans.
+% Due to Earth's rotation, the component of the ALP-field gradient perpendicular to $\mathbf{B}_0$ varies over the course of the measurement.
+% The resulting daily modulation of the signal amplitude is predictable and was tracked over the approximately six-hour duration of the scans.
+
+
+
+\ref{fig:MC_simu-empirical_CDF}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=.99\linewidth]{works/LF-thermal/figures/ALP_wind_modulation.png}
+    \caption{ALP parameters modulated by Earth's motion. 
+    Plotted for the start times of each measurement step for each of the three scans in seconds. Zero time corresponds to start of the data taking on December 23, 2022, 15:47:30 (Central European Time, UTC+1). 
+    Vertical dashed red lines mark the beginning time of a scan. 
+    % Purple: the ALP velocity between DM halo and the lab frame over its mean value $v_a / \overline{v}_a$ . 
+    % Purple dot: the ALP velocity of the DM halo in the lab frame over its mean value $v_a / \overline{v}_a$. 
+    % The velocity $v_as$ varies by less than \SI{1}{\%} around its mean value, $\overline{v}_a=\SI{233}{km/s}$.
+    % , over the course of the measurement and can be assumed as constant.
+    Green line: $\sin\alpha$ oscillates with a period of one day.
+    %Note the different scales for both values, the variation of $v_a$ is around an order of magnitude smaller than that of $\alpha$.}
+    % This angle oscillates with a period of one day and has profound impact on the signal. 
+    Blue dot with error bar: expected ALP signal powers in the PSD, according to Eq.\,\eqref{eq:axionpower}, for the reference case of an ALP gradient coupling to proton of $g_\mathrm{ap}=\SI{1}{\GeV^{-1}}$.
+    Uncertainties for these values were propagated from errors of the spin relaxation times $T_2$ and $T_2^*$, sample Larmor frequency $\nu_L$ and NMR signal power $P_\mathrm{NMR}$. %\OM{include 1e-8 in the units of the y axis ($P_\perp\,(10^{-8}\Phi_0^2)$), and leave a space between quantity name and units.}\YZ{I checked the magnitude of $P_\perp$ and it ($10^{-8}$) looks right in the plot. }\YZ{Julian will change it.}
+    \YZ{a narrow frequency range for a and c? }}
+    \label{fig:ALP_wind_modulation}
+\end{figure}
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.99\linewidth]{works/LF-thermal/figures/ALP_wind_modulation.png}
+%     \caption{
+%     \YZ{a narrow frequency range for a and c? }}
+%     \label{fig:ALP_wind_modulation}
+% \end{figure}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{works/LF-thermal/figures/Hypothesis.png}
+    \caption{Empirical CDF obtained from the NPE distribution of spectra.
+    The vertical dashed line represents the threshold for rescan, $\Theta_{\mathrm{RE}}$, corresponding to the null hypothesis of a $5\,\sigma$ ALP detection at the \SI{95}{\%} confidence level.
+    The p-value corresponding to the threshold (horizontal dashed line) is approximately 0.001. 
+    }
+    \label{fig:MC_simu-empirical_CDF}
+\end{figure}
 
 \subsection{Exclusion results}\label{sec:results:exclusion}
 
@@ -393,7 +456,8 @@ This conclusion must be reassessed for a narrower signal or a shorter record.
 
 
 
-\subsection{Candidates and consistency checks}
+\subsection{Candidates and constraints}
+% \subsubsection{Candidates and consistency checks}
 
 Table~\ref{tab:candidates} lists the outlier counts and ALP signal candidates from all three scans.
 The total number of outliers in each scan exceeds the expectation for white noise, owing to non-white-noise structures that are neither narrow nor broad enough to be removed by the SG filters.
@@ -433,7 +497,6 @@ By comparing the resonant window (within $\pm5$ NMR linewidths of the Larmor fre
 No candidate from the primary scan was found in either of the consistency-check scans within four ALP linewidths.
 The search therefore yields no statistically significant evidence for ALP dark matter at the detection sensitivity.
 
-\subsection{Coupling-constant limit}
 
 
 \begin{equation}
@@ -485,12 +548,12 @@ The scanning took 8 steps.
 In each scan step, the following actions were performed in order:
 \begin{enumerate}[label=\arabic*.]
     \item Set sweep coil current.
-    \item 1-Pulse measurement (a $\pi/2$ pulse followed by free decay signal) to determine the Larmor frequency, linewidth $\Delta\nu$ (and hence $T_2^* = 1/(\pi\Delta\nu)$), and NMR signal power.
+    \item Free decay measurement (one $\pi/2$ pulse followed by free decay signal) to determine the Larmor frequency, linewidth $\Delta\nu$ (and hence $T_2^* = 1/(\pi\Delta\nu)$), and NMR signal power.
     A Lorentzian fit to the resulting PSD peak extracts these parameters and calibrates the sensitivity at each step.
-    \item Carr-Purcell-Meiboom-Gill (CPMG) \cite{CPMG} pulse sequence prior to the first scan step to determine $T_2$ from the exponential decay of spin-echo amplitudes.
+    \item $T_2$ measurement by CPMG pulse sequence. 
     \item A 1-hour ALP measurement without any pulses.
-    \item 1-Pulse measurement like step 2.
-    \item CPMG measurement like step 3.
+    \item Free decay measurement like step 2.
+    \item $T_2$ measurement like step 3.
 \end{enumerate} 
 Delays ($\gg T_1$) were inserted between pulsed-NMR measurements to allow the magnetization to return close to its equilibrium value along $\mathbf{B}_0$.
 A schematic of the measurement procedure is shown in Figure~\ref{fig:earthhalomeas_procedure}.
@@ -498,7 +561,7 @@ Note that the 1-hour ALP measurement duration is much longer than the 100-second
 The long measurement duration results in a much narrower PSD bin width, which is beneficial for the sensitivity to ALP signals with long coherence time, such as the Earth-bound ALP halo.
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.99\linewidth]{figures/20221214_meas_diagram_15px.drawio.pdf}
+    \includegraphics[width=0.99\linewidth]{figures/20221214_meas_diagram.drawio.pdf}
     \caption{Schematic of the Earth-bound ALP measurement procedure.}
     \label{fig:earthhalomeas_procedure}
 \end{figure}
@@ -508,22 +571,26 @@ Therefore, this measurement is chosen to demonstrate the sensitivity of the CASP
 
 \begin{table}[htb]
     \centering
-    \caption{Technical parameters of the Earth-bound ALP measurement (December 14, 2022).
-    Here SNR indicates the signal-to-noise ratio of the free decay signal after a $\pi/2$ pulse.}
+    \caption{Technical parameters of the Earth-bound ALP measurement (December 14, 2022).}
     \label{tab:earthmeas_params}
     \begin{tabular}{lc}
         \toprule
         Parameter & Name or value \\
         \hline
         Sample & thermally polarized methanol \\
+        Number of scans & 1 \\
         Number of scan steps & 8 \\
         Sweep coil current increment & \SI{0.8}{\mA} \\
         Frequency increment per step & \SI{6}{\Hz} \\
         Frequency scan range & $\SI{1.348585}{\MHz} \pm \SI{24}{\Hz}$ \\
-        NMR linewidth (FWHM) in one step & $\approx\SI{10}{\Hz}$ \\
-        $T_2$ relaxation time & $\approx\SI{1}{\s}$ \\
-        Signal-to-noise ratio (SNR) & $\approx 120$ \\
-        Axion measurement duration per step & \SI{1}{\hour} \\
+        NMR linewidth in one step & $\approx\SI{10}{\Hz}$ \\
+        ALP mass scan range & $\SI{5.577299}{\neV/c^2}\pm\SI{50}{\femto\eV/c^2}$ \\
+        ALP linewidth $\Delta\nu_a$ & $\lesssim \SI{1}{\mHz}$ \\
+        ALP coherence time $\tau_a$ & $\gtrsim \SI{1000}{\s}$ \\
+        $T_2$ & $\approx\SI{1}{\s}$ \\
+        % Signal-to-noise ratio (SNR) & $\approx 120$ \\
+        Measurement duration per step & $\SI{1}{\hour}\lesssim \tau_a $ \\
+        spectral factor $u$ & $\lesssim 10^{-4}$ \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -549,3 +616,6 @@ If the signal occupies only one FFT resolution element, the single-element exces
     The amplitude modulation is driven by the daily rotation of the laboratory frame relative to the ALP-field gradient; the plotted curve shows the combined effect of the geometry of $\mathbf{B}_0$ and the predicted halo profile.}
     \label{fig:earthhalomeas_signal}
 \end{figure}
+
+
+\subsection{Candidates and constraints}
