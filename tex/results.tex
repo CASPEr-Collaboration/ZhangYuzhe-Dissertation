@@ -192,7 +192,7 @@ Lastly, the spikes are suppressed by the optimal filtering.
 
 After the filterings mentioned above, the filtered spectra are ready for outlier search.
 
-\subsubsection{Outlier threshold}
+\subsubsection{Outlier threshold}\label{sec:results:data-analysis:procedure:outlier-threshold}
 
 If the probability of a signal being a false positive is less than $\SI{2.87e-7}{}$, which is the probability of a Gaussian random variable exceeding five times of its standard deviation $\sigma$, the signal is considered as a $\SI{5}{\sigma}$ signal. 
 An illustration of the Gaussian distribution and the probability of a $\SI{5}{\sigma}$ signal is shown in Figure~\ref{fig:5sigma-Gaussian-chisq-distributions}\,(a). 
@@ -200,14 +200,14 @@ Such signals are considered as indications of new physics.
 \begin{figure}
     \includegraphics[width=0.49\linewidth]{figures/norm-5_sigma.png}
     \includegraphics[width=0.49\linewidth]{figures/chi2-dof2.png}
-    \caption{(a) The probability of a Gaussian random variable exceeding $n$ times of its standard deviation. The probability of a $5-\sigma$ signal is less than $\SI{2.87e-7}{}$. (b) The $\chi^2$ distribution with two degrees of freedom. \YZ{to be updated}}
+    \caption{(a) The probability of a Gaussian random variable exceeding $n$ times of its standard deviation. The probability of a $\SI{5}{\sigma}$ signal is less than $\SI{2.87e-7}{}$. (b) The $\chi^2$ distribution with two degrees of freedom. \YZ{to be updated}}
     \label{fig:5sigma-Gaussian-chisq-distributions}
 \end{figure}
 
 In addition to understanding what a $\SI{5}{\sigma}$ signal is, it is also important to understand what a $\SI{5}{\sigma}$ signal is not, and what is not a $\SI{5}{\sigma}$ signal:
 \begin{itemize}
     \item Due to random noise, the amplitude of a $\SI{5}{\sigma}$ signal fluctuate, instead of being $\SI{5}{\sigma}$ constantly\,\cite{Brubaker2017_HAYSTAC, aybas2021_SolidStateNMR}. If the noise is Gaussian, and if the noise is added to the signal linearly, the measured signal amplitude would be a Gaussian random variable with a mean of $\SI{5}{\sigma}$ and a standard deviation of $\sigma$, as illustrated in Figure~\ref{fig:5sigma-2-Gaussian-distributions}. 
-    \item A $\SI{5}{\sigma}$ signal is not always a signal that exceeds five times the standard deviation of the noise, unless the noise is Gaussian. For instance, if the noise follows a $\chi^2$ distribution with two degrees of freedom, the threshold for a so-called $\SI{5}{\sigma}$ signal would be $\SI{15}{\sigma}$, as shown in Figure~\ref{fig:5sigma-Gaussian-chisq-distributions}\,(b).
+    \item A $\SI{5}{\sigma}$ signal is not always a signal that exceeds five times the standard deviation of the noise, unless the noise is Gaussian. For instance, if the noise follows a $\chi^2$ distribution with two degrees of freedom, the threshold for a so-called $\SI{5}{\sigma}$ signal would be $\SI{15.06}{\sigma}$, as shown in Figure~\ref{fig:5sigma-Gaussian-chisq-distributions}\,(b).
     \item $\SI{5}{\sigma}$ signals are not rare, in terms of the amount of events they represent. On one hand, $\SI{5}{\sigma}$ signals due to non-Gaussian noises are common in real experiments. On the other hand, experiments can accumulate huge amounts of data ($\gg 1/\SI{2.87e-7}{}$ data points), and the probability of one $\SI{5}{\sigma}$ signal appearing due to random fluctuation is not negligible. This is also known as the look-elsewhere effect.
 \end{itemize}
 
@@ -454,10 +454,10 @@ One example of the spectra after different filtering steps is shown in Figure~\r
 
 % \subsubsection{Outlier threshold}
 
-Monte Carlo simulations were performed to determine the threshold for recovering a $5\,\sigma$ ALP signal with \SI{95}{\%} probability. 
+Monte Carlo simulations were performed to determine the threshold for recovering a $\SI{5}{\sigma}$ ALP signal with \SI{95}{\%} probability. 
 % redo MC simulation in time domain by axionbloch?
-Fake $5\,\sigma$ ALP signals were injected into simulated noise spectra before the optimal filtering, and the amplitudes of the filtered NPE was recorded. 
-Probability distributions of the filtered NPE were obtained from many realizations of the simulated noise and signal, and the outlier threshold $\Theta_\mathrm{RE}$ was determined from the distribution of the filtered NPE in the presence of a $5\,\sigma$ ALP signal. 
+Fake $\SI{5}{\sigma}$ ALP signals were injected into simulated noise spectra before the optimal filtering, and the amplitudes of the filtered NPE was recorded. 
+Probability distributions of the filtered NPE were obtained from many realizations of the simulated noise and signal, and the outlier threshold $\Theta_\mathrm{RE}$ was determined from the distribution of the filtered NPE in the presence of a $\SI{5}{\sigma}$ ALP signal. 
 % 
 The simulations yielded $\Theta_\mathrm{RE} = 3.43$ with a noise-only tail probability of approximately $0.001$, as shown in Figure~\ref{fig:MC_simu-empirical_CDF}.
 
@@ -465,7 +465,7 @@ The simulations yielded $\Theta_\mathrm{RE} = 3.43$ with a noise-only tail proba
     \centering
     \includegraphics[width=\linewidth]{works/LF-thermal/figures/Hypothesis.png}
     \caption{Empirical CDF obtained from the NPE distribution of spectra.
-    The vertical dashed line represents the threshold for rescan, $\Theta_{\mathrm{RE}}$, corresponding to the null hypothesis of a $5\,\sigma$ ALP detection at the \SI{95}{\%} confidence level.
+    The vertical dashed line represents the threshold for rescan, $\Theta_{\mathrm{RE}}$, corresponding to the null hypothesis of a $\SI{5}{\sigma}$ ALP detection at the \SI{95}{\%} confidence level.
     The p-value corresponding to the threshold (horizontal dashed line) is approximately 0.001. 
     }
     \label{fig:MC_simu-empirical_CDF}
@@ -475,7 +475,7 @@ The simulations yielded $\Theta_\mathrm{RE} = 3.43$ with a noise-only tail proba
 % \subsubsection{Validation check}
 
 % Frequency bins where the NPE exceeds the rescan threshold $\Theta_\mathrm{RE}$ are flagged as outliers.
-% The threshold was determined via Monte Carlo simulations of the NPE distribution under the null hypothesis that a $5\,\sigma$ ALP signal is present, yielding $\Theta_\mathrm{RE} = 3.43$ at the \SI{95}{\%} confidence level (corresponding to a $p$-value of $0.001$).
+% The threshold was determined via Monte Carlo simulations of the NPE distribution under the null hypothesis that a $\SI{5}{\sigma}$ ALP signal is present, yielding $\Theta_\mathrm{RE} = 3.43$ at the \SI{95}{\%} confidence level (corresponding to a $p$-value of $0.001$).
 
 % The overall analysis efficiency, accounting for the effect of baseline removal on signal recovery, was determined from simulations to be $\eta_\mathrm{rec} = \SI{88.2\pm4.6}{\%}$. This efficiency is applied when converting NPE values to coupling-constant limits.
 
@@ -528,7 +528,7 @@ In the absence of a detection, an upper limit on the ALP-proton gradient couplin
     |g_\mathrm{ap,\,lim}| = \sqrt{\frac{e_5}{\eta_\mathrm{rec}\,P_{\perp,1}}}
     \,,\label{eq:limcouple-2}
 \end{equation}
-where $e_5$ is the signal power corresponding to the $5\,\sigma$ NPE threshold, $P_{\perp,1}$ is the reference signal power for $|g_\mathrm{ap}|=\SI{1}{\GeV^{-1}}$, and $\eta_\mathrm{rec}$ is the analysis efficiency defined above.
+where $e_5$ is the signal power corresponding to the $\SI{5}{\sigma}$ NPE threshold, $P_{\perp,1}$ is the reference signal power for $|g_\mathrm{ap}|=\SI{1}{\GeV^{-1}}$, and $\eta_\mathrm{rec}$ is the analysis efficiency defined above.
 The resulting exclusion limits are plotted in Figure~\ref{fig:ALPlimits}.
 
 \begin{figure}[htb]
@@ -551,20 +551,25 @@ The sensitivity is limited by the polarization of the methanol sample; hyperpola
 % In this data taking, the bias field was ramped to ?? therefore the Larmor frequency of the sample was tuned to ??, corresponding to an ALP mass of \SI{}{\neV/c^2}. 
 % The measurement lasted for ?? hours in total. In this section, the measurement procedure and results are presented. 
 
-\subsection{Overview}\label{sec:results:EarthALP20221214:experiment}
+\subsection{Overview}\label{sec:results:EarthALP20221214:overview}
 
-A data taking with thermally polarized methanol took place at Dec 14, 2022.
+One proof-of-principle measurement for the Earth-bound ALP halo model was performed on December 14, 2022 (Central European Time).
+This measurement is suited to the Earth-bound search because each ALP-search acquisition per step lasted \SI{1}{\hour}, giving a narrow RBW for long-coherence-time signals.
+Relevant calculations can be found at \url{scripts-and-data/Result-EarthHalo.ipynb}\YZ{link to be modified}.
+
 The measurement scanned
 \begin{equation}
     \SI{1.348585}{\MHz} \pm \SI{24}{\Hz} \nonumber
 \end{equation}
 by sweeping the magnitude of the bias field $|\mathbf{B}_0| \approx \SI{31.67403}{\milli\tesla}$.
-This corresponds to an ALP mass range of
+This maps to ALP masses in a range of
 \begin{equation}
     \SI{5.577299}{\neV/c^2} \pm \SI{50}{\femto\electronvolt/c^2}\,. \nonumber
 \end{equation}
-The scanning took 8 steps.
-In each scan step, the following actions were performed in order:
+One scan over this range was performed.
+There were 8 scan steps, and the frequency step size was \SI{6}{\Hz}, approximately half the NMR linewidth, so that the NMR resonant windows of adjacent steps overlap.
+
+At each frequency step the following actions were performed in order:
 \begin{enumerate}[label=\arabic*.]
     \item Set sweep coil current.
     \item Free decay measurement (one $\pi/2$ pulse followed by free decay signal) to determine the Larmor frequency, linewidth $\Delta\nu$ (and hence $T_2^* = 1/(\pi\Delta\nu)$), and NMR signal power.
@@ -575,18 +580,26 @@ In each scan step, the following actions were performed in order:
     \item $T_2$ measurement like step 3.
 \end{enumerate} 
 Delays ($\gg T_1$) were inserted between pulsed-NMR measurements to allow the magnetization to return close to its equilibrium value along $\mathbf{B}_0$.
-A schematic of the measurement procedure is shown in Figure~\ref{fig:earthhalomeas_procedure}.
+The measurement procedure is illustrated in Figure~\ref{fig:earthhalomeas_procedure}.
 Note that the 1-hour ALP measurement duration is much longer than the 100-second duration used in the data taking described in Section~\ref{sec:results:MWALP20221223}.
-The long measurement duration results in a much narrower PSD bin width, which is beneficial for the sensitivity to ALP signals with long coherence time, such as the Earth-bound ALP halo.
+The long measurement duration results in a much narrower RBW, which is beneficial for the sensitivity to ALP signals with long coherence time, such as the Earth-bound ALP halo.
+% An example of the PSD spectra and NMR characterization from one scan step is shown in Figure~\ref{fig:EarthALP-measurements}.
+The experimental parameters and the relevant NMR and ALP characteristics are summarized in Table~\ref{tab:earthmeas_params}.
+
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.99\linewidth]{figures/20221214_meas_diagram.drawio.pdf}
     \caption{Schematic of the Earth-bound ALP measurement procedure.}
     \label{fig:earthhalomeas_procedure}
 \end{figure}
-A summary of the measurement parameters is given in Table~\ref{tab:earthmeas_params}.
-Long measurement durations make this measurement sensitive to the long-coherence-time ALP fields.
-Therefore, this measurement is chosen to demonstrate the sensitivity of the CASPEr-Gradient-LF apparatus to the Earth-bound ALP halo model.
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.99\linewidth]{figures/EarthALP-measurements.pdf}
+%     \caption{Example PSD spectra and NMR characterization from one Earth-bound ALP scan step.
+%     \YZ{Add free-decay PSD, CPMG fit, one-hour no-pulse PSD, and NPE histogram or spectrum.}}
+%     \label{fig:EarthALP-measurements}
+% \end{figure}
 
 \begin{table}[htb]
     \centering
@@ -606,7 +619,7 @@ Therefore, this measurement is chosen to demonstrate the sensitivity of the CASP
         ALP mass scan range & $\SI{5.577299}{\neV/c^2}\pm\SI{50}{\femto\eV/c^2}$ \\
         ALP linewidth $\Delta\nu_a$ & $\lesssim \SI{1}{\mHz}$ \\
         ALP coherence time $\tau_a$ & $\gtrsim \SI{1000}{\s}$ \\
-        $T_2$ & $\approx\SI{1}{\s}$ \\
+        $T_2$ & $\approx\SI{2}{\s}$ \\
         % Signal-to-noise ratio (SNR) & $\approx 120$ \\
         Measurement duration per step & $\SI{1}{\hour}\lesssim \tau_a $ \\
         spectral factor $u$ & $\lesssim 10^{-4}$ \\
@@ -615,26 +628,145 @@ Therefore, this measurement is chosen to demonstrate the sensitivity of the CASP
 \end{table}
 
 
+% Expected ALP signal
 
-\subsection{Expected signal and sensitivity}
-
-% periodic modulation of the signal amplitude due to the daily rotation of the Earth is expected.
 Due to the daily rotation of the Earth, the component of the ALP-field gradient perpendicular to $\mathbf{B}_0$ varies over the course of the measurement.
 Using the ALP signal model established in Chapter~\ref{sec:theory:earthALP}, the expected signal amplitude can be calculated.
-In Figure~\ref{fig:earthhalomeas_signal}, the evolution of the expected Rabi frequency of the pseudomagnetic field is plotted (assuming all ALPs are at $2p$ state).
-Since the Rabi frequency $\Omega_a \approx 2 \pi \times \SI{1}{\mHz}$, the tipping angle of the magnetization can be estimated as $\theta \approx \Omega_a T_2 \approx 0.002\, \pi$.
+In Figure~\ref{fig:EH_ALP-interference-daily-Omega_a}, the evolution of the expected Rabi frequency of the pseudomagnetic field is plotted.
+Since the Rabi frequency $\Omega_a \approx 2 \pi \times \SI{2}{\mHz}$, the tipping angle of the magnetization can be estimated as $\theta \approx \Omega_a T_2 \approx 0.004\, \pi$.
 
-For the \SI{1}{\hour} records used here, the FFT-bin width is $\delta\nu_{\mathrm{FFT}}\approx\SI{2.8e-4}{\Hz}$.
-Before applying an optimal filter to these data, the predicted Earth-bound-halo linewidth must be compared with this resolution.
-If the signal occupies only one FFT resolution element, the single-element excess-power statistic described in Section~\ref{sec:results:data-analysis} should be used instead of a lineshape convolution.
+For the \SI{1}{\hour} records used here, $\mathrm{RBW} = 1/\SI{1}{\hour} = \SI{3e-4}{\Hz}$, which is larger than the expected Earth-bound ALP linewidth. 
+Therefore, the signal is unresolved in the frequency spectra and the optimal filter should not be applied.
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.95\linewidth]{figures/earth_halo_expected_rabi_evolution.pdf}
-    \caption{Expected evolution of the ALP-induced Rabi frequency (pseudomagnetic field) over one sidereal day for the Earth-bound ALP halo model.
-    The amplitude modulation is driven by the daily rotation of the laboratory frame relative to the ALP-field gradient; the plotted curve shows the combined effect of the geometry of $\mathbf{B}_0$ and the predicted halo profile.}
-    \label{fig:earthhalomeas_signal}
+    \includegraphics[width=0.6\linewidth]{figures/EarthHalo-interference-daily-Omega_a.pdf}
+    \caption{Expected evolution of the ALP-induced Rabi frequencies for the Earth-bound ALP halo model. Top to bottom: Rabi frequencies induced by gradients and Lorentz boost in radial, polar, and azimuthal directions. Scenarios of different state populations are considered as shown in the legend. The amplitude modulation is driven by the rotation of the laboratory frame relative to the ALP-field gradient.\YZ{highlight the course of the measurement in the figure.}}
+    \label{fig:EH_ALP-interference-daily-Omega_a}
 \end{figure}
 
 
-\subsection{Candidates and constraints}
+\subsection{Data analysis}
+The technical details of the data analysis, following the procedure described in Section~\ref{sec:results:data-analysis:procedure}, are presented as follows.
+
+% \subsubsection{Time-series sanity check}
+
+% Add examples of time-domain records, jumps, masks, and data-quality cuts for the one-hour no-pulse acquisitions.
+No problem was found in the time-series sanity check except for jumps. 
+One example of the jumps is shown in Figure~\ref{fig:EH_ALP-jumps-example}. 
+The jumps are unlikely to be statistical fluctuations, since the jumps appear in clusters rather than randomly distributed in time. 
+One possible explanation is that the jumps are magnetic noise caused by transient mechanical vibrations. 
+Another possible explanation is that the jumps are exotic signals, such as ALP domain walls. 
+The analysis of these transient signals is included in the Chapter~\ref{chap:conclusion}.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.99\linewidth]{figures/EH_ALP-jumps-example.png}
+    \caption{Example of jumps found in the time-series sanity check.\YZ{update this figure later.}}
+    \label{fig:EH_ALP-jumps-example}
+\end{figure}
+
+
+% \subsubsection{Fourier transform and filtering}
+After the jumps were removed by applying windowing, the Fourier transform were performed to generate the frequency spectra.
+The NPE spectrum was later formed after lock-in low-pass correction and the baseline subtraction. 
+\YZ{Add one example of the spectra after different filtering steps.}
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.99\linewidth]{figures/EarthALP-PSD-NPE.pdf}
+%     \caption{Example of Earth-bound ALP data processing.
+%     Top to bottom: free-decay signal or NMR-response calibration, one-hour no-pulse spectrum, baseline estimate, and NPE.
+%     \YZ{Add figure once the Earth-bound analysis spectra are finalized.}}
+%     \label{fig:EarthALP-PSD-NPE}
+% \end{figure}
+
+% \subsubsection{Outlier threshold}
+
+% Determine the threshold for recovering a target Earth-bound ALP signal with the chosen statistic.
+The time-series signal from two channels of LIA are independent and Gaussian, so the NPE follows a $\chi^2$ distribution with 2 degrees of freedom, also denoted as $\chi^2_2$. 
+As discussed in Section~\ref{sec:results:data-analysis:procedure:outlier-threshold}, a one-sided $\SI{5}{\sigma}$ outlier in Gaussian statistics corresponds to a $p$-value of $\SI{2.87e-7}{}$. 
+This $p$-value corresponds to $\SI{15.06}{\sigma}$ in the $\chi^2_2$ distribution. 
+In the presence of a $\SI{15.06}{\sigma}$ ALP signal, the NPE distribution is a non-central $\chi^2_2$ distribution. 
+If the outlier threshold is set at $\SI{7.809}{\sigma}$\YZ{check digits}, the probability of capturing a $\SI{15.06}{\sigma}$ ALP signal is \SI{95}{\percent}, while the probability of false positive is \SI{4e-4}{}. 
+Therefore, the outlier threshold is set at $\Theta = \SI{7.809}{\sigma}$ for the Earth-bound ALP search.
+The threshold and corresponding probabilities are illustrated in Figure~\ref{fig:chi2-dof2-2_distributions}.
+\begin{figure}
+    \includegraphics[width=0.8\linewidth]{figures/chi2-dof2-2_distributions.png}
+    \caption{Distribution of the NPE under the null hypothesis (white noise) and alternative hypothesis (ALP signal).}
+    \label{fig:chi2-dof2-2_distributions}
+\end{figure}
+
+
+\YZ{Add analysis efficiency.}
+
+% \subsubsection{Validation check}
+
+% Frequency bins where the NPE exceeds the Earth-bound search threshold are flagged as outliers.
+% Describe merging criteria, on/off-resonance windows, comparison between the pre- and post-search NMR calibrations, and treatment of single-scan candidates.
+? outliers were found in the NPE spectra of 8 scan steps. 
+Since the expected Earth-bound ALP linewidth is narrower than the RBW, the ALP signal would not appear in more than two adjacent frequency bins.
+The outliers were merged if they are adjacent. 
+The corresponding coupling strengths of the merged outliers were obtained by the NMR characterization and Equation~\YZ{add equation ref here}. 
+Outliers appearing at consistent frequencies with consistent coupling strengths were considered as candidates.
+The results of the validation check are summarized in Table~\ref{tab:EarthALP-candidates}.
+
+? candidates were found after the validation check.
+One candidate is shown in Figure~\ref{fig:EarthALP-candidate-example} as an example.
+Note that there was only one scan performed over the scan range, so the candidates cannot be cross-checked by multiple scans.
+
+\YZ{check if the frequency spectra is reversed}
+\YZ{Add Earth-bound candidate counts and consistency checks.}
+\YZ{Add a table summarizing the outlier counts and ALP signal candidates from the Earth-bound ALP scan.}
+
+\begin{table}[htb]
+    \centering
+    \caption{Results of the Earth-bound ALP scan.
+    $N_\mathrm{full}$: total NPE bins.
+    $X_\mathrm{full}$: outliers above threshold.
+    $\langle X_\mathrm{full}\rangle$: expected value assuming white noise.
+    $N_\mathrm{res}$: bins in resonant windows.
+    $X_\mathrm{res}$: ALP signal candidates.
+    $\langle X_\mathrm{res}\rangle$: expected value.
+    \YZ{Adjust columns after the Earth-bound candidate definition is finalized.}}
+    \begin{tabular}{lc}
+        \hline\hline
+        & Earth-bound scan \\
+        \hline
+        $N_\mathrm{full}$ & \YZ{TBD} \\
+        $X_\mathrm{full}$ & \YZ{TBD} \\
+        $\langle X_\mathrm{full}\rangle$ & \YZ{TBD} \\
+        $N_\mathrm{res}$ & \YZ{TBD} \\
+        $X_\mathrm{res}$ & \YZ{TBD} \\
+        $\langle X_\mathrm{res}\rangle$ & \YZ{TBD} \\
+        \hline\hline
+    \end{tabular}
+    \label{tab:EarthALP-candidates}
+\end{table}
+
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\linewidth]{figures/EH_ALP-candidate-example.png}
+    \caption{Example of an Earth-bound ALP signal candidate.\YZ{modify the figure}}
+    \label{fig:EarthALP-candidate-example}
+\end{figure}
+
+\subsection{Results}\label{sec:results:EarthALP20221214:results}
+
+Since the state population of the Earth-bound ALP halo is unknown, a few scenarios of population distribution are considered in the analysis. 
+
+
+In the absence of detections, constraints on the ALP-proton coupling can be derived from the measured NPE noise spectra and the expected signal power for the Earth-bound ALP halo model.\YZ{add equation ref here}. 
+At frequencies where candidates were found, the lower limit of constraints are set to the corresponding coupling strengths of the candidates.
+
+\YZ{Add the Earth-bound limit equation, including the reference signal power and analysis efficiency for the selected state-population model.}
+
+
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\linewidth]{figures/EH-exclusion-sample.png}
+    \caption{ALP gradient-proton coupling excluded at \SI{95}{\%} confidence level by the Earth-bound ALP scan.
+    \YZ{Specify the assumed Earth-bound state population and total bound mass normalization.}}
+    \label{fig:EarthALP-limits}
+\end{figure}
