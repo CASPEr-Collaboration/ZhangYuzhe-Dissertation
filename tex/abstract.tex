@@ -1,19 +1,23 @@
 \addchap{Abstract}
 
-Axions and axionlike particles (ALPs) are theoretically well-motivated candidates for the dark matter that constitutes approximately 27\,\% of the total energy content of the universe.
-Through the nuclear gradient coupling, an oscillating ALP dark-matter field acts as an effective pseudomagnetic field on nuclear spins, driving resonant spin precession at the ALP Compton frequency.
-Nuclear magnetic resonance (NMR) is among the most sensitive techniques for detecting weak oscillating fields, making it a natural tool for direct ALP dark-matter searches.
+Axions and axionlike particles (ALPs) are well-motivated candidates for the dark matter that makes up most of the matter content of the universe.
+In the nuclear-gradient interaction, an ALP dark-matter field acts as an effective oscillating pseudomagnetic field on nuclear spins, and nuclear magnetic resonance (NMR) provides a resonant method for detecting this weak drive.
 
-This thesis presents a theoretical and experimental investigation of ALP dark-matter searches using precision NMR in the context of the Cosmic Axion Spin Precession Experiment (CASPEr).
-On the theoretical side, the signal amplitude and optimal measurement strategy for a frequency-scanning search are derived analytically.
-Depending on the relative magnitudes of the NMR coherence time $T_2^*$, the intrinsic transverse relaxation time $T_2$, and the ALP coherence time $\tau_a$, four distinct signal regimes are identified, each with a characteristic sensitivity and optimal dwell-time allocation.
-In all regimes, the sensitivity to the ALP-nucleon coupling strength scales as $T_\mathrm{tot}^{-1/4}$ with total measurement time, motivating improvements in spin polarization and relaxation times over simply accumulating more data.
-The optimal frequency step is equal to the sensitive bandwidth of a single measurement, and the dwell time should be distributed uniformly across frequency steps in regimes~(1)--(3), or proportional to $\nu^{-1}$ in regime~(4).
+This thesis develops the ALP-search program in the Cosmic Axion Spin Precession Experiment (CASPEr) from theory to data analysis.
+The introductory chapters motivate the dark-matter problem, review NMR concepts relevant to precision searches, and introduce the ALP framework used throughout the work.
+The theoretical chapters derive the ALP-induced spin response and the optimal strategy for frequency-scanning searches, and they distinguish two signal classes: a virialized Milky Way halo, which gives a stochastic broadband signal with finite coherence time, and gravitationally bound Earth-bound states, which can produce long-lived, narrow, and direction-dependent signals.
+For frequency scans, four regimes are identified according to the ordering of the NMR coherence time $T_2^*$, the intrinsic relaxation time $T_2$, and the ALP coherence time $\tau_a$.
+In all long-dwell-time regimes, the coupling sensitivity improves only as $T_\mathrm{tot}^{-1/4}$ with total integration time, so better polarization, smaller field inhomogeneity, longer coherence times, and lower detector noise are more effective than simply measuring longer.
 
-On the experimental side, the scanning framework is applied in a proof-of-concept search for the ALP-proton gradient coupling using the CASPEr-Gradient-Low-Field apparatus at the Johannes Gutenberg University Mainz.
-A thermally polarized liquid methanol sample is used to scan a 240\,Hz band centered at 1.348570\,MHz (proton Larmor frequency), corresponding to ALP masses in the range $5.576741$--$5.577733\,\mathrm{neV}/c^2$.
-Three sequential scans were performed; no ALP signal candidates survived a cross-scan consistency check.
-A 95\,\% confidence-level upper limit of $|g_\mathrm{ap}| \lesssim 3\times10^{-2}\,\mathrm{GeV}^{-1}$ is set on the ALP-proton gradient coupling in this mass range, constituting the first dedicated laboratory search therein.
+The experimental chapter describes the CASPEr-Gradient-Low-Field apparatus used in this thesis, including the superconducting magnet system, the methanol sample, the pickup coil, the SQUID detection chain, and the Python-based control and acquisition software.
+The measured sample is thermally polarized liquid methanol at about \SI{180}{\kelvin}, with a very small proton polarization of approximately \SI{1.8e-7}{}, which sets the dominant sensitivity limitation.
+The same apparatus parameters are then used to project the gains expected from hyperpolarized methanol and liquid ${}^{129}$Xe, as well as from improved field homogeneity and larger sample or pickup-coil performance.
 
-The sensitivity of the current measurement is dominated by the small thermal polarization of the methanol sample ($\approx 1.8\times10^{-7}$).
-Projected sensitivity estimates demonstrate that hyperpolarized samples---parahydrogen-induced polarization, dynamic nuclear polarization, or spin-exchange optical pumping of liquid ${}^{129}$Xe---can improve the coupling sensitivity by several orders of magnitude, opening a path toward new physics beyond current bounds.
+The results chapters present the full data-analysis pipeline, including time-series sanity checks, Fourier transformation, low-pass correction, baseline removal, optional optimal filtering, thresholding, and candidate validation.
+A proof-of-principle Milky Way ALP search scanned a \SI{240}{\Hz} band around \SI{1.348570}{\MHz} and found no statistically significant signal, yielding a \SI{95}{\percent} confidence-level limit of $|g_\mathrm{ap}| \lesssim \SI{3e-2}{\GeV^{-1}}$ over the scanned mass range.
+An Earth-bound ALP search was also carried out with long dwell times and a narrower scan window; its final candidate validation and limit setting are still in progress.
+The appendices provide the numerical Bloch-dynamics simulator, the statistical hypothesis-test framework, and the derivation of the optimal dwell-time strategy used in the scan optimization.
+
+The concluding chapter summarizes these findings and outlines the next steps for CASPEr.
+The most promising upgrades are hyperpolarized samples, improved temperature control, lower noise, better field homogeneity, larger sample volume, and enhanced pickup performance.
+Together with future concepts such as dual-NMR-sample searches, these developments should extend CASPEr toward much higher sensitivity and broaden its reach to axions, dark photons, and other new-physics scenarios.
