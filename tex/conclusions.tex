@@ -1,77 +1,103 @@
 \chapter{Conclusions \& Outlook}\label{chap:conclusion}
 
+% Key points accumulated from the top-level thesis source and LF-thermal paper:
+% - Main physics idea: ALP gradient coupling acts on nuclear spins as an oscillating pseudomagnetic field.
+% - NMR is well suited because the Larmor frequency can be tuned to the ALP Compton frequency by changing B0.
+% - The experiment searches for ALP-nucleon gradient coupling; the reported methanol runs are interpreted as ALP-proton coupling g_ap.
+% - Thermal methanol at B0 approx 31.67 mT and T approx 180 K has very small proton polarization, p approx 1.8e-7.
+% - Hyperpolarization is repeatedly identified as the largest lever for future sensitivity.
+% - The thesis develops two ALP signal models: virialized Milky Way halo and Earth-bound gravitationally bound ALP halo.
+% - Milky Way model: SHM, rho_DM approx 0.4 GeV/cm^3, v_DM approx 220 km/s, Q_a approx 1e6, stochastic multimode field.
+% - At nu_a approx 1.35 MHz, MW ALP linewidth is approx 1 Hz and coherence time is approx 0.3--0.35 s.
+% - MW signal amplitude is modulated by Earth's daily rotation through the angle between the ALP wind and B0; annual modulation is negligible over a six-hour run.
+% - Earth-bound model: ALPs may occupy gravitational bound states in Earth's potential, producing discrete eigenstates rather than a continuous SHM spectrum.
+% - Earth-bound states are treated with a Schrodinger equation in the PREM-based Earth gravitational potential.
+% - Earth-bound gradient depends on state (n,l,m), detector position, coordinate conventions, and Lorentz transformation to the lab frame.
+% - Earth-bound coherence can be much longer than MW coherence; near MHz frequencies, rough estimates give tau_coh about 1e3 s or longer.
+% - Earth-bound signals can be unresolved in a one-hour FFT if the linewidth is below the RBW approx 2.8e-4 Hz.
+% - Earth-bound signal can have daily and annual modulations tied to the orientation of the bound-state wavefunction relative to the lab.
+% - Frequency-scanning theory divides the response into four regimes by the ordering of T2*, T2, and tau_a.
+% - In all long-dwell-time regimes, coupling sensitivity scales only as T_tot^{-1/4}; simply measuring longer gives slow returns.
+% - Longer T2* helps in all regimes; longer T2 helps when T2 limits the accumulated tipping angle.
+% - Optimal scan step equals the sensitive bandwidth of a single measurement, max(NMR linewidth, ALP linewidth).
+% - Optimal dwell time is uniform across frequency for regimes (1)--(3), and T proportional to nu^{-1} in regime (4).
+% - CASPEr-Gradient-LF apparatus: superconducting magnet up to 0.1 T, excitation/pickup coils, SQUID, lock-in amplifier, Python control.
+% - LF frequency range with protons extends to approx 4.3 MHz; HF apparatus with 14.1 T reaches approx 600 MHz.
+% - Current apparatus parameters: methanol, spin density 5.9e22 cm^-3, volume 1.2 cm^3, T2 approx 0.72 s, B0 inhomogeneity approx 10 ppm, electronic noise approx 7.1 microPhi0/sqrt(Hz).
+% - Future parameter table: hyperpolarized methanol gives projected sensitivity 1e-6--1.2e-5 GeV^-1; liquid 129Xe with long T2 gives 1e-12--1e-11 GeV^-1.
+% - Data pipeline: time-series sanity checks, Fourier transform, lock-in low-pass correction, SG baseline removal, optional optimal filtering, NPE statistic, thresholding, validation.
+% - Spike removal used in LF-thermal paper is not adopted here because stochastic ALP signals may be spiky and repeated scans/optimal filtering can handle narrow structures.
+% - MW measurement: December 23, 2022, thermally polarized methanol, 3 scans, 45 steps per scan, 6 Hz steps, 100 s no-pulse acquisitions.
+% - MW scanned 1.348570 MHz +/- 120 Hz, corresponding to 5.577237 neV/c^2 +/- 496 feV/c^2.
+% - MW RBW is 0.01 Hz; expected ALP linewidth approx 1 Hz, so matched filtering with the ALP lineshape is appropriate.
+% - MW threshold: fake 5 sigma ALP injections give Theta_RE = 3.43 with noise-only tail probability approx 0.001.
+% - MW analysis efficiency from LF-thermal appendix: eta_rec = 88.2 +/- 4.6 percent; coupling recovery factor sqrt(eta_rec) = 93.9 +/- 2.5 percent.
+% - MW candidate table: N_full = 481680 per scan; X_full = 6393, 5760, 6202; N_res = 8430; X_res = 5,7,3; no cross-scan candidate survived.
+% - MW conclusion: no statistically significant evidence; limit |g_ap| lesssim 3e-2 GeV^-1 over the scanned mass range.
+% - LF-thermal conclusion states this is the first dedicated laboratory search in this general mass range and a commissioning/proof-of-principle measurement.
+% - Earth-bound measurement: December 14, 2022, one scan, 8 steps, 6 Hz steps, one-hour no-pulse acquisition at each step.
+% - Earth-bound scanned 1.348585 MHz +/- 24 Hz, corresponding to 5.577299 neV/c^2 +/- 50 feV/c^2.
+% - Earth-bound table currently lists T2 approx 2 s, linewidth approx 10 Hz, ALP linewidth <= 1 mHz, tau_a >= 1000 s, u <= 1e-4.
+% - Earth-bound analysis is still in progress / has placeholders for spectra, candidate counts, efficiency, and final limits.
+% - Earth-bound time-series sanity check found jumps; possible mechanical magnetic noise, but transient exotic signatures such as domain walls are mentioned as future analysis targets.
+% - Appendix axionbloch: numerical package simulates Bloch dynamics in rotating frame, calibrates free decay, spin echo, CW response, T1 relaxation, and MW axion examples.
+% - Statistical appendix: Neyman-Pearson viewpoint and optimal filter as weighted average justify thresholding and matched filtering.
+% - Public data/source availability is stated in data.tex.
+
 \section{Summary of results}
 
-This thesis investigated the use of nuclear magnetic resonance for searches for axionlike dark-matter particles through the nuclear-gradient coupling, focusing on the CASPEr-Gradient-Low-Field experiment at Mainz.
+This thesis investigated axionlike-particle dark matter through the nuclear-gradient coupling, using nuclear magnetic resonance as the resonant detector.
+In this interaction, the spatial gradient of the ALP field acts as an oscillating pseudomagnetic field on nuclear spins.
+When the Larmor frequency of the sample is tuned to the ALP Compton frequency, this weak drive can generate a transverse magnetization that is detected by the CASPEr-Gradient-Low-Field apparatus.
 
-The theoretical analysis in Chapter~\ref{chap:theory} and in Sections~\ref{sec:experiment:single}--\ref{sec:experiment:optimization} of Chapter~\ref{chap:experiment} (adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning}) established the following key results:
+The theoretical work developed the signal model and the scanning strategy needed for such a search.
+Two dark-matter scenarios were considered.
+For virialized Milky Way halo ALPs, the field is a stochastic superposition of many velocity modes, giving a finite coherence time and a linewidth set by the standard-halo velocity distribution.
+For Earth-bound ALPs, the field is instead described by gravitational bound states in the Earth's potential, leading to discrete eigenstates, longer coherence times, and characteristic daily and annual modulations of the local gradient.
 
-\begin{itemize}
-    \item \textbf{Optimal step size.}
-    The frequency-step size for scanning should equal the sensitive bandwidth of a single measurement, namely the larger of the NMR linewidth $\Gamma_n$ and the ALP linewidth $\Gamma_a$.
+The frequency-scanning analysis identified four signal regimes determined by the ordering of $T_2^*$, $T_2$, and the ALP coherence time $\tau_a$.
+In all long-dwell-time regimes considered here, the coupling sensitivity scales only as $T_\mathrm{tot}^{-1/4}$ with total measurement time.
+This slow scaling makes the main experimental lesson clear: improving spin polarization, field homogeneity, $T_2^*$, $T_2$, and detector noise is more powerful than simply accumulating longer data sets.
+The optimal frequency step is the sensitive bandwidth of one measurement, and the optimal dwell time is uniform across scan steps except in the long-coherence regime with $T_2^*=T_2\ll\tau_a$, where $T\propto\nu^{-1}$.
 
-    \item \textbf{Optimal relaxation times.}
-    The transverse relaxation times $T_2$ and $T_2^*$ should be maximized.
-    Longer $T_2^*$ is beneficial in all regimes: it increases either the r.m.s.\ tipping angle or the fraction of on-resonance spins.
-    Longer $T_2$ improves sensitivity when $T_2 \ll \tau_a$.
+Experimentally, the thesis applied this framework to proof-of-principle measurements with thermally polarized methanol.
+The December 23, 2022 Milky Way ALP search scanned a \SI{240}{\Hz} band centered at \SI{1.348570}{\MHz}, corresponding to ALP masses
+$\SI{5.577237}{\neV/c^2}\pm\SI{496}{\femto\eV/c^2}$.
+Three sequential scans were performed, with \SI{100}{\s} ALP-search acquisitions at each frequency step.
+The data were processed through sanity checks, Fourier transformation, lock-in response correction, Savitzky--Golay baseline removal, matched filtering with the expected ALP lineshape, and normalized-power-excess thresholding.
 
-    \item \textbf{Sensitivity scaling.}
-    The sensitivity to $|g_{\mathrm{aNN}}|$ scales as $T_{\mathrm{tot}}^{-1/4}$ with total measurement time in all regimes considered ($T \gg \tau_a, T_2^*, T_2$).
-    This slow scaling means improving $T_2$, $T_2^*$, or the detector noise $\sigma_0$ is more efficient than simply accumulating more measurement time.
+No statistically significant Milky Way ALP candidate survived the cross-scan consistency checks.
+The resulting \SI{95}{\percent} confidence-level constraint is
+\begin{equation}
+    |g_\mathrm{ap}| \lesssim \SI{3e-2}{\GeV^{-1}}
+\end{equation}
+over the scanned mass range.
+This narrow-band search serves as a commissioning measurement for CASPEr-Gradient-LF and, to the best of our knowledge, is the first dedicated laboratory search in this mass range.
 
-    \item \textbf{Optimal dwell-time allocation.}
-    For regimes~(1)--(3), the dwell time should be distributed uniformly across frequency steps ($T \propto \nu^0$).
-    For regime~(4) ($T_2^*=T_2 \ll \tau_a$), the optimal strategy is $T \propto \nu^{-1}$.
-
-    \item \textbf{Four regimes.}
-    The parameter space is divided into four regimes by the relative magnitudes of $T_2$, $T_2^*$, and $\tau_a$.
-    Each regime has a distinct signal amplitude and optimal dwell time, as summarized in \YZ{add table reference for the four regimes}.
-\end{itemize}
-
-These results were applied in a proof-of-principle ALP search with the CASPEr-Gradient-LF apparatus (adapted from Ref.\,\cite{Walter2024_LFthermal}), described in Sections~\ref{sec:results:MWALP20221223}--? of Chapter~\ref{chap:results}:
-
-\begin{itemize}
-    \item \textbf{First laboratory search in the target mass range.}
-    A thermally polarized methanol sample was used to search for the ALP-proton gradient coupling in the mass range $5.576741$--$5.577733\,\si{\neV}/c^2$ (Compton frequency \SI{240}{\Hz} around \SI{1.348570}{\MHz}).
-    This is the first dedicated laboratory search in this mass range.
-
-    \item \textbf{No dark-matter candidates found.}
-    Three sequential scans were performed.
-    No ALP signal candidates survived the cross-scan consistency check, yielding the constraint $|g_\mathrm{ap}| \lesssim \SI{3e-2}{\GeV^{-1}}$ at \SI{95}{\%} confidence level.
-
-    \item \textbf{Methodology validated.}
-    The data-analysis pipeline---Savitzky-Golay spike suppression, baseline removal, matched filtering, and NPE hypothesis test---was validated through synthetic-signal injection.
-    The overall analysis efficiency is $\eta_\mathrm{rec} = \SI{88.2\pm4.6}{\%}$.
-
-    \item \textbf{Sensitivity limited by thermal polarization.}
-    The proton thermal polarization at \SI{180}{\kelvin} and \SI{31.67}{\milli\tesla} is only $\approx\num{1.8e-7}$, which dominates the sensitivity budget.
-    The apparatus is otherwise ready for more sensitive searches with hyperpolarized samples.
-\end{itemize}
-
+The December 14, 2022 Earth-bound ALP measurement used the same apparatus and sample but emphasized longer dwell time.
+It scanned $\SI{1.348585}{\MHz}\pm\SI{24}{\Hz}$ with \SI{1}{\hour} no-pulse acquisitions at each of eight scan steps, targeting the narrower linewidth and longer coherence time expected for Earth-bound ALP states.
+The analysis framework for this data set was structured analogously to the Milky Way search, but with the important distinction that an unresolved one-bin statistic may replace the matched-filter convolution when the Earth-bound linewidth is smaller than the Fourier resolution.
+The final Earth-bound candidate counts and coupling limits remain to be completed once the candidate validation, signal normalization, and analysis efficiency are finalized.
 
 \section{Outlook}
 
-The framework developed here can be extended in several directions:
+The most direct path to improved sensitivity is higher nuclear-spin polarization.
+The thermally polarized methanol sample used here has a proton polarization of only approximately $\num{1.8e-7}$, which dominates the sensitivity budget.
+Hyperpolarized methanol, produced for example by brute-force prepolarization, parahydrogen-induced polarization, or dynamic nuclear polarization, could improve the projected coupling sensitivity to the \num{1e-6}--\num{1e-5}\,\si{\GeV^{-1}} range.
+Liquid \ch{^{129}Xe} polarized by spin-exchange optical pumping, combined with long $T_2$, offers a still more powerful route, with projected sensitivity at the \num{1e-12}--\num{1e-11}\,\si{\GeV^{-1}} level.
 
-\begin{itemize}
-    \item \textbf{Hyperpolarized samples.}
-    Hyperpolarized \ch{^{129}Xe} or methanol can increase the polarization by six or more orders of magnitude relative to thermal polarization, directly improving $M_0$ and hence the sensitivity prefactor $\eta$ in Equation~\eqref{eq:eta}.
-    The $T_1$ relaxation of hyperpolarized samples limits the measurement window and modifies the optimal dwell-time strategy.
-    Examples of projected sensitivities are given in Table~\ref{tab:parameters}.
+Further gains should come from longer coherence in the sample and a quieter, more homogeneous apparatus.
+Improving the bias-field homogeneity from the present \SI{10}{ppm} scale toward the projected \SI{2}{ppm} level would lengthen $T_2^*$ and increase the fraction of spins resonant with a narrow ALP signal.
+Lower electronic noise and larger effective sample volume would improve the apparatus prefactor in the sensitivity equations.
+These improvements are complementary: polarization increases the available magnetization, while long relaxation times increase the accumulated ALP-induced tipping angle.
 
-    \item \textbf{Seeded measurements.}
-    Applying a transverse oscillating field at the resonance frequency (``seeding'') to heterodyne the ALP signal was outside the scope of this work.
-    Seeding could improve sensitivity by coherently amplifying the ALP-induced tipping angle \cite{Aybas_2021_Quantum_sensitivity}.
+The Earth-bound ALP analysis opens a second direction for future work.
+Because bound states can have long coherence times and geometry-dependent gradients, the optimal statistic, signal normalization, and validation tests differ from the Milky Way halo case.
+Completing this analysis requires finalizing the state-population assumptions, the reference signal power, the recovery efficiency, and the candidate consistency criteria.
+The transient jumps seen in the one-hour records should also be catalogued systematically.
+They are likely instrumental in origin, but the same tools may become useful for searches for transient exotic signals such as ALP domain walls.
 
-    \item \textbf{Improved field homogeneity and longer $T_2$.}
-    Reaching the design inhomogeneity of \SI{2}{\ppm} over the sample volume would lengthen $T_2^*$ and increase the fraction of on-resonance spins.
-    Combined with samples having long intrinsic $T_2$, this improvement is beneficial in all four regimes.
-
-    \item \textbf{High-field extension.}
-    The CASPEr-Gradient-High-Field experiment will operate with a \SI{14.1}{\tesla} magnet, reaching Larmor frequencies up to \SI{600}{\MHz} and accessing higher ALP masses.
-    The scanning framework derived here applies directly to that regime.
-
-    \item \textbf{Low-frequency regime.}
-    Below about \SI{1}{\kHz}, $\tau_a$ can exceed \SI{1000}{\second}, and the assumption $T \gg \tau_a$ breaks down.
-    An adaptive scanning strategy that accounts for the long coherence time will be required for CASPEr-ZULF \cite{CASPEr_ZULF_2019} and related low-frequency experiments.
-\end{itemize}
+Finally, the numerical and statistical framework developed here can be extended beyond the specific methanol measurements.
+The \texttt{axionbloch} simulations provide a way to test Bloch dynamics for realistic relaxation, field inhomogeneity, hyperpolarized $T_1$ decay, and stochastic ALP fields.
+The Neyman--Pearson and optimal-filter treatment provides a general basis for future search statistics.
+Together with the broader frequency reach of CASPEr-Gradient-LF and the high-field apparatus, these tools prepare CASPEr for wider scans of ALP parameter space and for comparisons between different dark-matter models, spin species, and coupling structures.
