@@ -1,20 +1,20 @@
 \chapter{Introduction}\label{chap:introduction}
 
-The central observation motivating this thesis is that axionlike particles (ALPs) interact with nuclear spins as an effective oscillating pseudomagnetic field.
-Nuclear magnetic resonance (NMR) is among the most sensitive techniques for detecting weak oscillating fields, making it a natural tool for direct ALP dark-matter searches.
+% The central observation motivating this thesis is that axionlike particles (ALPs) interact with nuclear spins as an effective oscillating pseudomagnetic field.
+% Nuclear magnetic resonance (NMR) is among the most sensitive techniques for detecting weak oscillating fields, making it a natural tool for direct ALP dark-matter searches.
 
 Astrophysical evidence for dark matter comes from galaxy rotation curves, gravitational lensing, large-scale structure, and the cosmic microwave background: visible matter alone cannot account for the observed dynamics.
-Axions and axionlike particles are theoretically attractive candidates because they are weakly coupled, naturally light, and can generate coherent spin-precession signals accessible to precision NMR experiments.
+Axions and axionlike particles are theoretically attractive candidates because they are weakly coupled, naturally light, and can generate spin-precession signals accessible to NMR experiments.
 
 This chapter introduces the key ingredients of the search.
-Section~\ref{sec:NMR} reviews the NMR concepts most relevant to the experiment.
+Section~\ref{sec:intro:NMR} reviews the NMR concepts most relevant to the experiment.
 Section~\ref{sec:intro:DM} summarizes the dark-matter evidence.
 Section~\ref{sec:intro:axions} describes the axion and ALP framework, including the pseudomagnetic-field analogy that connects ALP physics to NMR.
-Section~\ref{sec:intro:CASPEr} outlines the CASPEr experimental program.
+Section~\ref{sec:intro:CASPEr} outlines the CASPEr project.
 The theory of signal estimation and scanning optimization is developed in Chapter~\ref{chap:theory}; the apparatus is described in Chapter~\ref{chap:experiment}; measurements and results appear in Chapter~\ref{chap:results}.
 
 % \section{Interaction with spins}
-\section{Nuclear magnetic resonance}\label{sec:NMR}
+\section{Nuclear magnetic resonance}\label{sec:intro:NMR}
 Nuclear magnetic resonance is a technique for studying nuclear spins in magnetic fields.
 In the presence of a leading field, spin states split by the Zeeman effect and a polarized sample acquires a net magnetization that precesses at the Larmor frequency.
 Because the resonant frequency is directly proportional to the magnetic field, NMR is a precision tool for field measurement.
@@ -22,7 +22,7 @@ Because the resonant frequency is directly proportional to the magnetic field, N
 The properties most relevant to this thesis are sensitivity to weak fields, applicability from zero to very high field, and a rich time-domain response.
 These allow axionlike spin precession to be treated as a small perturbation on a standard NMR experiment.
 
-\subsection{Zeeman splitting and polarization}\label{sec:NMR:Zeeman}
+\subsection{Zeeman splitting and polarization}\label{sec:intro:NMR:Zeeman}
 In a magnetic field $B_0$, a spin-$1/2$ nucleus splits into two energy levels separated by
 \begin{equation}
     \Delta E = \hbar \gamma B_0
@@ -60,7 +60,7 @@ In the weak-drive limit ($\Omega_a T \ll 1$), the magnetization accumulates a sm
 The ALP field is stochastic (Section~\ref{sec:theory:MWALP:stochasticity} and \ref{sec:theory:earthALP:coherence}), so $\xi$ and $M_1$ must be treated statistically; their r.m.s.\ values are derived in \YZ{add section reference for r.m.s. signal derivation}.
 
 
-\subsection{Spin-projection noise}\label{sec:NMR:SPN}
+\subsection{Spin-projection noise}\label{sec:intro:NMR:SPN}
 Even in the absence of a leading field, an ensemble of $N$ spins does not cancel perfectly.
 Statistical fluctuations leave a residual transverse moment of order $\sqrt{N}\,\mu$ (where $\mu = \hbar\gamma/2$ is the nuclear magneton), giving a magnetization noise floor
 \begin{equation}
@@ -70,7 +70,7 @@ Statistical fluctuations leave a residual transverse moment of order $\sqrt{N}\,
 This spin-projection noise (SPN) is the fundamental quantum limit for spin measurements \cite{Mitchell2020_MagSensors}.
 In the axion-search context it sets the minimum detectable transverse magnetization and is listed in Table~\ref{tab:parameters} for the experimental parameters of this work.
 
-\subsection{Relaxations}\label{sec:NMR:Relax}
+\subsection{Relaxations}\label{sec:intro:NMR:Relax}
 Relaxation describes the return of the spin ensemble toward equilibrium after it has been perturbed.
 Longitudinal relaxation $T_1$ controls how quickly the magnetization along the leading field rebuilds, while transverse relaxation determines how quickly coherent precession dephases.
 Two transverse relaxation times must be distinguished:
@@ -84,11 +84,11 @@ Because field inhomogeneity can be reduced by shimming (Chapter~\ref{chap:experi
 These time scales are central to the thesis because they set the window over which the ALP-induced signal can be observed coherently.
 Longer $T_2^*$ improves sensitivity in all four signal regimes derived in Chapter~\ref{chap:theory}.
 
-\subsubsection{$T_1$ relaxation}\label{sec:NMR:Relax:T1}
+\subsubsection{$T_1$ relaxation}\label{sec:intro:NMR:Relax:T1}
 Longitudinal relaxation governs how the population difference between spin states rebuilds after perturbation.
 In practice, a short $T_1$ is helpful for rapid repetition, while a long $T_1$ can preserve polarization for longer measurements.
 
-\subsubsection{$T_2^*$ relaxation}\label{sec:NMR:Relax:T2}
+\subsubsection{$T_2^*$ relaxation}\label{sec:intro:NMR:Relax:T2}
 Transverse relaxation combines microscopic spin-spin interactions ($T_2$) and macroscopic field inhomogeneity ($T_\delta$) as given in Equation~\eqref{eq:T2star}.
 It determines the free-decay\footnote{\YZ{remove induction and mention there might not be any induction}} signal and directly controls the linewidth in the frequency domain.
 For field searches, a narrower linewidth can improve sensitivity, but only if the coherence time remains long enough to integrate signal power efficiently.
@@ -114,15 +114,15 @@ Two pulse-based schemes are especially useful.
 Free induction decay measures the coherent response after a tipping pulse, while spin echo refocuses dephasing and gives access to the intrinsic transverse relaxation time.
 Both are diagnostic tools that help characterize the apparatus before an axion measurement.
 
-\subsubsection{Free decay}\label{sec:NMR:scheme:1Pulse}
+\subsubsection{Free decay}\label{sec:intro:NMR:scheme:1Pulse}
 After a $\pi/2$ pulse, the magnetization is tipped into the transverse plane and then decays with the dephasing time $T_2^*$.
 The resulting free-induction signal is the simplest way to measure resonance frequency and linewidth.
 
-\subsubsection{Spin echo}\label{sec:NMR:scheme:echo}
+\subsubsection{Spin echo}\label{sec:intro:NMR:scheme:echo}
 Spin echo uses a $\pi$ pulse to reverse dephasing from static field inhomogeneity.
 By recovering the signal at the echo time, it separates true spin-spin relaxation from broadening caused by imperfect field homogeneity, yielding a direct measurement of $T_2$.
 
-\subsubsection{CPMG sequence}\label{sec:NMR:scheme:CPMG}
+\subsubsection{CPMG sequence}\label{sec:intro:NMR:scheme:CPMG}
 The Carr--Purcell--Meiboom--Gill (CPMG) sequence extends the spin-echo scheme by applying a $\pi/2$ pulse followed by a train of $\pi$ refocusing pulses.
 Each refocusing pulse produces an echo, and the decay of the echo amplitudes gives a robust measurement of $T_2$.
 In this thesis, CPMG is used as a pulsed-NMR diagnostic to characterize the sample relaxation before and after long ALP-search measurements.

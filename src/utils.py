@@ -1,6 +1,7 @@
 import inspect  # for check()
 import re  # for check()
 from src.dependency import *
+
 # import numpy as np
 
 # import matplotlib.pyplot as plt
@@ -77,6 +78,7 @@ def check(arg):
     finally:
         del frame
         del callerframeinfo
+
 
 okabe_ito_colors = [
     "#000000",  # black
@@ -276,9 +278,98 @@ def axion_lineshape(v_0, v_lab, nu_a, nu, case="non-grad", alpha=0.0):
             * axion_lineshape(v_0, v_lab, nu_a, nu)[nu_a_index:-1]
         )
     else:  # adding this to try and get rid of an error message
-        return np.zeros(nu.shape)
+        return np.zeros(nunit.shape)
 
     full_lineshape[nu_a_index:-1] += ax_sq_lineshape
     # nu_a -= shift
     nu -= shift
     return full_lineshape
+
+
+def candidate_table_text_to_dicts(table_text: str) -> list[dict[str, object]]:
+    """Parse a LaTeX-like candidate table into structured dictionaries.
+
+    Expected input rows look like:
+
+        1 & 27, 5 & 1348668.58 & 5.57764506\\
+
+    The returned dictionaries use this schema:
+
+        {
+            "Index": int,
+            "Step indices": list[int],
+            "Frequency": Quantity in Hz,
+            "Mass": Quantity in neV / c^2,
+        }
+    """
+    rows = []
+    for raw_line in table_text.splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("\\hline"):
+            continue
+        if "&" not in line:
+            continue
+
+        line = line.rstrip("\\\\").strip()
+        parts = [part.strip() for part in line.split("&")]
+        if len(parts) != 4:
+            continue
+        if not parts[0].isdigit():
+            continue
+
+        step_indices = [
+            int(step.strip()) for step in parts[1].split(",") if step.strip()
+        ]
+        step_indices.sort()
+        rows.append(
+            {
+                "Index": int(parts[0]),
+                "Step indices": step_indices,
+                "Frequency": unit.Quantity(float(parts[2]), unit.Hz),
+                "Mass": (
+                    unit.Quantity(float(parts[3]), unit.neV / const.c**2)
+                    if parts[3] is not None and parts[3].strip()
+                    else None
+                ),
+            }
+        )
+    return rows
+
+
+def candidate_dicts_to_table_rows(
+    items: list[dict[str, object]],
+    frequency_format: str = ".2f",
+    mass_format: str = ".8f",
+) -> list[str]:
+    """Serialize candidate dictionaries back into LaTeX table rows."""
+    rows = []
+    for item in items:
+        step_indices = ", ".join(str(step) for step in sorted(item["Step indices"]))
+        frequency = unit.Quantity(item["Frequency"], unit.Hz).to_value(unit.Hz)
+        mass = item.get("Mass")
+        mass_text = ""
+        if mass is not None:
+            mass = unit.Quantity(mass, unit.neV / const.c**2).to_value(
+                unit.neV / const.c**2
+            )
+            mass_text = format(mass, mass_format)
+        rows.append(
+            f'{item["Index"]} & {step_indices} & {format(frequency, frequency_format)} & {mass_text}\\\\'
+        )
+    return rows
+
+
+def candidate_dicts_fill_mass(
+    items: list[dict[str, object]],
+) -> list[dict[str, object]]:
+    """Fill the Mass field from Frequency when Mass is missing or None."""
+    filled = []
+    for item in items:
+        new_item = dict(item)
+        if new_item.get("Mass") is None:
+            frequency = unit.Quantity(new_item["Frequency"], unit.Hz)
+            new_item["Mass"] = (const.h * frequency / const.c**2).to(
+                unit.neV / const.c**2
+            )
+        filled.append(new_item)
+    return filled

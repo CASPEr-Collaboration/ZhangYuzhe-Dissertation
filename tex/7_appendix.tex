@@ -121,7 +121,7 @@ These simulations validate the three-regime picture \YZ{add reference to the ana
 \end{figure}
 
 
-\chapter{Statistical hypothesis test for ALP detection}\label{app:hypothesis}
+\section{Statistical hypothesis test for ALP detection}\label{app:hypothesis}
 
 \section{The Neyman--Pearson Lemma}
 
@@ -206,10 +206,10 @@ If the noise variance is approximately constant across the linewidth, the weight
 Thus the optimal linear filter is matched to the expected ALP lineshape and reduces to a lineshape-weighted average when the local noise level is uniform.
 
 
-\chapter{Optimal dwell time in frequency scanning}\label{app:dwell_time}
-\begin{jointwork}
-    This appendix is adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.
-\end{jointwork}
+\section{Optimal dwell time in frequency scanning}\label{app:dwell_time}
+% \begin{jointwork}
+%     This appendix is adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.
+% \end{jointwork}
 
 This appendix derives the optimal dwell-time allocation scheme for a frequency scan, following the treatment of Ref.\,\cite{Yuzhe2023_FrequencyScanning}.
 The goal is to maximize the sensitive area in the $\log\nu$--$\log|g_{\mathrm{aNN}}|$ parameter space over a total measurement time $T_{\mathrm{tot}}$.
@@ -222,7 +222,7 @@ The dwell time is parameterized as
 \end{equation}
 where $\kappa$ is determined by $T_{\mathrm{tot}}$ and $n$, and the optimal value of $n$ is determined below.
 
-\section*{Regimes (1)--(3): step size proportional to $\nu$}
+\subsection{Regimes (1)--(3): step size proportional to $\nu$}
 
 In regimes~(1), (2), and~(3), the frequency-step size is proportional to $\hat{\nu}$ (either one ALP linewidth $\hat{\nu}/Q_a$ or one NMR linewidth $\delta_\nu\hat{\nu}$).
 The scan rate is
@@ -243,7 +243,7 @@ Integrating over $[0,\,T_{\mathrm{tot}}]$ and $[1,\,\hat{\nu}_{\mathrm{end}}]$ g
 \end{equation}
 At $n=0$: $\kappa|_{n=0} = T_{\mathrm{tot}}/[C\ln(\hat{\nu}_{\mathrm{end}})]$.
 
-\section*{Regime (4): step size independent of $\nu$}
+\subsection{Regime (4): step size independent of $\nu$}
 
 In regime~(4) ($T_2^*=T_2 \ll \tau_a$), the step size is one NMR linewidth $2/T_2$, independent of frequency.
 The scan rate is proportional to $\hat{\nu}^{-n}$, giving
@@ -253,7 +253,7 @@ The scan rate is proportional to $\hat{\nu}^{-n}$, giving
 \end{equation}
 At $n=-1$: $\kappa|_{n=-1} = 2T_{\mathrm{tot}}/[\ln(\hat{\nu}_{\mathrm{end}})\,T_2]$.
 
-\section*{Optimal exponent $n$}
+\subsection{Optimal exponent $n$}
 
 The sensitive area in log-log scale is
 \begin{equation}
@@ -269,3 +269,90 @@ Taking the derivative $A'(n)$ and setting it to zero shows:
 
 An intuitive restatement: when the sensitive bandwidth per step grows with frequency (regimes 1--3), the number of steps per unit $\log\nu$ is constant, and uniform dwell time is optimal.
 When the bandwidth is independent of frequency (regime 4), spending less time at higher frequencies---where the ALP coherence time is shorter and the signal integrates faster---maximizes the covered area.
+
+\section{ALP candidate lists}\label{app:candidates}
+
+
+The outliers appeared in at least two independent scan steps with consistent frequencies and coupling strengths are regarded as ALP candidates. 
+This appendix lists the ALP candidates identified in the Milky Way and Earth-halo searches.
+% The candidate tables are ordered as MW first and EH second, matching the discussion in Chapter~\ref{chap:results}.
+% \subsection{Milky Way ALP candidates}
+
+\begin{table}[htb]
+    \centering
+    \caption{Milky Way ALP candidates.}
+    \label{tab:mw_candidates}
+    \begin{tabular}{cccc}
+        \hline\hline
+        Index & Step index & Frequency (\unit{\Hz}) & Mass (\unit{\neV/c^2}) \\
+        \hline
+        1 & 5, 27 & 1348668.58 & 5.57764506\\
+        2 & 66, 86, 102 & 1348485.70 & 5.57688873\\
+        3 & 111, 117, 128 & 1348792.89 & 5.57815918\\
+        4 & 126, 140 & 1348872.72 & 5.57848936\\
+        5 & 7, 10 & 1348686.37 & 5.57771866\\
+        6 & 29, 95 & 1348769.02 & 5.57806045\\
+        \hline\hline
+    \end{tabular}
+\end{table}
+
+% \subsection{Earth-halo ALP candidates}
+
+\begin{longtable}{cccc}
+    \caption{Earth-halo ALP candidates.}
+    \label{tab:eh_candidates}\\
+    \hline\hline
+    Index & Step index & Frequency (\unit{\Hz}) & Mass (\unit{\neV/c^2}) \\
+    \hline
+    \endfirsthead
+
+    \hline\hline
+    Index & Step index & Frequency (\unit{\Hz}) & Mass (\unit{\neV/c^2}) \\
+    \hline
+    \endhead
+
+    \hline\hline
+    \endfoot
+
+    \hline\hline
+    \endlastfoot
+
+    1 & 7 & 1348672.0739 & 5.5776595297\\
+    2 & 2 & 1348646.2182 & 5.5775525993\\
+    3 & 7 & 1348646.2294 & 5.5775526455\\
+    4 & 7 & 1348646.2375 & 5.5775526792\\
+    5 & 7 & 1348646.2472 & 5.5775527189\\
+    6 & 3 & 1348514.7177 & 5.5770087568\\
+    7 & 4 & 1348505.8949 & 5.5769722685\\
+    8 & 5 & 1348505.3398 & 5.5769699730\\
+    9 & 5 & 1348505.3520 & 5.5769700234\\
+    10 & 5 & 1348505.8094 & 5.5769719150\\
+    11 & 5 & 1348505.8120 & 5.5769719257\\
+    12 & 5 & 1348505.8628 & 5.5769721358\\
+    13 & 5 & 1348505.9028 & 5.5769723014\\
+    14 & 5 & 1348505.9126 & 5.5769723419\\
+    15 & 5 & 1348505.9161 & 5.5769723564\\
+    16 & 5 & 1348595.9240 & 5.5773445990\\
+    17 & 5 & 1348595.9522 & 5.5773447157\\
+    18 & 5 & 1348595.9537 & 5.5773447217\\
+    19 & 5 & 1348595.9770 & 5.5773448182\\
+    20 & 5 & 1348595.9908 & 5.5773448753\\
+    21 & 5 & 1348596.0179 & 5.5773449876\\
+    22 & 5 & 1348596.0282 & 5.5773450299\\
+    23 & 5 & 1348646.2350 & 5.5775526685\\
+    24 & 5 & 1348646.2589 & 5.5775527675\\
+    25 & 6 & 1348505.8143 & 5.5769719353\\
+    26 & 6 & 1348505.8432 & 5.5769720548\\
+    27 & 6 & 1348505.8699 & 5.5769721653\\
+    28 & 6 & 1348505.8731 & 5.5769721784\\
+    29 & 6 & 1348505.8740 & 5.5769721821\\
+    30 & 6 & 1348505.8809 & 5.5769722106\\
+    31 & 6 & 1348505.8885 & 5.5769722423\\
+    32 & 6 & 1348505.8896 & 5.5769722469\\
+    33 & 6 & 1348505.8963 & 5.5769722745\\
+    34 & 6 & 1348595.9210 & 5.5773445867\\
+    35 & 6 & 1348595.9736 & 5.5773448042\\
+    36 & 6 & 1348596.0053 & 5.5773449353\\
+    37 & 6 & 1348596.0214 & 5.5773450017\\
+    38 & 6 & 1348596.0231 & 5.5773450090\\
+\end{longtable}
