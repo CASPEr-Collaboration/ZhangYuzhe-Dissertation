@@ -13,17 +13,17 @@ Section~\ref{sec:intro:axions} describes the axion and ALP framework, including 
 Section~\ref{sec:intro:CASPEr} outlines the CASPEr project.
 The theory of signal estimation and scanning optimization is developed in Chapter~\ref{chap:theory}; the apparatus is described in Chapter~\ref{chap:experiment}; measurements and results appear in Chapter~\ref{chap:results}.
 
-% \section{Interaction with spins}
 \section{Nuclear magnetic resonance}\label{sec:intro:NMR}
 Nuclear magnetic resonance is a technique for studying nuclear spins in magnetic fields.
-In the presence of a leading field, spin states split by the Zeeman effect and a polarized sample acquires a net magnetization that precesses at the Larmor frequency.
-Because the resonant frequency is directly proportional to the magnetic field, NMR is a precision tool for field measurement.
+In the presence of a bias magnetic field, spin states split by the Zeeman effect, resulting in nuclear polarization. 
+A polarized sample acquires a non-zero net magnetization that precesses at the Larmor frequency.
+Because the Larmor frequency is proportional to the magnetic field, NMR can be a tool for magnetic field measurement.
 
-The properties most relevant to this thesis are sensitivity to weak fields, applicability from zero to very high field, and a rich time-domain response.
-These allow axionlike spin precession to be treated as a small perturbation on a standard NMR experiment.
+% The properties most relevant to this thesis are sensitivity to weak fields, applicability from zero to very high field, and a rich time-domain response.
+% These allow axionlike spin precession to be treated as a small perturbation on a standard NMR experiment.
 
 \subsection{Zeeman splitting and polarization}\label{sec:intro:NMR:Zeeman}
-In a magnetic field $B_0$, a spin-$1/2$ nucleus splits into two energy levels separated by
+In a bias magnetic field $B_0$, a spin-$1/2$ nucleus splits into two energy levels separated by
 \begin{equation}
     \Delta E = \hbar \gamma B_0
     \,,\label{eq:Zeeman}
@@ -34,7 +34,8 @@ This energy difference sets the Larmor (resonance) frequency
     \nu_L = \frac{\gamma B_0}{2\pi}
     \,.\label{eq:Larmor}
 \end{equation}
-For protons, $\gamma/(2\pi) = \SI{42.577}{\MHz/\tesla}$, so a bias field of \SI{31.67}{\milli\tesla} (as used in this work) gives $\nu_L \approx \SI{1.348}{\MHz}$.
+% 42.577478461 MHz / T +/- 0.000000018 MHz / T
+For protons, $\gamma/(2\pi) = \SI{42.577478461(18)}{\MHz/\tesla}$\cite{NIST_CODATA2022}, so a bias field of \SI{31.67}{\milli\tesla},as used in this work, gives $\nu_L \approx \SI{1.348}{\MHz}$.
 
 At thermal equilibrium, the spin populations obey the Boltzmann distribution.
 In the high-temperature limit $\Delta E \ll k_B T$ (satisfied for all conditions in this thesis), the fractional spin polarization is
@@ -42,37 +43,45 @@ In the high-temperature limit $\Delta E \ll k_B T$ (satisfied for all conditions
     p \approx \frac{\hbar \gamma B_0}{2 k_B T}
     \,.\label{eq:thermalp}
 \end{equation}
-At $B_0 = \SI{31.67}{\milli\tesla}$ and $T = \SI{180}{\kelvin}$, the proton thermal polarization is only $p \approx \num{1.8e-7}$.
-Hyperpolarization techniques---such as spin-exchange optical pumping or parahydrogen-induced polarization---can boost $p$ by several orders of magnitude, which is the main route to improved sensitivity identified in this thesis.
-
-\subsection{Bloch equations}\label{sec:theory:bloch}
-The evolution of the nuclear spin magnetization $\mathbf{M}$ in the combined bias and pseudomagnetic fields is governed by the Bloch equations \cite{Abragam1961_NuclearMagnetism}:
-\begin{align}
-    \frac{dM_x}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_x - \frac{M_x}{T_2}\,,\label{eq:bloch_x}\\
-    \frac{dM_y}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_y - \frac{M_y}{T_2}\,,\label{eq:bloch_y}\\
-    \frac{dM_z}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_z - \frac{M_z-M_0}{T_1}\,,\label{eq:bloch_z}
-\end{align}
-where $\mathbf{B}_\mathrm{eff} = \mathbf{B}_0 + \mathbf{B}_a(t)$ is the total effective field, $M_0$ is the equilibrium magnetization, and $T_1$, $T_2$ are the longitudinal and transverse relaxation times.
-Because $|\mathbf{B}_0| \gg |\mathbf{B}_a|$ by many orders of magnitude, the equations are most efficiently solved in the rotating coordinate frame (RCF), which removes the fast Larmor precession at $\nu_L$ and exposes the much slower ALP-induced tipping dynamics.
-
-In the RCF, when the Larmor frequency is tuned to the ALP Compton frequency ($\nu_L = \nu_a$), the transverse component of $\mathbf{B}_a$ acts as a near-static drive.
-In the weak-drive limit ($\Omega_a T \ll 1$), the magnetization accumulates a small tipping angle $\xi$ and the transverse magnetization is $M_1 \approx M_0\xi$.
-The ALP field is stochastic (Section~\ref{sec:theory:MWALP:stochasticity} and \ref{sec:theory:earthALP:coherence}), so $\xi$ and $M_1$ must be treated statistically; their r.m.s.\ values are derived in \YZ{add section reference for r.m.s. signal derivation}.
+At $B_0 = \SI{1}{\tesla}$ and $T = \SI{300}{\kelvin}$, the proton thermal polarization is only $p \approx \num{3e-6}$.
+Hyperpolarization techniques---such as spin-exchange optical pumping (SEOP) or parahydrogen-induced polarization (PHIP)---can boost $p$ by several orders of magnitud\,\cite{Eills2023_Spin_Hyperpolarization}. 
+% , which is the main route to improved sensitivity identified in this thesis.
 
 
 \subsection{Spin-projection noise}\label{sec:intro:NMR:SPN}
-Even in the absence of a leading field, an ensemble of $N$ spins does not cancel perfectly.
+Even in the absence of a bias magnetic field, an ensemble of $N$ spins does not cancel perfectly to give a zero net magnetization. 
 Statistical fluctuations leave a residual transverse moment of order $\sqrt{N}\,\mu$ (where $\mu = \hbar\gamma/2$ is the nuclear magneton), giving a magnetization noise floor
 \begin{equation}
     M_\mathrm{SPN} \sim \frac{\sqrt{N}\,\mu}{V}
     \,.\label{eq:SPN}
 \end{equation}
-This spin-projection noise (SPN) is the fundamental quantum limit for spin measurements \cite{Mitchell2020_MagSensors}.
-In the axion-search context it sets the minimum detectable transverse magnetization and is listed in Table~\ref{tab:parameters} for the experimental parameters of this work.
+This spin-projection noise (SPN) is the fundamental quantum limit for spin measurements\,\cite{Bloch1946_NuclearInduction, Mitchell2020_MagSensors, Aybas_2021_Quantum_sensitivity}.
+% In the ALP-search context it sets the minimum detectable magnetization\,\cite{Bloch1946_NuclearInduction, Mitchell2020_MagSensors, Aybas_2021_Quantum_sensitivity}. 
+%  and is listed in Table~\ref{tab:parameters} for the experimental parameters of this work.
+% how small this SPN can be?
+For a sample of \SI{1}{\centi\meter\cubed} of liquid water, there are approximately $N \sim \num{1e23}$ protons.
+SPN gives a magnetization noise floor of $\sim \SI{4e-9}{\ampere/\meter}$. 
+In comparison to the thermal-equilibrium magnetization of \SI{1e-8}{\ampere/\meter} at \SI{1}{\tesla} and \SI{300}{\kelvin}, the SPN is one order of magnitude less significant.
+In the scenario of less nuclear polarization or smaller sample volume, the SPN can become a limiting factor for the sensitivity of the experiment.
 
-\subsection{Relaxations}\label{sec:intro:NMR:Relax}
+\subsection{Bloch equations}\label{sec:intro:bloch_eq}
+The evolution of the nuclear spin magnetization $\mathbf{M}$ in the magnetic fields is governed by the Bloch equations\,\cite{Abragam1961_NuclearMagnetism}:
+\begin{align}
+    \frac{dM_x}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_x - \frac{M_x}{T_2}\,,\label{eq:bloch_x}\\
+    \frac{dM_y}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_y - \frac{M_y}{T_2}\,,\label{eq:bloch_y}\\
+    \frac{dM_z}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_z - \frac{M_z-M_\mathrm{eqb}}{T_1}\,,\label{eq:bloch_z}
+\end{align}
+where $\mathbf{B}_\mathrm{eff}$ is the total effective field, $M_\mathrm{eqb}$ is the equilibrium magnetization, and $T_1$, $T_2$ are the longitudinal and transverse relaxation times.
+In most NMR experiments, the bias field $\mathbf{B}_0$ is much larger than any other applied magnetic field. 
+Therefore, the equations are most efficiently solved in the rotating coordinate frame (RCF), which removes the fast Larmor precession at $\nu_L$ and exposes the much slower  dynamics induced by the additional fields.
+
+% In the RCF, when the Larmor frequency is tuned to the ALP Compton frequency ($\nu_L = \nu_a$), the transverse component of $\mathbf{B}_a$ acts as a near-static drive.
+% In the weak-drive limit ($\Omega_a T \ll 1$), the magnetization accumulates a small tipping angle $\xi$ and the transverse magnetization is $M_1 \approx M_\mathrm{eqb}\xi$.
+% The ALP field is stochastic (Section~\ref{sec:theory:MWALP:stochasticity} and \ref{sec:theory:earthALP:coherence}), so $\xi$ and $M_1$ must be treated statistically; their r.m.s.\ values are derived in \YZ{add section reference for r.m.s. signal derivation}.
+
+\subsection{Relaxations}\label{sec:intro:NMR:relaxation}
 Relaxation describes the return of the spin ensemble toward equilibrium after it has been perturbed.
-Longitudinal relaxation $T_1$ controls how quickly the magnetization along the leading field rebuilds, while transverse relaxation determines how quickly coherent precession dephases.
+Longitudinal relaxation $T_1$ controls how quickly the magnetization along the bias magnetic field rebuilds, while transverse relaxation determines how quickly coherent precession dephases.
 Two transverse relaxation times must be distinguished:
 \begin{equation}
     \frac{1}{T_2^*} = \frac{1}{T_2} + \frac{1}{T_\delta}
@@ -84,11 +93,11 @@ Because field inhomogeneity can be reduced by shimming (Chapter~\ref{chap:experi
 These time scales are central to the thesis because they set the window over which the ALP-induced signal can be observed coherently.
 Longer $T_2^*$ improves sensitivity in all four signal regimes derived in Chapter~\ref{chap:theory}.
 
-\subsubsection{$T_1$ relaxation}\label{sec:intro:NMR:Relax:T1}
+\subsubsection{$T_1$ relaxation}\label{sec:intro:NMR:relaxation:T1}
 Longitudinal relaxation governs how the population difference between spin states rebuilds after perturbation.
 In practice, a short $T_1$ is helpful for rapid repetition, while a long $T_1$ can preserve polarization for longer measurements.
 
-\subsubsection{$T_2^*$ relaxation}\label{sec:intro:NMR:Relax:T2}
+\subsubsection{$T_2^*$ relaxation}\label{sec:intro:NMR:relaxation:T2}
 Transverse relaxation combines microscopic spin-spin interactions ($T_2$) and macroscopic field inhomogeneity ($T_\delta$) as given in Equation~\eqref{eq:T2star}.
 It determines the free-decay\footnote{\YZ{remove induction and mention there might not be any induction}} signal and directly controls the linewidth in the frequency domain.
 For field searches, a narrower linewidth can improve sensitivity, but only if the coherence time remains long enough to integrate signal power efficiently.
@@ -138,31 +147,31 @@ Its success establishes a powerful baseline, but it does not identify the physic
 \subsection{Astronomical evidence}
 
 The concept of dark matter arose from astronomical observations that could not be explained by visible matter and standard gravity alone.
-Galaxy rotation curves provide a classic example: orbital speeds remain approximately constant far beyond the bright stellar disk, rather than decreasing as expected if most of the mass followed the visible matter \cite{rubin1970rotation,doi:10.1146/annurev.astro.39.1.137}.
+Galaxy rotation curves provide a classic example: orbital speeds remain approximately constant far beyond the bright stellar disk, rather than decreasing as expected if most of the mass followed the visible matter\,\cite{rubin1970rotation,doi:10.1146/annurev.astro.39.1.137}.
 This behavior indicates that galaxies are embedded in extended, non-luminous mass halos.
 
 Evidence at larger scales comes from gravitational lensing and colliding galaxy clusters.
-In the Bullet Cluster, the dominant gravitational mass inferred from lensing is spatially separated from the hot X-ray-emitting gas that contains most of the baryonic mass \cite{Clowe_2006}.
+In the Bullet Cluster, the dominant gravitational mass inferred from lensing is spatially separated from the hot X-ray-emitting gas that contains most of the baryonic mass\,\cite{Clowe_2006}.
 This separation is naturally explained if most of the mass is effectively collisionless during the cluster collision.
 Independently, the cosmic microwave background, big-bang nucleosynthesis, and the growth of large-scale structure require substantially more gravitating matter than can be supplied by baryons.
-Cosmological fits assign roughly \SI{5}{\%} of the cosmic energy budget to baryonic matter and about \SI{27}{\%} to dark matter \cite{ade2016planck}.
+Cosmological fits assign roughly \SI{5}{\%} of the cosmic energy budget to baryonic matter and about \SI{27}{\%} to dark matter\,\cite{ade2016planck}.
 
 \subsection{Recent developments}
 
 Despite the large-scale success of $\Lambda$CDM, its simplest collisionless cold-dark-matter realization faces open questions on smaller scales.
 Simulations and observations can differ in the predicted abundance of dwarf satellites and in the inner density profiles and diversity of low-mass halos.
-These tensions may reflect incompletely modeled baryonic processes, or they may indicate that the dark-matter sector is warmer, wave-like, or self-interacting rather than perfectly cold and collisionless \cite{Vegetti2026_ChallengeCDMWDM}.
+These tensions may reflect incompletely modeled baryonic processes, or they may indicate that the dark-matter sector is warmer, wave-like, or self-interacting rather than perfectly cold and collisionless\,\cite{Vegetti2026_ChallengeCDMWDM}.
 
 Recent observations increasingly test these possibilities.
-Work involving Roberto Abraham and collaborators identified the ultra-diffuse galaxy NGC~1052--DF2 as having an unusually small dynamical dark-matter content \cite{vanDokkum2018_DarkMatterDeficient}.
-Follow-up work proposed that this galaxy and related objects form a trail produced by a high-speed ``bullet-dwarf'' collision that separated stars and gas from their original dark-matter halos \cite{vanDokkum2022_BulletDwarfTrail}.
+Work involving Roberto Abraham and collaborators identified the ultra-diffuse galaxy NGC~1052--DF2 as having an unusually small dynamical dark-matter content\,\cite{vanDokkum2018_DarkMatterDeficient}.
+Follow-up work proposed that this galaxy and related objects form a trail produced by a high-speed ``bullet-dwarf'' collision that separated stars and gas from their original dark-matter halos\,\cite{vanDokkum2022_BulletDwarfTrail}.
 Such systems probe the normally tight connection between galaxies and their halos and may help clarify how baryonic and dark matter can become spatially separated.
 They challenge simple galaxy--halo relations, although collision-driven formation scenarios may accommodate them within the broader $\Lambda$CDM framework.
 
 The central structures of halos provide a more direct test of the collisionless-CDM assumption.
 In self-interacting dark matter (SIDM) models, scattering between dark-matter particles redistributes energy and changes the central density profiles of halos.
 A recent strong-lensing analysis led by Simona Vegetti found an unusually compact perturber whose inferred structure, if dark-matter dominated, is difficult to reconcile with conventional cold or warm dark matter.
-One possible interpretation is an SIDM halo that underwent gravothermal core collapse and formed a central black hole \cite{Vegetti2026_ChallengeCDMWDM}.
+One possible interpretation is an SIDM halo that underwent gravothermal core collapse and formed a central black hole\,\cite{Vegetti2026_ChallengeCDMWDM}.
 This interpretation is not yet unique, but it illustrates how high-resolution lensing can distinguish between dark-matter microphysics.
 
 \subsection{Candidate landscape}
@@ -170,24 +179,24 @@ This interpretation is not yet unique, but it illustrates how high-resolution le
 The observations establish the gravitational role of dark matter but do not identify its microscopic nature.
 In this sense, $\Lambda$CDM specifies the required large-scale behavior of the dominant matter component rather than a unique particle.
 Proposed realizations cover an enormous range of mass and behavior, and several alternatives modify the small-scale predictions of minimal cold dark matter.
-At the low-mass end, fuzzy dark matter consists of bosons with masses around \SI{e-22}{\eV}; their kiloparsec-scale de~Broglie wavelengths make wave effects relevant to galactic structure \cite{Lam2017_PhysRevD}.
+At the low-mass end, fuzzy dark matter consists of bosons with masses around \SI{e-22}{\eV}; their kiloparsec-scale de~Broglie wavelengths make wave effects relevant to galactic structure\,\cite{Lam2017_PhysRevD}.
 Other particle candidates include sterile neutrinos, warm dark matter, weakly interacting massive particles, and self-interacting particles.
-At the opposite, macroscopic end, primordial black holes formed in the early universe could contribute some or all of the dark matter within the remaining observationally allowed mass windows \cite{Carr2020_PBH_DarkMatter}.
-Laboratory searches consequently range from particle-collision and scattering experiments to gravitational surveys and precision measurements \cite{Kimball2023_search}.
+At the opposite, macroscopic end, primordial black holes formed in the early universe could contribute some or all of the dark matter within the remaining observationally allowed mass windows\,\cite{Carr2020_PBH_DarkMatter}.
+Laboratory searches consequently range from particle-collision and scattering experiments to gravitational surveys and precision measurements\,\cite{Kimball2023_search}.
 
 Axions and axionlike particles occupy a particularly interesting part of this landscape.
 Their low masses permit a coherent, wave-like dark-matter field, while their weak non-gravitational couplings make controlled laboratory searches possible.
 The following section introduces their origin, field properties, and coupling to nuclear spins.
 
 \section{Axions and axionlike particles}\label{sec:intro:axions}
-The QCD axion was originally proposed in 1977 by Peccei and Quinn as a solution to the strong $CP$ problem \cite{PecceiQuinn1977_CPConservation_PRL,PecceiQuinn1977_ConstraintsCP_PRD}.
+The QCD axion was originally proposed in 1977 by Peccei and Quinn as a solution to the strong $CP$ problem\,\cite{PecceiQuinn1977_CPConservation_PRL,PecceiQuinn1977_ConstraintsCP_PRD}.
 A global symmetry breaking at the scale $f_a$ generates a pseudo-Goldstone boson whose potential is minimized at the $CP$-conserving point, naturally explaining why the strong interaction conserves $CP$.
 The axion acquires a mass $m_a \sim \Lambda_\mathrm{QCD}^2/f_a$ from QCD dynamics.
 
 \subsection{QCD axion}
 The QCD axion is a hypothetical pseudoscalar particle that appears when a global symmetry is introduced to explain why strong interactions conserve $CP$ so well.
 Its properties are tightly linked to the QCD scale, which makes it a special case rather than the most general one.
-Cosmological production via the misalignment mechanism constrains $f_a \lesssim 10^{12}$ GeV (axion mass $\gtrsim \SI{6}{\micro\electronvolt}$) if the axion is to constitute all dark matter \cite{diCortona2016_QCDAxionPrecisely}.
+Cosmological production via the misalignment mechanism constrains $f_a \lesssim 10^{12}$ GeV (axion mass $\gtrsim \SI{6}{\micro\electronvolt}$) if the axion is to constitute all dark matter\,\cite{diCortona2016_QCDAxionPrecisely}.
 \YZ{check this paragraph by reading literatures. }
 
 \subsection{Axionlike particles}\label{sec:intro:ALP}
@@ -295,7 +304,7 @@ The stochasticity is characterized by the coherence time.
 Chapter~\ref{chap:theory} develops this behavior for thermalized Milky Way halo Earth-bound halo.
 
 \subsection{Non-gravitational interactions}
-An oscillating ALP field can produce three spin-sensitive non-gravitational interactions: its coupling to gluons induces oscillating $CP$-odd nuclear moments such as a nuclear electric dipole moment, while its derivative couplings to nucleons and electrons act as oscillating axial fields on nuclear and electron spins, respectively \cite{GrahamNewobservables}.
+An oscillating ALP field can produce three spin-sensitive non-gravitational interactions: its coupling to gluons induces oscillating $CP$-odd nuclear moments such as a nuclear electric dipole moment, while its derivative couplings to nucleons and electrons act as oscillating axial fields on nuclear and electron spins, respectively\,\cite{GrahamNewobservables}.
 All three effects oscillate at a frequency set primarily by the ALP mass and can therefore be sought with resonant precision measurements.
 
 This thesis focuses on the derivative coupling to nucleons, commonly called the gradient or ``axion-wind'' coupling.
@@ -306,7 +315,7 @@ The nucleon Hamiltonian in the presence of an ALP field background can be writte
 \end{equation}
 where $g_{\mathrm{aNN}}$ is the coupling strength in $\SI{}{\GeV^{-1}}$ and $\mathbf{I}$ is the nuclear spin operator.
 In this form of Hamiltonian, $g_{\mathrm{aNN}} a_0$ becomes dimensionless.
-The amplitude $a_0$ is fixed by the local dark-matter density through Equation~\eqref{eq:a0_rhoDM} and has dimensions of energy \cite{BERGSTROM1998137,Jungman1992SupersymmetricDM,doi:10.1146/annurev.astro.39.1.137}.
+The amplitude $a_0$ is fixed by the local dark-matter density through Equation~\eqref{eq:a0_rhoDM} and has dimensions of energy\,\cite{BERGSTROM1998137,Jungman1992SupersymmetricDM,doi:10.1146/annurev.astro.39.1.137}.
 
 
 In some papers, nuclear spin operator $\mathbf{I}$ is substituted with $\hbar {\boldsymbol\sigma_n}$, where $ {\boldsymbol\sigma_n}$ is dimensionless nuclear spin operator.
@@ -327,7 +336,7 @@ This gradient coupling oscillates at the ALP Compton frequency and can drive res
 The search for this coupling is the subject of Chapter~\ref{chap:results}.
 \YZ{add some examples to show equivalent Ba field magnitude?}
 
-The r.m.s.\ Rabi frequency of the pseudomagnetic field can be found by the Hamiltonian in Equation~\eqref{eq:HaNN_vel} \cite{Centers2021Stochastic,Yuzhe2023_FrequencyScanning}
+The r.m.s.\ Rabi frequency of the pseudomagnetic field can be found by the Hamiltonian in Equation~\eqref{eq:HaNN_vel}\,\cite{Centers2021Stochastic,Yuzhe2023_FrequencyScanning}
 % \begin{equation}
 %     \Omega_a = \dfrac{1}{2}\, g_{\mathrm{aNN}} \sqrt{2\hbar c\, \rho_{DM}}\, v_{\bot}
 %     \,,\label{eq:Omega_a}
@@ -356,9 +365,9 @@ Mention the weak-drive limit.}
 
 \section{CASPEr project}\label{sec:intro:CASPEr}
 
-\YZ{first mention a lot of magnetic resonance searches (haloscope). \cite{Kimball2023_search}}
+\YZ{first mention a lot of magnetic resonance searches (haloscope).\,\cite{Kimball2023_search}}
 
-CASPEr (Cosmic Axion Spin Precession Experiment) is a family of experiments proposed in 2014 \cite{CASPErProposal2014} that use nuclear spins to search for axion-induced effects.
+CASPEr (Cosmic Axion Spin Precession Experiment) is a family of experiments proposed in 2014\,\cite{CASPErProposal2014} that use nuclear spins to search for axion-induced effects.
 The idea is to translate the tiny axion coupling in Equation~\eqref{eq:Bpseudo} into a measurable spin precession in a carefully controlled NMR setup.
 
 The project has several branches, including electric and gradient-based searches, and both low-field and high-field implementations.
@@ -379,7 +388,7 @@ This moment generates an effective oscillating field along the nuclear spin axis
 \subsection{CASPEr comagnetometers}
 Comagnetometer configurations use two nuclear spin species in the same volume to suppress common-mode noise from magnetic-field fluctuations.
 The differential signal between the two species enhances sensitivity to a pseudomagnetic ALP field while rejecting electromagnetic backgrounds.
-Early results were obtained with a liquid-state comagnetometer \cite{PhysRevLett.122.191302} and an ultralow-field configuration \cite{CASPEr_ZULF_2019}.
+Early results were obtained with a liquid-state comagnetometer\,\cite{PhysRevLett.122.191302} and an ultralow-field configuration\,\cite{CASPEr_ZULF_2019}.
 
 \subsection{CASPEr-Gradient}\label{sec:intro:CASPEr:gradient}
 CASPEr-Gradient searches for the ALP-fermion gradient coupling described by Equation~\eqref{eq:HaNN}.
