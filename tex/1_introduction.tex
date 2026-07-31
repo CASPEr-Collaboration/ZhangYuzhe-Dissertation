@@ -35,7 +35,15 @@ This energy difference sets the Larmor (resonance) frequency
     \,.\label{eq:Larmor}
 \end{equation}
 % 42.577478461 MHz / T +/- 0.000000018 MHz / T
+The splitting is illustrated in Figure~\ref{fig:Zeeman}.
 For protons, $\gamma/(2\pi) = \SI{42.577478461(18)}{\MHz/\tesla}$\cite{NIST_CODATA2022}, so a bias field of \SI{31.67}{\milli\tesla},as used in this work, gives $\nu_L \approx \SI{1.348}{\MHz}$.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.5\linewidth]{figures/Zeeman_effect.png}
+    \caption{Zeeman splitting of a spin-$1/2$ nucleus in a magnetic field $B$. The energy difference $\Delta E$ between the two spin states is proportional to $B$.\YZ{TODO edit equation in the figure. }}
+    \label{fig:Zeeman_effect}
+\end{figure}
 
 At thermal equilibrium, the spin populations obey the Boltzmann distribution.
 In the high-temperature limit $\Delta E \ll k_B T$ (satisfied for all conditions in this thesis), the fractional spin polarization is
@@ -43,7 +51,7 @@ In the high-temperature limit $\Delta E \ll k_B T$ (satisfied for all conditions
     p \approx \frac{\hbar \gamma B_0}{2 k_B T}
     \,.\label{eq:thermalp}
 \end{equation}
-At $B_0 = \SI{1}{\tesla}$ and $T = \SI{300}{\kelvin}$, the proton thermal polarization is only $p \approx \num{3e-6}$.
+At $B_0 = \SI{1}{\tesla}$ and $T = \SI{300}{\kelvin}$, the proton thermal polarization is only $p \approx \num{3e-6}$\,\cite{Zhang2026_Dissertation_ipynb_1_Introduction}.
 Hyperpolarization techniques---such as spin-exchange optical pumping (SEOP) or parahydrogen-induced polarization (PHIP)---can boost $p$ by several orders of magnitud\,\cite{Eills2023_Spin_Hyperpolarization}. 
 % , which is the main route to improved sensitivity identified in this thesis.
 
@@ -59,9 +67,9 @@ This spin-projection noise (SPN) is the fundamental quantum limit for spin measu
 % In the ALP-search context it sets the minimum detectable magnetization\,\cite{Bloch1946_NuclearInduction, Mitchell2020_MagSensors, Aybas_2021_Quantum_sensitivity}. 
 %  and is listed in Table~\ref{tab:parameters} for the experimental parameters of this work.
 % how small this SPN can be?
-For a sample of \SI{1}{\centi\meter\cubed} of liquid water, there are approximately $N \sim \num{1e23}$ protons.
+For a sample of \SI{1}{\centi\meter\cubed} of liquid water, there are approximately $N \sim \num{1e23}$ protons. 
 SPN gives a magnetization noise floor of $\sim \SI{4e-9}{\ampere/\meter}$. 
-In comparison to the thermal-equilibrium magnetization of \SI{1e-8}{\ampere/\meter} at \SI{1}{\tesla} and \SI{300}{\kelvin}, the SPN is one order of magnitude less significant.
+In comparison to the thermal-equilibrium magnetization of \SI{1e-8}{\ampere/\meter} at \SI{1}{\tesla} and \SI{300}{\kelvin}, the SPN is one order of magnitude less significant\,\cite{Zhang2026_Dissertation_ipynb_1_Introduction}.
 In the scenario of less nuclear polarization or smaller sample volume, the SPN can become a limiting factor for the sensitivity of the experiment.
 
 \subsection{Bloch equations}\label{sec:intro:bloch_eq}
@@ -73,68 +81,137 @@ The evolution of the nuclear spin magnetization $\mathbf{M}$ in the magnetic fie
 \end{align}
 where $\mathbf{B}_\mathrm{eff}$ is the total effective field, $M_\mathrm{eqb}$ is the equilibrium magnetization, and $T_1$, $T_2$ are the longitudinal and transverse relaxation times.
 In most NMR experiments, the bias field $\mathbf{B}_0$ is much larger than any other applied magnetic field. 
-Therefore, the equations are most efficiently solved in the rotating coordinate frame (RCF), which removes the fast Larmor precession at $\nu_L$ and exposes the much slower  dynamics induced by the additional fields.
+Therefore, the equations are most efficiently solved in the rotating coordinate frame (RCF), which removes the fast Larmor precession at $\nu_L$ in the laboratory frame and exposes the much slower dynamics induced by the additional fields.
 
 % In the RCF, when the Larmor frequency is tuned to the ALP Compton frequency ($\nu_L = \nu_a$), the transverse component of $\mathbf{B}_a$ acts as a near-static drive.
 % In the weak-drive limit ($\Omega_a T \ll 1$), the magnetization accumulates a small tipping angle $\xi$ and the transverse magnetization is $M_1 \approx M_\mathrm{eqb}\xi$.
 % The ALP field is stochastic (Section~\ref{sec:theory:MWALP:stochasticity} and \ref{sec:theory:earthALP:coherence}), so $\xi$ and $M_1$ must be treated statistically; their r.m.s.\ values are derived in \YZ{add section reference for r.m.s. signal derivation}.
 
 \subsection{Relaxations}\label{sec:intro:NMR:relaxation}
+
 Relaxation describes the return of the spin ensemble toward equilibrium after it has been perturbed.
-Longitudinal relaxation $T_1$ controls how quickly the magnetization along the bias magnetic field rebuilds, while transverse relaxation determines how quickly coherent precession dephases.
-Two transverse relaxation times must be distinguished:
+% relaxation time charaterizes how quickly the magnetization returns to equilibrium. 
+In most of the NMR experiments, a bias magnetic field is applied, which defines the longitudinal direction, and the transverse plane is perpendicular to it\footnote{There are NMR experiments where a zero to ultra-low field (ZULF) is applied to study phenomena like the spin-spin interaction, which are difficult to observe at high fields. \YZ{add ref to zulf}}.
+
+
+The return of the magnetization to equilibrium along the longitudinal direction is induced by energy exchange with the environment (spin-lattice relaxation) or through spin-spin interactions (spin-spin relaxation). 
+Its speed is characterized by the relaxation time $T_1$ or relaxation rate $1/T_1$. 
+The ``return'' can happen in two directions: when longitudinal magnetization is smaller than the equilibrium value, it grows toward the equilibrium; when it is larger (hyperpolarized), it decays. 
+A short $T_1$ is helpful for rapid repetition of measurements using thermally polarized samples, while for hyperpolarized samples, a long $T_1$ is preferred to preserve polarization for longer measurements.
+Its duration can be tuned by adjusting settings such as the bias field, temperature, and sample composition. 
+For instance, oxygen is a paramagnetic molecule and dissolved oxygen in the sample can shorten $T_1$ by providing an additional relaxation channel. 
+
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=.99\textwidth]{figures/T1_hyperpolarized.pdf}
+%     \caption{Simulated $T_1$ relaxation of a hyperpolarized sample in a static bias field. The axial magnetization $M_z$ is normalized by the equilibrium magnetization $M_\mathrm{eqb}$.}
+%     \label{fig:T1_hyperpolarized}
+% \end{figure}
+% As shown in Figure~\ref{fig:T1_hyperpolarized}, the hyperpolarized sample exhibits a long longitudinal relaxation time.
+
+
+The transverse relaxation, determining how quickly coherent precession dephases, is characterized by several different time scales, including $T_2$, $T_\delta$ and $T_2^*$. 
+$T_2$ characterizes microscopic spin-spin interactions and $T_\delta$ quantifies the dephasing caused by macroscopic magnetic-field inhomogeneity across the sample volume.
+$T_2^*$ is the effective transverse relaxation time that incorporates both contributions, and it is always shorter than either of the two, as given by the relation
 \begin{equation}
     \frac{1}{T_2^*} = \frac{1}{T_2} + \frac{1}{T_\delta}
-    \,,\label{eq:T2star}
+    \,.\label{eq:T2star}
 \end{equation}
-where $T_2$ characterizes irreversible spin-spin interactions and $T_\delta$ quantifies the additional dephasing caused by magnetic-field inhomogeneity across the sample volume.
-Because field inhomogeneity can be reduced by shimming (Chapter~\ref{chap:experiment}), $T_2^*$ is experimentally controllable, but $T_2$ sets an intrinsic upper bound.
+The $T_2$ time can be adjusted by changing the sample composition, while $T_\delta$ can be prolonged by improving the field homogeneity through shimming. 
 
-These time scales are central to the thesis because they set the window over which the ALP-induced signal can be observed coherently.
-Longer $T_2^*$ improves sensitivity in all four signal regimes derived in Chapter~\ref{chap:theory}.
+For brevity, the relaxations are referred to by the symbols of their characteristic time scales in this thesis, like $T_1$ relaxation.  
 
-\subsubsection{$T_1$ relaxation}\label{sec:intro:NMR:relaxation:T1}
-Longitudinal relaxation governs how the population difference between spin states rebuilds after perturbation.
-In practice, a short $T_1$ is helpful for rapid repetition, while a long $T_1$ can preserve polarization for longer measurements.
+% TODO delete the follow part in comments
+% For $T_1$ return of the magnetization to equilibrium
+% longitudinal relaxation $T_1$ characterizes how quickly the magnetization along the bias magnetic field returns to equilibrium.  
+% When the magnetization is smaller than the equilibrium value, the 
 
-\subsubsection{$T_2^*$ relaxation}\label{sec:intro:NMR:relaxation:T2}
-Transverse relaxation combines microscopic spin-spin interactions ($T_2$) and macroscopic field inhomogeneity ($T_\delta$) as given in Equation~\eqref{eq:T2star}.
-It determines the free-decay\footnote{\YZ{remove induction and mention there might not be any induction}} signal and directly controls the linewidth in the frequency domain.
-For field searches, a narrower linewidth can improve sensitivity, but only if the coherence time remains long enough to integrate signal power efficiently.
+% Longitudinal relaxation governs how the population difference between spin states rebuilds after perturbation.
 
-\subsubsection{Cross relaxation}
-Cross relaxation transfers energy between coupled spin species or spin reservoirs.
-In samples containing more than one spin system, it modifies the effective relaxation rates of each species.
+% Because field inhomogeneity can be reduced by shimming (Chapter~\ref{chap:experiment}), $T_2^*$ is experimentally controllable, but $T_2$ sets an intrinsic upper bound.
 
-\subsection{Chemical shift}
-Chemical shielding modifies the local field at a nucleus and shifts its resonance frequency.
-The shift is small in absolute terms but distinguishes nuclei in different chemical environments.
 
-In this thesis, chemical shift contributes to the spectral structure of the sample and offsets the resonance from the bare Larmor value.
+% Longer $T_2^*$ improves sensitivity in all four signal regimes derived in Chapter~\ref{chap:theory}.
+% These time scales are central to the thesis because they set the window over which the ALP-induced signal can be observed coherently.
 
-\subsection{Spin-spin coupling}
-Coupling between nuclear spins splits resonance lines into multiplets.
-The resulting J-coupling pattern provides a spectral fingerprint for molecular identification, which helps distinguish genuine NMR signals from noise.
+% Transverse relaxation combines microscopic spin-spin interactions ($T_2$) and macroscopic field inhomogeneity ($T_\delta$) as given in Equation~\eqref{eq:T2star}.
+% It determines the free-decay signal and directly controls the linewidth in the frequency domain.
+% For field searches, a narrower linewidth can improve sensitivity, but only if the coherence time remains long enough to integrate signal power efficiently.
+% TODO write more about relaxation?
+% \subsubsection{$T_1$ relaxation}\label{sec:intro:NMR:relaxation:T1}
 
-For the calibration sample, J-coupling produces a resolved multiplet that serves as a reliable spectral reference.
+% For sample initially polarized by the bias field
+
+% \subsubsection{$T_2^*$ relaxation}\label{sec:intro:NMR:relaxation:T2}
+
+% \subsubsection{Cross relaxation}
+% For samples containing multiple spin species, cross relaxation can transfer energy between the different species.
+% Cross relaxation transfers energy between coupled spin species or spin reservoirs.
+% In samples containing more than one spin system, it modifies the effective relaxation rates of each species.
+
+
+% \subsection{Chemical shift}
+% Chemical shielding modifies the local field at a nucleus and shifts its resonance frequency.
+% The shift is small in absolute terms but distinguishes nuclei in different chemical environments.
+
+% In this thesis, chemical shift contributes to the spectral structure of the sample and offsets the resonance from the bare Larmor value.
+
+% \subsection{Spin-spin coupling}
+% Coupling between nuclear spins splits resonance lines into multiplets.
+% The resulting J-coupling pattern provides a spectral fingerprint for molecular identification, which helps distinguish genuine NMR signals from noise.
+
+% For the calibration sample, J-coupling produces a resolved multiplet that serves as a reliable spectral reference.
 
 \subsection{Experimental schemes}
-Two pulse-based schemes are especially useful.
-Free induction decay measures the coherent response after a tipping pulse, while spin echo refocuses dephasing and gives access to the intrinsic transverse relaxation time.
-Both are diagnostic tools that help characterize the apparatus before an axion measurement.
+% Two pulse-based schemes are especially useful.
+In a common NMR experiment, the sample is first thermally polarized in a bias field, then perturbed by excitation pulses to generate precession signal in the transverse plane, and finally allowed to relax back to equilibrium.
+The excitation pulses tip the magnetization away from the longitudinal axis. The tipping angle is determined by the pulse duration and amplitude
+\begin{equation}
+    \theta = \gamma B_\mathrm{exc} t
+    \,.\label{eq:tipping_angle}
+\end{equation}
+where $\theta$ is the tipping angle, $B_\mathrm{exc}$ is the amplitude of the excitation field, and $t$ is the pulse duration.
+The tipping angle is typically $\pi/2$ or $\pi$. 
+These are also referred to as $\SI{90}{\degree}$ and $\SI{180}{\degree}$ pulses in the NMR literature.
+
+
+% Both are diagnostic tools that help characterize the apparatus before an axion measurement.
 
 \subsubsection{Free decay}\label{sec:intro:NMR:scheme:1Pulse}
-After a $\pi/2$ pulse, the magnetization is tipped into the transverse plane and then decays with the dephasing time $T_2^*$.
-The resulting free-induction signal is the simplest way to measure resonance frequency and linewidth.
+After a $\pi/2$ pulse, the magnetization is tipped into the transverse plane and then decays with the relaxation time $T_2^*$. 
+The resulting free decay signal, following an exponential decay envelope ($\exp(-t/T_2^*)$), is an observable for measuring the $T_2^*$ and the Larmor frequency.
+The process is illustrated in Figure~\ref{fig:PulsedNMR_Schematic}.
+\begin{figure}
+    \centering
+    \includegraphics[width=.99\textwidth]{figures/PulsedNMR_Schematic_20220911.png}
+    \caption{Schematic of pulsed NMR sequences in the laboratory frame.}
+    \label{fig:PulsedNMR_Schematic}
+\end{figure}
 
-\subsubsection{Spin echo}\label{sec:intro:NMR:scheme:echo}
-Spin echo uses a $\pi$ pulse to reverse dephasing from static field inhomogeneity.
-By recovering the signal at the echo time, it separates true spin-spin relaxation from broadening caused by imperfect field homogeneity, yielding a direct measurement of $T_2$.
+If the measurable is the induction in a pickup coil generated by spin precession, the signal is called free-induction decay (FID). 
+However, in this thesis, it is the magnetic flux, instead of the induction, that is measured.
+Therefore, the term ``free decay'' is used for inconclusiveness. 
 
-\subsubsection{CPMG sequence}\label{sec:intro:NMR:scheme:CPMG}
+
+\subsubsection{Spin echo and CPMG sequence}\label{sec:intro:NMR:scheme:echo}
+
+$T_2^*$ relaxation leads to dephasing of the transverse magnetization due to differences in the Larmor frequency across the sample volume.
+If a $\pi$ pulse is applied after a $\pi/2$ pulse, the magnetization is flipped by \SI{180}{\degree}, and the dephasing is reversed. 
+The reversed dephasing, or ``refocusing,'' produces a spin echo, as illustrated in Figure~\ref{fig:SpinEcho_Schematic}.
+% Spin echo uses a $\pi$ pulse after a $\pi/2$ pulse to reverse dephasing due to field inhomogeneity. 
+This spin-echo scheme separates spin-spin relaxation from relaxation caused by field inhomogeneity.\YZ{add reference for spin echo and cpmg}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.99\textwidth]{figures/SpinEcho_Schematic_20220918.png}
+    \caption{Schematic of the spin-echo sequence in the laboratory frame. The $\pi$ pulse reverses dephasing from static field inhomogeneity, producing an echo at time $2\tau$.}
+    \label{fig:SpinEcho_Schematic}
+\end{figure}
+
+% \subsubsection{CPMG sequence}\label{sec:intro:NMR:scheme:CPMG}
 The Carr--Purcell--Meiboom--Gill (CPMG) sequence extends the spin-echo scheme by applying a $\pi/2$ pulse followed by a train of $\pi$ refocusing pulses.
-Each refocusing pulse produces an echo, and the decay of the echo amplitudes gives a robust measurement of $T_2$.
-In this thesis, CPMG is used as a pulsed-NMR diagnostic to characterize the sample relaxation before and after long ALP-search measurements.
+Each refocusing pulse produces an echo, and the decay of the echo amplitudes gives a measurement of $T_2$.
+In this thesis, CPMG is used as a pulsed-NMR diagnostic to characterize the sample relaxation before and after measurements.
 
 
 \section{Dark matter hypothesis}\label{sec:intro:DM}

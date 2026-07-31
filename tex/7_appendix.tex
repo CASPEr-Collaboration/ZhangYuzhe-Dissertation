@@ -53,7 +53,7 @@ Three standard NMR experiments are used to benchmark the simulation against know
 
 \subsection{Pulsed NMR: free decay and spin echo}
 
-After a $\SI{90}{\degree}$ pulse, the magnetization tips into the transverse plane and decays with the dephasing time $T_2^*$ (free-induction decay).
+After a $\SI{90}{\degree}$ pulse, the magnetization tips into the transverse plane and decays with the dephasing time $T_2^*$ (free decay).
 A subsequent $\SI{180}{\degree}$ pulse refocuses the inhomogeneous dephasing, producing a spin echo whose amplitude decays with the true $T_2$.
 The simulated signals reproduce both behaviors, calibrating the pulse-induced rotation, Larmor precession, and transverse relaxations.
 The simulated magnetization is shown in Figure~\ref{fig:calibration_NMR}\,(a).
@@ -69,7 +69,7 @@ This benchmark calibrates both the Larmor precession and the $T_2^*$ relaxation 
     \includegraphics[width=\linewidth]{works/axionbloch/figures/SpinEcho_and_CW.pdf}
     \caption{Calibration of \texttt{axionbloch} against analytical NMR results.
     Upper rows: applied transverse magnetic fields; lower rows: normalized simulated magnetization.
-    \textbf{(a)} After $\SI{90}{\degree}$ and $\SI{180}{\degree}$ pulses, the simulation produces free-induction decay (timescale $T_2^*$) and a spin echo (timescale $T_2$).
+    \textbf{(a)} After $\SI{90}{\degree}$ and $\SI{180}{\degree}$ pulses, the simulation produces free decay (timescale $T_2^*$) and a spin echo (timescale $T_2$).
     \textbf{(b)} Under a weak continuous-wave drive on resonance, the transverse magnetization grows as $\gamma B T_2^*(1-e^{-t/T_2^*})$ (dashed line).
     Reproduced from Ref.\,\cite{Zhang_axionbloch}.}
     \label{fig:calibration_NMR}
