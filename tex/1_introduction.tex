@@ -204,7 +204,7 @@ This spin-echo scheme separates spin-spin relaxation from relaxation caused by f
 \begin{figure}
     \centering
     \includegraphics[width=.99\textwidth]{figures/SpinEcho_Schematic_20220918.png}
-    \caption{Schematic of the spin-echo sequence in the laboratory frame. The $\pi$ pulse reverses dephasing from static field inhomogeneity, producing an echo at time $2\tau$.}
+    \caption{Schematic of the spin-echo sequence in the laboratory frame. The $\pi$ pulse reverses dephasing from static field inhomogeneity, producing an echo at time $2\tau$. \YZ{modify the pic} }
     \label{fig:SpinEcho_Schematic}
 \end{figure}
 
@@ -217,21 +217,29 @@ In this thesis, CPMG is used as a pulsed-NMR diagnostic to characterize the samp
 \section{Dark matter hypothesis}\label{sec:intro:DM}
 
 The prevailing cosmological framework is the $\Lambda$ cold-dark-matter ($\Lambda$CDM) model.
-It combines a cosmological constant $\Lambda$, which describes the accelerated expansion of the universe, with a cold, nonrelativistic, and effectively collisionless dark-matter component.
+It combines a cosmological constant $\Lambda$, which describes the accelerated expansion of the universe, with a cold, nonrelativistic, and collisionless dark-matter component.
 $\Lambda$CDM provides a successful common description of the cosmic microwave background, the growth of large-scale structure, galaxy clustering, and the expansion history.
-Its success establishes a powerful baseline, but it does not identify the physical nature of dark matter, and its assumptions remain less directly tested on galactic and subgalactic scales.
+Its success establishes a powerful baseline, but it does not identify the physical nature of dark matter, and its assumptions are being challenged on galactic and subgalactic scales.
+
+An alternative to dark matter is modified gravity, most prominently Modified Newtonian Dynamics (MOND), which replaces Newtonian dynamics at very small accelerations rather than introducing unseen matter.
+MOND was originally proposed to explain flat galaxy rotation curves and can reproduce several galactic-scale regularities with an acceleration scale $a_0 \sim 10^{-10}\,\mathrm{m\,s^{-2}}$\,\cite{Milgrom1983_MOND,Milgrom2017_MONDreview}. 
+MOND captures several galactic-scale regularities, but it faces difficulties in explaining galaxy clusters and cosmological data. 
+This thesis aims to test the dark-matter hypothesis, so it does not focus on modified-gravity alternatives. 
+
 
 \subsection{Astronomical evidence}
 
 The concept of dark matter arose from astronomical observations that could not be explained by visible matter and standard gravity alone.
-Galaxy rotation curves provide a classic example: orbital speeds remain approximately constant far beyond the bright stellar disk, rather than decreasing as expected if most of the mass followed the visible matter\,\cite{rubin1970rotation,doi:10.1146/annurev.astro.39.1.137}.
+Here ``visible'' refers to baryonic matter that emits or scatters electromagnetic radiation, while ``dark'' refers to matter that interacts primarily through gravity.
+Galaxy rotation curves provide a classic example: orbital speeds remain approximately constant far beyond the bright stellar disk, rather than decreasing as expected if most of the mass followed the visible matter\,\cite{rubin1970rotation,Sofue_Rubin_2001_RotationCurves}.
 This behavior indicates that galaxies are embedded in extended, non-luminous mass halos.
 
 Evidence at larger scales comes from gravitational lensing and colliding galaxy clusters.
-In the Bullet Cluster, the dominant gravitational mass inferred from lensing is spatially separated from the hot X-ray-emitting gas that contains most of the baryonic mass\,\cite{Clowe_2006}.
-This separation is naturally explained if most of the mass is effectively collisionless during the cluster collision.
+In the Bullet Cluster, the dominant gravitational mass inferred from lensing is spatially separated from the baryonic mass which is mostly hot X-ray-emitting gas\,\cite{Clowe_2006_DirectEmpiricalProof}.
+This separation is naturally explained if most of the mass is dark and collisionless during the cluster collision, and disfavors the MOND theory.
 Independently, the cosmic microwave background, big-bang nucleosynthesis, and the growth of large-scale structure require substantially more gravitating matter than can be supplied by baryons.
 Cosmological fits assign roughly \SI{5}{\%} of the cosmic energy budget to baryonic matter and about \SI{27}{\%} to dark matter\,\cite{ade2016planck}.
+
 
 \subsection{Recent developments}
 
@@ -240,48 +248,55 @@ Simulations and observations can differ in the predicted abundance of dwarf sate
 These tensions may reflect incompletely modeled baryonic processes, or they may indicate that the dark-matter sector is warmer, wave-like, or self-interacting rather than perfectly cold and collisionless\,\cite{Vegetti2026_ChallengeCDMWDM}.
 
 Recent observations increasingly test these possibilities.
-Work involving Roberto Abraham and collaborators identified the ultra-diffuse galaxy NGC~1052--DF2 as having an unusually small dynamical dark-matter content\,\cite{vanDokkum2018_DarkMatterDeficient}.
+Work involving Roberto Abraham and collaborators identified the ultra-diffuse galaxy NGC~1052--DF2 as having an unusually small dark-matter content\,\cite{vanDokkum2018_DarkMatterDeficient}, referred to as ``dark matter deficiency''.
 Follow-up work proposed that this galaxy and related objects form a trail produced by a high-speed ``bullet-dwarf'' collision that separated stars and gas from their original dark-matter halos\,\cite{vanDokkum2022_BulletDwarfTrail}.
 Such systems probe the normally tight connection between galaxies and their halos and may help clarify how baryonic and dark matter can become spatially separated.
 They challenge simple galaxy--halo relations, although collision-driven formation scenarios may accommodate them within the broader $\Lambda$CDM framework.
 
 The central structures of halos provide a more direct test of the collisionless-CDM assumption.
 In self-interacting dark matter (SIDM) models, scattering between dark-matter particles redistributes energy and changes the central density profiles of halos.
-A recent strong-lensing analysis led by Simona Vegetti found an unusually compact perturber whose inferred structure, if dark-matter dominated, is difficult to reconcile with conventional cold or warm dark matter.
+A recent strong-lensing analysis led by Simona Vegetti found an unusually compact perturber whose inferred structure, if dark-matter dominated, is difficult to reconcile with conventional cold or warm dark matter\,\cite{Powell2025_MillionSolarMassObject}.
 One possible interpretation is an SIDM halo that underwent gravothermal core collapse and formed a central black hole\,\cite{Vegetti2026_ChallengeCDMWDM}.
-This interpretation is not yet unique, but it illustrates how high-resolution lensing can distinguish between dark-matter microphysics.
+This interpretation is not yet unique, but it highlights the challenges at $\Lambda$CDM at small scales.
 
-\subsection{Candidate landscape}
+
+\subsection{Dark matter models}
 
 The observations establish the gravitational role of dark matter but do not identify its microscopic nature.
 In this sense, $\Lambda$CDM specifies the required large-scale behavior of the dominant matter component rather than a unique particle.
 Proposed realizations cover an enormous range of mass and behavior, and several alternatives modify the small-scale predictions of minimal cold dark matter.
-At the low-mass end, fuzzy dark matter consists of bosons with masses around \SI{e-22}{\eV}; their kiloparsec-scale de~Broglie wavelengths make wave effects relevant to galactic structure\,\cite{Lam2017_PhysRevD}.
-Other particle candidates include sterile neutrinos, warm dark matter, weakly interacting massive particles, and self-interacting particles.
-At the opposite, macroscopic end, primordial black holes formed in the early universe could contribute some or all of the dark matter within the remaining observationally allowed mass windows\,\cite{Carr2020_PBH_DarkMatter}.
+At the low-mass end, fuzzy dark matter consists of bosons with masses $\sim\SI{e-22}{\eV/c^2}$; their kiloparsec-scale de~Broglie wavelengths make wave effects relevant to galactic structure\,\cite{Lam2017_PhysRevD}.
+Other particle candidates include sterile neutrinos, warm dark matter (WDM), weakly interacting massive particles (WIMPs), and self-interacting particles.
+At the opposite, macroscopic end, primordial black holes (PBHs) formed in the early universe could contribute some or all of the dark matter within the remaining observationally allowed mass windows\,\cite{Carr2020_PBH_DarkMatter}.
 Laboratory searches consequently range from particle-collision and scattering experiments to gravitational surveys and precision measurements\,\cite{Kimball2023_search}.
 
-Axions and axionlike particles occupy a particularly interesting part of this landscape.
-Their low masses permit a coherent, wave-like dark-matter field, while their weak non-gravitational couplings make controlled laboratory searches possible.
+Among all these dark matter models, axions and axionlike particles occupy a particularly interesting part of this landscape.
+Their low masses permit a coherent, wave-like dark-matter field, while their weak non-gravitational couplings make laboratory searches possible.
 The following section introduces their origin, field properties, and coupling to nuclear spins.
 
 \section{Axions and axionlike particles}\label{sec:intro:axions}
-The QCD axion was originally proposed in 1977 by Peccei and Quinn as a solution to the strong $CP$ problem\,\cite{PecceiQuinn1977_CPConservation_PRL,PecceiQuinn1977_ConstraintsCP_PRD}.
-A global symmetry breaking at the scale $f_a$ generates a pseudo-Goldstone boson whose potential is minimized at the $CP$-conserving point, naturally explaining why the strong interaction conserves $CP$.
-The axion acquires a mass $m_a \sim \Lambda_\mathrm{QCD}^2/f_a$ from QCD dynamics.
+\subsection{Axion}
 
-\subsection{QCD axion}
-The QCD axion is a hypothetical pseudoscalar particle that appears when a global symmetry is introduced to explain why strong interactions conserve $CP$ so well.
-Its properties are tightly linked to the QCD scale, which makes it a special case rather than the most general one.
+Why quantum chromodynamics (QCD) appears to conserve $CP$ ($C$ and $P$ are the charge conjugation and parity operators, respectively) so precisely even though the theory allows a $CP$-violating term that should otherwise be observable? 
+This is the strong $CP$ problem. 
+In 1977, Peccei and Quinn proposed axion as a solution to the strong $CP$ problem
+In 1977, Peccei and Quinn proposed a solution to the strong $CP$ problem by introducing a new global $U(1)$ symmetry, now called the Peccei--Quinn symmetry\,\cite{PecceiQuinn1977_CPConservation_PRL,PecceiQuinn1977_ConstraintsCP_PRD}. 
+The symmetry is spontaneously broken at a high energy scale $f_a$, which generates a pseudo-Goldstone boson called the axion.
+The potential of the axion field is minimized at the $CP$-conserving point, naturally explaining why the strong interaction conserves $CP$. 
+% The symmetry breaking at the scale $f_a$ generates a pseudo-Goldstone boson called axion whose potential is minimized at the $CP$-conserving point, naturally explaining why the strong interaction conserves $CP$.
+The axion acquires a mass $m_a \sim \Lambda_\mathrm{QCD}^2/f_a$ from QCD dynamics.
+To distinguish this axion model from other axionlike particles, it is also referred to as the ``QCD axion'' or ``PQ-axion'' in literatures.
+% The QCD axion is a hypothetical pseudoscalar particle that appears when a global symmetry is introduced to explain why strong interactions conserve $CP$ so well.
+% Its properties are tightly linked to the QCD scale, which makes it a special case rather than the most general one.
 Cosmological production via the misalignment mechanism constrains $f_a \lesssim 10^{12}$ GeV (axion mass $\gtrsim \SI{6}{\micro\electronvolt}$) if the axion is to constitute all dark matter\,\cite{diCortona2016_QCDAxionPrecisely}.
-\YZ{check this paragraph by reading literatures. }
+% TODO remove all comments in the second proofreading
 
 \subsection{Axionlike particles}\label{sec:intro:ALP}
 
-Axion-like-particles (ALPs) emerge when a global symmetry is broken\,\cite{Weinberg1978_NewLightBoson,Wilczek1978_StrongPTInvariance, Kim1979_WeakInteractionSinglet, Shifman1980_ConfinementCP, Dine1981_HarmlessAxion, Zhitnitsky1980_WeinbergCP}.
+Axionlike-particles (ALPs) emerge when a global symmetry is broken\,\cite{Weinberg1978_NewLightBoson,Wilczek1978_StrongPTInvariance, Kim1979_WeakInteractionSinglet, Shifman1980_ConfinementCP, Dine1981_HarmlessAxion, Zhitnitsky1980_WeinbergCP}.
 ALPs share the oscillatory and weakly coupled character of the QCD axion, but their mass range can be much wider, since the mechanism of ALP production is different from QCD axion.
 There have been investigations in determining the ALP mass range from astronomical observations\,\cite{Marsh2016_AxionCosmology} and theoretical studies\,\cite{Zhitnitsky1980_WeinbergCP}.
-\YZ{check the literature} However, in this thesis, the ALP mass is regarded as a free parameter, and the search is performed in a range which the experiment is sensitive to.
+However, in this thesis, the ALP mass is regarded as a free parameter, and the search is performed in a range which the experiment is sensitive to.
 
 \subsubsection{Wave nature}
 \YZ{check if speed of light c is defined. }
@@ -293,9 +308,9 @@ Its de~Broglie wavelength is
 \end{equation}
 For an ultralight ALP this wavelength can be macroscopic. 
 Assuming axionlike dark matter is cold, its velocity is expected to be smaller than the escape velocity of the Milky Way halo $v_\mathrm{esc} = \SI{550}{\km/\s}$\,\cite{Evans2019_SHMRefined}.
-The minimum de~Broglie wavelength is $\lambda_{\mathrm{dB}} \sim \SI{7e-5}{\meter}$ for ALPs in the Milky Way ($m_a \leq \SI{10}{\eV/c^2}$)\,\footnote{dB-wavelength.ipynb}.
+The minimum de~Broglie wavelength is $\lambda_{\mathrm{dB}} \sim \SI{7e-5}{\meter}$ for ALPs in the Milky Way ($m_a \leq \SI{10}{\eV/c^2}$)\,\cite{Zhang2026_Dissertation_ipynb_1_Introduction}.
 For the ALP mass range relevant to this thesis ($m_a \leq \SI{2.5}{\micro\electronvolt}$), the de~Broglie wavelength $\lambda_{\mathrm{dB}} \geq \SI{270}{\meter}$, much larger than the size of the laboratory.
-Therefore, the amplitude of the ALP field can be approximated as uniform over the experimental volume. 
+Therefore, the amplitude of the ALP field can be approximated as uniform over the laboratory. 
 
 The ALP field of a single free ALP mode can be written as a real field: 
 \begin{align}
@@ -392,7 +407,7 @@ The nucleon Hamiltonian in the presence of an ALP field background can be writte
 \end{equation}
 where $g_{\mathrm{aNN}}$ is the coupling strength in $\SI{}{\GeV^{-1}}$ and $\mathbf{I}$ is the nuclear spin operator.
 In this form of Hamiltonian, $g_{\mathrm{aNN}} a_0$ becomes dimensionless.
-The amplitude $a_0$ is fixed by the local dark-matter density through Equation~\eqref{eq:a0_rhoDM} and has dimensions of energy\,\cite{BERGSTROM1998137,Jungman1992SupersymmetricDM,doi:10.1146/annurev.astro.39.1.137}.
+The amplitude $a_0$ is fixed by the local dark-matter density through Equation~\eqref{eq:a0_rhoDM} and has dimensions of energy\,\cite{BERGSTROM1998137,Jungman1992SupersymmetricDM,Sofue_Rubin_2001_RotationCurves}.
 
 
 In some papers, nuclear spin operator $\mathbf{I}$ is substituted with $\hbar {\boldsymbol\sigma_n}$, where $ {\boldsymbol\sigma_n}$ is dimensionless nuclear spin operator.
