@@ -299,14 +299,14 @@ There have been investigations in determining the ALP mass range from astronomic
 However, in this thesis, the ALP mass is regarded as a free parameter, and the search is performed in a range which the experiment is sensitive to.
 
 \subsubsection{Wave nature}
-\YZ{check if speed of light c is defined. }
-A nonrelativistic ALP with mass $m_a$ and velocity $\mathbf{v}_a$ ($v_a \ll c$) has energy $E_a \simeq m_a c^2+\tfrac{1}{2}m_a v_a^2$, ordinary frequency $\nu_a=E_a/h$, and wave vector $\mathbf{k}=m_a\mathbf{v}_a/\hbar$.
+
+A nonrelativistic ALP with mass $m_a$ and velocity $\mathbf{v}_a$ ($v_a \ll c$) has energy $E_a \simeq m_a c^2+\tfrac{1}{2}m_a v_a^2$, and Compton frequency $\nu_a=E_a/h$, where $h$ is Planck's constant and $c$ is the speed of light in vacuum.
 Its de~Broglie wavelength is
 \begin{equation}
     \lambda_{\mathrm{dB}}=\frac{h}{m_a v_a}
     \,.\label{eq:lambda_dB}
 \end{equation}
-For an ultralight ALP this wavelength can be macroscopic. 
+For an ultralight ALP this wavelength can be macroscopic ($\gtrsim \SI{100}{\micro\meter}$). 
 Assuming axionlike dark matter is cold, its velocity is expected to be smaller than the escape velocity of the Milky Way halo $v_\mathrm{esc} = \SI{550}{\km/\s}$\,\cite{Evans2019_SHMRefined}.
 The minimum de~Broglie wavelength is $\lambda_{\mathrm{dB}} \sim \SI{7e-5}{\meter}$ for ALPs in the Milky Way ($m_a \leq \SI{10}{\eV/c^2}$)\,\cite{Zhang2026_Dissertation_ipynb_1_Introduction}.
 For the ALP mass range relevant to this thesis ($m_a \leq \SI{2.5}{\micro\electronvolt}$), the de~Broglie wavelength $\lambda_{\mathrm{dB}} \geq \SI{270}{\meter}$, much larger than the size of the laboratory.
@@ -321,8 +321,7 @@ The ALP field of a single free ALP mode can be written as a real field:
       \Re\left[\Psi(\mathbf{r},t)\right]
     \,,\label{eq:ALP_single_wavefunction}
 \end{align}
-where $\Psi$ is wavefunction of the ALP. 
-% \subsubsection{Many-ALP classical field}
+where $\Psi$ is wavefunction of a single ALP. 
 Consider an ensemble of $N_a$ ALPs with local energy density $\rho_a$.
 Its number density is
 \begin{equation}
@@ -331,26 +330,25 @@ Its number density is
 \end{equation}
 and the mean occupation number within a de~Broglie volume is approximately
 \begin{equation}
-    \mathcal{N}\simeq n_a\lambda_{\mathrm{dB}}^3
+    N_a\simeq n_a\lambda_{\mathrm{dB}}^3
     =\frac{\rho_a h^3}{m_a^4 v_a^3 c^2}
     \,.\label{eq:occupation}
 \end{equation}
-\YZ{check if dm density has been mentioned before}
-If the ALP is the dominant dark-matter component, $\rho_a$ can be replaced by the local dark-matter density $\rho_\mathrm{DM} \sim \SI{0.4}{\GeV/\cm^3}$\,\cite{Evans2019_SHMRefined}. 
-Considering ALP mass relevant to this thesis $m_a \leq \SI{2.5}{\micro\electronvolt}$ and velocity $v_a \leq v_\mathrm{esc} = \SI{550}{\km/\s}$, the occupation number is $\mathcal{N} \geq \SI{3e27}{}$, much larger than unity\,\footnote{dB-wavelength.ipynb}.
+If the ALP is the dominant dark-matter component, $\rho_a$ is close to the local dark-matter energy density $\rho_\mathrm{DM} \sim \SI{0.4}{\GeV/\cm^3}$\,\cite{Evans2019_SHMRefined}. 
+Considering ALP mass relevant to this thesis $m_a \leq \SI{2.5}{\micro\electronvolt}$ and velocity $v_a \leq v_\mathrm{esc} = \SI{550}{\km/\s}$, the occupation number is $N_a \geq \SI{3e27}{}$, much larger than unity\,\cite{Zhang2026_Dissertation_ipynb_1_Introduction}.
 Therefore, what is measured in the experiment is the collective effect of many ALPs instead of rare single-particle events. 
 % The highly occupied quantum field can therefore be approximated by a classical field. \YZ{really?}
 % The ensemble is coherent over a length scale set by the de~Broglie wavelength.
 % Its phase and spatial structure can be described by a complex wavefunction $\Psi(\mathbf{r},t)$, which may contain one or more occupied modes.
 
-For $N_a$ ALPs described by a wavefunction normalized by $\int|\Psi|^2\,d^3r=1$, the associated scalar field is the appropriately scaled real part of the wavefunction:
+For $N_a$ ALPs that are collectively described by a wavefunction normalized as $\int|\Psi|^2\,d^3r=1$, the associated scalar field is the appropriately scaled real part of the wavefunction like in Equation~\eqref{eq:ALP_single_wavefunction}:
 \begin{equation}
     a(\mathbf{r},t)
     =\sqrt{\frac{2N_a\hbar^3c}{m_a}}\,
       \Re\left[\Psi(\mathbf{r},t)\right]
     \,.\label{eq:a0_Psi_real}
 \end{equation}
-The local, time-averaged energy density is $\rho_a=m_a c^2N_a\langle|\Psi(\mathbf{r},t)|^2\rangle_t$.
+The local, time-averaged energy density is $\rho_a=m_a c^2N_a\langle|\Psi(\mathbf{r},t)|^2\rangle_t$, where $\langle|\Psi(\mathbf{r},t)|^2\rangle_t$ denotes the time average.
 Eliminating $N_a$ gives
 \begin{align}
     a(\mathbf{r},t)
@@ -361,14 +359,15 @@ Eliminating $N_a$ gives
     &=a_0\,
       \frac{\Re\left[\Psi(\mathbf{r},t)\right]}
       {\langle|\Psi(\mathbf{r},t)|^2\rangle_t^{1/2}}
-    \,.\label{eq:a0_rhoDM_Psi_real}
+    \,,\label{eq:a0_rhoDM_Psi_real}
 \end{align}
-Thus, the local field amplitude is
+where 
 \begin{equation}
     a_0
     =\sqrt{\frac{2\rho_a\hbar^3}{m_a^2c}}
     \,.\label{eq:a0_rhoDM}
 \end{equation}
+is the local field amplitude.  
 % For the approximately homogeneous Milky Way field, $\rho_a$ is replaced by the local halo density $\rho_{DM}$. 
 % For an Earth-bound state, its spatial dependence is determined by the bound-state wavefunction.
 % \subsubsection{Coherent and stochastic fields}
@@ -378,7 +377,7 @@ If all $N_a$ ALPs occupy the same mode, the corresponding local field takes the 
     =a_0\cos\left(2\pi\nu_a t-\mathbf{k}\cdot\mathbf{r}+\phi\right)
     \,,\label{eq:ALP_field}
 \end{equation}
-over a region where the amplitude can be treated as uniform. 
+over a region where the axion density can be treated as uniform. 
 A realistic ALP wavefunction generally contains many modes and may be written as
 \begin{equation}
     \Psi(\mathbf{r},t)
@@ -388,53 +387,52 @@ A realistic ALP wavefunction generally contains many modes and may be written as
 \end{equation}
 The coefficients $C_j$ encode the populations of the modes and are fixed by the normalization of $\Psi$.
 The physical scalar field remains proportional to $\Re[\Psi]$ according to Equation~\eqref{eq:a0_rhoDM_Psi_real}.
-However, if ALPs occupy many modes, the resulting field is a superposition of those modes. 
+Moreover, if ALPs occupy many modes, the resulting field is a superposition of those modes. 
 % Because the modes have different velocities, they also have slightly different frequencies.
 % Their relative phases consequently drift: over short times the sum resembles a coherent oscillation, whereas over longer times its effective amplitude and phase fluctuate. 
 The interference of many modes with different velocities makes the field stochastic. 
 The stochasticity is characterized by the coherence time. 
-Chapter~\ref{chap:theory} develops this behavior for thermalized Milky Way halo Earth-bound halo.
+Chapter~\ref{chap:theory} develops this behavior for Milky Way axion halo and Earth-bound axion halo.
 
 \subsection{Non-gravitational interactions}
-An oscillating ALP field can produce three spin-sensitive non-gravitational interactions: its coupling to gluons induces oscillating $CP$-odd nuclear moments such as a nuclear electric dipole moment, while its derivative couplings to nucleons and electrons act as oscillating axial fields on nuclear and electron spins, respectively\,\cite{GrahamNewobservables}.
+An oscillating ALP field can potentially produce three non-gravitational interactions: it may couple to photons, generating an electromagnetic field; its coupling to gluons induces oscillating $CP$-odd nuclear moments such as a nuclear electric dipole moment (EDM); its gradient coupling to nucleons and electrons acts as oscillating magnetic fields on nuclear and electron spins. \,\cite{GrahamNewobservables}.
 All three effects oscillate at a frequency set primarily by the ALP mass and can therefore be sought with resonant precision measurements.
 
-This thesis focuses on the derivative coupling to nucleons, commonly called the gradient or ``axion-wind'' coupling.
+This thesis focuses on the gradient coupling to nucleons, also known as the ``axion-wind'' coupling.
 The nucleon Hamiltonian in the presence of an ALP field background can be written as
 \begin{equation}
     H_{\mathrm{aNN}} = c g_{\mathrm{aNN}}\,{\boldsymbol\nabla}a\cdot\mathbf{I}
     \,,\label{eq:HaNN}
 \end{equation}
-where $g_{\mathrm{aNN}}$ is the coupling strength in $\SI{}{\GeV^{-1}}$ and $\mathbf{I}$ is the nuclear spin operator.
-In this form of Hamiltonian, $g_{\mathrm{aNN}} a_0$ becomes dimensionless.
-The amplitude $a_0$ is fixed by the local dark-matter density through Equation~\eqref{eq:a0_rhoDM} and has dimensions of energy\,\cite{BERGSTROM1998137,Jungman1992SupersymmetricDM,Sofue_Rubin_2001_RotationCurves}.
+where $g_{\mathrm{aNN}}$ is the coupling strength in $\SI{}{\GeV^{-1}}$ and $\mathbf{I}$ is the nuclear spin operator. 
+% For spin-$1/2$ nuclei, $\mathbf{I} = \hbar {\boldsymbol\sigma_n}/2$, where ${\boldsymbol\sigma_n}$ is the dimensionless Pauli spin operator.
+In this form of Hamiltonian, $g_{\mathrm{aNN}} a_0$ becomes dimensionless. 
+The amplitude $a_0$ is fixed by the local dark-matter density through Equation~\eqref{eq:a0_rhoDM} and has dimensions of energy. 
+In some papers, nuclear spin operator $\mathbf{I}$ is substituted with $\hbar {\boldsymbol\sigma_n}/2$, where $ {\boldsymbol\sigma_n}$, where ${\boldsymbol\sigma_n}$ is the dimensionless Pauli spin operator.
+% Expanded:
+% \begin{equation}
+%     H_{\mathrm{aNN}} = c g_{\mathrm{aNN}} a_0
+%     \sin(2\pi\nu_a t - \mathbf{k}\cdot\mathbf{r} + \phi)
+%     m_a \,\mathbf{v}_a\cdot\mathbf{I}/ \hbar
+%     \,,\label{eq:HaNN_vel}
+% \end{equation}
 
-
-In some papers, nuclear spin operator $\mathbf{I}$ is substituted with $\hbar {\boldsymbol\sigma_n}$, where $ {\boldsymbol\sigma_n}$ is dimensionless nuclear spin operator.
-Expanded:
-\begin{equation}
-    H_{\mathrm{aNN}} = c g_{\mathrm{aNN}} a_0
-    \sin(2\pi\nu_a t - \mathbf{k}\cdot\mathbf{r} + \phi)
-    m_a \,\mathbf{v}_a\cdot\mathbf{I}/ \hbar
-    \,,\label{eq:HaNN_vel}
-\end{equation}
-
-Comparing this with the NMR Hamiltonian $H_\mathrm{NMR} = \gamma\mathbf{B}\cdot\mathbf{I}$, the ALP gradient acts as an effective oscillating pseudomagnetic field
+% TODO move the following to the theory chapter
+Comparing this with the NMR Hamiltonian $H_\mathrm{NMR} = -\gamma\mathbf{B}\cdot\mathbf{I}$, the ALP gradient acts as an effective oscillating pseudomagnetic field
 \begin{equation}
     \mathbf{B}_a(t) = \frac{c g_{\mathrm{aNN}}\,{\boldsymbol\nabla}a}{\gamma}
     \,.\label{eq:Bpseudo}
 \end{equation}
-This gradient coupling oscillates at the ALP Compton frequency and can drive resonant spin precession when the Larmor frequency matches $\nu_a$.
-The search for this coupling is the subject of Chapter~\ref{chap:results}.
-\YZ{add some examples to show equivalent Ba field magnitude?}
-
-The r.m.s.\ Rabi frequency of the pseudomagnetic field can be found by the Hamiltonian in Equation~\eqref{eq:HaNN_vel}\,\cite{Centers2021Stochastic,Yuzhe2023_FrequencyScanning}
+This gradient coupling oscillates at the ALP Compton frequency and can drive resonant spin precession when the Larmor frequency matches $\nu_a$. 
+% The search for this coupling is the subject of Chapter~\ref{chap:results}.
+% \YZ{add some examples to show equivalent Ba field magnitude?}
+The r.m.s. Rabi frequency of the pseudomagnetic field can be found by the Hamiltonian in Equation~\eqref{eq:HaNN_vel}\,\cite{Centers2021Stochastic,Yuzhe2023_FrequencyScanning}
 % \begin{equation}
 %     \Omega_a = \dfrac{1}{2}\, g_{\mathrm{aNN}} \sqrt{2\hbar c\, \rho_{DM}}\, v_{\bot}
 %     \,,\label{eq:Omega_a}
 % \end{equation}
 \begin{equation}
-    \Omega_a = \dfrac{1}{2\hbar} c g_\mathrm{{aNN}} a_0 m_a v_{\bot} = \dfrac{1}{2} \mathrm{g_{aNN}} \sqrt{2\hbar c \rho_{DM}} v_{\bot}
+    \Omega_a = \dfrac{1}{2\hbar} c g_\mathrm{aNN} a_0 m_a v_{\bot} = \dfrac{1}{2} g_{\mathrm{aNN}} \sqrt{2\hbar c \rho_{DM}} v_{\bot}
     \,,\label{eq:Omega_a}
 \end{equation}
 where $v_{\bot}$ is the component of the ALP-detector relative velocity perpendicular to $\mathbf{B}_0$.
@@ -444,30 +442,25 @@ For $g_{\mathrm{aNN}} \lesssim 10^{-10}\,\SI{}{\GeV^{-1}}$, the Rabi period $2\p
 Check the values!
 Mention the weak-drive limit.}
 
-% \subsection{Models of axionlike dark matter}
-
-% \subsubsection{Thermalized galatic axionlie dark matter}
-
-% placeholder
-
-% \subsubsection{Gravitational atom}
-
-% earth or solar bound dark matter. 
 
 
 \section{CASPEr project}\label{sec:intro:CASPEr}
 
-\YZ{first mention a lot of magnetic resonance searches (haloscope).\,\cite{Kimball2023_search}}
+% \YZ{first mention a lot of magnetic resonance searches (haloscope).\,\cite{Kimball2023_search}}
 
-CASPEr (Cosmic Axion Spin Precession Experiment) is a family of experiments proposed in 2014\,\cite{CASPErProposal2014} that use nuclear spins to search for axion-induced effects.
-The idea is to translate the tiny axion coupling in Equation~\eqref{eq:Bpseudo} into a measurable spin precession in a carefully controlled NMR setup.
+\subsection{ALP search with spin haloscope}
 
-The project has several branches, including electric and gradient-based searches, and both low-field and high-field implementations.
-The low-field regime is especially relevant when the goal is to scan a wide frequency band with high sensitivity to weak couplings.
+Depending on the theoretical model, different schemes of sexperiments are adopted to search for ALP-induced spin precession\,\cite{Kimball2023_search}. 
+Such experiments are often referred to as spin haloscopes. 
+For example, the Global Network of Optical Magnetometers for Exotic physics searches (GNOME)\,\cite{Pustelny_AdP_GNOMEnovel, Pospelov_PhysRevLett_DomainWalls, Kimball_2018_PhysRevD_terrestrial, Masia-Roig_2020_Analysismethod, Afach_2021_topological} investigates transient exotic spin couplings. 
+Other examples are Noble and Alkali Spin Detectors for Ultralight Coherent darK matter (NASDUCK) using Floquet NMR quantum detector\,\cite{bloch2105nasduck} and QUaerere AXions (QUAX) experiment probing the possible ALP-electron spin interaction\,\cite{Crescini2020_Ferromagnetic}. 
 
-\subsection{Idea}
-The central idea is to tune the NMR resonance to a frequency that matches the axion Compton frequency.
-If the two frequencies align, the axion field acts as the pseudomagnetic field $\mathbf{B}_a(t)$ in Equation~\eqref{eq:Bpseudo} and induces a coherent transverse magnetization in the sample.
+Cosmic Axion Spin Precession Experiment (CASPEr) is a project proposed in 2014\,\cite{CASPErProposal2014} that use nuclear spins to search for ALP-induced spin precession.
+The project has several branches, including electric and gradient-based searches, and both low-magnetic-field and high-magnetic-field implementations.
+
+\subsection{The idea}
+The central idea is to tune the NMR resonance to a frequency that matches the ALP Compton frequency.
+If the two frequencies align, the ALP field applies a torque on the magnetization and induces a coherent transverse magnetization in the sample.
 
 In practice, the method reduces to a frequency scan: either the signal appears at a particular resonance or the absence of a signal constrains the coupling strength over the scanned band.
 
@@ -511,7 +504,7 @@ The broadband scheme, which is more suitable for higher frequencies, continuousl
 \subsection{Candidate, exclusion, limit, and sensitivity}
 
 % here should be a paragraph in explaining the results TODO
-% move this to the axion section?
+% move this to the ALP section?
 Exclusion and sensitivity in the mass-coupling (\YZ{what is mass coupling space? explain in advance}) parameter space are often reported as one of the results of 
 % complete: constraint = exclusion but not = sensitivity
 
