@@ -37,7 +37,7 @@ The architecture is illustrated in Figure~\ref{fig:axionbloch_arch}.
 
 \begin{figure}[htb]
     \centering
-    \fbox{\includegraphics[width=0.95\linewidth]{works/axionbloch/figures/diagram_v0.4.pdf}}
+    \fbox{\includegraphics[width=0.95\linewidth]{figures/AxionBloch_diagram.drawio.pdf}}
     \caption{Architecture of \texttt{axionbloch}.
     Each \texttt{Simulation} instance receives parameters from \texttt{Magnet}, \texttt{Sample}, and \texttt{MagField}.
     For axion simulations, an axion-model object is required both to configure the simulation and to generate the pseudomagnetic field.
@@ -66,7 +66,7 @@ This benchmark calibrates both the Larmor precession and the $T_2^*$ relaxation 
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\linewidth]{works/axionbloch/figures/SpinEcho_and_CW.pdf}
+    \includegraphics[width=\linewidth]{figures/SpinEcho_and_CW.pdf}
     \caption{Calibration of \texttt{axionbloch} against analytical NMR results.
     Upper rows: applied transverse magnetic fields; lower rows: normalized simulated magnetization.
     \textbf{(a)} After $\SI{90}{\degree}$ and $\SI{180}{\degree}$ pulses, the simulation produces free decay (timescale $T_2^*$) and a spin echo (timescale $T_2$).
@@ -84,7 +84,7 @@ The simulated $M_z(t) = M_\mathrm{eqb}[1-(M_\mathrm{eqb}^\mathrm{init}/M_\mathrm
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.75\linewidth]{works/axionbloch/figures/T1_hyperpolarized.pdf}
+    \includegraphics[width=0.75\linewidth]{figures/T1_hyperpolarized.pdf}
     \caption{Simulated $T_1$ relaxation of a hyperpolarized sample in a static bias field.
     The axial magnetization $M_z$ is normalized by the equilibrium magnetization $M_\mathrm{eqb}$.
     The exponential approach to equilibrium calibrates the longitudinal relaxation in the simulation.
@@ -108,8 +108,8 @@ These simulations validate the three-regime picture \YZ{add reference to the ana
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.49\linewidth]{works/axionbloch/figures/MilkyWayAxionHalo-1.pdf}
-    \includegraphics[width=0.49\linewidth]{works/axionbloch/figures/MilkyWayAxionHalo-1000.pdf}
+    \includegraphics[width=0.49\linewidth]{figures/MilkyWayAxionHalo-1.pdf}
+    \includegraphics[width=0.49\linewidth]{figures/MilkyWayAxionHalo-1000.pdf}
     \caption{Simulated axion-induced NMR signals for a virialized Milky Way axion dark matter halo.
     Upper panels: pseudomagnetic fields $B_x$ and $B_y$ in the transverse plane.
     Lower panels: amplitude of the induced transverse magnetization $M_{xy}$, normalized by $M_\mathrm{eqb}$.
