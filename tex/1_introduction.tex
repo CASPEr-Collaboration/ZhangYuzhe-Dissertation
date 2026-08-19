@@ -85,7 +85,7 @@ Therefore, the equations are most efficiently solved in the rotating coordinate 
 
 % In the RCF, when the Larmor frequency is tuned to the ALP Compton frequency ($\nu_L = \nu_a$), the transverse component of $\mathbf{B}_a$ acts as a near-static drive.
 % In the weak-drive limit ($\Omega_a T \ll 1$), the magnetization accumulates a small tipping angle $\xi$ and the transverse magnetization is $M_1 \approx M_\mathrm{eqb}\xi$.
-% The ALP field is stochastic (Section~\ref{sec:theory:MWALP:stochasticity} and \ref{sec:theory:earthALP:coherence}), so $\xi$ and $M_1$ must be treated statistically; their r.m.s.\ values are derived in \YZ{add section reference for r.m.s. signal derivation}.
+% The ALP field is stochastic (Section~\ref{sec:theory:MWALP:stochasticity} and \ref{sec:theory:earthALP:coherence}), so $\xi$ and $M_1$ must be treated statistically; their rms\ values are derived in \YZ{add section reference for rms signal derivation}.
 
 \subsection{Relaxations}\label{sec:intro:NMR:relaxation}
 
@@ -410,17 +410,22 @@ In this form of Hamiltonian, $g_{\mathrm{aNN}} a_0$ becomes dimensionless.
 The amplitude $a_0$ is fixed by the local dark-matter density through Equation~\eqref{eq:a0_rhoDM} and has dimensions of energy. 
 In some papers, nuclear spin operator $\mathbf{I}$ is substituted with $\hbar {\boldsymbol\sigma_n}/2$, where $ {\boldsymbol\sigma_n}$, where ${\boldsymbol\sigma_n}$ is the dimensionless Pauli spin operator.
 
-\YZ{remove this paragraph? }
-Expanded:
-\begin{equation}
-    H_{\mathrm{aNN}} = c g_{\mathrm{aNN}} a_0
-    \sin(2\pi\nu_a t - \mathbf{k}\cdot\mathbf{r} + \phi)
-    m_a \,\mathbf{v}_a\cdot\mathbf{I}/ \hbar
-    \,,\label{eq:HaNN_vel}
-\end{equation}
+% \YZ{remove this paragraph? }
+% Expanded:
+% \begin{equation}
+%     H_{\mathrm{aNN}} = c g_{\mathrm{aNN}} a_0
+%     \sin(2\pi\nu_a t - \mathbf{k}\cdot\mathbf{r} + \phi)
+%     m_a \,\mathbf{v}_a\cdot\mathbf{I}/ \hbar
+%     \,,\label{eq:HaNN_vel}
+% \end{equation}
 
 % TODO move the following to the theory chapter
-Comparing this with the NMR Hamiltonian $H_\mathrm{NMR} = -\gamma\mathbf{B}\cdot\mathbf{I}$, the ALP gradient acts as an effective oscillating pseudomagnetic field
+Comparing this with the NMR Hamiltonian $H_\mathrm{NMR} = -\gamma\mathbf{B}\cdot\mathbf{I}$, the ALP gradient acts as an effective oscillating pseudomagnetic field, where the Rabi frequency and field amplitude are given by
+\begin{equation}
+    \Omega_a(t) = c g_{\mathrm{aNN}}\,{\boldsymbol\nabla}a
+    \,\label{eq:Omega_a}
+\end{equation}
+and
 \begin{equation}
     \mathbf{B}_a(t) = \frac{c g_{\mathrm{aNN}}\,{\boldsymbol\nabla}a}{\gamma}
     \,.\label{eq:Bpseudo}
@@ -428,27 +433,27 @@ Comparing this with the NMR Hamiltonian $H_\mathrm{NMR} = -\gamma\mathbf{B}\cdot
 This gradient coupling oscillates at the ALP Compton frequency and can drive resonant spin precession when the Larmor frequency matches $\nu_a$. 
 % The search for this coupling is the subject of Chapter~\ref{chap:results}.
 % \YZ{add some examples to show equivalent Ba field magnitude?}
-The r.m.s. Rabi frequency of the pseudomagnetic field can be found by the Hamiltonian in Equation~\eqref{eq:HaNN_vel}\,\cite{Centers2021Stochastic,Yuzhe2023_FrequencyScanning}
+
+
+% The rms Rabi frequency of the pseudomagnetic field can be found by the Hamiltonian in Equation~\eqref{eq:HaNN}\,\cite{Centers2021Stochastic,Yuzhe2023_FrequencyScanning}
+% % \begin{equation}
+% %     \Omega_a = \dfrac{1}{2}\, g_{\mathrm{aNN}} \sqrt{2\hbar c\, \rho_{DM}}\, v_{\bot}
+% %     \,,\label{eq:Omega_a}
+% % \end{equation}
 % \begin{equation}
-%     \Omega_a = \dfrac{1}{2}\, g_{\mathrm{aNN}} \sqrt{2\hbar c\, \rho_{DM}}\, v_{\bot}
-%     \,,\label{eq:Omega_a}
+%     \Omega_a = \dfrac{1}{2\hbar} c g_\mathrm{aNN} a_0 m_a v_{\bot} = \dfrac{1}{2} g_{\mathrm{aNN}} \sqrt{2\hbar c \rho_{DM}} v_{\bot}
+%     \,,\label{eq:Omega_a_MW}
 % \end{equation}
-\begin{equation}
-    \Omega_a = \dfrac{1}{2\hbar} c g_\mathrm{aNN} a_0 m_a v_{\bot} = \dfrac{1}{2} g_{\mathrm{aNN}} \sqrt{2\hbar c \rho_{DM}} v_{\bot}
-    \,,\label{eq:Omega_a}
-\end{equation}
-where $v_{\bot}$ is the component of the ALP-detector relative velocity perpendicular to $\mathbf{B}_0$.
-Taking $v_{\bot} = \SI{220}{\km\per\second}$, we have $\Omega_a/2\pi = g_{\mathrm{aNN}} \times \SI{0.2}{\GeV\cdot\Hz}$.
-For $g_{\mathrm{aNN}} \lesssim 10^{-10}\,\SI{}{\GeV^{-1}}$, the Rabi period $2\pi/\Omega_a \gtrsim 1000\,\mathrm{yr}$, confirming that the ALP field is a weak drive on the spins.
-\YZ{What about that factor of one half?
-Check the values!
-Mention the weak-drive limit.}
+% where $v_{\bot}$ is the component of the ALP-detector relative velocity perpendicular to $\mathbf{B}_0$.
+% Taking $v_{\bot} = \SI{220}{\km\per\second}$, we have $\Omega_a/2\pi = g_{\mathrm{aNN}} \times \SI{0.2}{\GeV\cdot\Hz}$.
+% For $g_{\mathrm{aNN}} \lesssim 10^{-10}\,\SI{}{\GeV^{-1}}$, the Rabi period $2\pi/\Omega_a \gtrsim 1000\,\mathrm{yr}$, confirming that the ALP field is a weak drive on the spins.
+% \YZ{What about that factor of one half?
+% Check the values!
+% Mention the weak-drive limit.}
 
 
 
 \section{CASPEr project}\label{sec:intro:CASPEr}
-
-% \YZ{first mention a lot of magnetic resonance searches (haloscope).\,\cite{Kimball2023_search}}
 
 \subsection{ALP search with spin haloscope}
 
@@ -457,60 +462,76 @@ Such experiments are often referred to as spin haloscopes.
 For example, the Global Network of Optical Magnetometers for Exotic physics searches (GNOME)\,\cite{Pustelny_AdP_GNOMEnovel, Pospelov_PhysRevLett_DomainWalls, Kimball_2018_PhysRevD_terrestrial, Masia-Roig_2020_Analysismethod, Afach_2021_topological} investigates transient exotic spin couplings. 
 Other examples are Noble and Alkali Spin Detectors for Ultralight Coherent darK matter (NASDUCK) using Floquet NMR quantum detector\,\cite{bloch2105nasduck} and QUaerere AXions (QUAX) experiment probing the possible ALP-electron spin interaction\,\cite{Crescini2020_Ferromagnetic}. 
 
-Cosmic Axion Spin Precession Experiment (CASPEr) is a project proposed in 2014\,\cite{CASPErProposal2014} that use nuclear spins to search for ALP-induced spin precession.
-The project has several branches, including electric and gradient-based searches, and both low-magnetic-field and high-magnetic-field implementations.
-
-\subsection{The idea}
+Cosmic Axion Spin Precession Experiment (CASPEr) is a project proposed in 2014\,\cite{CASPErProposal2014} that uses nuclear spins to search for ALP-induced spin precession.
+The project has several branches, including ALP-gluon and ALP-fermion (ALP gradient) searches, and both low-magnetic-field and high-magnetic-field implementations.
+% \subsection{The idea}
 The central idea is to tune the NMR resonance to a frequency that matches the ALP Compton frequency.
-If the two frequencies align, the ALP field applies a torque on the magnetization and induces a coherent transverse magnetization in the sample.
+If the two frequencies align, the ALP field applies a torque on the magnetization and induces a transverse magnetization in the sample.
+Since the ALP mass is unknown, the search is performed through a frequency scan: either the signal appears at a particular resonance or the absence of a signal constrains the coupling strength over the scanned band.
 
-In practice, the method reduces to a frequency scan: either the signal appears at a particular resonance or the absence of a signal constrains the coupling strength over the scanned band.
+\subsection{CASPEr-Electric and CASPEr-Comagnetometer}
 
-\subsection{CASPEr-Electric}
-
-\YZ{shoten these subsections}
-CASPEr-Electric (CASPEr-E) searches for an oscillating nuclear electric dipole moment induced by the ALP-gluon coupling.
+CASPEr-Electric (CASPEr-E) searches for an oscillating nuclear EDM induced by the ALP-gluon coupling.
 This moment generates an effective oscillating field along the nuclear spin axis in the presence of an electric field, enabling detection through NMR at the corresponding Compton frequency.
 
-\subsection{CASPEr comagnetometers}
-Comagnetometer configurations use two nuclear spin species in the same volume to suppress common-mode noise from magnetic-field fluctuations.
+% \subsection{}
+Comagnetometer configurations use two nuclear spin species in the same volume to suppress common-mode magnetic noise. 
 The differential signal between the two species enhances sensitivity to a pseudomagnetic ALP field while rejecting electromagnetic backgrounds.
-Early results were obtained with a liquid-state comagnetometer\,\cite{PhysRevLett.122.191302} and an ultralow-field configuration\,\cite{CASPEr_ZULF_2019}.
+Early results were obtained with a liquid-state comagnetometer\,\cite{PhysRevLett.122.191302} and an ultralow-magnetic-field configuration\,\cite{CASPEr_ZULF_2019}.
 
 \subsection{CASPEr-Gradient}\label{sec:intro:CASPEr:gradient}
 CASPEr-Gradient searches for the ALP-fermion gradient coupling described by Equation~\eqref{eq:HaNN}.
-Several setups at Mainz cover different ALP-mass ranges.
-The CASPEr-Gradient-Low-Field experiment uses bias fields up to about \SI{0.1}{\tesla}, corresponding to proton Larmor frequencies up to approximately \SI{4.3}{\MHz}.
-The CASPEr-Gradient-High-Field experiment will use a tunable \SI{14.1}{\tesla} magnet to reach frequencies up to \SI{600}{\MHz}.
-A conceptual diagram of the low-field apparatus is shown in Figure~\ref{fig:CASPEr_Apparatus}.
+Two setups in Mainz, Germany cover different ALP-mass ranges.
+The CASPEr-Gradient-Lowfield experiment uses bias fields up to \SI{0.1}{\tesla}, corresponding to Larmor frequencies up to \SI{4.3}{\MHz}.
+The CASPEr-Gradient-Highfield experiment uses a 0-to-\SI{14.1}{\tesla} magnet to reach frequencies up to \SI{600}{\MHz}.
+
+A conceptual diagram of the lowfield apparatus is shown in Figure~\ref{fig:CASPEr_Apparatus}.
 The cryostat contains a liquid helium reservoir, excitation and pickup coils, and a SQUID magnetometer.
 A superconducting magnet produces the bias field $\mathbf{B}_0$, which sets the Larmor frequency and can be varied to scan ALP masses.
 
 % resonance and broadband scheme
-The resonance scheme is the main search strategy for CASPEr-Gradient-Low-Field.
-The bias field is stepped through a range of values, and the NMR response is recorded at each step.
+The resonance scheme is the main search strategy for CASPEr-Gradient-Lowfield.
+The bias field is stepped through a range of values, and the NMR response is recorded at each step while no excitation is applied.
 A resonant signal appears as a peak in the transverse magnetization when $\nu_L$ matches $\nu_a$.
-The broadband scheme, which is more suitable for higher frequencies, continuously monitors the NMR response without stepping the bias field, looking for transient signals that could indicate an ALP interaction.
+
+The broadband scheme, on the other hand, continuously excites the NMR resonance without changing the bias field, looking for signals that are modulated by the ALP field. 
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.65\linewidth]{works/frequency-scanning/CASPEr_Apparatus_20230508.png}
-    \caption{Conceptual diagram of the CASPEr-Gradient-Low-Field setup.
+    \includegraphics[width=0.65\linewidth]{figures/CASPEr_Apparatus_20230508.png}
+    \caption{Conceptual diagram of the CASPEr-Gradient-Lowfield setup.
     Superconducting devices (dark green) are submerged in a liquid helium bath (light green).
     The excitation and pickup coils characterize the sample and detect the spin-precession signal.
     The sample temperature can be controlled independently of the helium bath, enabling measurements with both thermal and hyperpolarized samples.
-    Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.}
+    Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning} with permission.}
     \label{fig:CASPEr_Apparatus}
 \end{figure}
 
-\subsection{Candidate, exclusion, limit, and sensitivity}
+Beyond ALP-fermion coupling, CASPEr-Gradient, as a sensitive magnetometer experiment, has the potential to search for other exotic physics, such as the axion-photon coupling and dark photon\,\cite{BerlinKahn2025_NewTechAxionDarkPhoton}.
+Such potential is to be discussed in future works. 
 
-% here should be a paragraph in explaining the results TODO
-% move this to the ALP section?
-Exclusion and sensitivity in the mass-coupling (\YZ{what is mass coupling space? explain in advance}) parameter space are often reported as one of the results of 
-% complete: constraint = exclusion but not = sensitivity
+\subsection{Candidate, exclusion, and sensitivity}
 
-\subsection{Scientific targets beyond gradient coupling}
+There are several unknown parameters in the ALP search, including the ALP mass, the coupling strengths, and the ratio of ALP density to the local dark-matter density.
+In this thesis, it is assumed that ALPs constitute all of the local dark matter, and ALP mass and coupling strengths are treated as free parameters. 
+These two parameters define the mass-coupling parameter space. 
 
-\YZ{Mention what will be included.
-Will it appear in the coming chapters?}
+Every haloscope is sensitive to a certain range of ALP masses. 
+The ultimate goal for a haloscope is to detect the ALP at a particular mass and coupling strength in this parameter space. 
+If no ALP \textbf{candidate} is found, the search sets \textbf{exclusion} on the ALP coupling strength over the searched mass range. 
+People use ``limit'' and ``constraint'' interchangeably with ``exclusion'' in literatures, which have the same meaning.
+If any candidate is found, no exclusion can be set below the coupling strength at that mass. 
+The common practice is to leave gaps or openings in the exclusion to indicate the presence of candidates.
+
+Besides exclusion, a haloscope can also report its \textbf{sensitivity} in the mass-coupling parameter space. 
+The sensitivity in the parameter space is determined by the mass range that the haloscope can cover and the coupling strength that can be detected at each mass. 
+Even before any search is performed, the \textbf{projected sensitivity} can be calculated based on the experimental parameters and the expected ALP signal. 
+
+Figure~\ref{fig:AxionProton_with_Projections}, as an example of parameter space searched by haloscopes, summarizes the current status of the ALP-proton mass-coupling parameter space.
+
+\begin{figure}
+    \includegraphics{figures/AxionProton_with_Projections.pdf}
+    \caption{ALP-proton mass-coupling parameter space. Solid color blocks represent exclusions. Projections of sensitivities are indicated by the dashed lines on the edges of the blocks. Reproduced from Ref.\,\cite{OHare2020_AxionLimits} with permission.}
+\end{figure}
+
+
