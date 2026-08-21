@@ -9,11 +9,11 @@
 # numerical computing
 import numpy as np
 
-# ----------- physical units and constants ----------- #
-import astropy
+# physical units and constants
 from astropy import units as unit
-from astropy.units import Quantity, CompositeUnit
 from astropy.constants import codata2018 as const
+from astropy.time import Time  # noqa: F401
+from astropy.units import CompositeUnit, Quantity  # noqa: F401
 
 PI = np.pi * unit.rad
 
