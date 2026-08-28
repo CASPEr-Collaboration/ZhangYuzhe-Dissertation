@@ -2,8 +2,9 @@
 # Run from project root: latexmk tex/main.tex
 
 $pdf_mode = 1;
-$pdflatex = 'lualatex %O %S';
-$latex = 'lualatex %O %S';
+$lualatex = 'lualatex -interaction=nonstopmode -halt-on-error %O %S';
+$pdflatex = $lualatex;
+$latex = $lualatex;
 $biber = 'biber %O %B';
 
 # Keep generated files in tex/ directory
