@@ -4,7 +4,7 @@
     Sections~\ref{sec:experiment:single}--\ref{sec:experiment:optimization} are adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.
 \end{jointwork}
 
-The CASPEr-Gradient-Low-Field apparatus converts a nuclear-spin signal into a detectable electrical output through three functional blocks: the magnet system sets the operating bias field and thereby the Larmor frequency of the sample; the sample and pickup coil generate and capture the magnetic response; and the SQUID and lock-in amplifier chain convert, amplify, and record the signal.
+The CASPEr-Gradient-Lowfield apparatus converts a nuclear-spin signal into a detectable electrical output through three functional blocks: the magnet system sets the operating bias field and thereby the Larmor frequency of the sample; the sample and pickup coil generate and capture the magnetic response; and the SQUID and lock-in amplifier chain convert, amplify, and record the signal.
 This chapter describes each block, summarizes the key parameters, and then develops the strategy used to scan an ALP-mass range efficiently.
 
 \section{Magnet system}\label{sec:apparatus:magnet}
@@ -313,7 +313,7 @@ Larger magnetization $M_0$ and lower noise $\sigma_0$ both improve $\eta$ and he
 
 \section{Scanning procedure}\label{sec:experiment:procedure}
 
-The CASPEr-Gradient-Low-Field experiment scans the ALP-mass parameter space by sweeping the magnitude of $\mathbf{B}_0$, which tunes the Larmor frequency of the sample to a series of values $\nu_i \in [\nu_{\mathrm{start}},\,\nu_{\mathrm{end}}]$.
+The CASPEr-Gradient-Lowfield experiment scans the ALP-mass parameter space by sweeping the magnitude of $\mathbf{B}_0$, which tunes the Larmor frequency of the sample to a series of values $\nu_i \in [\nu_{\mathrm{start}},\,\nu_{\mathrm{end}}]$.
 One step of the scan consists of:
 \begin{enumerate}[label=\Alph*.]
     \item Pulsed-NMR measurement to determine the resonance frequency and the effective linewidth ($T_2^*$).
@@ -372,11 +372,11 @@ Several conclusions follow directly:
 
     \item \textbf{Effect of $T_2^*$.}
     Longer $T_2^*$ is beneficial in all regimes.
-    When $\tau_a \ll T_2^*$, it increases the r.m.s.\ tipping angle and narrows the signal linewidth.
+    When $\tau_a \ll T_2^*$, it increases the rms\ tipping angle and narrows the signal linewidth.
     When $T_2^* \ll \tau_a$, it increases the fraction $u_n$ of spins on resonance.
 
     \item \textbf{Effect of $T_2$.}
-    Longer $T_2$ improves sensitivity in the regime $T_2 \ll \tau_a$, where $T_2$ directly limits the r.m.s.\ tipping angle.
+    Longer $T_2$ improves sensitivity in the regime $T_2 \ll \tau_a$, where $T_2$ directly limits the rms\ tipping angle.
 \end{itemize}
 
 The sensitivity plots computed with uniform ($n=0$) and frequency-adaptive ($n=-1$) dwell-time allocation for an example scan range $\nu_{\mathrm{end}}/\nu_{\mathrm{start}}=10$ are shown in Figure~\ref{fig:UniVsAdpt}.

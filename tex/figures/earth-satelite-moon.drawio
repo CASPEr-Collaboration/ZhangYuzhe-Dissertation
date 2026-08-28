@@ -1,0 +1,25 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="第 1 页" id="gKfkxI9R9rXbLlm0sot6">
+    <mxGraphModel dx="2076.8" dy="1632" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="511.8" pageHeight="197" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pUgsR-dVFi40w5eNaHP7-16" parent="1" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.arc;startAngle=0.19774475193744684;endAngle=0.3037342479781143;dashed=1;dashPattern=8 8;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="599" width="597.39" x="-157.99" y="-400.37" as="geometry" />
+        </mxCell>
+        <mxCell id="pUgsR-dVFi40w5eNaHP7-8" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;aspect=fixed;dashed=1;fillColor=none;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="168.28" width="168.28" x="56.559999999999995" y="-182.64" as="geometry" />
+        </mxCell>
+        <mxCell id="pUgsR-dVFi40w5eNaHP7-4" parent="1" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#e1d5e7;imageAspect=0;aspect=fixed;image=https://icons.diagrams.net/icon-cache1/Ionicons_Fill_Vol_1-2186/earth-1336.svg;imageBackground=light-dark(#89DBFF,#66B2FF);clipPath=inset(5.66% 6.45% 6.25% 6.05% round 50%);imageBorder=none;rounded=1;arcSize=50;fillColor=#0000B0;labelBorderColor=#9673a6;fillStyle=auto;shadow=0;" value="" vertex="1">
+          <mxGeometry height="81.08761066039787" width="80.54822522363249" x="100.16000000000001" y="-141.40999999999997" as="geometry" />
+        </mxCell>
+        <mxCell id="pUgsR-dVFi40w5eNaHP7-9" parent="1" style="fontColor=#0066CC;verticalAlign=top;verticalLabelPosition=bottom;labelPosition=center;align=center;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.satellite;rotation=5;" value="" vertex="1">
+          <mxGeometry height="50" width="50" x="185.93" y="-175.86999999999998" as="geometry" />
+        </mxCell>
+        <mxCell id="pUgsR-dVFi40w5eNaHP7-10" parent="1" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://icons.diagrams.net/icon-cache1/Iconoir_Vol_3-2341/moon-sat-1172.svg;imageBackground=#DEDEDE;rounded=1;clipPath=inset(4.17% 4.17% 4.17% 4.17% round 50%);arcSize=50;" value="" vertex="1">
+          <mxGeometry height="50" width="50" x="414.3" y="-125.86999999999999" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
