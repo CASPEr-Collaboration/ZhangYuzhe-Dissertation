@@ -7,18 +7,36 @@ In the Galactic rest frame, the dark-matter velocity distribution is approximate
 The average speed of local dark matter\footnote{Here, ``local'' refers to the solar radius in the Milky Way.} is $v_\mathrm{DM} \approx \SI{220}{\km\per\s}$.
 The local dark matter density is estimated to be $\rho_{DM}\approx\SI{0.4}{\GeV\per\centi\meter^3}$. 
 The Rabi frequency $\Omega_a$ can be computed from Equations\,\eqref{eq:a0_rhoDM}, \eqref{eq:ALP_field}, and \eqref{eq:HaNN}:
-\begin{equation}
+\begin{align}
     \Omega_a
-    = \dfrac{1}{2\hbar} g_{\mathrm{aNN}} a_0 m_a c v_{\bot}
-    \approx \dfrac{1}{2} g_{\mathrm{aNN}}
-    \sqrt{2\hbar c \rho_{DM}}\,v_{\bot}
+    & = \dfrac{1}{2\hbar} g_{\mathrm{aNN}} a_0 m_a c v_{\bot}
+    \approx \dfrac{1}{\sqrt{2}} g_{\mathrm{aNN}} \sqrt{\hbar c \rho_{DM}}\,v_{\bot}\\
+    & = 2 \pi \times \SI{2e-10}{\Hz} \frac{g_{\mathrm{aNN}}}{\SI{1e-9}{\per\GeV}} \left(\dfrac{\rho_{DM}}{\SI{0.4}{\GeV\per\centi\meter^3}}\right)^{1/2}\dfrac{v_{\bot}}{\SI{220}{\km\per\s}}
     \,.
     \label{eq:Omega_a_MW}
-\end{equation}
+\end{align}
 Here it is assumed that the ALP-field gradient comes exclusively from the relative motion of the field and the detector. 
 It is important to note that the ALP field is a stochastically varying quantity\,\cite{Centers2021Stochastic}, so that the $\Omega_a$ in Equation~\eqref{eq:Omega_a} is the root-mean-squared (rms) value.
-For $v_{\bot} = \SI{220}{\km\per\second}$, $\Omega_a/2\pi=g_{\mathrm{aNN}}\times\SI{0.2}{\GeV\cdot\Hz}$.
-For an experiment searching for $g_{\mathrm{aNN}}\leq 10^{-10}\,\SI{}{\per\GeV}$, the Rabi period is $2\pi/\Omega_a \geq 1000\,\mathrm{yr}$; the ALP-field gradient is therefore a weak drive on the spins.
+For $v_{\bot} = \SI{220}{\km\per\second}$ and $g_{\mathrm{aNN}}\leq \SI{1e-9}{\per\GeV}$, the Rabi period is $2\pi/\Omega_a \geq 100\,\mathrm{yr}$, much longer than any practical measurement duration; the ALP-field gradient is therefore a weak drive on the spins.
+
+The ALP gradient coupling can also be interpreted as an effective oscillating
+pseudomagnetic field $\mathbf{B}_a$ acting on the nuclear spins. 
+The amplitude of the pseudomagnetic field can be estimated from the Rabi frequency $\Omega_a$ and the gyromagnetic ratio $\gamma$ of the nuclear spin:
+\begin{align}
+    {B}_a = &\frac{\Omega_a}{\gamma} \\
+    =& \SI{2e-17}{\tesla} \frac{\gamma}{-2 \pi \times \SI{12}{\MHz\per\tesla}}\\ \nonumber
+    & \frac{g_{\mathrm{aNN}}}{\SI{1e-9}{\per\GeV}} \left(\dfrac{\rho_{DM}}{\SI{0.4}{\GeV\per\centi\meter^3}}\right)^{1/2}\dfrac{v_{\bot}}{\SI{220}{\km\per\s}}
+    % \Omega_a & = \gamma |\mathbf{B}_a|\\
+    % & = \gamma_{\mathrm{proton}}  \times \SI{5e-18}{\tesla}\\
+    % & = \gamma_{\mathrm{Xe-129}}\frac{g_{\mathrm{aNN}}}{\SI{1e-9}{\per\GeV}} \times \SI{-1.9e-17}{\tesla}
+    % 5.2e-18 T
+    %  -1.9e-17 T
+    % \mathbf{B}_a(t) = \frac{}{\gamma} = \frac{1}{\gamma} \dfrac{1}{\sqrt{2}} g_{\mathrm{aNN}} \sqrt{\hbar c \rho_{DM}}\,v_{\bot}
+    \,.\label{eq:Bpseudo}
+\end{align}
+Here $-2 \pi \times \SI{12}{\MHz\per\tesla}$ is the gyromagnetic ratio of the nuclear spin of $^{129}$Xe.
+In this way of thinking, the ALP gradient coupling is equivalent to a very weak oscillating magnetic field. 
+
 
 Though it is named ``standard'' halo model, it is not a complete description of the Milky Way dark matter halo, but focuses on the dark matter properties at solar radius. 
 It is more of a model built on phenomenological observations, rather than a model tested through direct measurements. 
@@ -89,11 +107,10 @@ Examples of daily and annual modulations are shown in Figure~\ref{fig:MW_ALP-ann
 
 \begin{figure}
     \includegraphics[width=0.99\textwidth]{figures/MW_ALP-annual_daily_modulations.pdf}
-    \caption{Periodic (annual and daily) modulations. (a) Annual modulation of laboratory speed due to the Earth's orbital motion around the Sun. With the Sun's peculiar velocity added as separate velocity components, the maximum speed of lab in the Galactic rest frame is approximately \SI{260}{\km\per\s}, larger than previously calculated values. (b) Daily modulations of angles between the ALP field and the three orthogonal orientations: towards the north, the west, and the zenith. The location is the Boston University and the date is January 1 (UTC time). (c) Daily modulations of $P_\\parallel$, the power of the ALP field gradient power parallel to the three orientations with regard to an external magnetic field. The power is normalized such that the maximum value is 1 (the scaling factor is the same for the three cases). (d) Similar to panel (c) but for the ALP field gradient perpendicular to the three orientations. The plot is reproduced from Ref.\,\cite{Gramolin2022Feb_SpectralSignatures} with permission.}
+    \caption{Periodic (annual and daily) modulations. (a) Annual modulation of laboratory speed due to the Earth's orbital motion around the Sun. With the Sun's peculiar velocity added as separate velocity components, the maximum speed of lab in the Galactic rest frame is approximately \SI{260}{\km\per\s}, larger than previously calculated values. (b) Daily modulations of angles between the ALP field and the three orthogonal orientations: towards the north, the west, and the zenith. The location is the Boston University and the date is January 1 (UTC time). (c) Daily modulations of $P_\parallel$, the power of the ALP field gradient power parallel to the three orientations with regard to an external magnetic field. The power is normalized such that the maximum value is 1 (the scaling factor is the same for the three cases). (d) Similar to panel (c) but for the ALP field gradient perpendicular to the three orientations. The plot is reproduced from Ref.\,\cite{Gramolin2022Feb_SpectralSignatures} with permission.}
     \label{fig:MW_ALP-annual_daily_modulations}
 \end{figure}
 
 
 % \subsection{Numerical simulation}\label{sec:theory:MW:simulation}
 
-% \YZ{include several important examples and give a summary of signal dependence. }

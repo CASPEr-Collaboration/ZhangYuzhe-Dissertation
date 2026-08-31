@@ -25,10 +25,10 @@ Because the Larmor frequency is proportional to the magnetic field, NMR can be a
 \subsection{Zeeman splitting and polarization}\label{sec:intro:NMR:Zeeman}
 In a bias magnetic field $B_0$, a spin-$1/2$ nucleus splits into two energy levels separated by
 \begin{equation}
-    \Delta E = \hbar \gamma B_0
+    \Delta E = \mu B_0 = \hbar \gamma B_0
     \,,\label{eq:Zeeman}
 \end{equation}
-where $\gamma$ is the nuclear gyromagnetic ratio.
+where  $\mu$ is the magnetic moment and $\gamma$ is the nuclear gyromagnetic ratio.
 This energy difference sets the Larmor (resonance) frequency
 \begin{equation}
     \nu_L = \frac{\gamma B_0}{2\pi}
@@ -36,12 +36,17 @@ This energy difference sets the Larmor (resonance) frequency
 \end{equation}
 % 42.577478461 MHz / T +/- 0.000000018 MHz / T
 The splitting is illustrated in Figure~\ref{fig:Zeeman_effect}.
-For protons, $\gamma/(2\pi) = \SI{42.577478461(18)}{\MHz/\tesla}$\cite{NIST_CODATA2022}, so a bias field of \SI{31.67}{\milli\tesla},as used in this work, gives $\nu_L \approx \SI{1.348}{\MHz}$.
+For protons\,\cite{NIST_CODATA2022}, 
+\begin{equation}
+    \gamma = 2\pi\times\SI{42.577478461(18)}{\MHz/\tesla}
+    \,,\label{eq:gamma_proton}
+\end{equation}
+so a bias field of \SI{31.67}{\milli\tesla}, as used in this work, gives $\nu_L \approx \SI{1.348}{\MHz}$.
 
 \begin{figure}
     \centering
     \includegraphics[width=.5\linewidth]{figures/Zeeman_effect.png}
-    \caption{Zeeman splitting of a spin-$1/2$ nucleus in a magnetic field $B$. The energy difference $\Delta E$ between the two spin states is proportional to $B$.\YZ{TODO edit equation in the figure. }}
+    \caption{Zeeman splitting of a spin-$1/2$ nucleus in a magnetic field $B$. The energy difference $\Delta E$ between the two spin states is proportional to $B$.}
     \label{fig:Zeeman_effect}
 \end{figure}
 
@@ -83,15 +88,11 @@ where $\mathbf{B}_\mathrm{eff}$ is the total effective field, $M_\mathrm{eqb}$ i
 In most NMR experiments, the bias field $\mathbf{B}_0$ is much larger than any other applied magnetic field. 
 Therefore, the equations are most efficiently solved in the rotating coordinate frame (RCF), which removes the fast Larmor precession at $\nu_L$ in the laboratory frame and exposes the much slower dynamics induced by the additional fields.
 
-% In the RCF, when the Larmor frequency is tuned to the ALP Compton frequency ($\nu_L = \nu_a$), the transverse component of $\mathbf{B}_a$ acts as a near-static drive.
-% In the weak-drive limit ($\Omega_a T \ll 1$), the magnetization accumulates a small tipping angle $\xi$ and the transverse magnetization is $M_1 \approx M_\mathrm{eqb}\xi$.
-% The ALP field is stochastic (Section~\ref{sec:theory:MWALP:stochasticity} and \ref{sec:theory:earthALP:coherence}), so $\xi$ and $M_1$ must be treated statistically; their rms\ values are derived in \YZ{add section reference for rms signal derivation}.
-
 \subsection{Relaxations}\label{sec:intro:NMR:relaxation}
 
 Relaxation describes the return of the spin ensemble toward equilibrium after it has been perturbed.
 % relaxation time charaterizes how quickly the magnetization returns to equilibrium. 
-In most of the NMR experiments, a bias magnetic field is applied, which defines the longitudinal direction, and the transverse plane is perpendicular to it\footnote{There are NMR experiments where a zero to ultra-low field (ZULF) is applied to study phenomena like the spin-spin interaction, which are difficult to observe at high fields. \YZ{add ref to zulf}}.
+In most of the NMR experiments, a bias magnetic field is applied, which defines the longitudinal direction, and the transverse plane is perpendicular to it\footnote{There are NMR experiments where a zero to ultra-low field (ZULF)\,\cite{Barskiy2025_ZULFNMRreview} is applied to study phenomena like the spin-spin interaction, which are difficult to observe at high fields.}.
 
 
 The return of the magnetization to equilibrium along the longitudinal direction is induced by energy exchange with the environment (spin-lattice relaxation) or through spin-spin interactions (spin-spin relaxation). 
@@ -180,12 +181,12 @@ These are also referred to as $\SI{90}{\degree}$ and $\SI{180}{\degree}$ pulses 
 \subsubsection{Free decay}\label{sec:intro:NMR:scheme:1Pulse}
 After a $\pi/2$ pulse, the magnetization is tipped into the transverse plane and then decays with the relaxation time $T_2^*$. 
 The resulting free decay signal, following an exponential decay envelope ($\exp(-t/T_2^*)$), is an observable for measuring the $T_2^*$ and the Larmor frequency.
-The process is illustrated in Figure~\ref{fig:PulsedNMR_Schematic}.
+The process is illustrated in Figure~\ref{fig:pulsed_NMR-schematic}.
 \begin{figure}
     \centering
-    \includegraphics[width=.99\textwidth]{figures/PulsedNMR_Schematic_20220911.png}
-    \caption{Schematic of pulsed NMR sequences in the laboratory frame.}
-    \label{fig:PulsedNMR_Schematic}
+    \includegraphics[width=.99\textwidth]{figures/pulsed_NMR-schematic.pdf}
+    \caption{Schematic of free-decay pulsed NMR sequence in the laboratory frame. One excitation pulse tips the magnetization into the transverse plane, where it precesses and decays with time constant $T_2^*$. The signal is measured by a pickup coil.}
+    \label{fig:pulsed_NMR-schematic}
 \end{figure}
 
 If the measurable is the induction in a pickup coil generated by spin precession, the signal is called free-induction decay (FID). 
@@ -197,19 +198,19 @@ Therefore, the term ``free decay'' is used for inconclusiveness.
 
 $T_2^*$ relaxation leads to dephasing of the transverse magnetization due to differences in the Larmor frequency across the sample volume.
 If a $\pi$ pulse is applied after a $\pi/2$ pulse, the magnetization is flipped by \SI{180}{\degree}, and the dephasing is reversed. 
-The reversed dephasing, or ``refocusing,'' produces a spin echo, as illustrated in Figure~\ref{fig:SpinEcho_Schematic}.
+The reversed dephasing, or ``refocusing,'' produces a spin echo\,\cite{Hahn1950_SpinEchoes}, as illustrated in Figure~\ref{fig:spin_echo-schematic}.
 % Spin echo uses a $\pi$ pulse after a $\pi/2$ pulse to reverse dephasing due to field inhomogeneity. 
-This spin-echo scheme separates spin-spin relaxation from relaxation caused by field inhomogeneity.\YZ{add reference for spin echo and cpmg}
+This spin-echo scheme separates spin-spin relaxation from relaxation caused by field inhomogeneity.
 
 \begin{figure}
     \centering
-    \includegraphics[width=.99\textwidth]{figures/SpinEcho_Schematic_20220918.png}
-    \caption{Schematic of the spin-echo sequence in the laboratory frame. The $\pi$ pulse reverses dephasing from static field inhomogeneity, producing an echo at time $2\tau$. \YZ{modify the pic} }
-    \label{fig:SpinEcho_Schematic}
+    \includegraphics[width=.99\textwidth]{figures/spin_echo-schematic.pdf}
+    \caption{Schematic of the spin-echo sequence in the laboratory frame. Black circular arrows indicate the precession. Colorful arrows stand for magnetization of small sample packets precessing at different Larmor frequencies. The $\pi$ pulse reverses dephasing from static field inhomogeneity and produce echos. The indices in brackets indicate the time sequence of the pulses and echos.}
+    \label{fig:spin_echo-schematic}
 \end{figure}
 
 % \subsubsection{CPMG sequence}\label{sec:intro:NMR:scheme:CPMG}
-The Carr--Purcell--Meiboom--Gill (CPMG) sequence extends the spin-echo scheme by applying a $\pi/2$ pulse followed by a train of $\pi$ refocusing pulses.
+The Carr--Purcell--Meiboom--Gill (CPMG)\,\cite{CarrPurcell1954_DiffusionFreePrecession, MeiboomGill1958_ModifiedSpinEcho} sequence extends the spin-echo scheme by applying a $\pi/2$ pulse followed by a train of $\pi$ refocusing pulses.
 Each refocusing pulse produces an echo, and the decay of the echo amplitudes gives a measurement of $T_2$.
 In this thesis, CPMG is used as a pulsed-NMR diagnostic to characterize the sample relaxation before and after measurements.
 
@@ -289,7 +290,6 @@ To distinguish this axion model from other axionlike particles, it is also refer
 % The QCD axion is a hypothetical pseudoscalar particle that appears when a global symmetry is introduced to explain why strong interactions conserve $CP$ so well.
 % Its properties are tightly linked to the QCD scale, which makes it a special case rather than the most general one.
 Cosmological production via the misalignment mechanism constrains $f_a \lesssim 10^{12}$ GeV (axion mass $\gtrsim \SI{6}{\micro\electronvolt}$) if the axion is to constitute all dark matter\,\cite{diCortona2016_QCDAxionPrecisely}.
-% TODO remove all comments in the second proofreading
 
 \subsection{Axionlike particles}\label{sec:intro:ALP}
 
@@ -337,7 +337,6 @@ and the mean occupation number within a de~Broglie volume is approximately
 If the ALP is the dominant dark-matter component, $\rho_a$ is close to the local dark-matter energy density $\rho_\mathrm{DM} \sim \SI{0.4}{\GeV/\cm^3}$\,\cite{Evans2019_SHMRefined}. 
 Considering ALP mass relevant to this thesis $m_a \leq \SI{2.5}{\micro\electronvolt}$ and velocity $v_a \leq v_\mathrm{esc} = \SI{550}{\km/\s}$, the occupation number is $N_a \geq \SI{3e27}{}$, much larger than unity\,\cite{Zhang2026_Dissertation_ipynb_1_Introduction}.
 Therefore, what is measured in the experiment is the collective effect of many ALPs instead of rare single-particle events. 
-% The highly occupied quantum field can therefore be approximated by a classical field. \YZ{really?}
 % The ensemble is coherent over a length scale set by the de~Broglie wavelength.
 % Its phase and spatial structure can be described by a complex wavefunction $\Psi(\mathbf{r},t)$, which may contain one or more occupied modes.
 
@@ -409,30 +408,6 @@ where $g_{\mathrm{aNN}}$ is the coupling strength in $\SI{}{\GeV^{-1}}$ and $\ma
 In this form of Hamiltonian, $g_{\mathrm{aNN}} a_0$ becomes dimensionless. 
 The amplitude $a_0$ is fixed by the local dark-matter density through Equation~\eqref{eq:a0_rhoDM} and has dimensions of energy. 
 In some papers, nuclear spin operator $\mathbf{I}$ is substituted with $\hbar {\boldsymbol\sigma_n}/2$, where $ {\boldsymbol\sigma_n}$, where ${\boldsymbol\sigma_n}$ is the dimensionless Pauli spin operator.
-
-% \YZ{remove this paragraph? }
-% Expanded:
-% \begin{equation}
-%     H_{\mathrm{aNN}} = c g_{\mathrm{aNN}} a_0
-%     \sin(2\pi\nu_a t - \mathbf{k}\cdot\mathbf{r} + \phi)
-%     m_a \,\mathbf{v}_a\cdot\mathbf{I}/ \hbar
-%     \,,\label{eq:HaNN_vel}
-% \end{equation}
-
-% TODO move the following to the theory chapter
-Comparing this with the NMR Hamiltonian $H_\mathrm{NMR} = -\gamma\mathbf{B}\cdot\mathbf{I}$, the ALP gradient acts as an effective oscillating pseudomagnetic field, where the Rabi frequency and field amplitude are given by
-\begin{equation}
-    \Omega_a(t) = c g_{\mathrm{aNN}}\,{\boldsymbol\nabla}a
-    \,\label{eq:Omega_a}
-\end{equation}
-and
-\begin{equation}
-    \mathbf{B}_a(t) = \frac{c g_{\mathrm{aNN}}\,{\boldsymbol\nabla}a}{\gamma}
-    \,.\label{eq:Bpseudo}
-\end{equation}
-This gradient coupling oscillates at the ALP Compton frequency and can drive resonant spin precession when the Larmor frequency matches $\nu_a$. 
-% The search for this coupling is the subject of Chapter~\ref{chap:results}.
-% \YZ{add some examples to show equivalent Ba field magnitude?}
 
 
 % The rms Rabi frequency of the pseudomagnetic field can be found by the Hamiltonian in Equation~\eqref{eq:HaNN}\,\cite{Centers2021Stochastic,Yuzhe2023_FrequencyScanning}
