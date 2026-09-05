@@ -1,14 +1,8 @@
 import inspect  # for check()
 import re  # for check()
 from src.dependency import *
-
-# import numpy as np
-
-# import matplotlib.pyplot as plt
-# import matplotlib.gridspec as gridspec
-
-# import pandas as pd
-# import time
+from matplotlib.patches import FancyArrowPatch
+from mpl_toolkits.mplot3d import proj3d
 
 
 def check(arg):
@@ -166,29 +160,17 @@ soft_contrast = [
 grayscale_safe = ["#000000", "#444444", "#888888", "#bbbbbb"]
 
 linestyles = ["-", "--", "-.", ":"]
+
 markers = [
     ".",
-    ",",
-    "o",
-    "v",
-    "^",
+    # ",",
     "<",
-    ">",
     "1",
-    "2",
-    "3",
-    "4",
-    "8",
-    "s",
     "p",
-    "P",
     "*",
     "h",
-    "H",
     "+",
     "x",
-    "X",
-    "D",
     "d",
     "|",
     "_",
@@ -278,7 +260,7 @@ def axion_lineshape(v_0, v_lab, nu_a, nu, case="non-grad", alpha=0.0):
             * axion_lineshape(v_0, v_lab, nu_a, nu)[nu_a_index:-1]
         )
     else:  # adding this to try and get rid of an error message
-        return np.zeros(nunit.shape)
+        return np.zeros(nu.shape)
 
     full_lineshape[nu_a_index:-1] += ax_sq_lineshape
     # nu_a -= shift
@@ -373,3 +355,263 @@ def candidate_dicts_fill_mass(
             )
         filled.append(new_item)
     return filled
+
+
+def Lorentzian(x, center, FWHM, area: float = 1.0, offset: float = 0.0):
+    """
+    Return the value of the Lorentzian function
+        offset + 0.5*FWHM*area / (np.pi * ( (x-center)**2 + (0.5*FWHM)**2 )      )
+
+                           FWHM A
+        offset + ───────────────────────
+                  2π ((x-c)^2+(FWHM/2)^2 )
+
+    Parameters
+    ----------
+
+    x : scalar or array_like
+        argument of the Lorentzian function
+    center : scalar
+        the position of the Lorentzian peak
+    FWHM : scalar
+        full width of half maximum (FWHM) / linewidth of the Lorentzian peak
+    area : scalar
+        area under the Lorentzian curve (without taking offset into consideration)
+    offset : scalar
+        offset for the curve
+
+
+    Returns
+    -------
+    the value of the Lorentzian function : ndarray or scalar
+
+    Examples
+    --------
+    >>>
+
+    Reference
+    ----------
+    Null
+
+    """
+    return offset + 0.5 * abs(FWHM) * area / (
+        np.pi * ((x - center) ** 2 + (0.5 * FWHM) ** 2)
+    )
+
+
+class Arrow3D(FancyArrowPatch):
+    def __init__(self, xs, ys, zs, *args, **kwargs):
+        FancyArrowPatch.__init__(self, (0, 0), (0, 0), *args, **kwargs)
+        self._verts3d = xs, ys, zs
+
+    def draw(self, renderer):
+        xs3d, ys3d, zs3d = self._verts3d
+        xs, ys, zs = proj3d.proj_transform(xs3d, ys3d, zs3d, self.axes.get_proj())
+        self.set_positions((xs[0], ys[0]), (xs[1], ys[1]))
+        FancyArrowPatch.draw(self, renderer)
+
+    def do_3d_projection(self, renderer=None):  #
+        xs3d, ys3d, zs3d = self._verts3d
+        xs, ys, zs = proj3d.proj_transform(xs3d, ys3d, zs3d, self.axes.get_proj())
+        self.set_positions((xs[0], ys[0]), (xs[1], ys[1]))
+        return np.min(zs)
+
+
+def Init_3020sphere(ax, verbose=False):
+    plt.gca().invert_yaxis()
+    ax.grid(False)
+    ax.xaxis.set_pane_color((1, 1, 1, 0.0))
+    ax.yaxis.set_pane_color((1, 1, 1, 0.0))
+    ax.zaxis.set_pane_color((1, 1, 1, 0.0))
+    # draw the cooridnate frame
+    a = Arrow3D(
+        [0, 2],
+        [0, 0],
+        [0, 0],
+        mutation_scale=10,
+        lw=1,
+        arrowstyle="->",
+        color="k",
+        shrinkA=0,
+        shrinkB=0,
+    )
+    ax.add_artist(a)
+    a = Arrow3D(
+        [0, 0],
+        [0, 1.4],
+        [0, 0],
+        mutation_scale=10,
+        lw=1,
+        arrowstyle="->",
+        color="k",
+        shrinkA=0,
+        shrinkB=0,
+    )
+    ax.add_artist(a)
+    a = Arrow3D(
+        [0, 0],
+        [0, 0],
+        [0, 1.3],
+        mutation_scale=10,
+        lw=1,
+        arrowstyle="->",
+        color="k",
+        shrinkA=0,
+        shrinkB=0,
+    )
+    ax.add_artist(a)
+
+    ax.text(0.8, 1.55, 0, "y", color="black")
+    ax.text(2.4, 0.35, 0, "x", color="black")
+    ax.text(0, 0.05, 1.25, "z", color="black")
+    # draw the sphere
+    r = 1
+    u, v = np.mgrid[0 : 2 * np.pi : 40j, 0 : np.pi : 20j]
+    x = np.cos(u) * np.sin(v)
+    y = np.sin(u) * np.sin(v)
+    z = np.cos(v)
+    ax.plot_surface(x, y, z, cmap=plt.cm.YlGnBu_r, alpha=0.2)
+    # draw B0
+    a = Arrow3D(
+        [0, 0],
+        [-0.95, -0.95],
+        [0.75, 1.25],
+        mutation_scale=10,
+        lw=1.6,
+        arrowstyle="->",
+        color="k",
+        shrinkA=0,
+        shrinkB=0,
+    )
+    ax.add_artist(a)
+    ax.text(0, -0.85, 1.15, "$\mathbf{B}_0$", color="black")
+    # ax.text(1, 0.85, 1.25, '$\mathbf{M}$', color='g')
+
+    # draw magnetization vectors
+    # timestamp = np.linspace(start=0, stop=1, num=1000)
+    # magz = np.cos(2*np.pi*nu/10*timestamp)
+    # magx = np.sqrt(1 - magz**2) * np.cos(2*np.pi*nu*1*timestamp)
+    # magy = np.sqrt(1 - magz**2) * np.sin(2*np.pi*nu*1*timestamp)
+    # ax.quiver(
+    #         0, 0, 0, # <-- starting point of vector
+    #         1, 1, 1, # <-- directions of vector
+    #         color = 'g', alpha = 1, lw = 1.6, length=1, normalize=False,
+    #         arrow_length_ratio=.25, label='$\\vec{M}$'
+    #     )
+    try:
+        ax.set_aspect("equal")
+    except NotImplementedError:
+        pass
+    ax.set_xlim3d([-0.8, 0.99])
+    ax.set_ylim3d([-0.8, 0.99])
+    ax.set_zlim3d([-0.8, 0.99])
+    ax.set_xlabel("x")
+    ax.set_ylabel("y")
+    ax.set_zlabel("z")
+    ax.axis("off")
+    # ax.legend(loc='upper right')
+    ax.set_box_aspect((1, 1, 1))
+
+
+def Init_0090sphere(ax, verbose=False):
+    plt.gca().invert_yaxis()
+    ax.grid(False)
+    ax.xaxis.set_pane_color((1, 1, 1, 0.0))
+    ax.yaxis.set_pane_color((1, 1, 1, 0.0))
+    ax.zaxis.set_pane_color((1, 1, 1, 0.0))
+    # draw the cooridnates
+    # draw the cooridnate frame
+    a = Arrow3D(
+        [-1, 1.2],
+        [0, 0],
+        [0, 0],
+        mutation_scale=10,
+        lw=1,
+        arrowstyle="->",
+        color="k",
+        shrinkA=0,
+        shrinkB=0,
+    )
+    ax.add_artist(a)
+    a = Arrow3D(
+        [0, 0],
+        [-1, 1.2],
+        [0, 0],
+        mutation_scale=10,
+        lw=1,
+        arrowstyle="->",
+        color="k",
+        shrinkA=0,
+        shrinkB=0,
+    )
+    ax.add_artist(a)
+    # a = Arrow3D([0,0],[0,0],[0,1.3], mutation_scale=10, lw=1, arrowstyle="->", color="k", shrinkA=0, shrinkB=0)
+    # ax.add_artist(a)
+    ax.text(1.2, 0.15, 0, "x", color="black")
+    ax.text(0.15, 1.2, 0, "y", color="black")
+
+    # ax.text(0, 0.05, 1.25, 'z', color='black')
+    # draw the sphere
+    r = 1
+    u, v = np.mgrid[0 : 2 * np.pi : 40j, 0 : np.pi : 20j]
+    x = np.cos(u) * np.sin(v)
+    y = np.sin(u) * np.sin(v)
+    z = np.cos(v)
+    ax.plot_surface(x, y, z, cmap=plt.cm.YlGnBu_r, alpha=0.2)
+    try:
+        ax.set_aspect("equal")
+    except NotImplementedError:
+        pass
+    ax.set_xlim3d([-0.8, 0.99])
+    ax.set_ylim3d([-0.8, 0.99])
+    ax.set_zlim3d([-0.8, 0.99])
+    ax.set_xlabel("x")
+    ax.set_ylabel("y")
+    ax.set_zlabel("z")
+    ax.axis("off")
+    # ax.legend(loc='upper right')
+    ax.set_box_aspect((1, 1, 1))
+
+
+def Add_vector(
+    ax,
+    start=None,
+    end=None,
+    mutation_scale=10,
+    lw=1.6,
+    color="k",
+    alpha=1,
+    zorder=5,
+    linestyle="-",
+    verbose=False,
+):
+    a = Arrow3D(
+        [start[0], end[0]],
+        [start[1], end[1]],
+        [start[2], end[2]],
+        mutation_scale=mutation_scale,
+        lw=lw,
+        arrowstyle="->",
+        color=color,
+        alpha=alpha,
+        shrinkA=0,
+        shrinkB=0,
+        zorder=zorder,
+        linestyle=linestyle,
+    )
+    ax.add_artist(a)
+
+    # ax.quiver(
+    #         start[0], start[1], start[2], # <-- starting point of vector
+    #         end[0], end[1], end[2], # <-- directions of vector
+    #         color = 'g', alpha = 1, lw = linewidth, length=1, normalize=False,
+    #         arrow_length_ratio=.25, label=''
+    #     )
+
+
+def sph2orth1d(vec=None):
+    orth = np.zeros(3)
+    orth[0] = vec[0] * np.sin(vec[1]) * np.cos(vec[2])
+    orth[1] = vec[0] * np.sin(vec[1]) * np.sin(vec[2])
+    orth[2] = vec[0] * np.cos(vec[1])
+    return orth
