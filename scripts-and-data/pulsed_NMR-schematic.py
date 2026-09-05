@@ -486,4 +486,7 @@ ax12.set_box_aspect((1, 1, 1))
 
 
 # plt.tight_layout()
+
+plt.savefig("tex/figures/pulsed_NMR-schematic.pdf")
+plt.savefig("tex/figures/pulsed_NMR-schematic.png")
 plt.show()
