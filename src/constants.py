@@ -40,8 +40,8 @@ mu_Xe129 = -0.777969 * mu_N(const.m_p)
 gamma_Xe129 = Constant(
     "gamma_Xe129",
     "Xe-129 gyromagnetic ratio",
-    -7.441e7,
+    -7.451956e7,
     "rad Hz / T",
-    0.0,
-    reference="CODATA",
+    0.000075e7,
+    reference="https://doi.org/10.3390/magnetochemistry6040065",
 )
