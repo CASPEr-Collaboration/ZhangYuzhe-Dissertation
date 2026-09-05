@@ -27,7 +27,7 @@
 
 % The galactic dark-matter halo provides the primary ALP signal target discussed in Chapter~\ref{chap:results}.
 A distinct source arises from ALPs that are gravitationally bound to the Earth\,\cite{banerjee2020_AxionHalos}.
-Such Earth-bound states are analogous to atomic bound states---the Earth's gravitational potential plays the role of the Coulomb well and the ALP plays the role of the electron---and can support a discrete spectrum of spatial eigenstates.
+Such Earth-bound states are analogous to atomic bound states---the Earth's gravitational potential plays the role of the Coulomb well and the ALP plays the role of the electron---and can support a discrete spectrum of spatial eigen-states.
 It would be interesting if excessive ALPs can be trapped by the Earth, leading to a local overdensity compared to galactic dark matter density.
 This section considers the overdensity, derives the properties of these bound states, estimates the resulting spin-precession signal, and discusses the characteristic daily modulation that distinguishes this signal from the galactic background.
 
@@ -36,16 +36,18 @@ This section considers the overdensity, derives the properties of these bound st
 It is assumed here that the dark matter was produced in the early universe and is now gravitationally bound to the Milky Way. 
 ALP is assumed to consititute most of the dark matter in the galactic halo.
 This thesis considers the possibility that a fraction of the galactic ALPs can be trapped by the Earth's gravitational potential, forming a local overdensity. 
-If SHM is assumed, the local galactic dark matter density is $\rho_\mathrm{DM}^\mathrm{MW}\sim\SI{0.4}{\GeV\per\cm^3}$, and the typical velocity and velocity dispersion of dark matter is $\sim\SI{220}{\km/\second}$.
+If SHM is assumed, the local galactic dark matter density is $\rho_\mathrm{DM}^\mathrm{MW}\sim\SI{0.4}{\GeV\per\cm^3}$, and the typical velocity and also velocity spread of dark matter are $\sim\SI{220}{\km/\second}$.
 Such velocities are much larger than the escape velocity of the Earth, $\SI{11.2}{\km/\second}$.
-Therefore, ALP in the galactic halo must cool down (lose enough kinetic energy) to be captured by the Earth's gravitational potential. 
+Therefore, ALPs in the galactic halo must cool down (lose enough kinetic energy) so that they can be captured by the Earth's gravitational potential. 
+
 The mechanism of cooling down determines how much ALP can be captured, and how the ALP population is distributed in the bound states.
-Dark matter is usually assumed collisionless, so that gravitational interactions are consequently assumed very inefficient in cooling down the ALP. 
+Dark matter is usually assumed collisionless, so that gravitational interactions are consequently assumed inefficient in cooling down the ALP. 
 There have been possible mechanisms involving non-gravitational interactions that could lead to the cooling down, such as dark matter self-interaction. 
 These are also referred to as ``friction'', since they can dissipate the kinetic energy of the ALP. 
 There are also theories suggesting that gravitational interactions alone may also be sufficient to trap ALPs. 
 For example, gravitational interactions between ultralight particles such as ALP can lead to fast formation of compact objects, such as supermassive black holes\,\cite{Sikivie2026_SMBH}. 
-It may be reasonable to expect gravitational interactions to also lead to the formation of Earth-bound ALP halo.
+It may be reasonable to expect gravitational interactions to also lead to the formation of Earth-bound ALP halo. 
+
 This thesis does not focus on the mechanism of trapping and accumulation of ALPs, but rather assumes that a fraction of ALPs can be trapped by the Earth, and focuses on the properties of the bound states and the resulting spin-precession signal.
 
 % \begin{description}
@@ -55,41 +57,60 @@ This thesis does not focus on the mechanism of trapping and accumulation of ALPs
     % \item[Resonant capture] Near specific orbital resonances the exchange of energy between the ALP and the Earth-Moon or Earth-Sun system may be efficient.
 % \end{description}
 
-The total mass $M_\mathrm{bound}$ of ALPs trapped in Earth-bound states is strongly constrained by astrophysical and geophysical observations\,\cite{Adler_2008_earthbounddarkmatter}. 
- \YZ{leave the plot here.
-cite and expand: relevant constraints on exotic mass inside Earth from geophysics / seismology / gravitational measurements}.
+The total mass $M_\mathrm{bound}$ of ALPs trapped in Earth-bound states is constrained by astrophysical and geophysical observations. 
+Reference\,\cite{Adler_2008_earthbounddarkmatter} used lunar laser-ranging and the motion of the LAGEOS satellite to find out the mass between the LAGEOS satellite orbit and the Moon's orbit. 
+The orbits of the Moon and LAGEOS satellite and the dark matter measured are illustrated in Figure\,\ref{fig:earth-satelite-DM-moon}. 
+The measured mass of dark matter between the LAGEOS satellite orbit and the Moon's orbit is 
+\begin{equation}
+    G M_\mathrm{DM} = (0.3 \pm 4) \times \SI{1e-9}{G M_\oplus}
+    \,,\label{eq:G_M_DM_earth}
+\end{equation}
+where $M_\oplus$ is the mass of Earth. 
+The uncertainty in Equation~\eqref{eq:G_M_DM_earth} corresponds to an upper limit on the mass of Earth-bound dark matter of $M_\mathrm{bound} \lesssim \SI{4e-9}{M_\oplus}$. 
 
-An upper bound comes from the requirement that the Earth's measured gravitational multipole moments not be distorted beyond current geodetic precision.
-\YZ{Add quantitative upper limit on $M_\mathrm{bound}$ once reference is identified.}
-\YZ{We note that.... skip the mechanism of capturing...}
 \begin{figure}
     \centering
-    \includegraphics[scale =0.9]{figures/MaxDensity_EH.pdf}
-    \caption{Density Distribution of ground state Earth-bound ALP halo.
-    The solid line indicates the density at the Earth surface, whereas the dashed line represents the density at the center of the halo.
-    The density value $\rho_\star$ is derived from the maximum Earth ALP halo mass permitted by gravitational constraints, as assessed in\,\cite{banerjee_relaxion_2020,banerjee_searching_2020}.\YZ{discard this pic?}}%
-    \label{fig:groundstate_density}%
+    \includegraphics[width=0.8\textwidth]{figures/earth-satelite-DM-moon.png}
+    \caption{Illustration of the measurements in Ref.\,\cite{Adler_2008_earthbounddarkmatter}.}
+    \label{fig:earth-satelite-DM-moon}
 \end{figure}
-\YZ{check if max dm mass is mentioned}
-\subsection{Gravitational potential and the quantum picture}  %  and the Bohr radius
 
-To simplify the calculation, Earth is considered as a spherical object.
+% An upper bound comes from the requirement that the Earth's measured gravitational multipole moments not be distorted beyond current geodetic precision.
+% \begin{figure}
+%     \centering
+%     \includegraphics[scale =0.9]{figures/MaxDensity_EH.pdf}
+%     \caption{Density Distribution of ground state Earth-bound ALP halo.
+%     The solid line indicates the density at the Earth surface, whereas the dashed line represents the density at the center of the halo.
+%     The density value $\rho_\star$ is derived from the maximum Earth ALP halo mass permitted by gravitational constraints, as assessed in\,\cite{banerjee_relaxion_2020,banerjee_searching_2020}.\YZ{discard this pic?}}%
+%     \label{fig:groundstate_density}%
+% \end{figure}
+
+
+\subsection{Gravitational potential and the quantum picture}
+
+To simplify the calculation, Earth is approximated as a spherical object in this thesis.
 The density of Earth varys over radii.
-From geophysical measurements on earthquake waves, Preliminary reference Earth model (PREM)\cite{Dziewonski1981_PREM} was constructed, giving the Earth density profile as shown in Figure~\ref{fig:PREM}.
+From geophysical measurements on earthquake waves, Preliminary reference Earth model (PREM)\,\cite{Dziewonski1981_PREM} was constructed, giving the Earth density profile as shown in Figure\,\ref{fig:PREM}.
 \begin{figure}
-    \includegraphics[width=\linewidth]{figures/Earth_Profiles_(PEM_Data).png}
-    \caption{to be modified later.}
+    \centering
+    \includegraphics[width=\linewidth]{figures/Earth-profiles-(PREM-data).png}
+    \caption{Earth density, mass, and gravitational potential profiles from PREM\,\cite{Dziewonski1981_PREM}.}
     \label{fig:PREM}
 \end{figure}
 
-The gravitational potential of Earth $V_g / m$ per unit mass can be found by
+The gravitational potential of Earth per unit mass, taking the potential at
+infinity to be zero, is obtained from the spherically symmetric density profile:
 \begin{equation}
-    V_g(r) / m = -\frac{G M_\mathrm{enclosed}}{r}~,
+    \frac{V_g(r)}{m}
+    = -G\left[\frac{M_\mathrm{enclosed}(r)}{r}
+    +4\pi\int_r^{\infty}\rho_\oplus(r')\,r'\,\mathrm{d}r'\right]~,
     \label{eq:grav_potential}
 \end{equation}
-\YZ{check if we are wrong by a constant or so. }
-where $r$ is the distance measured from the Earth's center, $G$ is Newton's constant, and $M_\mathrm{enclosed}$ is the Earth's mass enclosed by $r$.
-Here we take the infinity as the reference point and have potential $V_g(\infty)/m=\SI{0}{\joule\per\kg}$.
+where $r$ is the distance measured from the Earth's center, $G$ is Newton's
+constant, $M_\mathrm{enclosed}(r)$ is the Earth's mass enclosed within radius
+$r$, and $\rho_\oplus(r)$ is the Earth's density profile. For $r\geq R_\oplus$,
+this expression reduces to $V_g(r)/m=-G M_\oplus/r$; inside the Earth, the
+integral accounts for the contribution from the outer shells.
 The potential over radii can be calculated numerically based on PREM (Figure~\ref{fig:PREM}).
 The Earth escape velocity can therefore be found by
 \begin{equation}
@@ -113,41 +134,40 @@ Consider ALPs trapped by the earth potential with velocities roughly smaller tha
 %     E_k = \frac{1}{2} m_a v_a^2 \lesssim \frac{G M_\mathrm{enclosed} m_a}{r}~.
 % \end{equation}
 % The maximum of the absolute potential energy ${G M_\mathrm{enclosed} m_a}/{r}$\YZ{change enclosed mass to M(r)?} is ${G M_\oplus \SI{10}{\eV/c^2}}/{R_\oplus} = \SI{7e-9}{\eV}$. This transfers to $v_a\lesssim v_\mathrm{esc} = \SI{11.2}{\km/\second}$. 
-The de~Broglie wavelength as a function of particle mass $\lambda_\mathrm{dB}(m_a, v_a) = \frac{h}{m_a v_a}$ gives
+The de~Broglie wavelength as a function of particle mass $\lambda_\mathrm{dB}(m_a, v_a) = \frac{h}{m_a v_a}$ gives\,\cite{Zhang2026_Dissertation_ipynb_2_theory_EH_ALP}
 \begin{itemize}
     \item $\lambda_\mathrm{dB}(\SI{4}{\pico\eV}, \SI{11.2}{\km/\second}) \approx \SI{8.3e9}{\m} \approx \SI{1300}{R_\oplus}$ and
     \item $\lambda_\mathrm{dB}(\SI{2.5}{\micro\eV}, \SI{11.2}{\km/\second}) \approx \SI{13}{\km} \approx \SI{0.0021}{R_\oplus}$\,.
 \end{itemize}
 Therefore, across the scan range of CASPEr, the de~Broglie wavelength spans values from much smaller to much larger than the Earth radius.
-In later chapters, a measurement probing MHz ALPs is presented.
-This corresponds to a de~Broglie wavelength $\sim\SI{1}{R_\oplus}$.
-To prepare for the analysis, we focus on this scenario and take the wave nature into account.
-\YZ{mention Na here. }
+In later chapters, a measurement probing $\sim\SI{1}{\MHz}$ ALPs is presented.
+This corresponds to a de~Broglie wavelength $\sim\SI{1}{R_\oplus}$\,\cite{Zhang2026_Dissertation_ipynb_2_theory_EH_ALP}.
+To prepare for the analysis, this scenario is considered in the following sections, and the quantum picture of ALPs bound by Earth is discussed.
 
 \subsection{Bound-state wavefunctions}\label{sec:theory:earthALP:wavefunctions}
 
 The general relation between an ALP wavefunction, its local energy density, and the real scalar field was established in Equations~\eqref{eq:a0_Psi_real} and~\eqref{eq:a0_rhoDM_Psi_real}.
-For the Earth-bound model, the wavefunction is expanded in the discrete gravitational eigenstates:
+For the Earth-bound model, the wavefunction is expanded in the discrete gravitational eigen-states:
 \begin{equation}
     \Psi(\mathbf{r}, t) = e^{-i m_a c^2 t / \hbar}\sum_{nlm}^{} c_{nlm} e^{-i E_n t / \hbar} \psi_{nlm}(\mathbf{r})\,.
     \label{eq:Psi_r_t}
 \end{equation}
-Here $\Psi(\mathbf{r}, t)$ is the wavefunction, $\psi_{nlm}$ and $E_n$ are the eigenfunction and energy of the state $(n,\,l,\,m)$, and $c_{nlm}$ are expansion coefficients determined by the state populations.
+Here $\Psi(\mathbf{r}, t)$ is the time-dependent wavefunction, $\psi_{nlm}$ and $E_n$ are the eigenfunction and energy of the state $(n,\,l,\,m)$, and $c_{nlm}$ are expansion coefficients determined by the state populations.
 The total particle number $N_a$ enters through the density below.
 The fast oscillation at ALP Compton frequency is indicated by $e^{-i m_a c^2 t / \hbar}$, where the small variation of oscillation frequency is indicated by $e^{-i E_n t / \hbar}$.
-The corresponding local density, $\rho_{DM}^{E}(\mathbf{r})=m_a c^2N_a
+The corresponding local energy density, $\rho_{DM}(\mathbf{r})=m_a c^2N_a
 \langle|\Psi(\mathbf{r},t)|^2\rangle_t$, fixes the field amplitude through
 Equation~\eqref{eq:a0_rhoDM_Psi_real}.
 The remaining task is therefore to determine the eigenfunctions, eigenenergies, and state populations in the Earth's potential.
 
-In the non-relativistic limit, the eigenstates can be found by the time-independent Schrödinger equation (TISE)
+In the non-relativistic limit, the eigen-states can be found by the time-independent Schrödinger equation (TISE)
 \begin{equation}
     \left[-\frac{\hbar^2}{2 m_a}\nabla^2 + V_g(r)\right]\psi_{nlm}(\mathbf{r})
     = E_n\,\psi_{nlm}(\mathbf{r})
     \,.\label{eq:schrodinger_earth}
 \end{equation}
-In analogy to the hydrogen atom, the ALP-Earth system is a gravitational atom \YZ{cite: relevant paper on gravitational atom, e.g.\ Arvanitaki et al. and more...}.
-\YZ{what about quantum number m? zero?}
+At infinity ($r \to \infty$), the potential vanishes. 
+In analogy to the hydrogen (proton-electron) atom, the ALP-Earth system is a ``gravitational atom''. 
 
 %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%   %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% 
 %%%% %%%% the following text is about the Bohr radius. We may or may not need to include it %%%% %%%% 
@@ -208,10 +228,10 @@ Therefore, to derive the radial wavefunction of eigen-state with angular quantum
     \label{eq:TISE_R}
 \end{equation}
 Since the earth density is not uniform, it is difficult to derive the radial wavefunction analytically.
-Hence, numerical method is adopted.
+Hence, numerical method is adopted. 
 In a discretized space, a matrix for the Hamiltonian in Equation\,\eqref{eq:TISE_R} is constructed.
 The eigen-values (eigen-energies) and eigen-vectors (eigen-states) can be derived using Python package \texttt{SciPy}.
-This method is implemented in the Python class \texttt{EarthBoundAxionHalo} of \texttt{axionbloch}.
+This method is implemented in the Python class \texttt{EarthBoundAxionHalo} of \texttt{axionbloch}\,\cite{Zhang2026_axionbloch}.
 
 Note that normalization is necessary for deriving the right magnitude of the eigen-functions.
 The wavefunctions are normalized so that the total probability integrates to unity,
@@ -222,20 +242,11 @@ The wavefunctions are normalized so that the total probability integrates to uni
     = 1
     \,.\label{eq:psi_norm}
 \end{equation}
-% \begin{align}
-%     \int_0^\infty |R_{nl}|^2 r^2\,dr = 1
-%     \,.\label{eq:psi_norm}
-% \end{align}
-% \begin{align}
-%     \int|Y_l^m|^2\,d\Omega = 1
-%     \,.\label{eq:psi_norm}
-% \end{align}
 Here $\Omega$ is solid angle coordinate.
-% The two factors are independently normalized: $\int_0^\infty |R_{nl}|^2 r^2\,dr = 1$ and $\int|Y_l^m|^2\,d\Omega = 1$.
 Examples of normalized wavefunctions are illustrated in Figure~\ref{fig:wavefunctions}.
 \begin{figure}
-    \includegraphics[width=0.45\textwidth]{figures/wavefunction-2p.png}
-    \includegraphics[width=0.45\textwidth]{figures/wavefunction-2p.png}
+    \centering
+    \includegraphics[width=\textwidth]{figures/EH_ALP-state_amplitude-and-radial_wavefunctions-10states.pdf}
     \caption{radial wavefunctions of 1s 2p... states.
     include higher states and mention that we are only interested in low energy states.}
     \label{fig:wavefunctions}
@@ -272,7 +283,7 @@ The gradient operator in spherical coordinates is
     \boldsymbol{\nabla} = \hat{\mathbf{r}}\,\frac{\partial}{\partial r} + \hat{\boldsymbol{\theta}}\,\frac{1}{r}\frac{\partial}{\partial \theta} + \hat{\boldsymbol{\varphi}}\,\frac{1}{r\sin\theta}\frac{\partial}{\partial \varphi}
     \,.\label{eq:gradient_spherical}
 \end{equation}
-The eigenstates are defined in the Earth-rest frame, whereas the gradient coupling is measured in the laboratory frame $L$.
+The eigen-states are defined in the Earth-rest frame, whereas the gradient coupling is measured in the laboratory frame $L$.
 Since the ALP field is a Lorentz scalar, $a'(x')=a(x)$, while its derivatives transform according to the inverse Lorentz transformation.
 Applying the chain rule, $\partial'_\mu=(\Lambda^{-1})^\nu{}_\mu\partial_\nu$, mixes the temporal derivative with the component of the spatial gradient parallel to the laboratory velocity.
 Here $\Lambda^\mu{}_\nu$ is the $4\times4$ Lorentz-boost matrix relating the Earth-rest-frame coordinates $x^\mu=(ct,\mathbf{r})$ to the laboratory-frame coordinates through $x'^\mu=\Lambda^\mu{}_\nu x^\nu$.
@@ -515,6 +526,7 @@ The values of the gradients are computed numerically from the eigen-states and a
 Examples of the gradient magnitude for selected modes are illustrated in Figure~\ref{fig:wavefunctions}.
 
 \begin{figure}
+    \centering
     \includegraphics[width=0.99\textwidth]{figures/gradients_Omega_a_comparison_2p.png}
     \caption{gradients of 1s 2p... states.
     Three rows would be enogh.}
@@ -557,7 +569,7 @@ Unlike the galactic halo signal, which has a continuous Maxwell-Boltzmann spectr
 Only the lowest few eigen-states are of interest because the higher eigen-states have small wavefunction amplitudes at the detector location.
 The population of the eigen-states is determined by the dark matter capture / accumulation process and potential ALP self-interaction or interactions with other particles, which is not well understood. 
 The population distribution is therefore treated as a free parameter in this thesis. 
-A few simple scenarios are considered: (1) only one of the lowest eigenstates are populated; (2) the first few eigenstates are populated uniformly.
+A few simple scenarios are considered: (1) only one of the lowest eigen-states are populated; (2) the first few eigen-states are populated uniformly.
 
 
 Each level $n$ contributes an ALP oscillation at a slightly different Compton frequency
@@ -606,6 +618,7 @@ A more precise estimate of the coherence time can be made by computing the eigen
 The relative frequency spacing of the lowest 6 eigen-states is $\sim \SI{1e-9}{}$ or \SI{1}{ppb}, which is consistent with the rough estimate in Equation~\eqref{eq:coherence_time_estimate_max_freq}. 
 
 \begin{figure}
+    \centering
     \includegraphics[width=0.99\textwidth]{figures/state-amplitude-vs-eigenenergy-1s-to-4f-1.348585-MHz.pdf}
     \caption{ALP eigen-energy for the lowest few eigen-states.
     The ALP mass is chosen to be $m_a c^2 = h \times \SI{1.348585}{\mega\hertz}$, which is close to the Larmor frequency of the CASPEr-G measurements.
@@ -636,6 +649,7 @@ In summary, the Rabi frequency exhibits changes within one order of magnitude du
 Therefore, the date and time of measurements would not have a significant effect for the sensitivity of CASPEr-G. 
 
 \begin{figure}
+    \centering
     \includegraphics[width=0.99\textwidth]{figures/gradients_Omega_a_comparison_2p.png}
     \caption{Daily modulation of the gradient component for the $2p$ state $(n, l, m) = (2, 1, 0)$ at the location of CASPEr-G (Helmholtz Institute Mainz). 
     The modulation is due to the rotation of the Earth. 
@@ -647,6 +661,7 @@ Therefore, the date and time of measurements would not have a significant effect
 \end{figure}
 
 \begin{figure}
+    \centering
     \includegraphics[width=0.99\textwidth]{figures/EarthHalo-axion-annual-modulation-Omega_a-2p-365-days.pdf}
     \caption{Annual modulation of the gradient component for the $2p$ state $(n, l, m) = (2, 1, 0)$ at the location of CASPEr-G (Helmholtz Institute Mainz). 
     The modulation is due to the Earth's orbit around the Sun. 

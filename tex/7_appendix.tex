@@ -2,7 +2,7 @@
 
 \chapter{Numerical simulation with \texttt{axionbloch}}\label{app:axionbloch}
 \begin{jointwork}
-    This appendix is adapted from Ref.\,\cite{Zhang_axionbloch}.
+    This appendix is adapted from Ref.\,\cite{Zhang2026_axionbloch}.
 \end{jointwork}
 
 Analytical estimates of the ALP-induced spin-precession signal (Chapter~\ref{chap:theory}) are valid in the long-dwell-time limit $T \gg \tau_a,\,T_2^*,\,T_2$.
@@ -42,7 +42,7 @@ The architecture is illustrated in Figure~\ref{fig:axionbloch_arch}.
     Each \texttt{Simulation} instance receives parameters from \texttt{Magnet}, \texttt{Sample}, and \texttt{MagField}.
     For axion simulations, an axion-model object is required both to configure the simulation and to generate the pseudomagnetic field.
     Numerical integration is performed via the \texttt{blochSimulation} API, which provides Python access to the C++ backend.
-    Reproduced from Ref.\,\cite{Zhang_axionbloch}.}
+    Reproduced from Ref.\,\cite{Zhang2026_axionbloch}.}
     \label{fig:axionbloch_arch}
 \end{figure}
 
@@ -71,7 +71,7 @@ This benchmark calibrates both the Larmor precession and the $T_2^*$ relaxation 
     Upper rows: applied transverse magnetic fields; lower rows: normalized simulated magnetization.
     \textbf{(a)} After $\SI{90}{\degree}$ and $\SI{180}{\degree}$ pulses, the simulation produces free decay (timescale $T_2^*$) and a spin echo (timescale $T_2$).
     \textbf{(b)} Under a weak continuous-wave drive on resonance, the transverse magnetization grows as $\gamma B T_2^*(1-e^{-t/T_2^*})$ (dashed line).
-    Reproduced from Ref.\,\cite{Zhang_axionbloch}.}
+    Reproduced from Ref.\,\cite{Zhang2026_axionbloch}.}
     \label{fig:calibration_NMR}
 \end{figure}
 
@@ -88,7 +88,7 @@ The simulated $M_z(t) = M_\mathrm{eqb}[1-(M_\mathrm{eqb}^\mathrm{init}/M_\mathrm
     \caption{Simulated $T_1$ relaxation of a hyperpolarized sample in a static bias field.
     The axial magnetization $M_z$ is normalized by the equilibrium magnetization $M_\mathrm{eqb}$.
     The exponential approach to equilibrium calibrates the longitudinal relaxation in the simulation.
-    Reproduced from Ref.\,\cite{Zhang_axionbloch}.}
+    Reproduced from Ref.\,\cite{Zhang2026_axionbloch}.}
     \label{fig:calibration_T1}
 \end{figure}
 
@@ -116,7 +116,7 @@ These simulations validate the three-regime picture \YZ{add reference to the ana
     Left: single simulation realisation.
     Right: ensemble of 1000 realizations; solid lines show the mean and shaded bands show $\pm\sigma$.
     The sample is \ch{^{129}Xe} initially polarized to \SI{50}{\%}.
-    Reproduced from Ref.\,\cite{Zhang_axionbloch}.}
+    Reproduced from Ref.\,\cite{Zhang2026_axionbloch}.}
     \label{fig:axion_sim}
 \end{figure}
 

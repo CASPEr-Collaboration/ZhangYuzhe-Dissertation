@@ -5,36 +5,44 @@
 In the SHM\,\cite{Evans2019_SHMRefined}, the Milky Way dark matter population is treated as a virialized\footnote{The term ``virialized'' means that the dark matter is gravitationally bound. } ensemble. 
 In the Galactic rest frame, the dark-matter velocity distribution is approximated by a Maxwell--Boltzmann distribution truncated near the Galactic escape speed\,\cite{Evans2019_SHMRefined}.
 The average speed of local dark matter\footnote{Here, ``local'' refers to the solar radius in the Milky Way.} is $v_\mathrm{DM} \approx \SI{220}{\km\per\s}$.
-The local dark matter density is estimated to be $\rho_{DM}\approx\SI{0.4}{\GeV\per\centi\meter^3}$. 
+The local dark matter density is estimated to be $\rho_\mathrm{DM}^\mathrm{MW}\approx\SI{0.4}{\giga\electronvolt\per\centi\meter\cubed}$. 
 The Rabi frequency $\Omega_a$ can be computed from Equations\,\eqref{eq:a0_rhoDM}, \eqref{eq:ALP_field}, and \eqref{eq:HaNN}:
 \begin{align}
     \Omega_a
     & = \dfrac{1}{2\hbar} g_{\mathrm{aNN}} a_0 m_a c v_{\bot}
-    \approx \dfrac{1}{\sqrt{2}} g_{\mathrm{aNN}} \sqrt{\hbar c \rho_{DM}}\,v_{\bot}\\
-    & = 2 \pi \times \SI{2e-10}{\Hz} \frac{g_{\mathrm{aNN}}}{\SI{1e-9}{\per\GeV}} \left(\dfrac{\rho_{DM}}{\SI{0.4}{\GeV\per\centi\meter^3}}\right)^{1/2}\dfrac{v_{\bot}}{\SI{220}{\km\per\s}}
+    \approx \dfrac{1}{\sqrt{2}} g_{\mathrm{aNN}} \sqrt{\hbar c \rho_\mathrm{DM}^\mathrm{MW}}\,v_{\bot}\\
+    & = 2 \pi \times \SI{2e-10}{\Hz} \frac{g_{\mathrm{aNN}}}{\SI{1e-9}{\per\GeV}} \left(\dfrac{\rho_\mathrm{DM}^\mathrm{MW}}{\SI{0.4}{\giga\electronvolt\per\centi\meter\cubed}}\right)^{1/2}\dfrac{v_{\bot}}{\SI{220}{\km\per\s}}
     \,.
     \label{eq:Omega_a_MW}
 \end{align}
+% TODO change all rho_DM_MW to the same style
+% TODO use ^-1 format in all occurrences
 Here it is assumed that the ALP-field gradient comes exclusively from the relative motion of the field and the detector. 
-It is important to note that the ALP field is a stochastically varying quantity\,\cite{Centers2021Stochastic}, so that the $\Omega_a$ in Equation~\eqref{eq:Omega_a} is the root-mean-squared (rms) value.
+It is important to note that the ALP field is a stochastically varying quantity\,\cite{Centers2021Stochastic}, so that the $\Omega_a$ in Equation~\eqref{eq:Omega_a_MW} is the root-mean-squared (rms) value.
 For $v_{\bot} = \SI{220}{\km\per\second}$ and $g_{\mathrm{aNN}}\leq \SI{1e-9}{\per\GeV}$, the Rabi period is $2\pi/\Omega_a \geq 100\,\mathrm{yr}$, much longer than any practical measurement duration; the ALP-field gradient is therefore a weak drive on the spins.
 
 The ALP gradient coupling can also be interpreted as an effective oscillating
 pseudomagnetic field $\mathbf{B}_a$ acting on the nuclear spins. 
 The amplitude of the pseudomagnetic field can be estimated from the Rabi frequency $\Omega_a$ and the gyromagnetic ratio $\gamma$ of the nuclear spin:
 \begin{align}
-    {B}_a = &\frac{\Omega_a}{\gamma} \\
-    =& \SI{2e-17}{\tesla} \frac{\gamma}{-2 \pi \times \SI{12}{\MHz\per\tesla}}\\ \nonumber
-    & \frac{g_{\mathrm{aNN}}}{\SI{1e-9}{\per\GeV}} \left(\dfrac{\rho_{DM}}{\SI{0.4}{\GeV\per\centi\meter^3}}\right)^{1/2}\dfrac{v_{\bot}}{\SI{220}{\km\per\s}}
-    % \Omega_a & = \gamma |\mathbf{B}_a|\\
-    % & = \gamma_{\mathrm{proton}}  \times \SI{5e-18}{\tesla}\\
-    % & = \gamma_{\mathrm{Xe-129}}\frac{g_{\mathrm{aNN}}}{\SI{1e-9}{\per\GeV}} \times \SI{-1.9e-17}{\tesla}
-    % 5.2e-18 T
-    %  -1.9e-17 T
-    % \mathbf{B}_a(t) = \frac{}{\gamma} = \frac{1}{\gamma} \dfrac{1}{\sqrt{2}} g_{\mathrm{aNN}} \sqrt{\hbar c \rho_{DM}}\,v_{\bot}
-    \,.\label{eq:Bpseudo}
+B_a
+  &= \frac{\Omega_a}{\gamma} \\
+  &= \SI{2e-17}{\tesla}\,
+     \frac{\gamma}
+          {-2\pi \times \SI{12}{\mega\hertz\per\tesla}}\,
+     \frac{g_{a\mathrm{NN}}}
+          {\SI{1e-9}{\giga\electronvolt}}
+     \notag \\
+  &\phantom{=}\quad{}\times
+     \left(
+       \frac{\rho_\mathrm{DM}^\mathrm{MW}}
+            {\SI{0.4}{\giga\electronvolt\per\centi\meter\cubed}}
+     \right)^{1/2}
+     \frac{v_\perp}
+          {\SI{220}{\kilo\meter\per\second}}
+\,.\label{eq:Bpseudo}
 \end{align}
-Here $-2 \pi \times \SI{12}{\MHz\per\tesla}$ is the gyromagnetic ratio of the nuclear spin of $^{129}$Xe.
+Here $(-2 \pi) \times \SI{12}{\MHz\per\tesla}$ is the gyromagnetic ratio of the nuclear spin of $^{129}$Xe.
 In this way of thinking, the ALP gradient coupling is equivalent to a very weak oscillating magnetic field. 
 
 
@@ -113,4 +121,3 @@ Examples of daily and annual modulations are shown in Figure~\ref{fig:MW_ALP-ann
 
 
 % \subsection{Numerical simulation}\label{sec:theory:MW:simulation}
-
