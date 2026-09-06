@@ -4,76 +4,94 @@
     Sections~\ref{sec:experiment:single}--\ref{sec:experiment:optimization} are partially adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.
 \end{jointwork}
 
-The CASPEr-Gradient-Lowfield apparatus converts a nuclear-spin signal into a detectable electrical output through three functional blocks: the magnet system sets the operating bias field and thereby the Larmor frequency of the sample; the sample and pickup coil generate and capture the magnetic response; and the SQUID and lock-in amplifier chain convert, amplify, and record the signal.
+The CASPEr-Gradient-Lowfield apparatus converts a nuclear-spin signal into a detectable electrical output through three functional blocks: the magnet system sets the operating bias magnetic field and thereby the Larmor frequency of the sample; the sample and pickup coil generate and capture the magnetic response; and the SQUID and lock-in amplifier chain convert, amplify, and record the signal.
 This chapter describes each block, summarizes the key parameters, and then develops the strategy used to scan an ALP-mass range efficiently.
 
-\section{Magnet system}\label{sec:apparatus:magnet}
+\section{Apparatus}\label{sec:apparatus}
+\subsection{Cryostat and magnet}\label{sec:apparatus:magnet}
 
-The apparatus is built around a flow-through liquid-helium cryostat housing a superconducting solenoid that can generate a bias field $B_0$ up to \SI{0.1}{\tesla}.
-The DM mass range accessible to the experiment depends on the gyromagnetic ratio of the sample and on $B_0$; for proton spins, the covered Larmor frequency range is approximately \SI{1}{\kHz} to \SI{4.3}{\MHz}.
+The apparatus is built around a flow-through L\ch{He} cryostat inside a Faraday room, shielded from external electric fields.
+It consists of an outer shell, reservoirs for liquid nitrogen (L\ch{N2}) and L\ch{He}, and vacuum insulation layers in between.
+L\ch{N2} cools the cryostat and reduces the evaporation of L\ch{He}, while the superconducting devices and niobium (\ch{Nb}) shield are submerged in the L\ch{He} bath at \SI{4.2}{\kelvin}. 
+When fully filled, the cryostat can maintain a superconducting environment for approximately one week.
+The \ch{Nb} shield repels external magnetic fields (Meissner effect), isolating internal devices from external magnetic noise.
+% A superconducting \ch{Nb} shield built into the cryostat attenuates low-frequency magnetic noise.
+Additional shielding is provided by a $\mu$-metal shield outside the cryogenic reservoir and by a Faraday cage enclosing the entire apparatus, which suppresses electromagnetic interference (EMI).
 
-Eight superconducting shim coils surrounding the solenoid are used to reduce the field inhomogeneity to less than \SI{2}{\ppm} over a spherical volume with radius \SI{4}{\mm}.
+
+The cryostat houses a superconducting solenoid that can generate a bias magnetic field $B_0$ up to \SI{0.1}{\tesla}.
+The DM mass range accessible to the experiment depends on the gyromagnetic ratio of the sample and on $B_0$; for proton spins, the covered Larmor frequency range goes up to \SI{4.3}{\MHz}. 
+
+Eight superconducting shim coils (named Z1, Z2, X, Y, XY, XZ, YZ, and X$^2$-Y$^2$) surrounding the solenoid are used to reduce the field inhomogeneity to less than \SI{2}{\ppm} over a spherical volume with radius \SI{4}{\mm}.
+The shim coil channel names indicate the geometry of the magnetic field they generate, enabling systematic correction of field inhomogeneities. 
 In the measurements reported here, an inhomogeneity of approximately \SI{10}{\ppm} was achieved after tuning the shim fields using a Bayesian-optimization algorithm\,\cite{ShimmingPaper}.
-The larger-than-design inhomogeneity results from using a longer sample (\SI{24}{\mm} height) and from the insertion of an additional superconducting pickup coil.
+The larger-than-design inhomogeneity results from insufficient shimming duration, use of a longer sample (\SI{24}{\mm} height), and the presence of superconducting coils. 
 
-Helmholtz coils wound outside the cryostat provide a controllable offset on $B_0$, enabling fine-tuning of the Larmor frequency without ramping the main solenoid.
-This arrangement is used to step the Larmor frequency in \SI{6}{\Hz} increments during the scan.
+Helmholtz coils wound outside the cryostat provide a controllable offset on $B_0$, enabling fine-tuning of the Larmor frequency without ramping the main solenoid, which is time-consuming and can alter the magnetic field to unknown magnitudes.
+This arrangement is used to step the Larmor frequency in increments of a few Hertz during the scan. 
 
-\subsection{Cryostat and superconducting magnet}\label{sec:apparatus:cryostat}
+A Variable Temperature Insert (VTI) positions the sample in the homogeneous region of the bias magnetic field and thermally isolates it from the cryogenic bath by vacuum insulation.
+The SQUIDs and the fiber-glass coil stacks where Helmholtz coils, excitation coils, and the pickup coil are mounted are attached to the outer surface of the VTI. 
 
-The cryostat housing the superconducting magnet is placed inside a Faraday room, shielded from external electric fields.
-It consists of an outer shell, reservoirs for liquid nitrogen (L\ch{N2}) and liquid helium (L\ch{He}), and vacuum insulation layers in between.
-Liquid nitrogen cools the cryostat and reduces the evaporation of liquid helium, while the superconducting devices and niobium shield are submerged in the L\ch{He} bath at \SI{4.2}{\kelvin}.
-When filled, the cryostat can maintain a superconducting environment for approximately one week.
-The niobium shield repels external magnetic fields, isolating internal devices from external magnetic noise.
-
-The magnet system consists of the main solenoid coil and eight shim coils (named Z1, Z2, X, Y, XY, XZ, YZ, and X$^2$-Y$^2$), each capable of generating magnetic field components for field homogenization.
-The shim coil channel names indicate the geometry of the magnetic field they generate, enabling systematic correction of field inhomogeneities.
+A schematic of the cryostat and superconducting devices is shown in Figure~\ref{fig:cryostat_devices}. 
+% 
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.8\textwidth]{works/master-thesis/figures/02_Apparatus/Cryostat_and_SCdevices_20220903.png}
+    \includegraphics[width=0.9\textwidth]{works/master-thesis/figures/02_Apparatus/Cryostat_and_SCdevices_20220903.png}
     \caption{(a) Cryostat for maintaining superconducting temperature.
     L\ch{He} bath provides \SI{4.2}{\kelvin} environment for superconducting apparatus.
-    (b) Superconducting apparatus including main coil, shim and excitation coils, SQUIDs with niobium capsule, niobium wires for connections, and gradiometer made of niobium wires.}
+    (b) Superconducting apparatus including main coil, shim and excitation coils, SQUIDs with \ch{Nb} capsule, \ch{Nb} wires for connections, and gradiometer made of \ch{Nb} wires.}
     \label{fig:cryostat_devices}
 \end{figure}
 
-\subsection{Excitation generation}\label{sec:apparatus:excitation}
+\subsection{Excitation coils}\label{sec:apparatus:excitation}
 
-To perform pulsed-NMR schemes, an excitation coil made of niobium wires is positioned near the sample to avoid Johnson--Nyquist noise from thermal agitation in normal-conducting materials.
-The excitation coil provides $\mathrm{B_x}$, $\mathrm{B_y}$, $\mathrm{B_z}$, and $\mathrm{dB_z/dz}$ channels, with the first three capable of producing homogeneous fields along the respective axes and the last generating a linear gradient along the z-axis.
+To perform pulsed-NMR schemes, an excitation coil made of \ch{Nb} wires is positioned near the sample to avoid Johnson--Nyquist noise from thermal agitation in normal-conducting materials.
+The excitation coil provides $B_x$, $B_y$, $B_z$, and $d B_z / dz$ channels, with the first three capable of producing homogeneous fields along the respective axes and the last generating a linear gradient along the z-axis.
 
-Radiofrequency pulses are generated by a function generator and amplified by an rf amplifier.
+Radio-frequency (rf) pulses are generated by a function generator and amplified by an amplifier. 
 A tuning circuit composed of capacitors and inductors is designed for impedance matching between the function generator and the excitation coil across different frequencies.
 
-\section{Sample}\label{sec:apparatus:sample}
+\subsection{Sample and sample insert}\label{sec:apparatus:sample}
 
 Liquid methanol (\ch{CH3OH}) was chosen as the sample because of its high proton density (\SI{99}{\mmol/\cm^3}) and low freezing point (\SI{175.6}{\kelvin}), which allows it to remain liquid at the operating temperature of approximately \SI{180}{\kelvin}.
 With four protons per molecule, the \SI{1.2}{\cm^3} cylindrical sample (radius \SI{4}{\mm}, height \SI{24}{\mm}) contains $\num{7.2e22}$ protons.
+% TODO add a table of samples including high-pressure Xe-129 gas
 
-A variable-temperature insert (VTI) positions the sample in the homogeneous region of the bias field and thermally isolates it from the liquid-helium bath.
+The sample holder is made of PEEK, a polymer with low magnetic susceptibility and good thermal conductivity at cryogenic temperatures. 
+The holder is positioned in a sample insert, which is a long PEEK tube that can be inserted into the VTI. 
 The sample temperature is regulated by flowing warm nitrogen gas through a spiral surrounding the sample holder.
-Temperature stability is monitored by repeated pulsed-NMR measurements: a constant NMR linewidth indicates a stable temperature.
+Temperature stability can be monitored by repeated pulsed-NMR measurements: a constant NMR linewidth indicates a stable temperature.
+A schematic of the sample and sample insert is shown in Figure~\ref{fig:VTII-Helmholtz_coil}. 
 
-At thermal equilibrium in the bias field $B_0$, the proton spins acquire a net longitudinal magnetization
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=\linewidth]{figures/VTII-schematic.png}
+    \caption{The methanol sample (blue) sits at the center of the three-coil \ch{Nb} saddle-pair pickup (red).
+    Helmholtz coils (black) fine-tune the bias magnetic field.
+    Adapted from Ref.\,\cite{Walter2024_LFthermal} with permission.}
+    \label{fig:VTII-Helmholtz_coil}
+\end{figure}
+
+At thermal equilibrium in the bias magnetic field $B_0$, the proton spins acquire a net longitudinal magnetization
 \begin{equation}
     M_0 = \frac{n\,\gamma^2\hbar^2\,I(I+1)\,B_0}{3\,k_B\,T}
     \,,\label{eq:M0}
 \end{equation}
-where $n$ is the proton number density, $\gamma = 2\pi\times\SI{42.577}{\MHz/\tesla}$ is the proton gyromagnetic ratio, $I=1/2$, $k_B$ is the Boltzmann constant, and $T$ is the sample temperature.
-At $B_0 = \SI{31.67}{\milli\tesla}$ and $T \approx \SI{180}{\kelvin}$, the thermal polarization is $\approx\num{1.8e-7}$ and $M_0 \approx \SI{1.86e-10}{\tesla}/\mu_0$.
+where $n=\SI{6.0e22}{\cm^{-3}}$ is the proton number density of liquid methanol, $\gamma = 2\pi\times\SI{42.577}{\MHz/\tesla}$ is the proton gyromagnetic ratio, $I=1/2$ is the proton nuclear spin, $k_B$ is the Boltzmann constant, and $T$ is the sample temperature.
+At $B_0 = \SI{31.67}{\milli\tesla}$ and $T \approx \SI{180}{\kelvin}$, the thermal polarization is $\approx\num{1.8e-7}$ and $M_0 \approx \SI{1.5e-04}{\ampere/\meter}$\,\cite{Zhang2026_Dissertation_ipynb_3_experiment}.
 
 
-\section{Pickup coil and shielding}\label{sec:apparatus:pickup}
+\subsection{Pickup coil}\label{sec:apparatus:pickup}
 
-A niobium (Nb) pickup coil mounted on the outside of the VTI in the liquid-helium bath detects the transverse magnetization of the sample.
+A \ch{Nb} pickup coil mounted on the outside of the VTI in the L\ch{He} bath detects the transverse magnetization of the sample.
 The coil consists of three saddle-pair coils in a gradiometer configuration: the area of the central coil is twice that of the two outer coils, and the coils are wound in opposing senses so that far-field flux contributions cancel.
-The filling factor---the fraction of the coil volume occupied by the sample---is approximately \SI{8}{\%}.
-
-A superconducting Nb shield built into the cryostat attenuates low-frequency magnetic noise.
-Additional shielding is provided by a $\mu$-metal shield outside the cryogenic reservoir and by a Faraday cage enclosing the entire apparatus, which suppresses electromagnetic interference (EMI).
-The pickup coil geometry and pulsed-NMR scheme are illustrated in Figure~\ref{fig:setup}.
+The height of the central coil is \SI{24}{\milli\meter}, while the two outer coils are \SI{12}{\milli\meter} high.
+The radii of all coils is \SI{14}{\milli\meter}.
+The open angle of the each of the saddle-pair coils is \SI{120}{\degree}.
+The filling factor---the fraction of the coil volume occupied by the sample---is approximately \SI{8}{\%}\,\cite{Zhang2026_Dissertation_ipynb_3_experiment}. 
+The pickup coil geometry and pulsed-NMR scheme are illustrated in Figure~\ref{fig:VTII_Helmholtz_coil}.
 
 \begin{figure}[htb]
     \centering
@@ -83,49 +101,24 @@ The pickup coil geometry and pulsed-NMR scheme are illustrated in Figure~\ref{fi
     \label{fig:gradiometer_sample}
 \end{figure}
 
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=\linewidth]{works/LF-thermal/figures/setup.png}
-    \caption{Left: the methanol sample (blue) sits at the center of the three-coil Nb saddle-pair pickup (red).
-    Helmholtz coils (black) fine-tune the bias field.
-    Right: pulsed-NMR scheme used for sample characterization.
-    The net magnetization $\mathbf{M}$ is tipped into the transverse plane by a $\pi/2$ pulse and precesses, generating a signal in the pickup and SQUID.
-    Reproduced from Ref.\,\cite{Walter2024_LFthermal} with permission.}
-    \label{fig:setup}
-\end{figure}
 
-
-\section{Detection chain}\label{sec:apparatus:detection}
+% \section{Detection chain}\label{sec:apparatus:detection}
 
 \subsection{SQUID detector and flux-locked-loop operation}\label{sec:apparatus:squid}
 
-Magnetic flux in the pickup coil is inductively coupled into a direct-current superconducting quantum interference device (dc-SQUID) operated in flux-locked-loop (FLL) mode.
-The SQUID converts magnetic flux into electrical signals through the combination of flux quantization and Josephson tunneling effects, offering exceptional sensitivity for weak magnetic signals.
-
-The relationship between the magnetic flux coupled to the SQUID and the feedback voltage is given by equation~\eqref{eq:squidpickup}, where the conversion factor depends on the coupling strengths and feedback parameters summarized in Table~\ref{tab:SQUIDtab}.
-The SQUID circuit is enclosed in a niobium capsule for shielding and protection from external disturbances.
+Magnetic flux in the pickup coil is inductively coupled into a direct-current superconducting quantum interference device (dc-SQUID) operated in flux-locked-loop (FLL) mode, as shown in Figure~\ref{fig:squid_schematic}.
+The SQUID converts magnetic flux into electrical signals through the combination of flux quantization and Josephson tunneling effects, offering exceptional sensitivity for weak magnetic signals. 
 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\textwidth]{works/master-thesis/figures/02_Apparatus/SQUID_Schematic_VPhi_FLL.png}
-    \caption{(a) $V$--$\Phi$ characteristic of dc SQUID showing the operating point W where the feedback voltage has approximately linear dependence on magnetic flux.
+    \caption{(a) $V-\Phi$ characteristic of dc-SQUID showing the operating point W where the feedback voltage has approximately linear dependence on magnetic flux.
     (b) Direct-coupled flux-locked-loop (FLL) circuit with built-in pre-amplifier and integrator for maintaining the SQUID at the linear operating point.}
     \label{fig:squid_schematic}
 \end{figure}
 
-\subsection{Signal chain and processing}\label{sec:apparatus:signal_chain}
-
-Magnetic flux in the pickup coil is inductively coupled into a direct-current superconducting quantum interference device (dc-SQUID) operated in flux-locked-loop (FLL) mode.
-The properties of the SQUID sensor are listed in Table~\ref{tab:SQUIDtab}.
-The feedback voltage $V_\mathrm{f}$ is related to the magnetic flux in the pickup coil $\Phi_\mathrm{pick}$ by
-\begin{equation}
-    V_\mathrm{f}
-    = \frac{R_\mathrm{f}}{M_\mathrm{f}}\,\frac{M_\mathrm{in}}{L_\mathrm{pick}+L_\mathrm{in}}\,\Phi_\mathrm{pick}
-    = \varepsilon\,\Phi_\mathrm{pick}
-    \,,\label{eq:squidpickup}
-\end{equation}
-where $R_\mathrm{f}$ is the feedback resistance, $M_\mathrm{f}$ is the feedback-coil mutual inductance, $M_\mathrm{in}$ is the mutual inductance between pickup and SQUID input coils, and $L_\mathrm{pick}$, $L_\mathrm{in}$ are the respective coil inductances.
-The conversion factor $\varepsilon \approx \SI{0.549}{\milli\volt/\Phi_0}$, where $\Phi_0$ is the magnetic flux quantum.
+The relationship between the magnetic flux coupled to the SQUID and the feedback voltage is given by Equation~\eqref{eq:squidpickup}, where the conversion factor depends on the coupling strengths and feedback parameters summarized in Table~\ref{tab:SQUID_params}.
+The SQUID circuit is enclosed in a \ch{Nb} capsule for shielding and protection from external disturbances.
 
 \begin{table}[ht]
     \centering
@@ -139,8 +132,23 @@ The conversion factor $\varepsilon \approx \SI{0.549}{\milli\volt/\Phi_0}$, wher
         Feedback resistance ($R_\mathrm{f}$) & \SI{3}{\kohm} \\[0.5ex]
         \hline\hline
     \end{tabular}
-    \label{tab:SQUIDtab}
+    \label{tab:SQUID_params}
 \end{table}
+
+\subsection{Signal chain and processing}\label{sec:apparatus:signal_chain}
+
+Magnetic flux in the pickup coil is inductively coupled into a direct-current superconducting quantum interference device (dc-SQUID) operated in flux-locked-loop (FLL) mode.
+The properties of the SQUID sensor are listed in Table~\ref{tab:SQUID_params}.
+The feedback voltage $V_\mathrm{f}$ is related to the magnetic flux in the pickup coil $\Phi_\mathrm{pick}$ by
+\begin{equation}
+    V_\mathrm{f}
+    = \frac{R_\mathrm{f}}{M_\mathrm{f}}\,\frac{M_\mathrm{in}}{L_\mathrm{pick}+L_\mathrm{in}}\,\Phi_\mathrm{pick}
+    = \varepsilon\,\Phi_\mathrm{pick}
+    \,,\label{eq:squidpickup}
+\end{equation}
+where $R_\mathrm{f}$ is the feedback resistance, $M_\mathrm{f}$ is the feedback-coil mutual inductance, $M_\mathrm{in}$ is the mutual inductance between pickup and SQUID input coils, and $L_\mathrm{pick}$, $L_\mathrm{in}$ are the respective coil inductances.
+The conversion factor $\varepsilon \approx \SI{0.549}{\milli\volt/\Phi_0}$, where $\Phi_0$ is the magnetic flux quantum.
+
 
 The detection chain is characterized by the transfer coefficient $\beta$, defined as the ratio of the SQUID feedback-voltage amplitude $V_\perp$ to the transverse sample magnetization $\mu_0 M_\perp$:
 \begin{equation}
@@ -157,7 +165,7 @@ The FLL output is fed into a Zurich Instruments MFLI Lock-in Amplifier (LIA), wh
 The complex output $I + iQ$ is recorded at a sampling frequency of \SI{13.4}{\kHz} and is used to generate power spectral densities (PSDs) via fast Fourier transformation (FFT).
 
 
-\section{Experimental control and data acquisition}\label{sec:apparatus:control}
+\subsection{Experimental control and data acquisition}\label{sec:apparatus:control}
 
 Comprehensive centralized control of the CASPEr-Gradient-LF apparatus is implemented in Python to coordinate the complex timing requirements of pulsed-NMR experiments and manage communication between diverse hardware components.
 This control system enables synchronized operation of shim coils, rf pulse generation, and SQUID data acquisition.
@@ -189,8 +197,7 @@ The control system orchestrates multiple measurement schemes including pulsed-NM
 Additionally, the system includes capabilities for NMR kinetic simulations, stochastic axion wind simulations, apparatus properties computation, and synchronized file management across multiple terminals.
 
 
-\section{Parameters summary}\label{sec:apparatus:params}
-
+% Parameters summary
 Table~\ref{tab:parameters} summarizes the key parameters of the CASPEr-Gradient-LF apparatus for the methanol measurement reported in this thesis and for two projected future configurations using hyperpolarized samples.
 The thermal polarization of methanol is the dominant limiting factor in the current measurement.
 Hyperpolarized methanol or liquid \ch{^{129}Xe} could boost the polarization by several orders of magnitude, substantially improving the sensitivity.
@@ -236,7 +243,94 @@ $|g_\mathrm{aNN}|$ sensitivity (\unit{\GeV^{-1}}) & \num{3e-2} & \num{1.0e-6}--\
 \end{table*}
 
 
-\section{Single-frequency sensitivity}\label{sec:experiment:single}
+\section{Scanning}\label{sec:scanning}
+\subsection{Procedure}\label{sec:experiment:procedure}
+
+The CASPEr-Gradient-Lowfield experiment scans the ALP-mass parameter space by sweeping the magnitude of $\mathbf{B}_0$, which tunes the Larmor frequency of the sample to a series of values $\nu_i \in [\nu_{\mathrm{start}},\,\nu_{\mathrm{end}}]$.
+One step of the scan consists of:
+\begin{enumerate}[label=\Alph*.]
+    \item Pulsed-NMR measurement to determine the resonance frequency and the effective linewidth ($T_2^*$).
+    \item Spin-echo measurement to determine $T_2$.
+    \item Free-precession data acquisition with the SQUID magnetometer---no transverse pulse applied---to record the ALP-signal channel over the dwell time $T$.
+    \item Fourier transform of the magnetometer data to produce a power spectrum.
+    \item Binning of PSD values within frequency bins of width $\Gamma$, and averaging to reduce noise.
+    \item Statistical analysis of binned PSD values (e.g., histogram comparison with the expected noise distribution) to identify DM-candidate frequencies.
+    \item If a candidate is found: repeat the measurement at the same field value and perform additional checks.
+    \item If no candidate is found: record the exclusion contour for this frequency step and ramp $\mathbf{B}_0$ to the next value.
+\end{enumerate}
+The procedure is illustrated in Figure~\ref{fig:CASPEr_Procedure}.
+A significant excess surviving repeated measurement can be tested further using the daily and annual modulation signatures of ALP dark matter\,\cite{Gramolin2022Feb_SpectralSignatures}.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.8\linewidth]{works/frequency-scanning/CASPEr_Procedure_20230311.png}
+    \caption{Schematic of the experimental procedure.
+    (a) One step of the scan: pulsed-NMR diagnostics, free-precession data acquisition, PSD computation and binning, and statistical analysis using a histogram of PSD values.
+    (b) Example decay spectra (blue curves) and the resulting sensitivity region in the ALP mass-coupling space (reddish area) after scanning over a frequency range.
+    Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}, originally prepared by the author.}
+    \label{fig:CASPEr_Procedure}
+\end{figure}
+
+The frequency-step size $\Gamma_{\mathrm{scan}}$ is set by the sensitive bandwidth of a single step.
+An experiment is sensitive to signals within a bandwidth equal to the maximum of $\Gamma_n$ and $\Gamma_a$ around a given Larmor frequency.
+Choosing a step size larger than $\Gamma_{\mathrm{scan}}$ leaves gaps; choosing a smaller step size multiplies the number of steps without improving coverage.
+
+\subsection{Scanning optimization}\label{sec:experiment:optimization}
+
+With fixed total measurement time $T_{\mathrm{tot}}$, the dwell time can in principle depend on frequency: $T \propto \nu^n$.
+Maximizing the sensitive area in the $\log\nu$--$\log|g_{\mathrm{aNN}}|$ parameter space over the full scan determines the optimal exponent $n$.
+The derivation is given in Appendix~\ref{app:dwell_time}; the result is $n=0$ (uniform dwell time) for regimes~(1)--(3) and $n=-1$ (dwell time decreasing as $1/\nu$) for regime~(4).
+
+With optimal dwell-time allocation, the scanning sensitivity is
+\begin{equation}
+    |g_{\mathrm{aNN}}| \geqslant
+    \begin{cases}
+    \eta
+    \left(\dfrac{T_{\mathrm{tot}}}{Q_a\ln\left(\nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}\right)^{-1/4}
+    (T_2^*)^{-3/4}\, \tau_a^{-1/2},
+    & \substack{\tau_a\ll T_2^* \text{ or}\\ T_2^*\ll\tau_a\ll T_2} \\[10pt]
+    \eta
+    \left(\dfrac{\pi^2 T_{\mathrm{tot}}}{Q_a\ln\left(\nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}\right)^{-1/4}
+    (T_2^*)^{-3/4}\, T_2^{-1}\, \tau_a^{1/2},
+    & \substack{T_2^* \ll T_2 \ll \tau_a \text{ or}\\ T_2^*=T_2 \ll \tau_a}
+    \end{cases}
+    \,.\label{eq:gaNN_Ttot_optimal}
+\end{equation}
+
+Several conclusions follow directly:
+\begin{itemize}
+    \item \textbf{Time scaling.}
+    The sensitivity scales as $T_{\mathrm{tot}}^{-1/4}$ in all regimes, a consequence of the long-dwell-time limit $T \gg \tau_a,\,T_2^*,\,T_2$\,\cite{CASPErProposal2014,Aybas_2021_Quantum_sensitivity}.
+    An order-of-magnitude increase in measurement time improves the exclusion bound by only a factor $10^{1/4}\approx1.8$.
+
+    \item \textbf{Effect of $T_2^*$.}
+    Longer $T_2^*$ is beneficial in all regimes.
+    When $\tau_a \ll T_2^*$, it increases the rms\ tipping angle and narrows the signal linewidth.
+    When $T_2^* \ll \tau_a$, it increases the fraction $u_n$ of spins on resonance.
+
+    \item \textbf{Effect of $T_2$.}
+    Longer $T_2$ improves sensitivity in the regime $T_2 \ll \tau_a$, where $T_2$ directly limits the rms\ tipping angle.
+\end{itemize}
+
+The sensitivity plots computed with uniform ($n=0$) and frequency-adaptive ($n=-1$) dwell-time allocation for an example scan range $\nu_{\mathrm{end}}/\nu_{\mathrm{start}}=10$ are shown in Figure~\ref{fig:UniVsAdpt}.
+The area covered in the $\log\nu$--$\log|g_{\mathrm{aNN}}|$ plane is larger with optimal $n$.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=.7\linewidth]{works/frequency-scanning/UniVsAdpt_20230412-3.png}
+    \caption{Sensitivity plots on a log-log scale for two dwell-time allocation schemes: uniform ($n=0$) and frequency-adaptive ($n=-1$).
+    The shaded regions indicate the parameter space accessible to the experiment.
+    The coupling strength is normalized in each regime so that the highest point equals 1.
+    The scan range is $\nu_{\mathrm{end}}/\nu_{\mathrm{start}}=10$.
+    Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}, originally prepared by the author.}
+    \label{fig:UniVsAdpt}
+\end{figure}
+
+In summary, the optimal strategy for a frequency-scanning ALP search is to work at the maximum achievable $T_2$ and $T_2^*$, use a step size equal to the sensitive bandwidth, and distribute the total measurement time uniformly across frequency steps (or as $T\propto\nu^{-1}$ in regime~(4)).
+
+
+\section{Sensitivity}\label{sec:sensitivity}
+\subsection{Single-frequency sensitivity}\label{sec:experiment:single}
 
 The transverse magnetization $M_1$ induced by the ALP field couples to the pickup coil and SQUID via the pickup transfer coefficient $\alpha$:
 \begin{equation}
@@ -310,87 +404,3 @@ where the prefactor $\eta$ collects the apparatus-dependent constants:
 \end{equation}
 Larger magnetization $M_0$ and lower noise $\sigma_0$ both improve $\eta$ and hence the sensitivity.
 
-
-\section{Scanning procedure}\label{sec:experiment:procedure}
-
-The CASPEr-Gradient-Lowfield experiment scans the ALP-mass parameter space by sweeping the magnitude of $\mathbf{B}_0$, which tunes the Larmor frequency of the sample to a series of values $\nu_i \in [\nu_{\mathrm{start}},\,\nu_{\mathrm{end}}]$.
-One step of the scan consists of:
-\begin{enumerate}[label=\Alph*.]
-    \item Pulsed-NMR measurement to determine the resonance frequency and the effective linewidth ($T_2^*$).
-    \item Spin-echo measurement to determine $T_2$.
-    \item Free-precession data acquisition with the SQUID magnetometer---no transverse pulse applied---to record the ALP-signal channel over the dwell time $T$.
-    \item Fourier transform of the magnetometer data to produce a power spectrum.
-    \item Binning of PSD values within frequency bins of width $\Gamma$, and averaging to reduce noise.
-    \item Statistical analysis of binned PSD values (e.g., histogram comparison with the expected noise distribution) to identify DM-candidate frequencies.
-    \item If a candidate is found: repeat the measurement at the same field value and perform additional checks.
-    \item If no candidate is found: record the exclusion contour for this frequency step and ramp $\mathbf{B}_0$ to the next value.
-\end{enumerate}
-The procedure is illustrated in Figure~\ref{fig:CASPEr_Procedure}.
-A significant excess surviving repeated measurement can be tested further using the daily and annual modulation signatures of ALP dark matter\,\cite{Gramolin2022Feb_SpectralSignatures}.
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.8\linewidth]{works/frequency-scanning/CASPEr_Procedure_20230311.png}
-    \caption{Schematic of the experimental procedure.
-    (a) One step of the scan: pulsed-NMR diagnostics, free-precession data acquisition, PSD computation and binning, and statistical analysis using a histogram of PSD values.
-    (b) Example decay spectra (blue curves) and the resulting sensitivity region in the ALP mass-coupling space (reddish area) after scanning over a frequency range.
-    Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}, originally prepared by the author.}
-    \label{fig:CASPEr_Procedure}
-\end{figure}
-
-The frequency-step size $\Gamma_{\mathrm{scan}}$ is set by the sensitive bandwidth of a single step.
-An experiment is sensitive to signals within a bandwidth equal to the maximum of $\Gamma_n$ and $\Gamma_a$ around a given Larmor frequency.
-Choosing a step size larger than $\Gamma_{\mathrm{scan}}$ leaves gaps; choosing a smaller step size multiplies the number of steps without improving coverage.
-
-\section{Scanning optimization}\label{sec:experiment:optimization}
-
-With fixed total measurement time $T_{\mathrm{tot}}$, the dwell time can in principle depend on frequency: $T \propto \nu^n$.
-Maximizing the sensitive area in the $\log\nu$--$\log|g_{\mathrm{aNN}}|$ parameter space over the full scan determines the optimal exponent $n$.
-The derivation is given in Appendix~\ref{app:dwell_time}; the result is $n=0$ (uniform dwell time) for regimes~(1)--(3) and $n=-1$ (dwell time decreasing as $1/\nu$) for regime~(4).
-
-With optimal dwell-time allocation, the scanning sensitivity is
-\begin{equation}
-    |g_{\mathrm{aNN}}| \geqslant
-    \begin{cases}
-    \eta
-    \left(\dfrac{T_{\mathrm{tot}}}{Q_a\ln\left(\nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}\right)^{-1/4}
-    (T_2^*)^{-3/4}\, \tau_a^{-1/2},
-    & \substack{\tau_a\ll T_2^* \text{ or}\\ T_2^*\ll\tau_a\ll T_2} \\[10pt]
-    \eta
-    \left(\dfrac{\pi^2 T_{\mathrm{tot}}}{Q_a\ln\left(\nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}\right)^{-1/4}
-    (T_2^*)^{-3/4}\, T_2^{-1}\, \tau_a^{1/2},
-    & \substack{T_2^* \ll T_2 \ll \tau_a \text{ or}\\ T_2^*=T_2 \ll \tau_a}
-    \end{cases}
-    \,.\label{eq:gaNN_Ttot_optimal}
-\end{equation}
-
-Several conclusions follow directly:
-\begin{itemize}
-    \item \textbf{Time scaling.}
-    The sensitivity scales as $T_{\mathrm{tot}}^{-1/4}$ in all regimes, a consequence of the long-dwell-time limit $T \gg \tau_a,\,T_2^*,\,T_2$\,\cite{CASPErProposal2014,Aybas_2021_Quantum_sensitivity}.
-    An order-of-magnitude increase in measurement time improves the exclusion bound by only a factor $10^{1/4}\approx1.8$.
-
-    \item \textbf{Effect of $T_2^*$.}
-    Longer $T_2^*$ is beneficial in all regimes.
-    When $\tau_a \ll T_2^*$, it increases the rms\ tipping angle and narrows the signal linewidth.
-    When $T_2^* \ll \tau_a$, it increases the fraction $u_n$ of spins on resonance.
-
-    \item \textbf{Effect of $T_2$.}
-    Longer $T_2$ improves sensitivity in the regime $T_2 \ll \tau_a$, where $T_2$ directly limits the rms\ tipping angle.
-\end{itemize}
-
-The sensitivity plots computed with uniform ($n=0$) and frequency-adaptive ($n=-1$) dwell-time allocation for an example scan range $\nu_{\mathrm{end}}/\nu_{\mathrm{start}}=10$ are shown in Figure~\ref{fig:UniVsAdpt}.
-The area covered in the $\log\nu$--$\log|g_{\mathrm{aNN}}|$ plane is larger with optimal $n$.
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=.7\linewidth]{works/frequency-scanning/UniVsAdpt_20230412-3.png}
-    \caption{Sensitivity plots on a log-log scale for two dwell-time allocation schemes: uniform ($n=0$) and frequency-adaptive ($n=-1$).
-    The shaded regions indicate the parameter space accessible to the experiment.
-    The coupling strength is normalized in each regime so that the highest point equals 1.
-    The scan range is $\nu_{\mathrm{end}}/\nu_{\mathrm{start}}=10$.
-    Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}, originally prepared by the author.}
-    \label{fig:UniVsAdpt}
-\end{figure}
-
-In summary, the optimal strategy for a frequency-scanning ALP search is to work at the maximum achievable $T_2$ and $T_2^*$, use a step size equal to the sensitive bandwidth, and distribute the total measurement time uniformly across frequency steps (or as $T\propto\nu^{-1}$ in regime~(4)).
