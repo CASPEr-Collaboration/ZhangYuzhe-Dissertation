@@ -41,7 +41,7 @@ For protons\,\cite{NIST_CODATA2022},
     \gamma = 2\pi\times\SI{42.577478461(18)}{\MHz/\tesla}
     \,,\label{eq:gamma_proton}
 \end{equation}
-so a bias field of \SI{31.67}{\milli\tesla}, as used in this work, gives $\nu_L \approx \SI{1.348}{\MHz}$.
+so a bias magnetic field of \SI{31.67}{\milli\tesla}, as used in this work, gives $\nu_L \approx \SI{1.348}{\MHz}$.
 
 \begin{figure}
     \centering
@@ -56,7 +56,7 @@ In the high-temperature limit $\Delta E \ll k_B T$ (satisfied for all conditions
     p \approx \frac{\hbar \gamma B_0}{2 k_B T}
     \,.\label{eq:thermalp}
 \end{equation}
-At $B_0 = \SI{1}{\tesla}$ and $T = \SI{300}{\kelvin}$, the proton thermal polarization is only $p \approx \num{3e-6}$\,\cite{Zhang2026_Dissertation_ipynb_1_Introduction}.
+At $B_0 = \SI{1}{\tesla}$ and $T = \SI{300}{\kelvin}$, the proton thermal polarization is only $p \approx \num{3e-6}$\,\cite{Zhang2026_Dissertation_ipynb_1_introduction}.
 Hyperpolarization techniques---such as spin-exchange optical pumping (SEOP) or parahydrogen-induced polarization (PHIP)---can boost $p$ by several orders of magnitud\,\cite{Eills2023_Spin_Hyperpolarization}. 
 % , which is the main route to improved sensitivity identified in this thesis.
 
@@ -74,7 +74,7 @@ This spin-projection noise (SPN) is the fundamental quantum limit for spin measu
 % how small this SPN can be?
 For a sample of \SI{1}{\centi\meter\cubed} of liquid water, there are approximately $N \sim \num{1e23}$ protons. 
 SPN gives a magnetization noise floor of $\sim \SI{4e-9}{\ampere/\meter}$. 
-In comparison to the thermal-equilibrium magnetization of \SI{1e-8}{\ampere/\meter} at \SI{1}{\tesla} and \SI{300}{\kelvin}, the SPN is one order of magnitude less significant\,\cite{Zhang2026_Dissertation_ipynb_1_Introduction}.
+In comparison to the thermal-equilibrium magnetization of \SI{1e-8}{\ampere/\meter} at \SI{1}{\tesla} and \SI{300}{\kelvin}, the SPN is one order of magnitude less significant\,\cite{Zhang2026_Dissertation_ipynb_1_introduction}.
 In the scenario of less nuclear polarization or smaller sample volume, the SPN can become a limiting factor for the sensitivity of the experiment.
 
 \subsection{Bloch equations}\label{sec:intro:bloch_eq}
@@ -85,7 +85,7 @@ The evolution of the nuclear spin magnetization $\mathbf{M}$ in the magnetic fie
     \frac{dM_z}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_z - \frac{M_z-M_\mathrm{eqb}}{T_1}\,,\label{eq:bloch_z}
 \end{align}
 where $\mathbf{B}_\mathrm{eff}$ is the total effective field, $M_\mathrm{eqb}$ is the equilibrium magnetization, and $T_1$, $T_2$ are the longitudinal and transverse relaxation times.
-In most NMR experiments, the bias field $\mathbf{B}_0$ is much larger than any other applied magnetic field. 
+In most NMR experiments, the bias magnetic field $\mathbf{B}_0$ is much larger than any other applied magnetic field. 
 Therefore, the equations are most efficiently solved in the rotating coordinate frame (RCF), which removes the fast Larmor precession at $\nu_L$ in the laboratory frame and exposes the much slower dynamics induced by the additional fields.
 
 \subsection{Relaxations}\label{sec:intro:NMR:relaxation}
@@ -99,13 +99,13 @@ The return of the magnetization to equilibrium along the longitudinal direction 
 Its speed is characterized by the relaxation time $T_1$ or relaxation rate $1/T_1$. 
 The ``return'' can happen in two directions: when longitudinal magnetization is smaller than the equilibrium value, it grows toward the equilibrium; when it is larger (hyperpolarized), it decays. 
 A short $T_1$ is helpful for rapid repetition of measurements using thermally polarized samples, while for hyperpolarized samples, a long $T_1$ is preferred to preserve polarization for longer measurements.
-Its duration can be tuned by adjusting settings such as the bias field, temperature, and sample composition. 
+Its duration can be tuned by adjusting settings such as the bias magnetic field, temperature, and sample composition. 
 For instance, oxygen is a paramagnetic molecule and dissolved oxygen in the sample can shorten $T_1$ by providing an additional relaxation channel. 
 
 % \begin{figure}
 %     \centering
 %     \includegraphics[width=.99\textwidth]{figures/T1_hyperpolarized.pdf}
-%     \caption{Simulated $T_1$ relaxation of a hyperpolarized sample in a static bias field. The axial magnetization $M_z$ is normalized by the equilibrium magnetization $M_\mathrm{eqb}$.}
+%     \caption{Simulated $T_1$ relaxation of a hyperpolarized sample in a static bias magnetic field. The axial magnetization $M_z$ is normalized by the equilibrium magnetization $M_\mathrm{eqb}$.}
 %     \label{fig:T1_hyperpolarized}
 % \end{figure}
 % As shown in Figure~\ref{fig:T1_hyperpolarized}, the hyperpolarized sample exhibits a long longitudinal relaxation time.
@@ -141,7 +141,7 @@ For brevity, the relaxations are referred to by the symbols of their characteris
 % TODO write more about relaxation?
 % \subsubsection{$T_1$ relaxation}\label{sec:intro:NMR:relaxation:T1}
 
-% For sample initially polarized by the bias field
+% For sample initially polarized by the bias magnetic field
 
 % \subsubsection{$T_2^*$ relaxation}\label{sec:intro:NMR:relaxation:T2}
 
@@ -165,7 +165,7 @@ For brevity, the relaxations are referred to by the symbols of their characteris
 
 \subsection{Experimental schemes}
 % Two pulse-based schemes are especially useful.
-In a common NMR experiment, the sample is first thermally polarized in a bias field, then perturbed by excitation pulses to generate precession signal in the transverse plane, and finally allowed to relax back to equilibrium.
+In a common NMR experiment, the sample is first thermally polarized in a bias magnetic field, then perturbed by excitation pulses to generate precession signal in the transverse plane, and finally allowed to relax back to equilibrium.
 The excitation pulses tip the magnetization away from the longitudinal axis. The tipping angle is determined by the pulse duration and amplitude
 \begin{equation}
     \theta = \gamma B_\mathrm{exc} t
@@ -308,7 +308,7 @@ Its de~Broglie wavelength is
 \end{equation}
 For an ultralight ALP this wavelength can be macroscopic ($\gtrsim \SI{100}{\micro\meter}$). 
 Assuming axionlike dark matter is cold, its velocity is expected to be smaller than the escape velocity of the Milky Way halo $v_\mathrm{esc} = \SI{550}{\km/\s}$\,\cite{Evans2019_SHMRefined}.
-The minimum de~Broglie wavelength is $\lambda_{\mathrm{dB}} \sim \SI{7e-5}{\meter}$ for ALPs in the Milky Way ($m_a \leq \SI{10}{\eV/c^2}$)\,\cite{Zhang2026_Dissertation_ipynb_1_Introduction}.
+The minimum de~Broglie wavelength is $\lambda_{\mathrm{dB}} \sim \SI{7e-5}{\meter}$ for ALPs in the Milky Way ($m_a \leq \SI{10}{\eV/c^2}$)\,\cite{Zhang2026_Dissertation_ipynb_1_introduction}.
 For the ALP mass range relevant to this thesis ($m_a \leq \SI{2.5}{\micro\electronvolt}$), the de~Broglie wavelength $\lambda_{\mathrm{dB}} \geq \SI{270}{\meter}$, much larger than the size of the laboratory.
 Therefore, the amplitude of the ALP field can be approximated as uniform over the laboratory. 
 
@@ -335,7 +335,7 @@ and the mean occupation number within a de~Broglie volume is approximately
     \,.\label{eq:occupation}
 \end{equation}
 If the ALP is the dominant dark-matter component, $\rho_a$ is close to the local dark-matter energy density $\rho_\mathrm{DM} \sim \SI{0.4}{\GeV/\cm^3}$\,\cite{Evans2019_SHMRefined}. 
-Considering ALP mass relevant to this thesis $m_a \leq \SI{2.5}{\micro\electronvolt}$ and velocity $v_a \leq v_\mathrm{esc} = \SI{550}{\km/\s}$, the occupation number is $N_a \geq \SI{3e27}{}$, much larger than unity\,\cite{Zhang2026_Dissertation_ipynb_1_Introduction}.
+Considering ALP mass relevant to this thesis $m_a \leq \SI{2.5}{\micro\electronvolt}$ and velocity $v_a \leq v_\mathrm{esc} = \SI{550}{\km/\s}$, the occupation number is $N_a \geq \SI{3e27}{}$, much larger than unity\,\cite{Zhang2026_Dissertation_ipynb_1_introduction}.
 Therefore, what is measured in the experiment is the collective effect of many ALPs instead of rare single-particle events. 
 % The ensemble is coherent over a length scale set by the de~Broglie wavelength.
 % Its phase and spatial structure can be described by a complex wavefunction $\Psi(\mathbf{r},t)$, which may contain one or more occupied modes.
@@ -457,19 +457,19 @@ Early results were obtained with a liquid-state comagnetometer\,\cite{PhysRevLet
 \subsection{CASPEr-Gradient}\label{sec:intro:CASPEr:gradient}
 CASPEr-Gradient searches for the ALP-fermion gradient coupling described by Equation~\eqref{eq:HaNN}.
 Two setups in Mainz, Germany cover different ALP-mass ranges.
-The CASPEr-Gradient-Lowfield experiment uses bias fields up to \SI{0.1}{\tesla}, corresponding to Larmor frequencies up to \SI{4.3}{\MHz}.
+The CASPEr-Gradient-Lowfield experiment uses bias magnetic fields up to \SI{0.1}{\tesla}, corresponding to Larmor frequencies up to \SI{4.3}{\MHz}.
 The CASPEr-Gradient-Highfield experiment uses a 0-to-\SI{14.1}{\tesla} magnet to reach frequencies up to \SI{600}{\MHz}.
 
 A conceptual diagram of the lowfield apparatus is shown in Figure~\ref{fig:CASPEr_Apparatus}.
-The cryostat contains a liquid helium reservoir, excitation and pickup coils, and a SQUID magnetometer.
-A superconducting magnet produces the bias field $\mathbf{B}_0$, which sets the Larmor frequency and can be varied to scan ALP masses.
+The cryostat contains a liquid helium (L\ch{He}) reservoir, excitation and pickup coils, and a SQUID magnetometer.
+A superconducting magnet produces the bias magnetic field $\mathbf{B}_0$, which sets the Larmor frequency and can be varied to scan ALP masses.
 
 % resonance and broadband scheme
 The resonance scheme is the main search strategy for CASPEr-Gradient-Lowfield.
-The bias field is stepped through a range of values, and the NMR response is recorded at each step while no excitation is applied.
+The bias magnetic field is stepped through a range of values, and the NMR response is recorded at each step while no excitation is applied.
 A resonant signal appears as a peak in the transverse magnetization when $\nu_L$ matches $\nu_a$.
 
-The broadband scheme, on the other hand, continuously excites the NMR resonance without changing the bias field, looking for signals that are modulated by the ALP field. 
+The broadband scheme, on the other hand, continuously excites the NMR resonance without changing the bias magnetic field, looking for signals that are modulated by the ALP field. 
 
 \begin{figure}[htb]
     \centering

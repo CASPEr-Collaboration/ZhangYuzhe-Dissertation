@@ -13,7 +13,7 @@ This appendix describes \texttt{axionbloch}, an open-source Python package that 
 
 % \section{Spin dynamics: the Bloch equations}\label{sec:axionbloch:bloch}
 
-% The package models spin-$1/2$ ensembles through the Bloch equations~\eqref{eq:bloch_x}--\eqref{eq:bloch_z} derived in Section~\ref{sec:intro:bloch_eq}. The total effective field is $\mathbf{B}_\mathrm{eff} = \mathbf{B}_0 + \mathbf{B}_a(t)$, combining the laboratory bias field and the axion-induced pseudomagnetic field. The equations are solved in the rotating coordinate frame (RCF), which removes the fast Larmor precession and exposes the slow axion-induced dynamics. The effective transverse relaxation time $T_2^*$ (which includes inhomogeneous broadening) is simulated by sampling the spread of bias-field values from a \texttt{Magnet} instance and integrating the Bloch equations for each sampled field independently.
+% The package models spin-$1/2$ ensembles through the Bloch equations~\eqref{eq:bloch_x}--\eqref{eq:bloch_z} derived in Section~\ref{sec:intro:bloch_eq}. The total effective field is $\mathbf{B}_\mathrm{eff} = \mathbf{B}_0 + \mathbf{B}_a(t)$, combining the laboratory bias magnetic field and the axion-induced pseudomagnetic field. The equations are solved in the rotating coordinate frame (RCF), which removes the fast Larmor precession and exposes the slow axion-induced dynamics. The effective transverse relaxation time $T_2^*$ (which includes inhomogeneous broadening) is simulated by sampling the spread of bias-field values from a \texttt{Magnet} instance and integrating the Bloch equations for each sampled field independently.
 
 
 % \section{Numerical integration}\label{sec:axionbloch:rk4}
@@ -85,7 +85,7 @@ The simulated $M_z(t) = M_\mathrm{eqb}[1-(M_\mathrm{eqb}^\mathrm{init}/M_\mathrm
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.75\linewidth]{figures/T1_hyperpolarized.pdf}
-    \caption{Simulated $T_1$ relaxation of a hyperpolarized sample in a static bias field.
+    \caption{Simulated $T_1$ relaxation of a hyperpolarized sample in a static bias magnetic field.
     The axial magnetization $M_z$ is normalized by the equilibrium magnetization $M_\mathrm{eqb}$.
     The exponential approach to equilibrium calibrates the longitudinal relaxation in the simulation.
     Reproduced from Ref.\,\cite{Zhang2026_axionbloch}, originally prepared by the author.}
