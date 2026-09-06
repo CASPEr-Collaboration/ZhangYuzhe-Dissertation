@@ -6,8 +6,6 @@
 
 % mention total mass constrained by the astro observation. 
 
-% \YZ{include lambdadB of axion trapped in gravitational potential (mention earth potential first with plots) of items such as Sun or Earth. what can be the mechanism of trapping and accumulation of DM? }
-
 % in the case of earth, the wavelength is very large. It can be treated like an atom. 
 
 % Schroedinger eq for deriving the probability / mass distribution. 
@@ -50,13 +48,6 @@ It may be reasonable to expect gravitational interactions to also lead to the fo
 
 This thesis does not focus on the mechanism of trapping and accumulation of ALPs, but rather assumes that a fraction of ALPs can be trapped by the Earth, and focuses on the properties of the bound states and the resulting spin-precession signal.
 
-% \begin{description}
-    % \item[Gravitational three-body scattering] A galactic ALP passing near the Earth can scatter off a third body (e.g.\ the Sun or Moon), losing kinetic energy and becoming trapped in a bound orbit.
-    % The rate depends on the local density and the ALP-body cross section.
-    % \item[Self-interaction or wave-packet spreading] \YZ{placeholder: if ALPs have self-interactions or if wave-packet decoherence provides an effective dissipation, this may also populate bound states.}
-    % \item[Resonant capture] Near specific orbital resonances the exchange of energy between the ALP and the Earth-Moon or Earth-Sun system may be efficient.
-% \end{description}
-
 The total mass dark matter trapped in Earth-bound states is constrained by astrophysical and geophysical observations. 
 Reference\,\cite{Adler_2008_earthbounddarkmatter} used lunar laser-ranging and the motion of the LAGEOS satellite to find out the mass between the LAGEOS satellite orbit and the Moon's orbit. 
 The orbits of the Moon and LAGEOS satellite and the dark matter measured are illustrated in Figure\,\ref{fig:earth-satelite-DM-moon}. 
@@ -78,15 +69,6 @@ Though the dark matter mass inside the LAGEOS satellite orbit is not directly co
 \end{figure}
 
 % An upper bound comes from the requirement that the Earth's measured gravitational multipole moments not be distorted beyond current geodetic precision.
-% \begin{figure}
-%     \centering
-%     \includegraphics[scale =0.9]{figures/MaxDensity_EH.pdf}
-%     \caption{Density Distribution of ground state Earth-bound ALP halo.
-%     The solid line indicates the density at the Earth surface, whereas the dashed line represents the density at the center of the halo.
-%     The density value $\rho_\star$ is derived from the maximum Earth ALP halo mass permitted by gravitational constraints, as assessed in\,\cite{banerjee_relaxion_2020,banerjee_searching_2020}.\YZ{discard this pic?}}%
-%     \label{fig:groundstate_density}%
-% \end{figure}
-
 
 \subsection{Gravitational potential and the quantum picture}
 
@@ -139,12 +121,6 @@ A rough estimation of the wavelength is made as follows.
 % The speed of ALP should not exceed
 The ALP masses that CASPEr-G can probe range from $\sim\SI{4}{\pico\eV}$ to $\SI{2.5}{\micro\eV}$.
 Consider ALPs trapped by the earth potential with velocities roughly smaller than the escape veclocity.
-% Consider ultralight particles with mass $<\SI{10}{\eV/c^2}$ trapped by the earth potential. 
-% Their kinetic energy must be comparable or even smaller than the potential energy, as
-% \begin{equation}
-%     E_k = \frac{1}{2} m_a v_a^2 \lesssim \frac{G M_\mathrm{enclosed} m_a}{r}~.
-% \end{equation}
-% The maximum of the absolute potential energy ${G M_\mathrm{enclosed} m_a}/{r}$\YZ{change enclosed mass to M(r)?} is ${G M_\oplus \SI{10}{\eV/c^2}}/{R_\oplus} = \SI{7e-9}{\eV}$. This transfers to $v_a\lesssim v_\mathrm{esc} = \SI{11.2}{\km/\second}$. 
 The de~Broglie wavelength as a function of particle mass $\lambda_\mathrm{dB}(m_a, v_a) = h / (m_a v_a)$ gives\,\cite{Zhang2026_Dissertation_ipynb_2_theory_EH_ALP}
 \begin{itemize}
     \item $\lambda_\mathrm{dB}(\SI{4}{\pico\eV}, \SI{11.2}{\km/\second}) \approx \SI{8.3e9}{\m} \approx \SI{1300}{R_\oplus}$ and
@@ -209,7 +185,6 @@ In analogy to the hydrogen (proton-electron) atom, the ALP-Earth system is a ``g
 %     \item For $m_a \sim \SI{5}{\nano\eV}$: $a_g \sim \SI{300}{\km} \ll R_E$ --- the ALP is tightly bound inside the Earth; the surface gradient is set by the exponential tail of the wavefunction.
 %     \item For $m_a \gg \SI{10}{\nano\eV}$: $a_g \ll R_E$ --- increasingly localized deep inside the Earth; detectors at the surface probe only the far tail.
 % \end{itemize}
-% \YZ{Add figure: Earth gravitational potential well as a function of radius $r$, overlaid with the ground-state probability density $|\psi_{100}|^2$ for one or two representative masses. Script: \texttt{scripts-and-data/earth\_ALP\_wavefunction.py} (to be written).}
 %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% 
 
 Considering the spherical symmetry of the Earth gravitational potential, spherical coordinate system $(r, \theta, \varphi)$ is adopted, where $r$ is the radial distance from the origin, $\theta$ is the polar angle, and $\varphi$ is the azimuthal angle.
@@ -276,13 +251,6 @@ Examples of normalized wavefunctions are illustrated in Figure~\ref{fig:EH_ALP-s
 %     \,.\label{eq:earth_ALP_gradient}
 % \end{equation}
 % For the ground state, $|\boldsymbol{\nabla}\psi_{100}| = |\psi_{100}|/a_g$, so the gradient and the amplitude are related by a factor $1/a_g$.
-
-% The corresponding rms\ Rabi frequency \YZ{derive more carefully; the expression below assumes the total bound mass $M_\mathrm{bound}$ is known}
-% \begin{equation}
-%     \Omega_a^\mathrm{Earth} \approx g_\mathrm{aNN}\,\frac{|\boldsymbol{\nabla}\psi_{100}(\mathbf{r}_\mathrm{det})|}{\gamma}\,
-%     \sqrt{\frac{2M_\mathrm{bound}\,c^2}{m_a}}
-%     \,.\label{eq:Omega_earth}
-% \end{equation}
 
 \subsection{ALP field gradient}\label{sec:theory:earthALP:gradient}
 
@@ -526,7 +494,7 @@ If multiple modes are populated, the total gradient is a superposition of the gr
 % The gradient magnitude depends on the eigen-state $(n, l, m)$ and the detector location.
 % The characteristics of the gradient are addressed as follows:
 % \begin{itemize}
-%     \item For the eigen-states with zero angular momentum ($s$ state), the wavefunction is spherically symmetric, so the gradient is purely radial and its magnitude is proportional to the radial wavefunction gradient\YZ{is this paragraph right??}.
+%     \item For the eigen-states with zero angular momentum ($s$ state), the wavefunction is spherically symmetric, so the gradient is purely radial and its magnitude is proportional to the radial wavefunction gradient\.
 %     \item When angular momentum is non-zero ($l>=1$), the gradient has non-radial components may vary over different locations, depending on the angular structure of the wavefunction.
 %     \item The choice of the quantization axis is critical for considering $l>0$ states.
 %     Since the solar gravity breaks the rotational symmetry, the $z$-axis is chosen along the Earth--Sun line.
@@ -537,8 +505,6 @@ If multiple modes are populated, the total gradient is a superposition of the gr
 %     However, for the brevity of this discussion, only $m=0$ is considered in this work.
 % \end{itemize}
 
-% \YZ{Add a numerical estimate for $\Omega_a^\mathrm{Earth}$ as a function of $m_a$ and $M_\mathrm{bound}$.
-% Add a comparison with the galactic-halo Rabi frequency $\Omega_a$ (Equation~\eqref{eq:Omega_a_MW}).}
 % estimation of the Rabi frequency $\Omega_a^\mathrm{Earth}$ for the Earth-bound ALP
 A rough estimation of the Rabi frequency $\Omega_a^{\oplus}$ of the pseudomagnetic field can be made using Equation~\eqref{eq:Omega_a_MW} and escape speed $v_\mathrm{esc}$ as the speed of the Earth-bound ALP\,\cite{Zhang2026_Dissertation_ipynb_2_theory_EH_ALP}
 \begin{equation}
@@ -657,7 +623,7 @@ Examples of daily and annual modulations are illustrated in Figure~\ref{fig:EH_A
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.99\textwidth]{figures/EH-annual_modulation-Omega_a.pdf}
+    \includegraphics[width=0.99\textwidth]{figures/EH_ALP-annual_modulation-Omega_a.pdf}
     \caption{Annual modulation of the gradient component for the $|n=2,\,l=1,\, m=0\rangle$ state at the location of CASPEr-G (Helmholtz Institute Mainz). 
     The modulation is due to the Earth's orbit around the Sun. 
     Lorentz boost is considered in the calculation.}
