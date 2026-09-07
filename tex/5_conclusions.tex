@@ -94,6 +94,54 @@ Lower electronic noise and larger effective sample volume would improve the appa
 Larger sample volume and improved pickup-coil performance would further enhance the sensitivity.
 These improvements are complementary: polarization increases the available magnetization, while long relaxation times increase the accumulated ALP-induced tipping angle.
 
+
+% Parameters summary
+\YZ{edit the following paragraph and the table}
+Table~\ref{tab:parameters} summarizes the key parameters of the CASPEr-Gradient-LF apparatus for the methanol measurement reported in this thesis and for two projected future configurations using hyperpolarized samples.
+The thermal polarization of methanol is the dominant limiting factor in the current measurement.
+Hyperpolarized methanol or liquid \ch{^{129}Xe} could boost the polarization by several orders of magnitude, substantially improving the sensitivity.
+
+\begin{table*}[ht]
+\begin{threeparttable}
+\centering
+\caption{Parameters of the CASPEr-Gradient-LF apparatus for the current measurement (thermally polarized methanol) and two projected future configurations.
+Polarization is given as molar polarization (polarization$\times$concentration).}
+\label{tab:parameters}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{p{0.24\linewidth}
+                >{\centering\arraybackslash}p{0.21\linewidth}
+                >{\centering\arraybackslash}p{0.21\linewidth}
+                >{\centering\arraybackslash}p{0.21\linewidth}}
+\hline\hline
+& This work & \multicolumn{2}{c}{Examples of future CASPEr-Gradient-LF} \\
+\hline
+Sample & Methanol & Methanol\tnote{a} & Liquid \ch{^{129}Xe}\tnote{b} \\
+Spin density (\unit{\cm^{-3}}) & \num{5.9e22} & \num{5.9e22} & $\sim\num{1e22}$ \\
+Sample volume (\unit{\cm^3}) & 1.2 & 1.2 & $\sim1$ \\
+Polarization technique & Thermal & BF\tnote{c} / PHIP\tnote{d} / DNP\tnote{e} & SEOP\tnote{f} \\
+Polarization & \num{1.8e-7} & $>\num{1.1e-5}$ & $\sim1$ \\
+$T_2$ (\unit{\s}) & 0.72 & 1 & 1000 \\
+$B_0$ inhomogeneity (\unit{\ppm}) & 10 & $\leq2$ & $\leq2$ \\
+Electronic noise (\unit{\micro\Phi_0/\Hz^{1/2}}) & 7.1 & 1.0 & 1.0 \\
+Flux of SPN\tnote{g} (\unit{\micro\Phi_0}) & 0.39 & 0.39 & 0.16 \\
+Scan range & \SI{1.348450}{\MHz}--\SI{1.348690}{\MHz} & $\sim$\SI{1}{\kHz}--\SI{4.3}{\MHz} & $\sim$\SI{1}{\kHz}--\SI{1.2}{\MHz} \\
+$|g_\mathrm{aNN}|$ sensitivity (\unit{\GeV^{-1}}) & \num{3e-2} & \num{1.0e-6}--\num{1.2e-5} & \num{1e-12}--\num{1e-11} \\
+\hline\hline
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item[a] Methanol at \SI{180}{\kelvin} prepolarized at \SI{2}{\tesla}; measurement time $100\,\tau_a$ per scan step.
+\item[b] \ch{^{129}Xe}-enriched liquid sample.
+\item[c] Brute-force prepolarization in a strong field at low temperature.
+\item[d] Parahydrogen-induced polarization (PHIP).
+\item[e] Dynamic nuclear polarization (DNP).
+\item[f] Spin-exchange optical pumping (SEOP).
+\item[g] Spin-projection noise (SPN).
+\end{tablenotes}
+\end{threeparttable}
+\end{table*}
+
+
 The Earth-bound ALP analysis opens a second direction for future work.
 Because bound states can have long coherence times and geometry-dependent gradients, the optimal statistic, signal normalization, and validation tests differ from the Milky Way halo case.
 Completing this analysis requires finalizing the state-population assumptions, the reference signal power, the recovery efficiency, and the candidate consistency criteria.

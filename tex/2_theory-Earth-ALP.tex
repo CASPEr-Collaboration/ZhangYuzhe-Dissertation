@@ -119,7 +119,7 @@ The potential over radii can be calculated numerically based on PREM, as shown i
 For ultralight dark matter particles bound by Earth, they can no longer be treated as classic objects due to their large de~Broglie wavelengths.
 A rough estimation of the wavelength is made as follows.
 % The speed of ALP should not exceed
-The ALP masses that CASPEr-G can probe range from $\sim\SI{4}{\pico\eV}$ to $\SI{2.5}{\micro\eV}$.
+The ALP masses that CASPEr-Gradient can probe range from $\sim\SI{4}{\pico\eV}$ to $\SI{2.5}{\micro\eV}$.
 Consider ALPs trapped by the earth potential with velocities roughly smaller than the escape veclocity.
 The de~Broglie wavelength as a function of particle mass $\lambda_\mathrm{dB}(m_a, v_a) = h / (m_a v_a)$ gives\,\cite{Zhang2026_Dissertation_ipynb_2_theory_EH_ALP}
 \begin{itemize}
@@ -528,7 +528,7 @@ A more accurate estimation can be made using the numerical values of the wavefun
 With Equations~(\ref{eq:Bpseudo}, \ref{eq:gradient_Psi_sum}, \ref{eq:gradient_psi_nlm}), it can be estimated as\,\cite{Zhang2026_Dissertation_ipynb_2_theory_EH_ALP}
 \begin{equation}
     \Omega_a^{\oplus} = c\, g_\mathrm{aNN} \sqrt{\frac{N_a \hbar^3 c}{2 m_a}}\,\left|\left(\boldsymbol{\nabla}\psi_{nlm}\right)_\perp\right|
-    \,,\label{eq:Omega_a_earth}
+    \,,\label{eq:Omega_a_EH}
 \end{equation}
 where $\left|(\boldsymbol{\nabla}\psi_{nlm})_\perp\right|$ is the magnitude of the wavefunction gradient component perpendicular to the bias magnetic field $\mathbf{B}_0$ [i.e., the $\hat{\boldsymbol{\theta}}$ and $\hat{\boldsymbol{\varphi}}$ terms from Equation~\eqref{eq:gradient_psi_nlm}].
 Using the numerical values of the wavefunction gradients, the value can be obtained as
@@ -539,16 +539,16 @@ Using the numerical values of the wavefunction gradients, the value can be obtai
     \frac{g_\mathrm{aNN}}{\SI{1e-9}{\GeV^{-1}}}
     \left(\frac{M_\mathrm{DM}^\mathrm{EH}}{\SI{4e-9}{M_\oplus}}\right)^{1/2}
     ~.
-    \label{eq:Omega_a_earth_theta}
+    \label{eq:Omega_a_EH_theta}
 \end{equation}
-The two estimations in Equation~\eqref{eq:Omega_a_EH_est} and \eqref{eq:Omega_a_earth_theta} yield consistent results within an order of magnitude.
+The two estimations in Equation~\eqref{eq:Omega_a_EH_est} and \eqref{eq:Omega_a_EH_theta} yield consistent results within an order of magnitude.
 % scripts-and-data\grav_potential.ipynb #### Estimation of the ALP field gradient Note that due to the magnitude of the Rabi frequency can vary by \SI{100}{\percent} due to the time-changing alignment between the ALP gradient and the sensitive axis of detector.
 The precise values of the gradients can be computed numerically from the eigen-states and are used to estimate the expected signal strength in Chapter~\ref{chap:results}.
 An example of ALP gradients and Rabi frequencies for $|n=2,\,l=1,\, m=0\rangle$ state are illustrated in Figure~\ref{fig:EH_ALP-daily_modulation-gradient-Omega_a}.
 \begin{figure}
     \centering
     \includegraphics[width=0.99\textwidth]{figures/EH_ALP-daily_modulation-gradient-Omega_a.pdf}
-    \caption{Daily modulation of the gradient component for the $|n=2,\,l=1,\, m=0\rangle$ state at the location of CASPEr-G (Helmholtz Institute Mainz) from 07:00 (Central European Time), December 13, 2022.  
+    \caption{Daily modulation of the gradient component for the $|n=2,\,l=1,\, m=0\rangle$ state at the location of CASPEr-Gradient (Helmholtz Institute Mainz) from 07:00 (Central European Time), December 13, 2022.  
     The modulation is due to the rotation of the Earth. 
     The quantization axis is arbitrarily chosen along the Earth--Sun line. 
     Calculations with and without Lorentz boost are shown for comparison.
@@ -558,7 +558,7 @@ An example of ALP gradients and Rabi frequencies for $|n=2,\,l=1,\, m=0\rangle$ 
     \label{fig:EH_ALP-daily_modulation-gradient-Omega_a}
 \end{figure}
 Such Rabi frequency is $\sim7$ orders of magnitude larger than the expected Rabi frequency from the galactic halo ALP, as estimated after Equation~\eqref{eq:Omega_a_MW}
-If indeed such amount of axionlike dark matter can be accumulated in the Earth gravitational potential, it would produce a much stronger signal than the galactic halo ALP, making it an target that CASPEr-G is sensitive to.
+If indeed such amount of axionlike dark matter can be accumulated in the Earth gravitational potential, it would produce a much stronger signal than the galactic halo ALP, making it an target that CASPEr-Gradient is sensitive to.
 
 \subsection{Population, interference and coherence}\label{sec:theory:earthALP:coherence}
 
@@ -602,9 +602,9 @@ A more precise estimate of the coherence time can be made by computing the eigen
 The relative frequency spacing of the lowest 6 eigen-states is $\sim \SI{1e-9}{}$ or \SI{1}{ppb}, which is consistent with the rough estimate in Equation~\eqref{eq:coherence_time_estimate_max_freq}. 
 
 To determine the exact coherence time, numerical solutions of Equation~\eqref{eq:schrodinger_earth} and simulations of eigen-states interference are needed. 
-When the ALP mass or Compton frequency is small, the coherence time can be very long, which may exceed the relaxation times of the NMR sample and duration of a typical CASPEr-G measurement. 
+When the ALP mass or Compton frequency is small, the coherence time can be very long, which may exceed the relaxation times of the NMR sample and duration of a typical CASPEr-Gradient measurement. 
 In such scnarios, the ALP field will result in a one-bin signal in the frequency spectrum, and the amplitude of the signal will be limited by the relaxation times of the NMR sample. 
-Therefore, the exact value of the coherence time is not always needed for the analysis of the CASPEr-G data. 
+Therefore, the exact value of the coherence time is not always needed for the analysis of the CASPEr-Gradient data. 
 
 
 \subsection{Periodic modulations}\label{sec:theory:earthALP:periodic}
@@ -617,14 +617,14 @@ Since the gravitional potential is spherically symmetric, the choice of coordina
 This frame is generally not aligned with the Earth's rotation axis.
 As the Earth rotates, the orientation of the component of $\boldsymbol{\nabla}a$ at any given location therefore exhibits a daily modulation. 
 Earth's orbital motion produces an annual modulation of the gradient component at a given location. 
-Examples of daily and annual modulations are illustrated in Figure~\ref{fig:EH_ALP-daily_modulation-gradient-Omega_a} and Figure~\ref{fig:earthALP_annual_modulation}, which show the daily and annual modulations of the gradient component for the $|n=2,\,l=1,\, m=0\rangle$ state at the location of CASPEr-G. 
+Examples of daily and annual modulations are illustrated in Figure~\ref{fig:EH_ALP-daily_modulation-gradient-Omega_a} and Figure~\ref{fig:earthALP_annual_modulation}, which show the daily and annual modulations of the gradient component for the $|n=2,\,l=1,\, m=0\rangle$ state at the location of CASPEr-Gradient. 
 % In summary, the Rabi frequency exhibits changes within one order of magnitude due to periodic modulations. 
-% Therefore, the date and time of measurements would not have a significant effect for the sensitivity of CASPEr-G. 
+% Therefore, the date and time of measurements would not have a significant effect for the sensitivity of CASPEr-Gradient. 
 
 \begin{figure}
     \centering
     \includegraphics[width=0.99\textwidth]{figures/EH_ALP-annual_modulation-Omega_a.pdf}
-    \caption{Annual modulation of the gradient component for the $|n=2,\,l=1,\, m=0\rangle$ state at the location of CASPEr-G (Helmholtz Institute Mainz). 
+    \caption{Annual modulation of the gradient component for the $|n=2,\,l=1,\, m=0\rangle$ state at the location of CASPEr-Gradient (Helmholtz Institute Mainz). 
     The modulation is due to the Earth's orbit around the Sun. 
     Lorentz boost is considered in the calculation.}
     \label{fig:earthALP_annual_modulation}
@@ -632,4 +632,4 @@ Examples of daily and annual modulations are illustrated in Figure~\ref{fig:EH_A
 
 Since the gravitational potential is assumed to be spherically symmetric, the eigen-states with the same $n$ and $l$ but different $m$ are degenerate. 
 Though every eigen-state experiences periodic modulations, the modulation may not be seen in the measurements due to the degeneracy, unless the degeneracy is lifted by, for example, the lunar or solar gravity. 
-Periodic modulations are not considered in the analysis of the CASPEr-G data in this thesis. 
+Periodic modulations are not considered in the analysis of the CASPEr-Gradient data in this thesis. 
