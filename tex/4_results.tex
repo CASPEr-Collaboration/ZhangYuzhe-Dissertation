@@ -1,47 +1,44 @@
 \chapter{Analysis and Results}\label{chap:results}
 \begin{jointwork}
-    Data analysis procedures and searches for Milky Way ALP are adapted from Ref.\,\cite{Walter2024_LFthermal}, while the Earth-bound ALP search is adapted from \YZ{add Earth-bound ALP search reference here}.
+    Data analysis procedures and searches for Milky Way ALP are adapted from Ref.\,\cite{Walter2025_CASPErLFthermal}.
+    The development of the analysis framework took the data analysis pipelines of HAYSTAC\,\cite{Brubaker2017_HAYSTAC}, SHAFT\,\cite{Gramolin2021_Ferromagnetic}, and CASPEr-Electric\,\cite{aybas2021_SolidStateNMR} as reference. 
 \end{jointwork}
 
 This chapter first presents the data analysis pipeline including data processing and outlier validation check.
 The data analysis pipeline is later applied to two proof-of-principle ALP searches using the CASPEr-Gradient-LF apparatus with a thermally polarized methanol sample. 
-% The scanning framework developed in Sections~\ref{sec:experiment:single}--\ref{sec:experiment:optimization}\YZ{check these sections later} was applied in proof-of-concept ALP searchs using the CASPEr-Gradient-LF apparatus with a thermally polarized methanol sample. 
-% This chapter describes the measurements 
-% and the results.
-Since the search is sensitive to the proton NMR signal in methanol, the results are interpreted in terms of the ALP-proton gradient coupling constant $g_\mathrm{ap}$, i.e.\ $g_\mathrm{aNN}$ evaluated for proton spins.
+The results including analysis of the ALP candidates and the exclusion limits are presented by the end of sections. 
+\YZ{this sentence should go to main text}
 The full MW and Earth-halo candidate lists are given in Appendix~\ref{app:candidates}.
-% Two proof-of-principle science runs in the year of 2022 are presented and analyzed. 
 
 
 \section{Data analysis}\label{sec:results:data-analysis}
 
 % purpose of the data analysis
-The data analysis of CASPEr-Gradient aims at identifying potential ALP signals in the frequency spectra obtained from the time-domain measurements and setting exclusion / sensitivity limits on the ALP-nuclear spin gradient coupling in the absence of a detection.
+The data analysis of CASPEr-Gradient aims at identifying potential ALP signals in the frequency spectra obtained from the measurements and setting exclusion / sensitivity on the ALP coupling in the absence of a detection.
 
-The development of analysis framework took the data analysis pipelines of HAYSTAC, SHAFT, and CASPEr-Electric\,\cite{Brubaker2017_HAYSTAC, Gramolin2021_Ferromagnetic, aybas2021_SolidStateNMR} as reference. 
 
 \subsection{Methodology}\label{sec:results:data-analysis:methodology}
 
 % summary of the data analysis procedure
 In general, the raw time-series data are first converted to the frequency domain using a Fourier transform, and then processed with filters to suppress noise. 
 The outliers in the filtered spectra, judged by a threshold determined from Monte-Carlo (MC) simulations, are later evaluated for their consistency across repeated scans. 
-Outliers that survive the consistency checks are considered as ALP candidates. 
+\textbf{Outliers} that survive the consistency checks are considered as ALP \textbf{candidates}. 
 If no candidate is found at a frequency band, the analysis sets an exclusion limit on the ALP-nuclear spin gradient coupling in this band. 
 
 % more details about the general data analysis procedure
 A more detailed description of the data-analysis procedure is given below and summarized in Figure~\ref{fig:casper_g_data_analysis_pipeline}. 
 There are four main blocks of the analysis:
 \begin{itemize}
-    \item \textbf{Frequency spectra generation and filtering. }Recorded time-series are evaluated by its sanity. Sane data will generate frequency spectra by Fourier transform. Digital filtering, such as Savitzky--Golay (SG) filter and optimal filters are applied to the spectra to remove the baseline and optimize SNR. The filtered spectra are later used for finding outliers. 
-    \item \textbf{Monte-Carlo simulation for determining outlier threshold.} To determine the threshold in picking up outliers in the frequency domain, MC simulation are ran. Artificial ALP signals are generated in simulations in determining the threshold. 
+    \item \textbf{Frequency spectra generation and filtering. }Recorded time-series data are evaluated by its sanity. Sane data are used to generate frequency spectra by Fourier transform. Digital filtering, such as Savitzky--Golay (SG) filter and optimal filters are applied to the spectra to remove the baseline and optimize SNR. The filtered spectra are later used for finding outliers. 
+    \item \textbf{MC simulation for determining outlier threshold.} To determine the threshold in picking up outliers in the frequency domain, MC simulation are ran. Artificial ALP signals are generated in simulations in determining the threshold. 
     \item \textbf{NMR charaterization.} The NMR sample, bias magnetic field, and detection chain are characterized by pulsed-NMR measurements. These NMR configurations are later used for examining the outliers and determining experimental sensitivity to ALP. 
     \item \textbf{Outlier examination.} Based on the information from previous steps, outliers in the frequency spectra are picked up and examined. The valided outliers become ALP signal candidates for further investigation. Exclusion or sensitivity plots can also be generated after the validation check. 
 \end{itemize}
-In addition to these procedures, the analysis also includes procedures such as data sanity checks and calibration by artificial signal injection. 
+In addition to these procedures, the analysis also includes procedures such as calibration by artificial signal injection. 
 The technical details of these procedures are discussed as follows. 
 \begin{figure}
     \includegraphics[width=0.99\linewidth]{figures/CASPEr-G-data-analysis-pipeline.drawio.pdf}
-    \caption{Data-analysis pipeline for the CASPEr-Gradient search. Details of this pipeline are discussed in Section~\ref{sec:results:data-analysis:procedure}.\YZ{to be updated}}
+    \caption{Data-analysis pipeline for the CASPEr-Gradient search. Details of this pipeline are discussed in Section~\ref{sec:results:data-analysis:procedure}.}
     \label{fig:casper_g_data_analysis_pipeline}
 \end{figure}
 % the figure is made with draw.io
@@ -50,25 +47,22 @@ The technical details of these procedures are discussed as follows.
 
 \subsection{Procedure}\label{sec:results:data-analysis:procedure}
 
-% \subsubsection{Frequency spectra generation and filtering}
-% TODO check if there can be a better layout of the data analysis procedure sections
-% TODO maybe time series sanity check can be a new block in the flow chart?
 \subsubsection{Time-series sanity check}
 
 Data with Gaussian noise are expected from the SQUID and LIA in the absence of ALP signal. 
-In the presence of ALP signal:
+In the presence of an ALP signal:
 \begin{itemize}
-    \item If the ALP signal is weak compared to the noise, the data is approximately Gaussian. 
-    \item If the ALP signal is strong, the data is no longer Gaussian, and stochastic drift with a characteristic period of ALP coherence time is expected, as illustrated in Figure~\ref{fig:MW_axion_time_domain_stochastic}. % TODO do not use itemize?? 
+    \item if the ALP signal is weak compared to the noise, the data is still approximately Gaussian; 
+    \item if the ALP signal is strong, the data are no longer Gaussian, and stochastic drift with a characteristic timescale of ALP coherence time is expected, as illustrated in Figure~\ref{fig:MW_axion_time_domain_stochastic}. 
 \end{itemize}
 Moreover, when recording the data, instability and fluctuations in hardware and software could result in insane data. 
 Therefore, the first step in data processing is to check the sanity of time-series. 
 The time-series are checked for
 \begin{enumerate}
-    \item \textbf{finite values.} The data are first checked for \texttt{NaN} (not-a-number) or infinite values. Since the time-series are stored as \texttt{numpy} arrays, NaN and infinity are examined by \texttt{numpy.isfinite} and \texttt{numpy.isnan}. 
-    \item \textbf{long-term stability (``drift'').} Slow (compared with the ALP coherence time) changes of the mean or variance due to instable SQUID flux-lock-loop mode are tested within individual scan steps. 
-    \item \textbf{short-term stability (``jumps'').} Local discontinuities or clusters of outlying samples in chunks much shorter than the ALP coherence time are searched for after the drift check. Such jumps may originate from magnetic noise due to mechanical or accoustic vibration, and can produce spectral leakage and artificial outliers in the search spectrum. 
-    \item \textbf{Gaussianity.} Drift-clear data are tested for consistency with the Gaussian-noise assumption used in the threshold estimation. 
+    \item \textbf{Corrupted data values.} The data are first checked for \texttt{NaN} (not-a-number) or infinite values. Since the time-series are stored as \texttt{numpy} arrays, NaN and infinity are examined by \texttt{numpy.isfinite} and \texttt{numpy.isnan}. 
+    \item \textbf{Long-term instability (``drift'').} Slow (compared with the ALP coherence time) changes of the mean or variance due to instable SQUID flux-lock-loop mode are tested within individual scan steps. 
+    \item \textbf{Short-term instability (``jumps'').} Local discontinuities or clusters of outlying samples in chunks much shorter than the ALP coherence time are searched for after the drift check. Such jumps may originate from magnetic noise due to mechanical or accoustic vibration, and can produce spectral leakage and artificial outliers in the search spectrum. 
+    \item \textbf{Non-Gaussianity.} Drift-clear data are tested for consistency with the Gaussian-noise assumption used in the threshold estimation. 
 \end{enumerate}
 Depending on the problems found, the following approaches may be applied:
 \begin{enumerate}
@@ -79,7 +73,7 @@ Depending on the problems found, the following approaches may be applied:
     \item \textbf{Discarding.} If the amount of insane data exceeds a certain ratio of the total data, the corresponding measurement should be discarded. This ratio is arbitrarily chosen to be \SI{1}{\percent}. 
 \end{enumerate}
 
-Note that features that do not match ALP models investigated in this thesis, such as fluctuations in period much shorter than ALP coherence time, may not be noise or faulty hardware/software behavior, but signals of new physics. 
+Note that features that do not match ALP models investigated in this thesis, such as fluctuations in period much shorter than ALP coherence time, may not be noise or faulty hardware/software behavior, but signals of other new physics. 
 It is wise to keep track of these features for future considerations. 
 
 % Data with unresolved drift would be reported.         for the discarded because it can create low-frequency spectral structure.
@@ -103,8 +97,8 @@ and
     \mathrm{ASD} = \mathrm{LSD} = \sqrt{\mathrm{PSD}}, 
 \end{equation}
 where $\mathrm{FT}$ is Fourier transform, $\mathrm{window(t)}$ is the window function, $s(t)$ is the time-series, and $\mathrm{ENBW}$ is effective noise bandwidth. 
-The formula of $\mathrm{ENBW}$ can be found at Equation (22) of Ref.\,\cite{Heinzel2002_SpectrumSpectralDensity}. 
 In the data analysis of CASPEr, $\mathrm{ENBW}$ is approximately the resolution bandwidth (RBW) \footnote{as known as spectral resolution or binwidth} since the applied window function is roughly rectangle. 
+The exact formula of $\mathrm{ENBW}$ can be found at Equation (22) of Ref.\,\cite{Heinzel2002_SpectrumSpectralDensity}. 
 The power spectrum is normalized in a way that the sum of the spectra is the average ``power'' of the signal:\footnote{Usually, power is defined as the amount of energy transferred or converted per unit time. For a voltage signal in unit of \unit{\volt}, the power is in the units of \unit{\volt^2\per\ohm}. However, the ``power'' in the spectral analysis is defined as the square of the signal, therefore the ``power'' of the signal has units of \unit{\volt^2}. This special but common definition is adopted in this thesis unless otherwise noted. } 
 \begin{equation}
     \mathrm{Average\,power} = \frac{\sum_{k=0}^{N-1}\left|\mathrm{window(t_k)} \cdot s(t_k)\right|^2}{\sum_{k=0}^{N-1}\left|\mathrm{window(t_k)}\right|^2}\,,
@@ -137,10 +131,10 @@ The output time-series can be calculated using the following recursive formula
 where $X_\mathrm{in}$ and $X_\mathrm{out}$ are the input and output time-series arrays, $k$ is the sample index, $T_s$ is the sampling time, and $T_C$ is the time constant configured by the user. 
 % The recurrence requires an initial filter state. 
 For the first stored sample $X_\mathrm{out}[-1]$ is chosen to be $X_\mathrm{in}[0]$ by convention, 
-This exponential moving average is also described as digital discrete-Time RC (DTRC) Filter as it resembles the low-pass response of analog resistor-capacitor (RC) filters. 
+This exponential moving average is also described as digital discrete-time resistor-capacitor (DTRC) filter as it resembles the low-pass response of analog resistor-capacitor (RC) filters. 
 The time constant $T_C$ determines the \SI{3}{\decibel} bandwidth in the frequency domain. 
 Equation \eqref{eq:XoutXinTC} describe a first order DTRC filter. 
-Higher-order filters are implemented by cascading several filters in practice for suppressing signals of frequencies much larger than the Larmor frequency ($|\mathrm{frequency}-\mathrm{Larmor frequency}|\gg\mathrm{NMR linewidth}$).   
+Higher-order filters are implemented by cascading several filters in practice for suppressing signals of frequencies much larger than the Larmor frequency ($|\mathrm{frequency}-\mathrm{Larmor\, frequency}|\gg\mathrm{NMR\, linewidth}$).   
 The response of the n-th order filter in the frequency domain is approximated by the formula
 \begin{equation}
     H_n(\nu)=\frac{1}{(1+i2\pi\nu T_C)^n} \,,
@@ -150,11 +144,11 @@ where $H_n(\nu)$ is the n-th order attenuation at frequency $\nu$.
 This attenuation is corrected by dividing the PSD by the square of the absolute value of the attenuation.
 % TODO check if the attenuation is H^2 or H^4 for PSD
 % , including the bandwidth, time constant, and settling behavior of the selected filter order. 
-If the time-series is Gaussian noise, the frequency spectra should be white noise (flat noise in the frequency domain) after the low-pass filter correction, and the distribution of the PSD should follow a $\chi^2$ distribution. Since there are two channels in the lock-in amplifier, the degrees of freedom of the distribution should be two.
+If the time-series is Gaussian noise, the frequency spectra should be white noise after the low-pass filter correction, and the distribution of the PSD should follow a $\chi^2$ distribution. Since there are two channels in the lock-in amplifier, the degrees of freedom of the distribution should be two.
 
-Since the frequency-dependent attenuation in \eqref{eq:H_nu_attenuation} is only an approximation, the baseline of the PSD is not absolutely flat. 
+Since the frequency-dependent attenuation in \eqref{eq:H_nu_attenuation} is only an approximation, the baseline of the PSD is not absolutely flat after the DTRC filter correction. 
 The curve of the baseline is estimated by a SG filter and removed from the PSD.
-In practice, the spectrum is divided into chunks of a bandwidth much larger than the expected ALP linewidth, and the SG filter of the first order is applied to each chunk to estimate the baseline. 
+In practice, the spectrum is divided into chunks of a bandwidth much larger than the expected ALP linewidth, and the SG filter of the first order is applied to each chunk to estimate the baseline.\footnote{The first order is chosen so as not to affect the ALP signal. Higher order SG filters can substract part of the ALP signal from the spectrum.} 
 Later, the baseline is removed by subtracting and dividing the spectrum by the estimated baseline, the product of which is also called the normalized power excess (NPE):
 \[
   \mathrm{NPE}(\nu) = \frac{\mathrm{PSD}(\nu)}{\mathrm{Baseline}(\nu)} - 1\,.
@@ -179,17 +173,17 @@ Later, the baseline is removed by subtracting and dividing the spectrum by the e
 % statistic.
 
 The next step is to decide whether optimal filtering\footnote{as known as matched filtering} should be applied or not. 
-The optimal filter is a weighted average of neighboring frequency bins, with weights determined by the expected signal lineshape; this choice maximizes the signal-to-noise ratio among linear filters for random noise with known covariance, as shown in Appendix~\ref{sec:app:optimal-filter}.
+The optimal filter is a weighted average of neighboring frequency bins, with weights determined by the expected signal lineshape; this choice maximizes the SNR among linear filters for random noise with known covariance, as shown in Appendix~\ref{sec:app:optimal-filter}.
 If the ALP linewidth is broader than the RBW of the spectrum, the signal is resolved, which means the signal is spread over multiple frequency bins. 
 In this case, optimal filtering is applied to combine the signal power into a single bin.
 Alternatively, if the ALP linewidth is narrower than the RBW, the signal is unresolved and optimal filtering is not applied. 
 
 % Spike removal: to be verified if this step is necessary
-One of the procedures that was adopted in the analysis of Ref.\,\cite{Walter2024_LFthermal} is the removal of narrow spikes in the frequency spectra.
-The philosophy behind this procedure is that spikes with linewidths much narrower than the expected ALP linewidth are likely to be radio-frequency interference (RFI), and are unlikely to be ALP signals, thus can be removed to avoid false positives and reduce noise. 
-However, this procedure is not applied in the analysis of the data presented in this thesis for three reasons. First of all, since the stochastic nature of ALP signals allows for spiky signals as simulated in Figure~\ref{fig:MW_axion_time_domain_stochastic}. 
+One of the procedures that was adopted in the former CASPEr-Gradient analysis\,\cite{Walter2025_CASPErLFthermal} was the removal of narrow spikes in the frequency spectra.
+The philosophy behind this procedure is that spikes with linewidths much narrower than the expected ALP linewidth could be radio-frequency interference (RFI), and are unlikely to be ALP signals, thus can be removed to avoid false positives and reduce noise. 
+However, this procedure is not applied in the analysis of the data presented in this thesis for three reasons. First and most important of all, since the stochastic nature of ALP determines the spiky shape of ALP signals as plotted in Figure~\ref{fig:MW_axion_time_domain_stochastic}. 
 Moreover, RFI lines are expected to be stable in frequency and amplitude, and can be identified by repeated scans. 
-Lastly, the spikes are suppressed by the optimal filtering. 
+Lastly, the spikes are suppressed by the optimal filtering, and did not affect the outlier search in the real analysis.
 
 After the filterings mentioned above, the filtered spectra are ready for outlier search.
 
@@ -197,26 +191,26 @@ After the filterings mentioned above, the filtered spectra are ready for outlier
 
 If the probability of a signal being a false positive is less than $\SI{2.87e-7}{}$, which is the probability of a Gaussian random variable exceeding five times of its standard deviation $\sigma$, the signal is considered as a $\SI{5}{\sigma}$ signal. 
 An illustration of the Gaussian distribution and the probability of a $\SI{5}{\sigma}$ signal is shown in Figure~\ref{fig:5sigma-Gaussian-chisq-distributions}\,(a). 
-Such signals are considered as indications of new physics. 
+Such signals are considered as traces of new physics. 
 \begin{figure}
-    \includegraphics[width=0.49\linewidth]{figures/norm-5_sigma.png}
-    \includegraphics[width=0.49\linewidth]{figures/chi2-dof2.png}
-    \caption{(a) The probability of a Gaussian random variable exceeding $n$ times of its standard deviation. The probability of a $\SI{5}{\sigma}$ signal is less than $\SI{2.87e-7}{}$. (b) The $\chi^2$ distribution with two degrees of freedom. \YZ{to be updated}}
+    \includegraphics[width=0.99\linewidth]{figures/5sigma-Gaussian-chisq-distributions.pdf}
+    \caption{The probability density functions (PDFs) of (a) Gaussian and (b) $\chi^2_2$ distributions. 
+    The probabilities of the shaded areas are noted in the legends. }
     \label{fig:5sigma-Gaussian-chisq-distributions}
 \end{figure}
 
 In addition to understanding what a $\SI{5}{\sigma}$ signal is, it is also important to understand what a $\SI{5}{\sigma}$ signal is not, and what is not a $\SI{5}{\sigma}$ signal:
 \begin{itemize}
-    \item Due to random noise, the amplitude of a $\SI{5}{\sigma}$ signal fluctuate, instead of being $\SI{5}{\sigma}$ constantly\,\cite{Brubaker2017_HAYSTAC, aybas2021_SolidStateNMR}. If the noise is Gaussian, and if the noise is added to the signal linearly, the measured signal amplitude would be a Gaussian random variable with a mean of $\SI{5}{\sigma}$ and a standard deviation of $\sigma$, as illustrated in Figure~\ref{fig:5sigma-2-Gaussian-distributions}. 
+    \item Due to random noise, the measured amplitude of a $\SI{5}{\sigma}$ signal fluctuate, instead of being $\SI{5}{\sigma}$ constantly\,\cite{Brubaker2017_HAYSTAC, aybas2021_SolidStateNMR}. If the noise is Gaussian, and if the noise is added to the signal linearly, the measured signal amplitude would be a Gaussian random variable with a mean of $\SI{5}{\sigma}$ and a standard deviation of $\sigma$, as illustrated in Figure~\ref{fig:5sigma-2-Gaussian_distributions}. 
     \item A $\SI{5}{\sigma}$ signal is not always a signal that exceeds five times the standard deviation of the noise, unless the noise is Gaussian. For instance, if the noise follows a $\chi^2$ distribution with two degrees of freedom, the threshold for a so-called $\SI{5}{\sigma}$ signal would be $\SI{15.06}{\sigma}$, as shown in Figure~\ref{fig:5sigma-Gaussian-chisq-distributions}\,(b).
-    \item $\SI{5}{\sigma}$ signals are not rare, in terms of the amount of events they represent. On one hand, $\SI{5}{\sigma}$ signals due to non-Gaussian noises are common in real experiments. On the other hand, experiments can accumulate huge amounts of data ($\gg 1/\SI{2.87e-7}{}$ data points), and the probability of one $\SI{5}{\sigma}$ signal appearing due to random fluctuation is not negligible. This is also known as the look-elsewhere effect.
+    \item $\SI{5}{\sigma}$ signals are not rare, in terms of the amount of events they represent. On one hand, $\SI{5}{\sigma}$ signals due to non-Gaussian noises are common in real experiments. On the other hand, experiments can accumulate huge amounts of data ($\gg 1/(\SI{2.87e-7}{})$ data points), and the probability of one $\SI{5}{\sigma}$ signal appearing due to random fluctuation is not negligible. This is also known as the look-elsewhere effect.
 \end{itemize}
 
 \begin{figure}
     \centering
-    \includegraphics[width=1.0\linewidth]{figures/norm-5_sigma-2_distributions.pdf}
-    \caption{Noise and signal amplitude distributions assuming Gaussian noise and linear signal dependence.\YZ{to be updated. be careful with digits. check old casper g repo}}
-    \label{fig:5sigma-2-Gaussian-distributions}
+    \includegraphics[width=1.0\linewidth]{figures/5sigma-2-Gaussian_distributions.pdf}
+    \caption{Noise and signal amplitude distributions assuming Gaussian noise and linear signal dependence.}
+    \label{fig:5sigma-2-Gaussian_distributions}
 \end{figure}
 
 
@@ -226,10 +220,11 @@ To capture the $\SI{5}{\sigma}$ signals, a threshold is set, above which frequen
 The value of the threshold should not be too low or too high. 
 If the threshold is too low, noises are likely to be regarded as signal (false positive). 
 If the threshold is too high, signals are likely to be missed (false negative).
-An appropriate threshold can either be determined by noise statistics or by Monte-Carlo (MC) simulations. 
+An appropriate threshold can either be determined by noise statistics or by MC simulations. 
 A common approach is to find out a threshold with which most of the signals are captured, while moderate amount of noises are also captured. 
 In other words, this threshold corresponds to a certain confidence level (C.L.), such as \SI{95}{\percent}. 
-For example, if noise and signal are both Gaussian random variables with consistent standard deviation $\sigma$ and different means (mean of noise being zero), a threshold of $\SI{3.355}{\sigma}$ is found to ensure that, in the presence of a $5\sigma$ signal, the chance of capturing the signal is \SI{95}{\percent}, and the chance of false positive (false alarm rate) is only \SI{4e-4}{}. 
+For example, if noise and signal are both Gaussian random variables with consistent standard deviation $\sigma$ and different means (mean of noise being zero), a threshold of $\SI{3.355}{\sigma}$ is found to ensure that, in the presence of a $5\sigma$ signal, the chance of capturing the signal is \SI{95}{\percent}, and the chance of false positive (false alarm rate) is only \SI{4e-4}{}, as illustrated in Figure~\ref{fig:5sigma-2-Gaussian_distributions}. 
+% TODO check this 4e-4 in the ipynb
 When noise distribution is not Gaussian, the threshold can be determined by MC simulations, in which the noise and signal are simulated with the same statistics as in the experiment. 
 
 \subsubsection{NMR characterization}
@@ -241,8 +236,6 @@ The sample and the bias magnetic field are characterized by the following parame
 \end{enumerate}
 These parameters are used to determine the sensitivity to ALP signals in the frequency band of interest.
 Since these parameters may vary due to changes in the sample temperature, bias magnetic field, and other environmental factors, these measurements are performed at each scan step. 
-
-Based on the NMR configuration obtained, and the noise of NPE spectra, the sensitivity to ALP signals can be determined. \YZ{this sentence can be adjusted to a different postion}
 
 % For each scan step, the procedure is:
 % \begin{enumerate}[label=\arabic*.]
@@ -283,12 +276,12 @@ Following this principle, the outliers are examined by the following steps:
 % If outliers are excluded at a frequency, t
 In the end, the analysis sets constraints on the coupling strength at frequencies where there is no ALP candiate as minimum coupling strength that can be observed with a given confidence level.
 Otherwise, the constraints are set by the coupling strength of the ALP candidate, below which a candidate was observed. 
-% \section{Data-analysis details}\label{sec:results:analysis}
+% section{Data-analysis details}\label{sec:results:analysis}
 
 % This section gives the implementation details for the resolved standard-halo signal considered in the methanol search.
 % Each \SI{100}{\s} time series is converted to a PSD and processed according to the procedure summarized in Section~\ref{sec:results:data-analysis}.
 
-% \subsection{Spike suppression}
+% subsection{Spike suppression}
 
 % A narrow Savitzky-Golay (SG) filter with a window half-width equal to half the expected ALP linewidth at the scanned frequency is applied to the PSD.
 % The residual between the raw PSD and the filter output is fitted with a $\chi^2$ distribution with two degrees of freedom.
@@ -296,13 +289,13 @@ Otherwise, the constraints are set by the coupling strength of the ALP candidate
 % This step suppresses narrow EMI spikes while preserving potential ALP signals.
 % In the primary scan, only \SI{0.002}{\%} of bins were modified in this way.
 
-% \subsection{Baseline removal}
+% subsection{Baseline removal}
 
 % A reduced chi-square test on the spike-corrected spectrum reveals a non-flat baseline.
 % A second, broad SG filter with a window of 200 ALP linewidths is applied to estimate this baseline.
 % The spike-corrected spectrum is then normalized by subtracting and dividing by this baseline, producing a spectrum with a flat expected noise floor.
 
-% \subsection{Matched filtering and NPE}
+% subsection{Matched filtering and NPE}
 
 % For the \SI{100}{\s} methanol data, the expected standard-halo ALP linewidth is much larger than the \SI{0.01}{\Hz} FFT-bin width, so the signal lineshape is spectrally resolved.
 % A matched filter using the expected ALP signal lineshape $\lambda_\perp(\nu,\nu_a)$---the normalized spectral lineshape of the ALP-field gradient component perpendicular to $\mathbf{B}_0$, as given in Ref.\,\cite{Gramolin2022Feb_SpectralSignatures}---is therefore convolved with the normalized PSD.
@@ -314,7 +307,6 @@ Otherwise, the constraints are set by the coupling strength of the ALP candidate
 \section{Milky Way ALP measurement}\label{sec:results:MWALP20221223}
 
 One proof-of-principle measurement was performed on December 23, 2022. This measurement is ideal for Milky Way ALP search because it scanned a frequency range for three times and the duration of each scan step are long enough to cover multiple ALP coherence times. 
-Relevant calculations can be found at \url{scripts-and-data/Result-MW-ALP.ipynb}\YZ{link to be modified}.
 
 \subsection{Overview}\label{sec:results:MWALP20221223:experiment}
 
@@ -379,8 +371,8 @@ The experimental parameters and the relevant NMR and ALP characteristics are sum
         ALP mass scan range & $\SI{5.577237}{\neV/c^2}\pm\SI{496}{\femto\eV/c^2}$ \\
         ALP linewidth $\Delta\nu_a$ & $\approx \SI{1}{\Hz}$ \\
         ALP coherence time $\tau_a$ & $\approx \SI{0.3}{\s}$ \\
-        % Signal-to-noise ratio (SNR) & $\approx 120$ \\
-        Duration per step & $\SI{100}{\s} \approx \SI{300}{\tau_a}$ \\
+        % SNR & $\approx 120$ \\
+        Duration per step & $\SI{100}{\s} (\approx \SI{300}{\tau_a})$ \\
         Total duration & $\SI{6}{\hour} $ \\
         spectral factor $u$ & $\approx \SI{10}{\percent}$ \\
         \bottomrule
@@ -394,15 +386,15 @@ The experimental parameters and the relevant NMR and ALP characteristics are sum
     The NMR peak is fitted with a Lorentzian (red line); the center is at \SI{1.34844921(5)}{\MHz} with a FWHM of \SI{14.79(1)}{\Hz}.
     \textbf{(b)} CPMG spin-echo amplitudes (blue dots) and exponential fit (red), giving $T_2 = \SI{0.72(5)}{\s}$.
     \textbf{(c)} PSD of a \SI{100}{\s} ALP-search step.
-    The gray analysis window (\SI{8}{\kHz} wide) excludes filter artifacts near the band edges; the green resonant window ($\pm5$ NMR linewidths $= \pm\SI{70}{\Hz}$) is where ALP signal candidates are sought.
+    The gray analysis window (\SI{8}{\kHz} wide) excludes filter artifacts near the band edges; the green resonant window ($\pm5$ NMR linewidths $=\pm\SI{70}{\Hz}$) is where ALP signal candidates are sought.
     \textbf{(d)} Histogram of normalized power excess (NPE) derived from (c), with the rescan threshold $\Theta_\mathrm{RE}$ (red line) at the \SI{95}{\%} confidence level for a $\SI{5}{\sigma}$ ALP detection.
-    Reproduced from Ref.\,\cite{Walter2024_LFthermal} with permission.\YZ{a narrow frequency range for a and c? this figure may have to go to a different section}}
+    Reproduced from Ref.\,\cite{Walter2025_CASPErLFthermal} with permission.\YZ{a narrow frequency range for a and c? this figure may have to go to a different section}}
     \label{fig:measurements}
 \end{figure}
 
-% \subsection{Expected ALP signal}
+% subsection{Expected ALP signal}
 
-For a virialized Milky Way ALP field, the expected linewidth near \SI{1.35}{\MHz} is approximately \SI{1}{\Hz}, corresponding to a coherence time of approximately \SI{0.3}{\s}.
+For a virialized Milky Way ALP field, the expected linewidth near \SI{1.3}{\MHz} is approximately \SI{1}{\Hz}, corresponding to a coherence time of approximately \SI{0.3}{\s}.
 Thus, each \SI{100}{\s} acquisition spans roughly 300 coherence times and measures the time-averaged stochastic signal power.
 
 Over the six-hour measurement, the ALP signal power varied between scan steps mainly due to Earth's rotation changes the component of the ALP-field gradient perpendicular to the bias magnetic field. 
@@ -426,17 +418,17 @@ The annual modulation due to the Earth's motion in the solar system is considere
     %Note the different scales for both values, the variation of $v_a$ is around an order of magnitude smaller than that of $\alpha$.}
     % This angle oscillates with a period of one day and has profound impact on the signal. 
     Blue dot with error bar: expected ALP signal powers in the PSD, according to Eq.\YZ{put an equation here}, for the reference case of an ALP gradient coupling to proton of $g_\mathrm{ap}=\SI{1e-9}{\GeV^{-1}}$.
-    Uncertainties for these values were propagated from errors of the spin relaxation times $T_2$ and $T_2^*$, sample Larmor frequency $\nu_L$ and NMR signal power $P_\mathrm{NMR}$. \YZ{use sin alpha without brackets. adjust ylabel paddings }}
+    Uncertainties for these values were propagated from errors of the spin relaxation times $T_2$ and $T_2^*$, sample Larmor frequency $\nu_L$ and NMR signal power $P_\mathrm{NMR}$. Reproduced from Ref.\,\cite{Walter2025_CASPErLFthermal} with permission. \YZ{use sin alpha without brackets. adjust ylabel paddings }}
     \label{fig:ALP_wind_modulation}
 \end{figure}
 
 \subsection{Data analysis}
 The technical details of the data analysis, following the procedure described in Section~\ref{sec:results:data-analysis:procedure}, are presented. 
-% \subsubsection{Time-series sanity check}
+% subsubsection{Time-series sanity check}
 
 % examples of jumps and how jumps are handled with masks. one figure
 
-% \subsubsection{Fourier transform and filtering}
+% subsubsection{Fourier transform and filtering}
 
 After the time-series sanity checks, each \SI{100}{\s} record with masks with windowing was Fourier transformed and corrected for the lock-in low-pass response. 
 The spectral baseline was estimated with a SG filter and removed to form the NPE spectrum.
@@ -453,7 +445,7 @@ One example of the spectra after different filtering steps is shown in Figure~\r
     \label{fig:MWALP-ALP_lineshape-1Pulse-PSD-NPE}
 \end{figure}
 
-% \subsubsection{Outlier threshold}
+% subsubsection{Outlier threshold}
 
 Monte Carlo simulations were performed to determine the threshold for recovering a $\SI{5}{\sigma}$ ALP signal with \SI{95}{\%} probability. 
 % redo MC simulation in time domain by axionbloch?
@@ -473,7 +465,7 @@ The simulations yielded $\Theta_\mathrm{RE} = 3.43$ with a noise-only tail proba
 \end{figure}
 
 
-% \subsubsection{Validation check}
+% subsubsection{Validation check}
 
 % Frequency bins where the NPE exceeds the rescan threshold $\Theta_\mathrm{RE}$ are flagged as outliers.
 % The threshold was determined via Monte Carlo simulations of the NPE distribution under the null hypothesis that a $\SI{5}{\sigma}$ ALP signal is present, yielding $\Theta_\mathrm{RE} = 3.43$ at the \SI{95}{\%} confidence level (corresponding to a $p$-value of $0.001$).
@@ -522,7 +514,7 @@ Table~\ref{tab:candidates} summarizes the outlier counts and ALP signal candidat
 
 
 \subsection{Results}\label{sec:results:MWALP20221223:results}
-% \subsection{Exclusion limits}
+% subsection{Exclusion limits}
 
 In the absence of a detection, an upper limit on the ALP-proton gradient coupling is obtained from
 \begin{equation}
@@ -538,7 +530,7 @@ The resulting exclusion limits are plotted in Figure~\ref{fig:ALPlimits}.
     \caption{ALP gradient-proton coupling excluded at \SI{95}{\%} confidence level by the three sequential scans.
     Each data point represents the sensitivity for one scan step.
     The variation in sensitivity between scans reflects the daily modulation of the ALP wind direction relative to the bias magnetic field.
-    Reproduced from Ref.\,\cite{Walter2024_LFthermal} with permission.}
+    Reproduced from Ref.\,\cite{Walter2025_CASPErLFthermal} with permission.}
     \label{fig:ALPlimits}
 \end{figure}
 
@@ -556,7 +548,6 @@ The sensitivity is limited by the polarization of the methanol sample; hyperpola
 
 One proof-of-principle measurement for the Earth-bound ALP halo model was performed on December 14, 2022 (Central European Time).
 This measurement is suited to the Earth-bound search because each ALP-search acquisition per step lasted \SI{1}{\hour}, giving a narrow RBW for long-coherence-time signals.
-Relevant calculations can be found at \url{scripts-and-data/Result-EarthHalo.ipynb}\YZ{link to be modified}.
 
 The measurement scanned
 \begin{equation}
@@ -621,8 +612,8 @@ The experimental parameters and the relevant NMR and ALP characteristics are sum
         ALP linewidth $\Delta\nu_a$ & $\lesssim \SI{1}{\mHz}$ \\
         ALP coherence time $\tau_a$ & $\gtrsim \SI{1000}{\s}$ \\
         $T_2$ & $\approx\SI{2}{\s}$ \\
-        % Signal-to-noise ratio (SNR) & $\approx 120$ \\
-        Measurement duration per step & $\SI{1}{\hour}\lesssim \tau_a $ \\
+        % SNR (SNR) & $\approx 120$ \\
+        Measurement duration per step & $\SI{1}{\hour}(\lesssim \tau_a) $ \\
         spectral factor $u$ & $\lesssim 10^{-4}$ \\
         \bottomrule
     \end{tabular}
@@ -703,7 +694,7 @@ Since the Rabi frequency $\Omega_a \approx 2 \pi \times \SI{2}{\mHz}$, the tippi
 \subsection{Data analysis}
 The technical details of the data analysis, following the procedure described in Section~\ref{sec:results:data-analysis:procedure}, are presented as follows.
 
-% \subsubsection{Time-series sanity check}
+% subsubsection{Time-series sanity check}
 
 % Add examples of time-domain records, jumps, masks, and data-quality cuts for the one-hour no-pulse acquisitions.
 No problem was found in the time-series sanity check except for jumps. 
@@ -720,7 +711,7 @@ The analysis of these transient signals is included in the Chapter~\ref{chap:con
 \end{figure}
 
 
-% \subsubsection{Fourier transform and filtering}
+% subsubsection{Fourier transform and filtering}
 After the jumps were removed by applying windowing, the Fourier transform were performed to generate the frequency spectra.
 The NPE spectrum was later formed after lock-in low-pass correction and the baseline subtraction. 
 \YZ{Add one example of the spectra after different filtering steps.}
@@ -734,7 +725,7 @@ The NPE spectrum was later formed after lock-in low-pass correction and the base
 %     \label{fig:EarthALP-PSD-NPE}
 % \end{figure}
 
-% \subsubsection{Outlier threshold}
+% subsubsection{Outlier threshold}
 
 % Determine the threshold for recovering a target Earth-bound ALP signal with the chosen statistic.
 The time-series signal from two channels of LIA are independent and Gaussian, so the NPE follows a $\chi^2$ distribution with 2 degrees of freedom, also denoted as $\chi^2_2$. 
@@ -753,7 +744,7 @@ The threshold and corresponding probabilities are illustrated in Figure~\ref{fig
 
 \YZ{Add analysis efficiency.}
 
-% \subsubsection{Validation check}
+% subsubsection{Validation check}
 
 % Frequency bins where the NPE exceeds the Earth-bound search threshold are flagged as outliers.
 % Describe merging criteria, on/off-resonance windows, comparison between the pre- and post-search NMR calibrations, and treatment of single-scan candidates.
