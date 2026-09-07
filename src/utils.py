@@ -615,3 +615,435 @@ def sph2orth1d(vec=None):
     orth[1] = vec[0] * np.sin(vec[1]) * np.sin(vec[2])
     orth[2] = vec[0] * np.cos(vec[1])
     return orth
+
+
+def get_FWHMin(x, y):
+    """
+    Calculate the Full Width at Half Maximum (FWHM) of a dip.
+
+    Parameters:
+        x (array-like): The x-values of the curve.
+        y (array-like): The y-values of the curve.
+
+    Returns:
+        float: The FWHM of the curve.
+    """
+    # Ensure inputs are numpy arrays
+    x = np.array(x)
+    y = np.array(y)
+
+    # Find the maximum value of y and its half-maximum
+    y_min = np.amin(y)
+    Twice_min = y_min * 2.0
+
+    # Find indices where y crosses the half-maximum
+    # check(np.where(y <= Twice_min))
+    indices = np.where(y <= Twice_min)[0]
+    if len(indices) < 2:
+        raise ValueError(
+            "Cannot calculate FWHM: The curve does not have two points crossing the half-maximum."
+        )
+
+    # Extract the first and last indices crossing the half-maximum
+    left_index = indices[0]
+    right_index = indices[-1]
+
+    # # Interpolate to find more precise crossing points
+    # x_left = np.interp(Twice_min, [y[left_index - 1], y[left_index]], [x[left_index - 1], x[left_index]])
+    # x_right = np.interp(Twice_min, [y[right_index], y[right_index + 1]], [x[right_index], x[right_index + 1]])
+    x_left = x[left_index]
+    x_right = x[right_index]
+
+    # Calculate FWHM
+    FWHMin = abs(x_right - x_left)
+
+    return FWHMin
+
+
+class Exclusion:
+    def __init__(
+        self,
+        name="blank",
+        nu_start=None,
+        nu_end=None,
+        fraction=1 / 1000.0,
+        frequencies=None,
+        discovery_threshold=5,
+        detuning_correction=1.0,
+        gr=1.0,
+        gDM=120.0,  # GeV.Hz
+        Q=10**6,
+        sigma=1e-12,  # reference noise level [Phi0^2/Hz]
+        Phipito2=1e-8,  # reference SQUID flux [Phi0/sqrt(Hz)]
+        T=1e-20,  # initial measurement time approx 0
+    ):
+        """
+        Initialize the (class) LIAsignal object
+
+        Parameters
+        ----------
+        name: str
+            name of the Exclusion.
+
+        frequencies : np.array
+            measurement range
+
+        """
+        self.name = name
+
+        if (nu_start is not None) and (nu_end is not None) and (fraction is not None):
+            # Nnu = int(np.log(nu_end / nu_start) / np.log(1 + fraction))
+            Nnu = int(1 / fraction)
+            DeltaNu = abs(nu_end - nu_start) * fraction
+            self.frequencies = nu_start + DeltaNu * np.arange(Nnu)
+        elif frequencies is not None:
+            self.frequencies = np.sort(frequencies)
+
+        self.discovery_threshold = discovery_threshold
+        self.detuning_correction = detuning_correction
+        self.gr = gr
+        self.gDM = gDM
+        self.Q = Q
+        self.sigma = sigma
+        self.Phipito2 = Phipito2
+        self.T = T
+        self.Teff_arr = T * np.ones(shape=self.frequencies.shape)
+        self.SNR = 1e-20 * np.ones(shape=self.frequencies.shape)
+        self.sensi = np.sqrt(self.SNR)
+        self.gaNNexc = 1.0 / self.sensi
+        del (
+            frequencies,
+            discovery_threshold,
+            detuning_correction,
+            gr,
+            gDM,
+            Q,
+            sigma,
+            Phipito2,
+            T,
+        )
+
+    def UpdateExc(
+        self,
+        freq_arr=None,
+        PSD=None,
+        T2star=None,
+        acqDelay=None,
+        acqTime=None,
+        measurementT=None,
+        sigma=None,
+        verbose=False,
+    ):
+
+        if (
+            (freq_arr is None)
+            or (PSD is None)
+            or (measurementT is None)
+            or (sigma is None)
+        ):
+            if verbose:
+                print("Updating gaNNexc without new spectrum")
+            self.gaNNexc = (
+                np.sqrt(self.discovery_threshold * self.sigma)
+                * self.Teff_arr ** (-0.25)
+                * (self.Q / self.frequencies) ** (-1.25)
+                * (0.5 * self.gr * self.gDM * self.Phipito2) ** (-1)
+            )
+            return 0
+
+        if T2star is None or acqDelay is None or acqTime is None:
+            raise ValueError("Input T2star / acqDelay / acqTime is None. ")
+
+        PSDcorrection_val = (
+            T2star
+            / (4 * acqTime)
+            * (1 - np.exp(-2 * acqTime / T2star))
+            * np.exp(-2 * acqDelay / T2star)
+        ) ** (-1.0)
+        PSD_corrected = PSDcorrection_val * PSD
+
+        nustart = np.amin(freq_arr)
+        nustop = np.amax(freq_arr)
+
+        if nustart < self.frequencies[0]:
+            istart = 0
+        elif nustart > self.frequencies[-1]:
+            raise ValueError("nustart > self.frequencies[-1]")
+        else:
+            argminindex_start = np.argmin(abs(self.frequencies - nustart))
+            if self.frequencies[argminindex_start] >= nustart:
+                istart = argminindex_start
+            else:
+                istart = argminindex_start + 1
+
+        if nustop > self.frequencies[-1]:
+            istop = len(self.frequencies) - 1
+        elif nustop < self.frequencies[0]:
+            check(nustop)
+            check(self.frequencies[0])
+            raise ValueError("nustop < self.frequencies[0]")
+        else:
+            argminindex_stop = np.argmin(abs(self.frequencies - nustop))
+            if self.frequencies[argminindex_stop] <= nustop:
+                istop = argminindex_stop
+            else:
+                istop = argminindex_stop - 1
+        # yinterp = np.interp(xvals, x, y)
+        PSDinterp = np.interp(
+            self.frequencies[istart : istop + 1], freq_arr, PSD_corrected
+        )
+
+        # self.Teff_arr
+        Phipito2_new = np.sqrt(
+            PSDinterp * 2
+        )  #  abs(self.frequencies[istart:istop+1] * 2. / self.Q)
+        # check(np.mean(Phipito2_new))
+
+        self.Teff_arr[istart : istop + 1] += (
+            measurementT
+            * (np.sqrt(sigma) / Phipito2_new) ** (-4.0)
+            / (np.sqrt(self.sigma) / self.Phipito2) ** (-4.0)
+        )
+
+        self.gaNNexc = (
+            np.sqrt(self.discovery_threshold * self.sigma)
+            * self.Teff_arr ** (-0.25)
+            * (self.Q / self.frequencies / 2) ** (-1.25)
+            * (0.5 * self.gr * self.gDM * self.Phipito2) ** (-1)
+        )
+
+    def updateExc_SNR(
+        self,
+        freq_arr=None,
+        SNR=None,
+        verbose=False,
+    ):
+        nustart = np.amin(freq_arr)
+        nustop = np.amax(freq_arr)
+
+        if nustart < self.frequencies[0]:
+            istart = 0
+        elif nustart > self.frequencies[-1]:
+            raise ValueError("nustart > self.frequencies[-1]")
+        else:
+            argminindex_start = np.argmin(abs(self.frequencies - nustart))
+            if self.frequencies[argminindex_start] >= nustart:
+                istart = argminindex_start
+            else:
+                istart = argminindex_start + 1
+
+        if nustop > self.frequencies[-1]:
+            istop = len(self.frequencies) - 1
+        elif nustop < self.frequencies[0]:
+            check(nustop)
+            check(self.frequencies[0])
+            raise ValueError("nustop < self.frequencies[0]")
+        else:
+            argminindex_stop = np.argmin(abs(self.frequencies - nustop))
+            if self.frequencies[argminindex_stop] <= nustop:
+                istop = argminindex_stop
+            else:
+                istop = argminindex_stop - 1
+        # yinterp = np.interp(xvals, x, y)
+        SNRinterp = np.interp(self.frequencies[istart : istop + 1], freq_arr, SNR)
+
+        self.SNR[istart : istop + 1] = (
+            (self.SNR[istart : istop + 1]) ** (2) + SNRinterp ** (2)
+        ) ** (0.5)
+        self.sensi = np.sqrt(self.SNR)
+        self.gaNNexc = 1.0 / self.sensi
+        # self.gaNNexc = np.sqrt(self.discovery_threshold * self.sigma) * \
+        #     self.Teff_arr ** (-0.25) * (self.Q / self.frequencies / 2) ** (-1.25) * \
+        #         (0.5 * self.gr * self.gDM * self.Phipito2) ** (-1)
+
+    def PlotExc(self, verbose=False):
+        self.UpdateExc(verbose=verbose)
+        hbar = 6.582119569e-16  # eV.s
+        c = 299792458  # m/s
+        # plt.rc("font", size=12)
+        # plt.rcParams["font.family"] = "Times New Roman"
+        # # plt.rcParams["font.family"] = "serif"
+        # # plt.rcParams["font.serif"] = ["Times New Roman"]
+        # plt.rcParams["mathtext.fontset"] = "cm"  # 'dejavuserif'
+
+        fig = plt.figure(figsize=(8, 6), dpi=150)  #
+        gs = gridspec.GridSpec(nrows=1, ncols=1)  #
+        # fig.subplots_adjust(left=left_spc, top=top_spc, right=right_spc,
+        #                     bottom=bottom_spc, wspace=xgrid_spc, hspace=ygrid_spc)
+        ax = fig.add_subplot(gs[0, 0])
+        # ax.plot(GammaandSAmp_arr[:, 0], GammaandSAmp_arr, label='PSD Signal Amp', color='tab:cyan', alpha=1)
+        ax.plot(
+            hbar / c**2 * self.frequencies,
+            self.gaNNexc,
+            label="",
+            color=[0 / 256.0, 88 / 256.0, 155 / 256.0],
+            alpha=1,
+        )  # 0, 88, 155
+        # \definecolor{JGUred}{RGB}{193, 0, 42} [/256., /256., /256.]
+        # \definecolor{JGUgrey}{RGB}{99, 99, 99}
+        # \definecolor{HIMblue}{RGB}{0, 88, 155}
+        # ax.scatter(GammaandSAmp_arr, GammaandSAmp_arr, marker='x', s=30, color='tab:blue', alpha=1)
+
+        # ax.plot(GammaandSAmp_arr, GammaandSAmp_arr, label='SNR', alpha=1)
+        # ax.step(, , where='post', label='', alpha=1)
+        ax.set_ylabel("$\\mathrm{g_{aNN}} / \\mathrm{GeV^{-1}}$")
+        ax.set_xlabel("ALP mass / $\\mathrm{eV}$")
+        # ax.set_title('PSD Signal Amplitude')
+        # ax.set_xscale('log')
+        ax.set_yscale("log")
+        # ax.set_xticks([])
+        # ax.set_yticks([])
+        # ax.set_xlim(-10, 10)
+        # ax.set_ylim(-0.05, 1.1)
+        # ax.text(x=-10, y=1,s='(a)')
+        # ax.vlines(x=taua, ymin = 1e-5, ymax = 1e3, colors='grey', linestyles='dotted', label='')
+        # ax.hlines(y=1 / ((np.pi * homog0 * 1e6) + 1 / T2), xmin = 1e2, xmax = 1e6, colors='black', linestyles='dotted', label='')
+        # ax.yaxis.set_major_locator(plt.NullLocator())
+        # ax.xaxis.set_major_formatter(plt.NullFormatter())
+        # for tick in ax.xaxis.get_major_ticks():
+        #         tick.tick1line.set_visible(False)
+        #         tick.tick2line.set_visible(False)
+        #         tick.label1.set_visible(False)
+        #         tick.label2.set_visible(False)
+        ax.grid()
+        plt.tight_layout()
+        plt.show()
+        return self.frequencies, self.gaNNexc
+
+    def PlotExc_1PSD(
+        self,
+        freqoffset=0,
+        PSDfreq_range=[-80, 80],
+        specxaxis=None,
+        spectrum=None,
+        specxunit=None,
+        specyunit=None,
+        massfactor=1e31,
+        ax_yticks=None,
+        verbose=False,
+    ):
+
+        hbar = 6.582119569e-16  # eV.s
+        # c = 299792458  # m/s
+        # hbar = 1
+        c = 1
+
+        self.UpdateExc(verbose=verbose)
+
+        # plt.rc("font", size=12)
+        # plt.rcParams["font.family"] = "Times New Roman"
+        # # plt.rcParams["font.family"] = "serif"
+        # # plt.rcParams["font.serif"] = ["Times New Roman"]
+        # plt.rcParams["mathtext.fontset"] = "cm"  # 'dejavuserif'
+        fig = plt.figure(figsize=(8 * 0.8, 6 * 0.8), dpi=150)  #
+        if (
+            PSDfreq_range is None
+            or specxaxis is None
+            or spectrum is None
+            or specxunit is None
+            or specyunit is None
+        ):
+            raise ValueError(
+                "PSDfreq_range is None specxaxis is None or spectrum is None or specxunit is None or specyunit is None"
+            )
+        else:
+            gs = gridspec.GridSpec(nrows=2, ncols=1)  #
+            PSD_ax = fig.add_subplot(gs[0, 0])
+            ax = fig.add_subplot(gs[1, 0])
+        # fig.subplots_adjust(left=left_spc, top=top_spc, right=right_spc,
+        #                     bottom=bottom_spc, wspace=xgrid_spc, hspace=ygrid_spc)
+        PSD_ax.plot(
+            specxaxis - freqoffset,
+            spectrum,
+            label="PSD ",
+            color=[0 / 256.0, 88 / 256.0, 155 / 256.0],
+            alpha=1,
+        )
+        PSD_ax.tick_params(top=True, labeltop=True, bottom=False, labelbottom=False)
+        PSD_ax.xaxis.set_label_position("top")
+        if freqoffset == 0:
+            PSD_ax.set_xlabel(f"Frequency / " + specxunit)  # $\\mathrm{Hz}$
+        else:
+            PSD_ax.set_xlabel(
+                f"Frequency - {freqoffset:.0f} / " + specxunit
+            )  # $\\mathrm{Hz}$
+        PSD_ax.set_ylabel("PSD / " + specyunit)  # $\Phi_{0}^{2}/\\mathrm{Hz}$
+        PSD_ax.grid()
+        PSD_ax.set_xlim(PSDfreq_range[0], PSDfreq_range[1])
+        # PSD_ax.set_ylim(top=3.2, bottom=-0.1)
+        freq_start, freq_stop = PSD_ax.get_xlim()
+        PSDxticks = PSD_ax.get_xticks()
+
+        ax.plot(
+            2 * np.pi * hbar / c**2 * massfactor * (self.frequencies - freqoffset),
+            self.gaNNexc,
+            label="gaNN",
+            color=np.array([193, 0, 42]) / 256.0,
+            alpha=1,
+        )  # 0, 88, 155
+        # ax.scatter(GammaandSAmp_arr, GammaandSAmp_arr, marker='x', s=30, color='tab:blue', alpha=1)
+        ax.set_xlabel(
+            f"ALP mass - {hbar / c ** 2 * freqoffset * massfactor:.0f}"
+            + " / $10^{-%.0f}\\mathrm{eV} c^{-2}$" % (np.log10(massfactor))
+        )
+        ax.set_ylabel("$\\mathrm{g_{aNN}}$" + " / " + "$\\mathrm{GeV^{-1}}$")
+        # ax.set_title('PSD Signal Amplitude')
+        # ax.set_xscale('log')
+        ax.set_yscale("log")
+        ax.set_xticks(2 * np.pi * hbar / c**2 * massfactor * PSDxticks)
+        ax.xaxis.set_major_formatter("{x:.2f}")
+        # ax.set_yticks([])
+        ax.set_xlim(
+            2 * np.pi * hbar / c**2 * massfactor * (freq_start),
+            2 * np.pi * hbar / c**2 * massfactor * (freq_stop),
+        )
+        ax.set_ylim(top=10 ** (-1.8), bottom=10 ** (-6.2))
+        if ax_yticks is not None:
+            ax.set_yticks(ax_yticks)
+        ax.fill_between(
+            2 * np.pi * hbar / c**2 * massfactor * (self.frequencies - freqoffset),
+            self.gaNNexc,
+            1e5,
+            color="r",
+            alpha=0.2,
+        )
+
+        ax.grid()
+        letters = [
+            "(a)     ",
+            "(b)     ",
+            "(c)",
+            " (d)",
+            " (e)",
+            " (f)",
+            " (g)",
+            " (h)",
+            " (i)",
+        ]
+        for i, axi in enumerate([PSD_ax]):
+            xleft, xright = axi.get_xlim()
+            ybottom, ytop = axi.get_ylim()
+            axi.text(
+                x=xleft,
+                y=ytop,
+                s=letters[i],
+                ha="right",
+                va="center",
+                color="blue",
+                fontsize=14,
+            )
+        for i, axi in enumerate([ax]):
+            xleft, xright = axi.get_xlim()
+            ybottom, ytop = axi.get_ylim()
+            axi.text(
+                x=xleft,
+                y=ytop,
+                s=letters[i + 1],
+                ha="right",
+                va="top",
+                color="blue",
+                fontsize=14,
+            )
+        plt.tight_layout()
+        plt.show()
+        return self.frequencies, self.gaNNexc
