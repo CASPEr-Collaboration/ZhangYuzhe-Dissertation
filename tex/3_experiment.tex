@@ -1,7 +1,7 @@
 \chapter{Experiment}\label{chap:experiment}
 \begin{jointwork}
-    The apparatus description took contents from Ref.\,\cite{Walter2024_LFthermal}.
-    Sections~\ref{sec:experiment:single}--\ref{sec:experiment:optimization} are partially adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning} and Ref.\,\cite{YGK2026_CavityLumpedSpin}.
+    The apparatus description took contents from Ref.\,\cite{Walter2025_CASPErLFthermal}.
+    Sections~\ref{sec:experiment:sensitivity}--\ref{sec:experiment:scanning} are partially adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning} and Ref.\,\cite{YGK2026_CavityLumpedSpin}.
 \end{jointwork}
 
 The CASPEr-Gradient-Lowfield apparatus converts a nuclear-spin signal into a detectable electrical output through three functional blocks: the magnet system sets the operating bias magnetic field and thereby the Larmor frequency of the sample; the sample and pickup coil generate and capture the magnetic response; and the SQUID and lock-in amplifier chain convert, amplify, and record the signal.
@@ -70,7 +70,7 @@ A schematic of the sample and sample insert is shown in Figure~\ref{fig:VTII-Hel
     \includegraphics[width=\linewidth]{figures/VTII-schematic.png}
     \caption{The methanol sample (blue) sits at the center of the three-coil \ch{Nb} saddle-pair pickup (red).
     Helmholtz coils (black) fine-tune the bias magnetic field.
-    Adapted from Ref.\,\cite{Walter2024_LFthermal} with permission.}
+    Adapted from Ref.\,\cite{Walter2025_CASPErLFthermal} with permission.}
     \label{fig:VTII-Helmholtz_coil}
 \end{figure}
 
@@ -196,7 +196,7 @@ Additionally, the system includes capabilities for NMR kinetic simulations, stoc
 
 
 
-\section{Sensitivity}\label{sec:experiment:single}
+\section{Sensitivity}\label{sec:experiment:sensitivity}
 
 The transverse magnetization induced by the ALP field couples to the pickup coil and SQUID. 
 Due to the stochastic nature of the ALP field, the signal can vary significantly over time and is therefore characterized by its average power rather than a deterministic amplitude.
@@ -337,9 +337,9 @@ The implications from Equation~\eqref{eq:g_aNN_sensitivity_2regimes} can be summ
 
 
 
-\section{Scanning}\label{sec:scanning}
+\section{Scanning}\label{sec:experiment:scanning}
 
-\subsection{Procedure}\label{sec:experiment:procedure}
+\subsection{Procedure}\label{sec:experiment:scanning:procedure}
 
 The CASPEr-Gradient-Lowfield experiment scans the ALP-mass parameter space by sweeping the magnitude of $\mathbf{B}_0$, which tunes the Larmor frequency of the sample to a series of values $\nu_i \in [\nu_{\mathrm{start}},\,\nu_{\mathrm{end}}]$.
 One step of the scan consists of:
@@ -390,7 +390,7 @@ For CASPEr-Gradient experiments, the dominant noise type is non-amplifiable nois
 
 
 
-\subsection{Optimization of scanning}\label{sec:experiment:optimization}
+\subsection{Optimization of scanning}\label{sec:experiment:scanning:optimization}
 
 Two questions arise after the previous discussion:
 What is the figure of merit for a scanning strategy? 
