@@ -1,7 +1,7 @@
 \chapter{Experiment}\label{chap:experiment}
 \begin{jointwork}
     The apparatus description took contents from Ref.\,\cite{Walter2024_LFthermal}.
-    Sections~\ref{sec:experiment:single}--\ref{sec:experiment:optimization} are partially adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning}.
+    Sections~\ref{sec:experiment:single}--\ref{sec:experiment:optimization} are partially adapted from Ref.\,\cite{Yuzhe2023_FrequencyScanning} and Ref.\,\cite{YGK2026_CavityLumpedSpin}.
 \end{jointwork}
 
 The CASPEr-Gradient-Lowfield apparatus converts a nuclear-spin signal into a detectable electrical output through three functional blocks: the magnet system sets the operating bias magnetic field and thereby the Larmor frequency of the sample; the sample and pickup coil generate and capture the magnetic response; and the SQUID and lock-in amplifier chain convert, amplify, and record the signal.
@@ -80,8 +80,7 @@ At thermal equilibrium in the bias magnetic field $B_0$, the proton spins acquir
     \,,\label{eq:M0}
 \end{equation}
 where $n=\SI{6.0e22}{\cm^{-3}}$ is the proton number density of liquid methanol, $\gamma = 2\pi\times\SI{42.577}{\MHz/\tesla}$ is the proton gyromagnetic ratio, $I=1/2$ is the proton nuclear spin, $k_B$ is the Boltzmann constant, and $T$ is the sample temperature.
-At $B_0 = \SI{31.67}{\milli\tesla}$ and $T \approx \SI{180}{\kelvin}$, the thermal polarization is $\approx\num{1.8e-7}$ and $M_0 \approx \SI{1.5e-04}{\ampere/\meter}$\,\cite{Zhang2026_Dissertation_ipynb_3_experiment}.
-
+At $B_0 = \SI{31.67}{\milli\tesla}$ and $T \approx \SI{180}{\kelvin}$, the thermal polarization is $\approx\num{1.8e-7}$ and $M_0 \approx \SI{1.5e-04}{\ampere/\meter} = \SI{1.9e-10}{\tesla}/\mu_0$\,\cite{Zhang2026_Dissertation_ipynb_3_experiment}. 
 
 \subsection{Pickup coil}\label{sec:apparatus:pickup}
 
@@ -91,7 +90,7 @@ The height of the central coil is \SI{24}{\milli\meter}, while the two outer coi
 The radii of all coils is \SI{14}{\milli\meter}.
 The open angle of the each of the saddle-pair coils is \SI{120}{\degree}.
 The filling factor---the fraction of the coil volume occupied by the sample---is approximately \SI{8}{\%}\,\cite{Zhang2026_Dissertation_ipynb_3_experiment}. 
-The pickup coil geometry and pulsed-NMR scheme are illustrated in Figure~\ref{fig:VTII_Helmholtz_coil}.
+The pickup coil geometry and pulsed-NMR scheme are illustrated in Figure~\ref{fig:VTII-Helmholtz_coil}.
 
 \begin{figure}[htb]
     \centering
@@ -102,43 +101,26 @@ The pickup coil geometry and pulsed-NMR scheme are illustrated in Figure~\ref{fi
 \end{figure}
 
 
-% \section{Detection chain}\label{sec:apparatus:detection}
 
-\subsection{SQUID detector and flux-locked-loop operation}\label{sec:apparatus:squid}
+\subsection{SQUID detector}\label{sec:apparatus:squid}
 
-Magnetic flux in the pickup coil is inductively coupled into a direct-current superconducting quantum interference device (dc-SQUID) operated in flux-locked-loop (FLL) mode, as shown in Figure~\ref{fig:squid_schematic}.
-The SQUID converts magnetic flux into electrical signals through the combination of flux quantization and Josephson tunneling effects, offering exceptional sensitivity for weak magnetic signals. 
+Magnetic flux in the pickup coil is coupled into a direct-current superconducting quantum interference device (dc-SQUID), as shown in Figure~\ref{fig:squid_schematic}.
+The SQUID circuit is enclosed in a \ch{Nb} capsule for shielding and protection from external disturbances.
+The SQUID converts magnetic flux into electrical signals through the combination of flux quantization and Josephson tunneling effects, offering exceptional sensitivity for weak magnetic signals\,\cite{Mitchell2020_MagSensors}. 
+SQUID is operated in flux-locked-loop (FLL) mode during measurements, i.e., a feedback voltage is applied to the SQUID to maintain the amount of magnetic flux in coils so that it remains at the linear operating point of its $V-\Phi$ characteristic, as illustrated in Figure~\ref{fig:squid_schematic}.
+The feedback voltage is the measured output. 
 
 \begin{figure}[htb]
     \centering
     \includegraphics[width=\textwidth]{works/master-thesis/figures/02_Apparatus/SQUID_Schematic_VPhi_FLL.png}
     \caption{(a) $V-\Phi$ characteristic of dc-SQUID showing the operating point W where the feedback voltage has approximately linear dependence on magnetic flux.
-    (b) Direct-coupled flux-locked-loop (FLL) circuit with built-in pre-amplifier and integrator for maintaining the SQUID at the linear operating point.}
+    (b) Direct-coupled FLL circuit with built-in pre-amplifier and integrator for maintaining the SQUID at the linear operating point.}
     \label{fig:squid_schematic}
 \end{figure}
 
-The relationship between the magnetic flux coupled to the SQUID and the feedback voltage is given by Equation~\eqref{eq:squidpickup}, where the conversion factor depends on the coupling strengths and feedback parameters summarized in Table~\ref{tab:SQUID_params}.
-The SQUID circuit is enclosed in a \ch{Nb} capsule for shielding and protection from external disturbances.
+% The relationship between the magnetic flux coupled to the SQUID and the feedback voltage is given by Equation~\eqref{eq:squidpickup}, where the conversion factor depends on the coupling strengths and feedback parameters summarized in Table~\ref{tab:SQUID_params}.
 
-\begin{table}[ht]
-    \centering
-    \caption{Properties of the dc-SQUID sensor used in the measurements.}
-    \begin{tabular}{lc}
-        \hline\hline
-        Pickup coil inductance ($L_\mathrm{pick}$) & \SI{553}{\nH} \\[0.5ex]
-        SQUID input coil inductance ($L_\mathrm{in}$) & \SI{400}{\nH} \\[0.5ex]
-        Mutual inductance ($M_\mathrm{in}$) & \SI{3.98}{\nH} \\[0.5ex]
-        Feedback-coil inductance ($M_\mathrm{f}$) & \SI{22.83}{\Phi_0/\mA} \\[0.5ex]
-        Feedback resistance ($R_\mathrm{f}$) & \SI{3}{\kohm} \\[0.5ex]
-        \hline\hline
-    \end{tabular}
-    \label{tab:SQUID_params}
-\end{table}
 
-\subsection{Signal chain and processing}\label{sec:apparatus:signal_chain}
-
-Magnetic flux in the pickup coil is inductively coupled into a direct-current superconducting quantum interference device (dc-SQUID) operated in flux-locked-loop (FLL) mode.
-The properties of the SQUID sensor are listed in Table~\ref{tab:SQUID_params}.
 The feedback voltage $V_\mathrm{f}$ is related to the magnetic flux in the pickup coil $\Phi_\mathrm{pick}$ by
 \begin{equation}
     V_\mathrm{f}
@@ -147,23 +129,38 @@ The feedback voltage $V_\mathrm{f}$ is related to the magnetic flux in the picku
     \,,\label{eq:squidpickup}
 \end{equation}
 where $R_\mathrm{f}$ is the feedback resistance, $M_\mathrm{f}$ is the feedback-coil mutual inductance, $M_\mathrm{in}$ is the mutual inductance between pickup and SQUID input coils, and $L_\mathrm{pick}$, $L_\mathrm{in}$ are the respective coil inductances.
-The conversion factor $\varepsilon \approx \SI{0.549}{\milli\volt/\Phi_0}$, where $\Phi_0$ is the magnetic flux quantum.
+The relavant parameters are summarized in Table~\ref{tab:SQUID_params}. 
+% The conversion factor $\varepsilon \approx \SI{0.549}{\milli\volt/\Phi_0}$, where $\Phi_0$ is the magnetic flux quantum.
 
+\begin{table}[ht]
+    \centering
+    \caption{Properties of the dc-SQUID sensor used in the measurements\,\cite{Zhang2026_Dissertation_ipynb_3_experiment}.}
+    \begin{tabular}{lc}
+        \hline\hline
+        Pickup coil inductance ($L_\mathrm{pick}$) & \SI{553}{\nH} \\[0.5ex]
+        SQUID input coil inductance ($L_\mathrm{in}$) & \SI{400}{\nH} \\[0.5ex]
+        Mutual inductance ($M_\mathrm{in}$) & \SI{3.98}{\nH} \\[0.5ex]
+        Feedback-coil inductance ($M_\mathrm{f}$) & \SI{22.83}{\Phi_0/\mA} \\[0.5ex]
+        Feedback resistance ($R_\mathrm{f}$) & \SI{3}{\kohm} \\[0.5ex]
+        Conversion factor ($\varepsilon$) & \SI{0.549}{\milli\volt/\Phi_0} \\[0.5ex]
+        \hline\hline
+    \end{tabular}
+    \label{tab:SQUID_params}
+\end{table}
 
-The detection chain is characterized by the transfer coefficient $\beta$, defined as the ratio of the SQUID feedback-voltage amplitude $V_\perp$ to the transverse sample magnetization $\mu_0 M_\perp$:
+The detection chain is also characterized by the transfer coefficient $\beta$, defined as the ratio of the SQUID feedback-voltage amplitude $V_\perp$ to the transverse sample magnetization $\mu_0 M_\perp$:
 \begin{equation}
     \beta = \frac{V_\perp}{\mu_0\,M_\perp}
     \,.\label{eq:beta}
 \end{equation}
 The transfer coefficient was determined at each scan step from the feedback voltage following a $\pi/2$ pulse, for which $M_\perp = M_0$.
-The average value is $\beta \approx 4\times10^6\,\mathrm{V/T}$.
+The average value is $\beta \approx \SI{4}{\milli\volt/\nano\tesla}$.
+
+The SQUID output is fed into a Zurich Instruments MFLI Lock-in Amplifier (LIA), which demodulates the signal into in-phase ($I$) and quadrature ($Q$) channels.
+The outputs of the two channels are recorded at a sampling frequency of \SI{13.4}{\kHz} and is used to generate spectra via fast Fourier transformation (FFT).
 
 During ALP-search measurements the SQUID and FLL electronics are battery-powered to avoid electromagnetic interference from the mains.
-All other electronics (lock-in amplifier, field-ramp supply) are outside the Faraday cage; only shielded BNC cables penetrating the cage are used to carry signals.
-
-The FLL output is fed into a Zurich Instruments MFLI Lock-in Amplifier (LIA), which demodulates the signal into in-phase (I) and quadrature (Q) channels.
-The complex output $I + iQ$ is recorded at a sampling frequency of \SI{13.4}{\kHz} and is used to generate power spectral densities (PSDs) via fast Fourier transformation (FFT).
-
+All other electronics (lock-in amplifier, field-ramp supply) are outside the Faraday cage; only shielded Bayonet Neill-Concelman (BNC) cables penetrating the cage are used to carry signals.
 
 \subsection{Experimental control and data acquisition}\label{sec:apparatus:control}
 
@@ -197,53 +194,151 @@ The control system orchestrates multiple measurement schemes including pulsed-NM
 Additionally, the system includes capabilities for NMR kinetic simulations, stochastic axion wind simulations, apparatus properties computation, and synchronized file management across multiple terminals.
 
 
-% Parameters summary
-Table~\ref{tab:parameters} summarizes the key parameters of the CASPEr-Gradient-LF apparatus for the methanol measurement reported in this thesis and for two projected future configurations using hyperpolarized samples.
-The thermal polarization of methanol is the dominant limiting factor in the current measurement.
-Hyperpolarized methanol or liquid \ch{^{129}Xe} could boost the polarization by several orders of magnitude, substantially improving the sensitivity.
 
-\begin{table*}[ht]
-\begin{threeparttable}
-\centering
-\caption{Parameters of the CASPEr-Gradient-LF apparatus for the current measurement (thermally polarized methanol) and two projected future configurations.
-Polarization is given as molar polarization (polarization$\times$concentration).}
-\label{tab:parameters}
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{p{0.24\linewidth}
-                >{\centering\arraybackslash}p{0.21\linewidth}
-                >{\centering\arraybackslash}p{0.21\linewidth}
-                >{\centering\arraybackslash}p{0.21\linewidth}}
-\hline\hline
-& This work & \multicolumn{2}{c}{Examples of future CASPEr-Gradient-LF} \\
-\hline
-Sample & Methanol & Methanol\tnote{a} & Liquid \ch{^{129}Xe}\tnote{b} \\
-Spin density (\unit{\cm^{-3}}) & \num{5.9e22} & \num{5.9e22} & $\sim\num{1e22}$ \\
-Sample volume (\unit{\cm^3}) & 1.2 & 1.2 & $\sim1$ \\
-Polarization technique & Thermal & BF\tnote{c} / PHIP\tnote{d} / DNP\tnote{e} & SEOP\tnote{f} \\
-Polarization & \num{1.8e-7} & $>\num{1.1e-5}$ & $\sim1$ \\
-$T_2$ (\unit{\s}) & 0.72 & 1 & 1000 \\
-$B_0$ inhomogeneity (\unit{\ppm}) & 10 & $\leq2$ & $\leq2$ \\
-Electronic noise (\unit{\micro\Phi_0/\Hz^{1/2}}) & 7.1 & 1.0 & 1.0 \\
-Flux of SPN\tnote{g} (\unit{\micro\Phi_0}) & 0.39 & 0.39 & 0.16 \\
-Scan range & \SI{1.348450}{\MHz}--\SI{1.348690}{\MHz} & $\sim$\SI{1}{\kHz}--\SI{4.3}{\MHz} & $\sim$\SI{1}{\kHz}--\SI{1.2}{\MHz} \\
-$|g_\mathrm{aNN}|$ sensitivity (\unit{\GeV^{-1}}) & \num{3e-2} & \num{1.0e-6}--\num{1.2e-5} & \num{1e-12}--\num{1e-11} \\
-\hline\hline
-\end{tabular}
-\begin{tablenotes}
-\footnotesize
-\item[a] Methanol at \SI{180}{\kelvin} prepolarized at \SI{2}{\tesla}; measurement time $100\,\tau_a$ per scan step.
-\item[b] \ch{^{129}Xe}-enriched liquid sample.
-\item[c] Brute-force prepolarization in a strong field at low temperature.
-\item[d] Parahydrogen-induced polarization (PHIP).
-\item[e] Dynamic nuclear polarization (DNP).
-\item[f] Spin-exchange optical pumping (SEOP).
-\item[g] Spin-projection noise (SPN).
-\end{tablenotes}
-\end{threeparttable}
-\end{table*}
+
+\section{Sensitivity}\label{sec:experiment:single}
+
+The transverse magnetization induced by the ALP field couples to the pickup coil and SQUID. 
+Due to the stochastic nature of the ALP field, the signal can vary significantly over time and is therefore characterized by its average power rather than a deterministic amplitude.
+In addition to the ALP coherence time $\tau_a$, the signal is also affected by the sample relaxation times $T_2^*$. 
+When $T_2^* \ll \tau_a$, the amplitude of the signal, characterized by the tipping angle $\xi$, is limited by the sample relaxation time, and it grows as
+\begin{equation}
+    \xi(t) = (1 - e^{-t/T_2^*}) \Omega_a T_2^*
+    \,,\label{eq:s_t_T2star_ll_tau_a}
+\end{equation}
+and saturates at $t\gg T_2^*$. 
+When $T_2^* \gg \tau_a$, the signal first grows linearly at $t\ll\tau_a$, and then grows as $\sim (t\tau_a)^{1/2}$ at $\tau_a<t<T_2^*$ like a random walk\,\cite{Gramolin2022Feb_SpectralSignatures, Yuzhe2023_FrequencyScanning}, saturating at $t\gg T_2^*$.
+An analytical expression for the signal in this regime derived from numerical simulations is
+\begin{equation}
+    \xi(t) = \left(1 - \exp{\left(\frac{-t}{\frac{1}{2}T_2^*}\right)}\right)^{1/2} \Omega_a \left(T_2^*\tau_a\right)^{1/2}
+    \,.\label{eq:xi_t_T2star_gg_tau_a}
+\end{equation}
+% When the measurement duration $T$ and sample relaxation time $T_2^*$ are much longer than the ALP coherence time $\tau_a$, the signal amplitude varies randomly over time.
+% Hence, 
+% When $T_2^*\gg\tau_a$, the final signal amplitude $\approx \Omega_a (T_2^*\tau_a)^{1/2}$. And we also found that the signal grows up with $\sim (t\tau_a)^{1/2}$ at first. So we can use
+% $s(t) = \left(1 - \exp{\left(\frac{-t}{\frac{1}{2}T_2^*}\right)}\right)^{1/2} \Omega_a (T_2^*\tau_a)^{1/2}$
+% to describe the signal. 
+% Beside, for the sack of simplicity in numerical calculations, we can use this formula to approximate the signal under any circumstances
+To unify the two regimes, we introduce a parameter $x$ that interpolates between the two limits:
+\begin{equation}
+    \xi(t) = \left(1 - \exp{\left(\frac{-t}{x T_2^*}\right)}\right)^{x} \Omega_a T_2^* \left(\frac{\tau_a}{\tau_a + T_2^*}\right)^{1/2}
+    \,.\label{eq:xi_t_general}
+\end{equation}
+For most measurements, $T_2^*,\, \tau_a \ll T$ holds, so the ALP-induced signal amplitude is approximately 
+\begin{equation}
+    \xi = \Omega_a T_2^* \left(\frac{\tau_a}{\tau_a + T_2^*}\right)^{1/2}
+    \,.\label{eq:xi_final}
+\end{equation}
+This tipping angle corresponds to a transverse magnetization $M_\perp = M_0 \sin{\xi} \approx M_0 \xi$ for small $\xi$, which is the case for the ALP-induced signal considering the expected Rabi frequencies in Equations~\eqref{eq:Omega_a_MW} and~\eqref{eq:Omega_a_EH}. 
+% The signal measured is therefore proportional to the ALP-induced
+% Consequently, the ALP-induced signal is proportional to the ALP-induced tipping angle $\xi$ and the transverse magnetization $M_\perp$.
+Taking Equations~\eqref{eq:beta} and \eqref{eq:xi_final} into account, the following relationship is obtained:
+\begin{equation}
+    V_a = \beta\,\mu_0 M_0 \Omega_a T_2^* \left(\frac{\tau_a}{\tau_a + T_2^*}\right)^{1/2} \propto g_{\mathrm{aNN}} \left(\frac{\tau_a}{\tau_a + T_2^*}\right)^{1/2}
+    \,,\label{eq:Va_gaNN_Tcoh}
+\end{equation}
+where $V_a$ is the SQUID feedback voltage corresponding to the ALP-induced transverse magnetization. 
+In the following discussion, the experimental parameters $\beta$ and $M_0$ are treated as constants and therefore omitted for simplicity, and the ALP-induced signal is expressed as $g_{\mathrm{aNN}} T_{\mathrm{coh}}$ where $T_{\mathrm{coh}} = \left(\tau_a T_2^*/\left(\tau_a + T_2^*\right)\right)^{1/2}$ is the effective coherence time of the ALP-induced signal. 
+
+% This tipping angle can be connected to a the observable by a constant coefficient since 
+% Using Equations~??, the average ALP-induced flux power is
+% \begin{align}
+%     \langle \Phi_a^2 \rangle
+%     =\frac{1}{2}(\beta\, u_n\, \mu_0 M_0 \Omega_a)^2 \left\{
+%     \begin{array}{cl}
+%     \tau_a T_2^* ,
+%     &  \tau_a \ll T_2^*\\[6pt]
+%     \frac{\tau_a^2}{\pi} ,
+%     &  T_2^*\ll\tau_a \ll T_2\\[6pt]
+%     T_2^2 ,
+%     &  T_2 \ll \tau_a
+%     \end{array} \right.
+%     \,. \label{eq:Phia2}
+% \end{align}
+The signal amplitude in the power spectral density (PSD) is
+\begin{align}
+    \mathrm{PSD} = \frac{\left(g_{\mathrm{aNN}} T_{\mathrm{coh}}\right)^2}{\Delta\nu}
+    \,,
+    \label{eq:S_PSD}
+\end{align}
+where $\Delta\nu$ is the expected signal linewidth, which is determined by the narrower of the ALP linewidth $\Delta\nu_a = 1/(\pi \tau_a)$ and the NMR linewidth $\Delta\nu_n = 1/(\pi T_2^*)$.
+Hence, $\Delta\nu$ can be expressed as 
+\begin{equation}
+    \Delta\nu = \frac{1}{\pi} \frac{1}{\tau_a + T_2^*}
+    \,.\label{eq:Gamma_signal}
+\end{equation}
+% Assuming 
+% Depending on which linewidth is narrower,
+% \begin{equation}
+%     \Delta\nu = \left\{
+%     \begin{array}{cl}
+%     \Delta\nu_a ,
+%     &  \Delta\nu_a \ll \Delta\nu_{n}\\[4pt]
+%     \Delta\nu_a ,
+%     &  \Delta\nu_a \ll \Delta\nu_{n}\\[4pt]
+%     \Delta\nu_{n},
+%     & \Delta\nu_a  \gg \Delta\nu_{n}
+%     \end{array} \right.
+%     \,.\label{eq:Gamma_signal}
+% \end{equation}
+Within a spectral bin of width $\Delta\nu$, the number of PSD values available for averaging from a measurement of duration $T$ is
+\begin{equation}
+    N_{\Delta\nu} = T \Delta\nu \gg 1
+    \,,\label{eq:NGamma}
+\end{equation}
+assuming that the measurement duration is much longer than the ALP coherence time and the sample relaxation time. 
+The noise, characterized by standard deviation, is
+\begin{equation}
+    \sigma = \sqrt{\frac{1}{T \Delta\nu}}\,\sigma_{0}
+    \,,\label{eq:sigma}
+\end{equation}
+where $\sigma$ and $\sigma_{0}$ are the noise with and without averaging, respectively. 
+Since $N_{\Delta\nu} \gg 1$, the noise distribution approaches a Gaussian distribution according to the central limit theorem. 
+% The $g_{\mathrm{aNN}}$ sensitivity can be derived by the signal-to-noise ratio (SNR) in the PSD. 
+The coupling strength $g_{\mathrm{aNN}}$ that a \SI{5}{\sigma} signal correspond to can be found by the SNR condition
+\begin{equation}
+    \frac{\mathrm{PSD}}{\sigma} = 5
+    \,.\label{eq:SNR_condition}
+\end{equation}
+which can be expanded by Equations~\eqref{eq:S_PSD}, \eqref{eq:Gamma_signal}, and \eqref{eq:sigma} to
+\begin{equation}
+    \frac{g_{\mathrm{aNN}}^2 T_{\mathrm{coh}}^2 T^{1/2} }{\Delta\nu^{1/2}\sigma_0} = 5
+    \,.\label{eq:SNR_condition_expanded}
+\end{equation}
+Hence, the $g_{\mathrm{aNN}}$ sensitivity is
+\begin{equation}
+    \left|g_{\mathrm{aNN}}\right| \propto 
+    T^{-1/4} 
+    \left(T_2^*\right)^{-1}   
+    \tau_a^{-1/2} 
+    \left(T_2^* + \tau_a\right)^{1/4} 
+    \,.\label{eq:g_aNN_sensitivity}
+\end{equation}
+Here a constant factor of $5^{1/2}\,\sigma_0^{1/2} \pi^{-1/4}$ is dropped since only the scaling of $g_{\mathrm{aNN}}$ with $\tau_a$, $T_2^*$, and $T$ is of interest. 
+In terms of the two extreme regimes of $\tau_a$ relative to $T_2^*$ and $T_2$, the sensitivity can be expressed as
+\begin{equation}
+    \left|g_{\mathrm{aNN}}\right| \propto
+    \left\{
+    \begin{array}{cl}
+    T^{-1/4}\, \left(T_2^*\right)^{-1}\, \tau_a^{-1/4}  ,
+    &  T_2^* \ll \tau_a \\[6pt]
+    T^{-1/4}\, \left(T_2^*\right)^{-3/4}\, \tau_a^{-1/2}   ,
+    &  T_2^* \gg \tau_a
+    \end{array} \right.
+    \,. \label{eq:g_aNN_sensitivity_2regimes}
+\end{equation}
+The implications from Equation~\eqref{eq:g_aNN_sensitivity_2regimes} can be summarized as follows:
+\begin{enumerate}
+    \item When measurement duration $T$ is much longer than the sample relaxation time $T_2^*$ and the ALP coherence time $\tau_a$, the sensitivity is dominated by the term $T^{-1/4}$, indicating a slower improvement with increasing measurement duration. 
+    \item The sensitivity improves with longer sample relaxation time $T_2^*$. The improvement is more significant when $T_2^* \ll \tau_a$. 
+\end{enumerate}
+
+
+
 
 
 \section{Scanning}\label{sec:scanning}
+
 \subsection{Procedure}\label{sec:experiment:procedure}
 
 The CASPEr-Gradient-Lowfield experiment scans the ALP-mass parameter space by sweeping the magnitude of $\mathbf{B}_0$, which tunes the Larmor frequency of the sample to a series of values $\nu_i \in [\nu_{\mathrm{start}},\,\nu_{\mathrm{end}}]$.
@@ -251,156 +346,162 @@ One step of the scan consists of:
 \begin{enumerate}[label=\Alph*.]
     \item Pulsed-NMR measurement to determine the resonance frequency and the effective linewidth ($T_2^*$).
     \item Spin-echo measurement to determine $T_2$.
-    \item Free-precession data acquisition with the SQUID magnetometer---no transverse pulse applied---to record the ALP-signal channel over the dwell time $T$.
-    \item Fourier transform of the magnetometer data to produce a power spectrum.
-    \item Binning of PSD values within frequency bins of width $\Gamma$, and averaging to reduce noise.
-    \item Statistical analysis of binned PSD values (e.g., histogram comparison with the expected noise distribution) to identify DM-candidate frequencies.
-    \item If a candidate is found: repeat the measurement at the same field value and perform additional checks.
-    \item If no candidate is found: record the exclusion contour for this frequency step and ramp $\mathbf{B}_0$ to the next value.
+    \item Data acquisition with the SQUID magnetometer---no transverse pulse applied---to record the ALP-signal channel over the measurement duration $T$.
+    % \item Fourier transform of the magnetometer data to produce a power spectrum.
+    % \item Binning of PSD values within frequency bins of width $\Delta\nu$, and averaging to reduce noise.
+    % \item Statistical analysis of binned PSD values (e.g., histogram comparison with the expected noise distribution) to identify DM-candidate frequencies.
+    % \item If a candidate is found: repeat the measurement at the same field value and perform additional checks.
+    % \item If no candidate is found: record the exclusion contour for this frequency step and ramp $\mathbf{B}_0$ to the next value.
+    \item Ramp $\mathbf{B}_0$ to the next value. 
 \end{enumerate}
-The procedure is illustrated in Figure~\ref{fig:CASPEr_Procedure}.
-A significant excess surviving repeated measurement can be tested further using the daily and annual modulation signatures of ALP dark matter\,\cite{Gramolin2022Feb_SpectralSignatures}.
+% The procedure is illustrated in Figure~\ref{fig:CASPEr_Procedure}.
+% A significant excess surviving repeated measurement can be tested further.
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=0.8\linewidth]{works/frequency-scanning/CASPEr_Procedure_20230311.png}
+%     \caption{Schematic of the experimental procedure.
+%     (a) One step of the scan: pulsed-NMR diagnostics, free-precession data acquisition, PSD computation and binning, and statistical analysis using a histogram of PSD values.
+%     (b) Example decay spectra (blue curves) and the resulting sensitivity region in the ALP mass-coupling space (reddish area) after scanning over a frequency range.
+%     Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}, originally prepared by the author.}
+%     \label{fig:CASPEr_Procedure}
+% \end{figure}
+The frequency-scan-step size is set by the sensitive bandwidth of a single step.
+% An experiment is sensitive to signals within a bandwidth equal to the maximum of $\Delta\nu_n$ and $\Delta\nu_a$ around a given Larmor frequency. 
+The sensitive bandwidth is a bandwidth around the Larmor frequency where the experiment is approximately equally sensitive to ALP signals. 
+It can be considered by the NMR linewidth, the ALP linewidth, and the noise profile. 
+On one hand, in terms of non-amplifiable noise (white noise, flat in spectrum), the experiment is sensitive in bandwidth approximately equal to the maximum of the NMR linewidth and the ALP linewidth.
+On the other hand, in terms of noise amplified by NMR, the experiment is equally sensitive in bandwidth much larger than the NMR linewidth. 
+Choosing a step size larger than sensitive bandwidth leaves gaps in sensitivity; choosing a smaller step size multiplies the number of steps and the dead time between steps without improving sensitivity.
+Therefore, the scan-step size is set to be approximately equal to the sensitive bandwidth of a single step.
+Examples of amplifiable and non-amplifiable noises are illustrated in Figure~\ref{fig:scan-flat_peak_sensi}.
+For CASPEr-Gradient experiments, the dominant noise type is non-amplifiable noise, which is assumed for the following discussion.
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.8\linewidth]{works/frequency-scanning/CASPEr_Procedure_20230311.png}
-    \caption{Schematic of the experimental procedure.
-    (a) One step of the scan: pulsed-NMR diagnostics, free-precession data acquisition, PSD computation and binning, and statistical analysis using a histogram of PSD values.
-    (b) Example decay spectra (blue curves) and the resulting sensitivity region in the ALP mass-coupling space (reddish area) after scanning over a frequency range.
-    Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}, originally prepared by the author.}
-    \label{fig:CASPEr_Procedure}
+    \includegraphics[width=\linewidth]{figures/scan-flat_peak_sensi.pdf}
+    \caption{Examples of experiments scanning over the frequency range $[\nu_0,\,\nu_1]$.  Each of the spectra corresponds to one scan step over a certain frequency range. 
+    Left column: Dominance of non-amplifiable noise.
+    Right column: Dominance of amplifiable noise.
+    Rows (top to bottom): Frequency spectra of the square of magnetic signal amplification $\eta(\nu)$ in panels (a) and (d), PSD noise in panels (b) and (e), and the corresponding $g_\mathrm{a}$ sensitivity in panels (c) and (f). Offsets have been added to the noise spectra for clarity.
+    The scan-step size is larger when amplifiable noise dominates due to the broader sensitivity bandwidth. 
+    Adapted from Ref.\,\cite{YGK2026_CavityLumpedSpin}, originally prepared by the author.}
+    \label{fig:scan-flat_peak_sensi}
 \end{figure}
 
-The frequency-step size $\Gamma_{\mathrm{scan}}$ is set by the sensitive bandwidth of a single step.
-An experiment is sensitive to signals within a bandwidth equal to the maximum of $\Gamma_n$ and $\Gamma_a$ around a given Larmor frequency.
-Choosing a step size larger than $\Gamma_{\mathrm{scan}}$ leaves gaps; choosing a smaller step size multiplies the number of steps without improving coverage.
 
-\subsection{Scanning optimization}\label{sec:experiment:optimization}
 
-With fixed total measurement time $T_{\mathrm{tot}}$, the dwell time can in principle depend on frequency: $T \propto \nu^n$.
-Maximizing the sensitive area in the $\log\nu$--$\log|g_{\mathrm{aNN}}|$ parameter space over the full scan determines the optimal exponent $n$.
-The derivation is given in Appendix~\ref{app:dwell_time}; the result is $n=0$ (uniform dwell time) for regimes~(1)--(3) and $n=-1$ (dwell time decreasing as $1/\nu$) for regime~(4).
+\subsection{Optimization of scanning}\label{sec:experiment:optimization}
 
-With optimal dwell-time allocation, the scanning sensitivity is
+Two questions arise after the previous discussion:
+What is the figure of merit for a scanning strategy? 
+How to optimize the scanning strategy to maximize the figure of merit? 
+The choice of figure of merit is arbitrary, but a natural choice is the area covered in the $\log|g_{\mathrm{aNN}}|$--$\log\nu$ mass-coupling parameter space.
+Given a fixed total measurement time, the relaxation times $T_2^*$ can be tuned to maximize the parameter space coverage.
+% A long relaxation time $T_2^*$ improves sensitivity at each frequency step, but it also decreases the scan-step size, which increases the number of steps and decreases the measurement time per step. 
+A short relaxation time $T_2^*$ may allow for a larger scan-step size and less total steps, and therefore increases the measurement time per step. 
+However, as can be estimated from the scalings in Equation~\eqref{eq:g_aNN_sensitivity_2regimes}, the increase in the measurement time per step is not sufficient to compensate for the decrease in relaxation time in terms of sensitivity.
+
+A more careful analysis of the trade-off between relaxation time and measurement time per step is given as follows.
+With fixed total measurement time $T_{\mathrm{tot}}$, the dwell time can be chosen to be proportional to the ALP coherence time: $T \propto \tau_a \propto \nu^{-1}$.\footnote{Measurement time can also be allocated uniformly across frequency steps, which makes no significant difference in the final sensitivity. A quantitative comparison of the two ways of allocation is given in Ref.\,\cite{Yuzhe2023_FrequencyScanning}.}
+The scan rate can be found as
 \begin{equation}
-    |g_{\mathrm{aNN}}| \geqslant
-    \begin{cases}
-    \eta
-    \left(\dfrac{T_{\mathrm{tot}}}{Q_a\ln\left(\nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}\right)^{-1/4}
-    (T_2^*)^{-3/4}\, \tau_a^{-1/2},
-    & \substack{\tau_a\ll T_2^* \text{ or}\\ T_2^*\ll\tau_a\ll T_2} \\[10pt]
-    \eta
-    \left(\dfrac{\pi^2 T_{\mathrm{tot}}}{Q_a\ln\left(\nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}\right)^{-1/4}
-    (T_2^*)^{-3/4}\, T_2^{-1}\, \tau_a^{1/2},
-    & \substack{T_2^* \ll T_2 \ll \tau_a \text{ or}\\ T_2^*=T_2 \ll \tau_a}
-    \end{cases}
-    \,.\label{eq:gaNN_Ttot_optimal}
+    \frac{d\nu}{dt} = \frac{\Delta\nu}{T} =\frac{\Delta\nu}{\kappa \tau_a} 
+    % = \left(\kappa \tau_a \left(T_2^* + \tau_a\right)\right)^{-1}
+    \,,\label{eq:scan_rate}
 \end{equation}
-
-Several conclusions follow directly:
-\begin{itemize}
-    \item \textbf{Time scaling.}
-    The sensitivity scales as $T_{\mathrm{tot}}^{-1/4}$ in all regimes, a consequence of the long-dwell-time limit $T \gg \tau_a,\,T_2^*,\,T_2$\,\cite{CASPErProposal2014,Aybas_2021_Quantum_sensitivity}.
-    An order-of-magnitude increase in measurement time improves the exclusion bound by only a factor $10^{1/4}\approx1.8$.
-
-    \item \textbf{Effect of $T_2^*$.}
-    Longer $T_2^*$ is beneficial in all regimes.
-    When $\tau_a \ll T_2^*$, it increases the rms\ tipping angle and narrows the signal linewidth.
-    When $T_2^* \ll \tau_a$, it increases the fraction $u_n$ of spins on resonance.
-
-    \item \textbf{Effect of $T_2$.}
-    Longer $T_2$ improves sensitivity in the regime $T_2 \ll \tau_a$, where $T_2$ directly limits the rms\ tipping angle.
-\end{itemize}
-
-The sensitivity plots computed with uniform ($n=0$) and frequency-adaptive ($n=-1$) dwell-time allocation for an example scan range $\nu_{\mathrm{end}}/\nu_{\mathrm{start}}=10$ are shown in Figure~\ref{fig:UniVsAdpt}.
-The area covered in the $\log\nu$--$\log|g_{\mathrm{aNN}}|$ plane is larger with optimal $n$.
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=.7\linewidth]{works/frequency-scanning/UniVsAdpt_20230412-3.png}
-    \caption{Sensitivity plots on a log-log scale for two dwell-time allocation schemes: uniform ($n=0$) and frequency-adaptive ($n=-1$).
-    The shaded regions indicate the parameter space accessible to the experiment.
-    The coupling strength is normalized in each regime so that the highest point equals 1.
-    The scan range is $\nu_{\mathrm{end}}/\nu_{\mathrm{start}}=10$.
-    Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}, originally prepared by the author.}
-    \label{fig:UniVsAdpt}
-\end{figure}
-
-In summary, the optimal strategy for a frequency-scanning ALP search is to work at the maximum achievable $T_2$ and $T_2^*$, use a step size equal to the sensitive bandwidth, and distribute the total measurement time uniformly across frequency steps (or as $T\propto\nu^{-1}$ in regime~(4)).
-
-
-\section{Sensitivity}\label{sec:sensitivity}
-\subsection{Single-frequency sensitivity}\label{sec:experiment:single}
-
-The transverse magnetization $M_1$ induced by the ALP field couples to the pickup coil and SQUID via the pickup transfer coefficient $\alpha$:
+where $\kappa$ is a constant going to be determined later by the total measurement time and the scan range. 
+The two regimes in Equation~\eqref{eq:g_aNN_sensitivity_2regimes} are discussed separately. 
+% \textbf{Regime (1): $ T_2^* \ll \tau_a $}
+In the $ T_2^* \ll \tau_a $ regime, $\Delta\nu = 1 / (\pi \tau_a)$. 
+A shorter $T_2^*$ does not allow for a larger scan-step size, so the sensitivity is worse when $T_2^*$ is shorter. 
+% Using $\tau_a = Q_a / \nu$ and Equation~\eqref{eq:scan_rate}, the scan rate becomes
+% \begin{equation}
+%     \frac{d\nu}{d t} = \frac{\nu^2}{\pi \kappa Q_a^2 }
+%     \,.\label{eq:scan_rate_regime1}
+% \end{equation}
+% which leads to
+% \begin{equation}
+%     \int_{\nu_\mathrm{start}}^{\nu_\mathrm{end}} \nu^{-2} d\nu = \int_{0}^{T_\mathrm{tot}} \frac{1}{\pi \kappa Q_a^2 } d t
+%     \,.\label{eq:scan_rate_regime1_integral}
+% \end{equation}
+% $\kappa$ can be solved as
+% \begin{equation}
+%     \kappa = \frac{T_\mathrm{tot}}{\pi Q_a^2 } \frac{\nu_\mathrm{start} \nu_\mathrm{end}}{\nu_\mathrm{end}-\nu_\mathrm{start}}
+%     \,.\label{eq:kappa_regime1}
+% \end{equation}
+% Usually, the scanning covers orders of magnitudes, so $\nu_\mathrm{end} \gg \nu_\mathrm{start}$ is typical.
+% In this case, the sensitivity in this regime is ...
+In the other regime where $ T_2^* \gg \tau_a $, $\Delta\nu = 1 / (\pi T_2^*)$. 
+Using $\tau_a = Q_a / \nu$ and Equation~\eqref{eq:scan_rate}, the scan rate becomes
 \begin{equation}
-    \alpha = \dfrac{\Phi}{\mu_0 M_1}
-    \,,\label{eq:alpha}
+    \frac{d\nu}{d t} = \frac{\nu}{\pi \kappa Q_a T_2^* }
+    \,.\label{eq:scan_rate_regime1}
 \end{equation}
-where $\Phi$ is the magnetic flux in the SQUID and $\mu_0$ is the vacuum permeability.
-Using Equations~??, the average ALP-induced flux power is
-\begin{align}
-    \langle \Phi_a^2 \rangle
-    =\dfrac{1}{2}(\alpha\, u_n\, \mu_0 M_0 \Omega_a)^2 \left\{
-    \begin{array}{cl}
-    \tau_a T_2^* ,
-    &  \tau_a \ll T_2^*\\[6pt]
-    \dfrac{\tau_a^2}{\pi} ,
-    &  T_2^*\ll\tau_a \ll T_2\\[6pt]
-    T_2^2 ,
-    &  T_2 \ll \tau_a
-    \end{array} \right.
-    \,. \label{eq:Phia2}
-\end{align}
-The signal amplitude in the power spectral density (PSD) is
-\begin{align}
-    S = \dfrac{\langle \Phi_a^2 \rangle}{\Gamma /2\pi}
-    \,, \label{eq:S_PSD}
-\end{align}
-where $\Gamma$ is the expected signal linewidth.
-Depending on which linewidth is narrower,
+which leads to
 \begin{equation}
-    \Gamma = \left\{
-    \begin{array}{cl}
-    \Gamma_a ,
-    &  \Gamma_a \ll \Gamma_{n}\\[4pt]
-    \Gamma_{n},
-    & \Gamma_a  \gg \Gamma_{n}
-    \end{array} \right.
-    \,.\label{eq:Gamma_signal}
+    \int_{\nu_\mathrm{start}}^{\nu_\mathrm{end}} \nu^{-1} d\nu = \int_{0}^{T_\mathrm{tot}} \frac{1}{\pi \kappa Q_a T_2^* } d t
+    \,.\label{eq:scan_rate_regime1_integral}
 \end{equation}
-Within a spectral bin of width $\Gamma$, the number of PSD values available for averaging from a measurement of dwell time $T$ is
+$\kappa$ can be solved as
 \begin{equation}
-    N_{\Gamma} = \dfrac{\Gamma T}{2\pi} \gg 1
-    \,,\label{eq:NGamma}
+    \kappa = \frac{T_\mathrm{tot}}{\pi Q_a T_2^* } \ln\left(\frac{\nu_\mathrm{end}}{\nu_\mathrm{start}}\right) \propto T_\mathrm{tot} \left(T_2^*\right)^{-1}
+    \,.\label{eq:kappa_regime2}
 \end{equation}
-and the noise standard deviation after averaging is
+Consider Equations~\eqref{eq:g_aNN_sensitivity_2regimes} and \eqref{eq:kappa_regime2} and omitting the constant factors, the sensitivity in this regime is 
 \begin{equation}
-    \sigma = \sqrt{\dfrac{2\pi}{\Gamma T}}\,\sigma_{0}
-    \,,\label{eq:sigma}
+    \left|g_{\mathrm{aNN}}\right| \propto
+    T_{\mathrm{tot}}^{-1/4}\, \left(T_2^*\right)^{-1/2}\, \tau_a^{-1/2}
+    \,. \label{eq:g_aNN_sensitivity_scan_regime2}
 \end{equation}
-where $\sigma_{0}$ is the single-bin noise level of the SQUID system.
+From Equation~\eqref{eq:g_aNN_sensitivity_scan_regime2}, the sensitivity still improves with longer $T_2^*$, which is consistent with the estimation in previous discussion.
 
-Using a detection threshold of $S \geq 3.355\,\sigma$---corresponding to a true signal $5\,\sigma$ above the noise detected at 95\% confidence\,\cite{aybas2021_SolidStateNMR}---the ALP coupling strengths excluded when no signal is found satisfy
-\begin{equation}
-    |g_{\mathrm{aNN}}| \geqslant
-    \left\{
-    \begin{array}{cl}
-    \eta\, T^{-1/4}\, (T_2^*)^{-3/4}\, \tau_a^{-1/2} ,
-    & \tau_a\ll T_2^* \\[6pt]
-    \eta\, \pi^{-1/4}\, T^{-1/4}\, (T_2^*)^{-1}\, \tau_a^{-1/4} ,
-    &  T_2^*\ll\tau_a \ll T_2\\[6pt]
-    \eta\, \pi^{-3/4}\, T^{-1/4}\, T_2^{-1}\, (T_2^*)^{-1}\, \tau_a^{3/4}  ,
-    &  T_2^*\ll T_2\ll\tau_a \\[6pt]
-    \eta\, \pi^{-3/4}\, T^{-1/4}\, T_2^{-2}\, \tau_a^{3/4}   ,
-    &  T_2^*= T_2\ll\tau_a
-    \end{array} \right.
-    \,, \label{eq:exclusion_threshold}
-\end{equation}
-where the prefactor $\eta$ collects the apparatus-dependent constants:
-\begin{equation}
-    \eta = \dfrac{2\sqrt{3.355\,\sigma_0}}{\pi^{1/4}\,\alpha\,\mu_0\,M_0\,v_{\bot}\,\sqrt{\hbar c\,\rho_{DM}}}
-    \,.\label{eq:eta}
-\end{equation}
-Larger magnetization $M_0$ and lower noise $\sigma_0$ both improve $\eta$ and hence the sensitivity.
+% Maximizing the sensitive area in the $\log\nu$--$\log|g_{\mathrm{aNN}}|$ parameter space over the full scan determines the optimal exponent $n$.
+% The derivation is given in Appendix~\ref{app:dwell_time}; the result is $n=0$ (uniform dwell time) for regimes~(1)--(3) and $n=-1$ (dwell time decreasing as $1/\nu$) for regime~(4).
+
+% With optimal dwell-time allocation, the scanning sensitivity is
+% \begin{equation}
+%     |g_{\mathrm{aNN}}| \geqslant
+%     \begin{cases}
+%     \eta
+%     \left(\frac{T_{\mathrm{tot}}}{Q_a\ln\left(\nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}\right)^{-1/4}
+%     (T_2^*)^{-3/4}\, \tau_a^{-1/2},
+%     & \substack{\tau_a\ll T_2^* \text{ or}\\ T_2^*\ll\tau_a\ll T_2} \\[10pt]
+%     \eta
+%     \left(\frac{\pi^2 T_{\mathrm{tot}}}{Q_a\ln\left(\nu_{\mathrm{end}}/\nu_{\mathrm{start}} \right)}\right)^{-1/4}
+%     (T_2^*)^{-3/4}\, T_2^{-1}\, \tau_a^{1/2},
+%     & \substack{T_2^* \ll T_2 \ll \tau_a \text{ or}\\ T_2^*=T_2 \ll \tau_a}
+%     \end{cases}
+%     \,.\label{eq:gaNN_Ttot_optimal}
+% \end{equation}
+
+% Several conclusions follow directly:
+% \begin{itemize}
+%     \item \textbf{Time scaling.}
+%     The sensitivity scales as $T_{\mathrm{tot}}^{-1/4}$ in all regimes, a consequence of the long-dwell-time limit $T \gg \tau_a,\,T_2^*,\,T_2$\,\cite{CASPErProposal2014,Aybas_2021_Quantum_sensitivity}.
+%     An order-of-magnitude increase in measurement time improves the exclusion bound by only a factor $10^{1/4}\approx1.8$.
+
+%     \item \textbf{Effect of $T_2^*$.}
+%     Longer $T_2^*$ is beneficial in all regimes.
+%     When $\tau_a \ll T_2^*$, it increases the rms\ tipping angle and narrows the signal linewidth.
+%     When $T_2^* \ll \tau_a$, it increases the fraction $u_n$ of spins on resonance.
+
+%     \item \textbf{Effect of $T_2$.}
+%     Longer $T_2$ improves sensitivity in the regime $T_2 \ll \tau_a$, where $T_2$ directly limits the rms\ tipping angle.
+% \end{itemize}
+
+% The sensitivity plots computed with uniform ($n=0$) and frequency-adaptive ($n=-1$) dwell-time allocation for an example scan range $\nu_{\mathrm{end}}/\nu_{\mathrm{start}}=10$ are shown in Figure~\ref{fig:UniVsAdpt}.
+% The area covered in the $\log\nu$--$\log|g_{\mathrm{aNN}}|$ plane is larger with optimal $n$.
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.7\linewidth]{works/frequency-scanning/UniVsAdpt_20230412-3.png}
+%     \caption{Sensitivity plots on a log-log scale for two dwell-time allocation schemes: uniform ($n=0$) and frequency-adaptive ($n=-1$).
+%     The shaded regions indicate the parameter space accessible to the experiment.
+%     The coupling strength is normalized in each regime so that the highest point equals 1.
+%     The scan range is $\nu_{\mathrm{end}}/\nu_{\mathrm{start}}=10$.
+%     Reproduced from Ref.\,\cite{Yuzhe2023_FrequencyScanning}, originally prepared by the author.}
+%     \label{fig:UniVsAdpt}
+% \end{figure}
+
+In summary, the optimal strategy for a frequency-scanning ALP search is to work at the maximum achievable $T_2^*$.
 
