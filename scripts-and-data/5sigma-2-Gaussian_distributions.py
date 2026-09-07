@@ -26,13 +26,13 @@ pdf_n_sn95 = norm.pdf(x_n_sn95, mu_noise, sigma)
 pdf_sn_95 = norm.pdf(x_sn_95, mu_sn, sigma)
 
 fig = plt.figure(
-    figsize=(17 / 2.54, 8.5 / 2.54 * 10 / 16), dpi=300
+    figsize=(13 / 2.54, 5.5 / 2.54), dpi=300
 )  # initialize a figure
 gs = gridspec.GridSpec(nrows=1, ncols=1)  # create grid for multiple figures
 # fix the margins
-left=0.2
+left=0.222
 bottom=0.202
-right=0.61
+right=0.624
 top=0.983
 wspace=0.24
 hspace=0.114
@@ -55,7 +55,7 @@ ax00.fill_between(
     pdf_sn_95,
     alpha=1,
     color="lightgrey",
-    label=f"$>3.355\\,\\sigma$ range\nProbability={norm.sf(3.355146373048527*sigma, mu_sn, sigma):.2g}",
+    label=f"$>3.355\\,\\sigma$ range\n$P=${norm.sf(3.355146373048527*sigma, mu_sn, sigma):.2g}",
 )
 
 ax00.fill_between(
@@ -63,11 +63,11 @@ ax00.fill_between(
     pdf_n_sn95,
     facecolor="lightgrey",
     hatch="//",
-    label=f"False alarm rate\nProbability={norm.sf(3.355146373048527**sigma, mu_noise, sigma):.4f}",
+    label=f"False alarm rate\n$P=${norm.sf(3.355146373048527*sigma, mu_noise, sigma):.4f}",
 )
 
 # Add labels and legend
-ax00.set_xlabel("x ($\\sigma$)")
+ax00.set_xlabel("$x\\,(\\sigma$)")
 ax00.set_ylabel("PDF")
 ax00.legend(bbox_to_anchor=(1.0, 1.0))
 ax00.set_xlim(np.amin(x_noise), np.amax(x_sn))
@@ -78,6 +78,9 @@ ax00.set_xticklabels([f"{x:d}" for x in range(-6, 12, 2)])
 # fig.suptitle("Normal Distribution Probability Density")
 ax00.set_ylim(top=2)
 
-# Show the plot
 # fig.tight_layout()
+# 5sigma-2-Gaussian_distributions.py
+plt.savefig("tex/figures/5sigma-2-Gaussian_distributions.png", transparent=False)
+plt.savefig("tex/figures/5sigma-2-Gaussian_distributions.pdf", transparent=False)
+
 plt.show()
