@@ -170,7 +170,7 @@ This confirms that the sample mean is the optimal test statistic for Gaussian lo
 
 \section{Optimal filter as a weighted average}\label{sec:app:optimal-filter}
 
-The optimal filter used in the ALP search can be understood as the linear combination of frequency bins that maximizes the signal-to-noise ratio.
+The optimal filter used in the ALP search can be understood as the linear combination of frequency bins that maximizes the SNR.
 Consider a baseline-subtracted spectrum with bin values $x_i$ near a trial ALP frequency.
 If the expected ALP lineshape in these bins is $s_i$, the signal model can be written as
 \begin{equation}
@@ -181,7 +181,7 @@ The noise in a power spectrum follows a $\chi^2$ distribution with two degrees o
 After subtracting the local mean, the noise fluctuations have zero mean but are not Gaussian.
 The following result therefore states optimality among linear filters, rather than optimality among all possible statistical tests.
 
-For a general linear statistic $T=\sum_i w_i x_i$, the signal-to-noise ratio is
+For a general linear statistic $T=\sum_i w_i x_i$, the SNR is
 \begin{equation}
     \mathrm{SNR}(T)
     =
