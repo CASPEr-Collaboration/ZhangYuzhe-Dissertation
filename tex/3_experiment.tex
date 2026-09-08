@@ -112,9 +112,11 @@ The feedback voltage is the measured output.
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=\textwidth]{works/master-thesis/figures/02_Apparatus/SQUID_Schematic_VPhi_FLL.png}
+    \includegraphics[width=.8\textwidth]{works/master-thesis/figures/02_Apparatus/SQUID_Schematic_VPhi_FLL.png}
     \caption{(a) $V-\Phi$ characteristic of dc-SQUID showing the operating point W where the feedback voltage has approximately linear dependence on magnetic flux.
-    (b) Direct-coupled FLL circuit with built-in pre-amplifier and integrator for maintaining the SQUID at the linear operating point.}
+    (b) Direct-coupled FLL circuit with built-in pre-amplifier and integrator for maintaining the SQUID at the linear operating point.
+    Reproduced from \cite{squidhandbookintro} with permission. 
+    }
     \label{fig:squid_schematic}
 \end{figure}
 
@@ -124,11 +126,12 @@ The feedback voltage is the measured output.
 The feedback voltage $V_\mathrm{f}$ is related to the magnetic flux in the pickup coil $\Phi_\mathrm{pick}$ by
 \begin{equation}
     V_\mathrm{f}
+     = \frac{R_\mathrm{f}}{M_\mathrm{f}}\,\Phi_\mathrm{in}
     = \frac{R_\mathrm{f}}{M_\mathrm{f}}\,\frac{M_\mathrm{in}}{L_\mathrm{pick}+L_\mathrm{in}}\,\Phi_\mathrm{pick}
     = \varepsilon\,\Phi_\mathrm{pick}
     \,,\label{eq:squidpickup}
 \end{equation}
-where $R_\mathrm{f}$ is the feedback resistance, $M_\mathrm{f}$ is the feedback-coil mutual inductance, $M_\mathrm{in}$ is the mutual inductance between pickup and SQUID input coils, and $L_\mathrm{pick}$, $L_\mathrm{in}$ are the respective coil inductances.
+where $R_\mathrm{f}$ is the feedback resistance, $M_\mathrm{f}$ is the feedback-coil mutual inductance, $\Phi_\mathrm{in}$ is the input magnetic flux in SQUID, $M_\mathrm{in}$ is the mutual inductance between pickup and SQUID input coils, and $L_\mathrm{pick}$, $L_\mathrm{in}$ are the respective coil inductances.
 The relavant parameters are summarized in Table~\ref{tab:SQUID_params}. 
 % The conversion factor $\varepsilon \approx \SI{0.549}{\milli\volt/\Phi_0}$, where $\Phi_0$ is the magnetic flux quantum.
 
@@ -151,10 +154,10 @@ The relavant parameters are summarized in Table~\ref{tab:SQUID_params}.
 The detection chain is also characterized by the transfer coefficient $\beta$, defined as the ratio of the SQUID feedback-voltage amplitude $V_\perp$ to the transverse sample magnetization $\mu_0 M_\perp$:
 \begin{equation}
     \beta = \frac{V_\perp}{\mu_0\,M_\perp}
-    \,.\label{eq:beta}
+    \,.\label{eq:SQUID_beta}
 \end{equation}
 The transfer coefficient was determined at each scan step from the feedback voltage following a $\pi/2$ pulse, for which $M_\perp = M_0$.
-The average value is $\beta \approx \SI{4}{\milli\volt/\nano\tesla}$.
+The average value is $\beta \approx \SI{4}{\milli\volt/\nano\tesla}$. 
 
 The SQUID output is fed into a Zurich Instruments MFLI Lock-in Amplifier (LIA), which demodulates the signal into in-phase ($I$) and quadrature ($Q$) channels.
 The outputs of the two channels are recorded at a sampling frequency of \SI{13.4}{\kHz} and is used to generate spectra via fast Fourier transformation (FFT).
@@ -232,13 +235,18 @@ For most measurements, $T_2^*,\, \tau_a \ll T$ holds, so the ALP-induced signal 
 This tipping angle corresponds to a transverse magnetization $M_\perp = M_0 \sin{\xi} \approx M_0 \xi$ for small $\xi$, which is the case for the ALP-induced signal considering the expected Rabi frequencies in Equations~\eqref{eq:Omega_a_MW} and~\eqref{eq:Omega_a_EH}. 
 % The signal measured is therefore proportional to the ALP-induced
 % Consequently, the ALP-induced signal is proportional to the ALP-induced tipping angle $\xi$ and the transverse magnetization $M_\perp$.
-Taking Equations~\eqref{eq:beta} and \eqref{eq:xi_final} into account, the following relationship is obtained:
+Taking Equations~\eqref{eq:SQUID_beta} and \eqref{eq:xi_final} into account, the following relationship is obtained:
 \begin{equation}
-    V_a = \beta\,\mu_0 M_0 \Omega_a T_2^* \left(\frac{\tau_a}{\tau_a + T_2^*}\right)^{1/2} \propto g_{\mathrm{aNN}} \left(\frac{\tau_a}{\tau_a + T_2^*}\right)^{1/2}
+    V_a = \beta\,\mu_0 M_0 \Omega_a T_2^* \left(\frac{\tau_a}{\tau_a + T_2^*}\right)^{1/2} \propto g_{\mathrm{aNN}} T_2^* \left(\frac{\tau_a}{\tau_a + T_2^*}\right)^{1/2}
     \,,\label{eq:Va_gaNN_Tcoh}
 \end{equation}
 where $V_a$ is the SQUID feedback voltage corresponding to the ALP-induced transverse magnetization. 
-In the following discussion, the experimental parameters $\beta$ and $M_0$ are treated as constants and therefore omitted for simplicity, and the ALP-induced signal is expressed as $g_{\mathrm{aNN}} T_{\mathrm{coh}}$ where $T_{\mathrm{coh}} = \left(\tau_a T_2^*/\left(\tau_a + T_2^*\right)\right)^{1/2}$ is the effective coherence time of the ALP-induced signal. 
+In the following discussion, the experimental parameters $\beta$ and $M_0$ are treated as constants and therefore omitted for simplicity, and the ALP-induced signal is expressed as $g_{\mathrm{aNN}} T_\mathrm{coh}$ where 
+\begin{equation}
+    T_\mathrm{coh} = T_2^*  \left(\frac{\tau_a}{\tau_a + T_2^*}\right)^{1/2}
+    \,.\label{eq:T_coh}
+\end{equation}
+is the effective coherence time of the ALP-induced signal. 
 
 % This tipping angle can be connected to a the observable by a constant coefficient since 
 % Using Equations~??, the average ALP-induced flux power is
@@ -257,7 +265,7 @@ In the following discussion, the experimental parameters $\beta$ and $M_0$ are t
 % \end{align}
 The signal amplitude in the power spectral density (PSD) is
 \begin{align}
-    \mathrm{PSD} = \frac{\left(g_{\mathrm{aNN}} T_{\mathrm{coh}}\right)^2}{\Delta\nu}
+    \mathrm{PSD} = \frac{\left(g_{\mathrm{aNN}} T_\mathrm{coh}\right)^2}{\Delta\nu}
     \,,
     \label{eq:S_PSD}
 \end{align}
@@ -302,7 +310,7 @@ The coupling strength $g_{\mathrm{aNN}}$ that a \SI{5}{\sigma} signal correspond
 \end{equation}
 which can be expanded by Equations~\eqref{eq:S_PSD}, \eqref{eq:Gamma_signal}, and \eqref{eq:sigma} to
 \begin{equation}
-    \frac{g_{\mathrm{aNN}}^2 T_{\mathrm{coh}}^2 T^{1/2} }{\Delta\nu^{1/2}\sigma_0} = 5
+    \frac{g_{\mathrm{aNN}}^2 T_\mathrm{coh}^2 T^{1/2} }{\Delta\nu^{1/2}\sigma_0} = 5
     \,.\label{eq:SNR_condition_expanded}
 \end{equation}
 Hence, the $g_{\mathrm{aNN}}$ sensitivity is
@@ -477,7 +485,7 @@ From Equation~\eqref{eq:g_aNN_sensitivity_scan_regime2}, the sensitivity still i
 % Several conclusions follow directly:
 % \begin{itemize}
 %     \item \textbf{Time scaling.}
-%     The sensitivity scales as $T_{\mathrm{tot}}^{-1/4}$ in all regimes, a consequence of the long-dwell-time limit $T \gg \tau_a,\,T_2^*,\,T_2$\,\cite{CASPErProposal2014,Aybas_2021_Quantum_sensitivity}.
+%     The sensitivity scales as $T_{\mathrm{tot}}^{-1/4}$ in all regimes, a consequence of the long-measurement-duration limit $T \gg \tau_a,\,T_2^*,\,T_2$\,\cite{CASPErProposal2014,Aybas_2021_Quantum_sensitivity}.
 %     An order-of-magnitude increase in measurement time improves the exclusion bound by only a factor $10^{1/4}\approx1.8$.
 
 %     \item \textbf{Effect of $T_2^*$.}

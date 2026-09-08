@@ -17,11 +17,11 @@
 % - Earth-bound signals can be unresolved in a one-hour FFT if the linewidth is below the RBW approx 2.8e-4 Hz.
 % - Earth-bound signal can have daily and annual modulations tied to the orientation of the bound-state wavefunction relative to the lab.
 % - Frequency-scanning theory divides the response into four regimes by the ordering of T2*, T2, and tau_a.
-% - In all long-dwell-time regimes, coupling sensitivity scales only as T_tot^{-1/4}; simply measuring longer gives slow returns.
+% - In all long-measurement-duration regimes, coupling sensitivity scales only as T_tot^{-1/4}; simply measuring longer gives slow returns.
 % - Longer T2* helps in all regimes; longer T2 helps when T2 limits the accumulated tipping angle.
 % - Optimal scan step equals the sensitive bandwidth of a single measurement, max(NMR linewidth, ALP linewidth).
 % - Optimal dwell time is uniform across frequency for regimes (1)--(3), and T proportional to nu^{-1} in regime (4).
-% - CASPEr-Gradient-LF apparatus: superconducting magnet up to 0.1 T, excitation/pickup coils, SQUID, lock-in amplifier, Python control.
+% - CASPEr-Gradient-LowField apparatus: superconducting magnet up to 0.1 T, excitation/pickup coils, SQUID, lock-in amplifier, Python control.
 % - LF frequency range with protons extends to approx 4.3 MHz; HF apparatus with 14.1 T reaches approx 600 MHz.
 % - Current apparatus parameters: methanol, spin density 5.9e22 cm^-3, volume 1.2 cm^3, T2 approx 0.72 s, B0 inhomogeneity approx 10 ppm, electronic noise approx 7.1 microPhi0/sqrt(Hz).
 % - Future parameter table: hyperpolarized methanol gives projected sensitivity 1e-6--1.2e-5 GeV^-1; liquid 129Xe with long T2 gives 1e-12--1e-11 GeV^-1.
@@ -44,102 +44,104 @@
 % - Statistical appendix: Neyman-Pearson viewpoint and optimal filter as weighted average justify thresholding and matched filtering.
 % - Public data/source availability is stated in data.tex.
 
-\section{Summary of results}
+\section{Conclusions}
 
 This thesis investigated axionlike-particle dark matter through the nuclear-gradient coupling, using nuclear magnetic resonance as the resonant detector.
 In this interaction, the spatial gradient of the ALP field acts as an oscillating pseudomagnetic field on nuclear spins.
 When the Larmor frequency of the sample is tuned to the ALP Compton frequency, this weak drive can generate a transverse magnetization that is detected by the CASPEr-Gradient-Lowfield apparatus.
 
-The theoretical work developed the signal model and the scanning strategy needed for such a search.
+The theoretical work developed the signal model and the data analysis framework needed for such a search.
 Two dark-matter scenarios were considered.
-For virialized Milky Way halo ALPs, the field is a stochastic superposition of many velocity modes, giving a finite coherence time and a linewidth set by the standard-halo velocity distribution.
-For Earth-bound ALPs, the field is instead described by gravitational bound states in the Earth's potential, leading to discrete eigenstates, longer coherence times, and characteristic daily and annual modulations of the local gradient.
+For virialized Milky Way halo ALPs, the field is a stochastic superposition of many velocity modes, giving a finite coherence time and a linewidth set by the standard halo model. 
+For Earth-bound ALPs, the field is instead described by bound states in the Earth's gravitational potential, leading to discrete eigenstates, longer coherence times, and potentially larger dark matter density than the virialized halo.
 
 The frequency-scanning analysis identified four signal regimes determined by the ordering of $T_2^*$, $T_2$, and the ALP coherence time $\tau_a$.
-In all long-dwell-time regimes considered here, the coupling sensitivity scales only as $T_\mathrm{tot}^{-1/4}$ with total measurement time.
-This slow scaling makes the main experimental lesson clear: improving spin polarization, field homogeneity, $T_2^*$, $T_2$, and detector noise is more powerful than simply accumulating longer data sets.
-The optimal frequency step is the sensitive bandwidth of one measurement, and the optimal dwell time is uniform across scan steps except in the long-coherence regime with $T_2^*=T_2\ll\tau_a$, where $T\propto\nu^{-1}$.
+In all long-measurement-duration regimes considered here, the coupling sensitivity scales only as $T_\mathrm{tot}^{-1/4}$ with total measurement time.
+% This slow scaling makes the main experimental lesson clear: improving spin polarization, field homogeneity, $T_2^*$, $T_2$, and detector noise is more powerful than simply accumulating longer data sets.
+In order to maximize the sensitivity, the relaxation times $T_2^*$ and $T_2$ should be maximized, no matter if a narrow or broad frequency bandwidth is being searched.
+The optimal frequency step in scanning should be the sensitive bandwidth of one measurement.
 
 Experimentally, the thesis applied this framework to proof-of-principle measurements with thermally polarized methanol.
-The December 23, 2022 Milky Way ALP search scanned a \SI{240}{\Hz} band centered at \SI{1.348570}{\MHz}, corresponding to ALP masses
+
+The December 23, 2022 Milky Way ALP search scanned a frequency band of $\SI{1.348570}{\MHz}\pm \SI{120}{\Hz}$, corresponding to ALP masses
 $\SI{5.577237}{\neV/c^2}\pm\SI{496}{\femto\eV/c^2}$.
 Three sequential scans were performed, with \SI{100}{\s} ALP-search acquisitions at each frequency step.
-The data were processed through sanity checks, Fourier transformation, lock-in response correction, Savitzky--Golay baseline removal, matched filtering with the expected ALP lineshape, and normalized-power-excess thresholding.
-
+The data were processed through sanity checks, Fourier transformation, lock-in response correction, Savitzky--Golay baseline removal, optimal filtering with the expected ALP lineshape, and normalized-power-excess thresholding. 
 No statistically significant Milky Way ALP candidate survived the cross-scan consistency checks.
 The resulting \SI{95}{\percent} confidence-level constraint is
 \begin{equation}
-    |g_\mathrm{ap}| \lesssim \SI{3e-2}{\GeV^{-1}}
+    |g_\mathrm{ap}| \lesssim \SI{1e-2}{\GeV^{-1}}
 \end{equation}
 over the scanned mass range.
-This narrow-band search serves as a commissioning measurement for CASPEr-Gradient-LF and, to the best of our knowledge, is the first dedicated laboratory search in this mass range.
+This narrow-band search serves as a commissioning measurement for CASPEr-Gradient-LowField and, to the best of our knowledge, is the first dedicated laboratory search in this mass range.
 
 The December 14, 2022 Earth-bound ALP measurement used the same apparatus and sample but emphasized longer dwell time.
-It scanned $\SI{1.348585}{\MHz}\pm\SI{24}{\Hz}$ with \SI{1}{\hour} no-pulse acquisitions at each of eight scan steps, targeting the narrower linewidth and longer coherence time expected for Earth-bound ALP states.
-The analysis framework for this data set was structured analogously to the Milky Way search, but with the important distinction that an unresolved one-bin statistic may replace the matched-filter convolution when the Earth-bound linewidth is smaller than the Fourier resolution.
-The final Earth-bound candidate counts and coupling limits remain to be completed once the candidate validation, signal normalization, and analysis efficiency are finalized.
+It scanned $\SI{1.348575}{\MHz}\pm\SI{24}{\Hz}$ with \SI{1}{\hour} no-pulse acquisitions at each of eight scan steps, targeting the narrower linewidth and longer coherence time expected for Earth-bound ALP states.
+This frequency range corresponds to ALP masses $\SI{5.577258}{\neV/c^2}\pm\SI{99}{\femto\eV/c^2}$.
+The analysis framework for this data set was structured analogously to the Milky Way search, but with the important distinction that an unresolved one-bin statistic replaces the optimal-filter convolution since the ALP linewidth is smaller than the resolution bandwidth.
+No statistically significant Earth-bound ALP candidate was found, and the resulting \SI{95}{\percent} confidence-level constraint is approximately \SI{1e-9}{\GeV^{-1}} over the scanned range. 
 
 \section{Outlook}
 
-The most direct path to improved sensitivity is higher nuclear-spin polarization.
-The thermally polarized methanol sample used here has a proton polarization of only approximately $\num{1.8e-7}$, which dominates the sensitivity budget.
-Hyperpolarized methanol, produced for example by brute-force prepolarization, parahydrogen-induced polarization, or dynamic nuclear polarization, could improve the projected coupling sensitivity to the \num{1e-6}--\num{1e-5}\,\si{\GeV^{-1}} range.
-Liquid \ch{^{129}Xe} polarized by spin-exchange optical pumping, combined with long $T_2$, offers a still more powerful route, with projected sensitivity at the \num{1e-12}--\num{1e-11}\,\si{\GeV^{-1}} level.
-Recent progress on \ch{^{129}Xe} hyperpolarization and on the temperature-control sample probe for the HF setup suggests that hyperpolarized samples should also improve the LF sensitivity.
+The most direct path to improved sensitivity is higher nuclear-spin molar polarization.
+The thermally polarized methanol sample used here has a proton polarization of only approximately $\num{1.8e-7}$, which limits the sensitivity.
+Hyperpolarized methanol, produced for example by brute-force prepolarization, parahydrogen-induced polarization, or dynamic nuclear polarization, could improve the projected coupling sensitivity by up to six orders of magnitude.
+Liquid \ch{^{129}Xe} polarized by spin-exchange optical pumping, combined with long $T_2$, offers up to order of unity fractional polarization.
+Recent progress on \ch{^{129}Xe} hyperpolarization and on the temperature-control sample probe for the CASPEr-Gradient-HighField setup demonstrate the potential to improve the CASPEr-Gradient-LowField sensitivity.
 
 Further gains should come from longer coherence in the sample and a quieter, more homogeneous apparatus.
-Improving the bias-field homogeneity from the present \SI{10}{ppm} scale toward the projected \SI{2}{ppm} level would lengthen $T_2^*$ and increase the fraction of spins resonant with a narrow ALP signal.
+Improving the bias-field homogeneity from the present \SI{10}{ppm} scale toward the projected \SI{2}{ppm} level would increase $T_2^*$ and increase the fraction of spins resonant with a narrow ALP signal.
 The LF setup is also expected to benefit from an upgraded variable-temperature insert (VTI), which should improve temperature stability and operating flexibility.
 Lower electronic noise and larger effective sample volume would improve the apparatus prefactor in the sensitivity equations.
 Larger sample volume and improved pickup-coil performance would further enhance the sensitivity.
 These improvements are complementary: polarization increases the available magnetization, while long relaxation times increase the accumulated ALP-induced tipping angle.
 
 
-% Parameters summary
-\YZ{edit the following paragraph and the table}
-Table~\ref{tab:parameters} summarizes the key parameters of the CASPEr-Gradient-LF apparatus for the methanol measurement reported in this thesis and for two projected future configurations using hyperpolarized samples.
-The thermal polarization of methanol is the dominant limiting factor in the current measurement.
-Hyperpolarized methanol or liquid \ch{^{129}Xe} could boost the polarization by several orders of magnitude, substantially improving the sensitivity.
+% % Parameters summary
+% \YZ{edit the following paragraph and the table}
+% Table~\ref{tab:parameters} summarizes the key parameters of the CASPEr-Gradient-LowField apparatus for the methanol measurement reported in this thesis and for two projected future configurations using hyperpolarized samples.
+% The thermal polarization of methanol is the dominant limiting factor in the current measurement.
+% Hyperpolarized methanol or liquid \ch{^{129}Xe} could boost the polarization by several orders of magnitude, substantially improving the sensitivity.
 
-\begin{table*}[ht]
-\begin{threeparttable}
-\centering
-\caption{Parameters of the CASPEr-Gradient-LF apparatus for the current measurement (thermally polarized methanol) and two projected future configurations.
-Polarization is given as molar polarization (polarization$\times$concentration).}
-\label{tab:parameters}
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{p{0.24\linewidth}
-                >{\centering\arraybackslash}p{0.21\linewidth}
-                >{\centering\arraybackslash}p{0.21\linewidth}
-                >{\centering\arraybackslash}p{0.21\linewidth}}
-\hline\hline
-& This work & \multicolumn{2}{c}{Examples of future CASPEr-Gradient-LF} \\
-\hline
-Sample & Methanol & Methanol\tnote{a} & Liquid \ch{^{129}Xe}\tnote{b} \\
-Spin density (\unit{\cm^{-3}}) & \num{5.9e22} & \num{5.9e22} & $\sim\num{1e22}$ \\
-Sample volume (\unit{\cm^3}) & 1.2 & 1.2 & $\sim1$ \\
-Polarization technique & Thermal & BF\tnote{c} / PHIP\tnote{d} / DNP\tnote{e} & SEOP\tnote{f} \\
-Polarization & \num{1.8e-7} & $>\num{1.1e-5}$ & $\sim1$ \\
-$T_2$ (\unit{\s}) & 0.72 & 1 & 1000 \\
-$B_0$ inhomogeneity (\unit{\ppm}) & 10 & $\leq2$ & $\leq2$ \\
-Electronic noise (\unit{\micro\Phi_0/\Hz^{1/2}}) & 7.1 & 1.0 & 1.0 \\
-Flux of SPN\tnote{g} (\unit{\micro\Phi_0}) & 0.39 & 0.39 & 0.16 \\
-Scan range & \SI{1.348450}{\MHz}--\SI{1.348690}{\MHz} & $\sim$\SI{1}{\kHz}--\SI{4.3}{\MHz} & $\sim$\SI{1}{\kHz}--\SI{1.2}{\MHz} \\
-$|g_\mathrm{aNN}|$ sensitivity (\unit{\GeV^{-1}}) & \num{3e-2} & \num{1.0e-6}--\num{1.2e-5} & \num{1e-12}--\num{1e-11} \\
-\hline\hline
-\end{tabular}
-\begin{tablenotes}
-\footnotesize
-\item[a] Methanol at \SI{180}{\kelvin} prepolarized at \SI{2}{\tesla}; measurement time $100\,\tau_a$ per scan step.
-\item[b] \ch{^{129}Xe}-enriched liquid sample.
-\item[c] Brute-force prepolarization in a strong field at low temperature.
-\item[d] Parahydrogen-induced polarization (PHIP).
-\item[e] Dynamic nuclear polarization (DNP).
-\item[f] Spin-exchange optical pumping (SEOP).
-\item[g] Spin-projection noise (SPN).
-\end{tablenotes}
-\end{threeparttable}
-\end{table*}
+% \begin{table*}[ht]
+% \begin{threeparttable}
+% \centering
+% \caption{Parameters of the CASPEr-Gradient-LowField apparatus for the current measurement (thermally polarized methanol) and two projected future configurations.
+% Polarization is given as molar polarization (polarization$\times$concentration).}
+% \label{tab:parameters}
+% \setlength{\tabcolsep}{4pt}
+% \begin{tabular}{p{0.24\linewidth}
+%                 >{\centering\arraybackslash}p{0.21\linewidth}
+%                 >{\centering\arraybackslash}p{0.21\linewidth}
+%                 >{\centering\arraybackslash}p{0.21\linewidth}}
+% \hline\hline
+% & This work & \multicolumn{2}{c}{Examples of future CASPEr-Gradient-LowField} \\
+% \hline
+% Sample & Methanol & Methanol\tnote{a} & Liquid \ch{^{129}Xe}\tnote{b} \\
+% Spin density (\unit{\cm^{-3}}) & \num{5.9e22} & \num{5.9e22} & $\sim\num{1e22}$ \\
+% Sample volume (\unit{\cm^3}) & 1.2 & 1.2 & $\sim1$ \\
+% Polarization technique & Thermal & BF\tnote{c} / PHIP\tnote{d} / DNP\tnote{e} & SEOP\tnote{f} \\
+% Polarization & \num{1.8e-7} & $>\num{1.1e-5}$ & $\sim1$ \\
+% $T_2$ (\unit{\s}) & 0.72 & 1 & 1000 \\
+% $B_0$ inhomogeneity (\unit{\ppm}) & 10 & $\leq2$ & $\leq2$ \\
+% Electronic noise (\unit{\micro\Phi_0/\Hz^{1/2}}) & 7.1 & 1.0 & 1.0 \\
+% Flux of SPN\tnote{g} (\unit{\micro\Phi_0}) & 0.39 & 0.39 & 0.16 \\
+% Scan range & \SI{1.348450}{\MHz}--\SI{1.348690}{\MHz} & $\sim$\SI{1}{\kHz}--\SI{4.3}{\MHz} & $\sim$\SI{1}{\kHz}--\SI{1.2}{\MHz} \\
+% $|g_\mathrm{aNN}|$ sensitivity (\unit{\GeV^{-1}}) & \num{3e-2} & \num{1.0e-6}--\num{1.2e-5} & \num{1e-12}--\num{1e-11} \\
+% \hline\hline
+% \end{tabular}
+% \begin{tablenotes}
+% \footnotesize
+% \item[a] Methanol at \SI{180}{\kelvin} prepolarized at \SI{2}{\tesla}; measurement time $100\,\tau_a$ per scan step.
+% \item[b] \ch{^{129}Xe}-enriched liquid sample.
+% \item[c] Brute-force prepolarization in a strong field at low temperature.
+% \item[d] Parahydrogen-induced polarization (PHIP).
+% \item[e] Dynamic nuclear polarization (DNP).
+% \item[f] Spin-exchange optical pumping (SEOP).
+% \item[g] Spin-projection noise (SPN).
+% \end{tablenotes}
+% \end{threeparttable}
+% \end{table*}
 
 
 The Earth-bound ALP analysis opens a second direction for future work.
@@ -150,6 +152,6 @@ They are likely instrumental in origin, but the same tools may become useful for
 
 Finally, the numerical and statistical framework developed here can be extended beyond the specific methanol measurements.
 The \texttt{axionbloch} simulations provide a way to test Bloch dynamics for realistic relaxation, field inhomogeneity, hyperpolarized $T_1$ decay, and stochastic ALP fields.
-The Neyman--Pearson and optimal-filter treatment provides a general basis for future search statistics.
-Together with the broader frequency reach of CASPEr-Gradient-LF and the high-field apparatus, these tools prepare CASPEr for wider scans of ALP parameter space and for comparisons between different dark-matter models, spin species, and coupling structures.
-A particularly interesting direction is the dual-NMR-sample concept, which could expand the experimental reach to correlated searches for axions and other new-physics signals such as dark photons\,\cite{dror2025_axiondualNMR}.
+% The Neyman--Pearson and optimal-filter treatment provides a general basis for future search statistics.
+Together with the broader frequency reach of CASPEr-Gradient-LowField and the HighField apparatus, these tools prepare CASPEr for wider scans of ALP parameter space and for comparisons between different dark-matter models, spin species, and coupling structures.
+One interesting direction is the dual-NMR-sample concept, which could expand the experimental reach to correlated searches for axions and other new-physics signals such as dark photons\,\cite{dror2025_axiondualNMR}.

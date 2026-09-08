@@ -32,6 +32,14 @@ t0 = Time(datetime(2022, 12, 13, 7, 0, tzinfo=ZoneInfo("Europe/Berlin")))
 t_hours = np.linspace(0, 72, 144) * unit.hour
 meas_times = t0 + t_hours
 
+gradient_result_no_boost = halo.findGradientsOverTime(
+    stateCoefficients={name: 1.0 for name in states_to_check},
+    station=Mainz,
+    meas_times=meas_times,
+    truncRadius=3 * unit.R_earth,
+    include_lorentz_boost=False,
+    verbose=True,
+)
 
 gradient_result_with_boost = halo.findGradientsOverTime(
     stateCoefficients={name: 1.0 for name in states_to_check},
@@ -66,7 +74,7 @@ Omega_factor = (
 
 fig, axes = plt.subplots(
     3,
-    1,
+    2,
     figsize=(13.0 / 2.54, 7.8 / 2.54),
     dpi=300,
     sharex="col",
@@ -83,49 +91,90 @@ fig.subplots_adjust(
     left=left, top=top, right=right, bottom=bottom, wspace=wspace, hspace=hspace
 )
 
-Omega_axes = axes[:, 0]
 
-for Omega_ax, component in zip(Omega_axes, components):
+gradient_axes = axes[:, 0]
+Omega_axes = axes[:, 1]
+
+for gradient_ax, Omega_ax, component in zip(gradient_axes, Omega_axes, components):
     gradient_key, gradient_label, Omega_label = component
+    gradient_no_boost = gradient_result_no_boost[gradient_key]
     gradient_with_boost = gradient_result_with_boost[gradient_key]
-    # convert to mHz 
+    # convert to mHz
     # using the dimensionless_angles equivalency because polar and azimuthal components have units of 1/rad
-    
+    Omega_no_boost = (Omega_factor * np.abs(gradient_no_boost)).to(
+        unit.mHz, equivalencies=unit.dimensionless_angles()
+    )
     Omega_with_boost = (Omega_factor * np.abs(gradient_with_boost)).to(
         unit.mHz, equivalencies=unit.dimensionless_angles()
     )
 
+    gradient_ax.plot(
+        t_hours,
+        gradient_no_boost.real,
+        color="tab:green",
+        linestyle="-",
+    )
+
+    Omega_ax.plot(
+        t_hours,
+        Omega_no_boost / (2 * np.pi),
+        color="tab:blue",
+        linestyle="--",
+        label="Without Lorentz boost",
+        zorder=3,
+    )
     Omega_ax.plot(
         t_hours,
         Omega_with_boost / (2 * np.pi),
         color="tab:orange",
         linestyle="-",
-        label="",
-        # zorder=2,
+        label="With Lorentz boost",
+        zorder=2,
     )
 
+    gradient_unit = gradient_no_boost.unit.to_string("latex_inline")[1:-1]
+
+    gradient_ax.set_ylabel(
+        f"${gradient_label}$\n$\\left({gradient_unit}\\right)$",
+        color="black",
+        # rotation=0,
+        loc="center",
+        labelpad=10,
+    )
     Omega_ax.set_ylabel(
         f"${Omega_label}$\n$\\left(\\mathrm{{mHz}}\\right)$",
         color="black",
     )
+    gradient_ax.tick_params(axis="y", colors="black")
     Omega_ax.tick_params(axis="y", colors="black")
 
+# gradient_axes[0].set_title("Spatial wavefunction gradient")
 # Omega_axes[0].set_title("$\\Omega_a$")
 Omega_axes[0].legend(
     loc="lower center",
-    bbox_to_anchor=(1.05, 1.05),
+    bbox_to_anchor=(0.5, 1.05),
     ncol=1,
     frameon=False,
     # fontsize=7,
 )
 
 # from 2022-12-13 07:00 CET
+gradient_axes[-1].set_xlabel("Time (hour)")
 Omega_axes[-1].set_xlabel("Time (hour)")
 # fig.suptitle(
 #     f"Mainz  ·  {states_to_check[0]} state  ·  "
 #     f"$\\nu_a={halo.nu_a.to_value(unit.MHz):.6f}$ MHz",
 #     y=0.99,
 # )
+
+gradient_ylim_abs = 0
+for ax in gradient_axes:
+    ylim_bottom, ylim_top = ax.get_ylim()
+    gradient_ylim_abs = np.amax(np.abs([gradient_ylim_abs, ylim_bottom, ylim_top]))
+    # overwrite the y-limits
+    gradient_ylim_abs = 1.262
+for ax in gradient_axes:
+    ax.set_ylim(-gradient_ylim_abs, gradient_ylim_abs)
 
 # Omega_ylim_abs = 0
 # for ax in Omega_axes:
@@ -137,10 +186,10 @@ for ax in Omega_axes:
 # fig.tight_layout()
 
 plt.savefig(
-    "tex/figures/EH_ALP-daily_modulation-gradient-Omega_a.pdf", transparent=False
+    "tex/figures/EH_ALP-2p-daily_modulation-gradient-Omega_a.pdf", transparent=False
 )
 plt.savefig(
-    "tex/figures/EH_ALP-daily_modulation-gradient-Omega_a.png", transparent=False
+    "tex/figures/EH_ALP-2p-daily_modulation-gradient-Omega_a.png", transparent=False
 )
 
 plt.show()

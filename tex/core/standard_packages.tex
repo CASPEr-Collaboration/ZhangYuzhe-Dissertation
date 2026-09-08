@@ -60,7 +60,25 @@
     libaltvw,     % Uses different characters for v und w that look far better than the default ones.
 ]
 {newtxmath} % The main math font of this thesis. It fits well with the main font.
+% Share the actual upright body font between mathrm and ordinary math digits.
+\DeclareSymbolFont{bodyupright}{TU}{\rmdefault}{m}{n}
+\SetSymbolFont{bodyupright}{bold}{TU}{\rmdefault}{b}{n}
+\DeclareSymbolFontAlphabet{\mathrm}{bodyupright}
+% Use the body font's italic face for ordinary Latin math letters.
+\DeclareSymbolFont{bodyletters}{TU}{\rmdefault}{m}{it}
+\SetSymbolFont{bodyletters}{bold}{TU}{\rmdefault}{b}{it}
+\ExplSyntaxOn
+\int_step_inline:nnn {48} {57}
+  { \Umathcode #1 = 7 \symbodyupright #1 \scan_stop: }
+\int_step_inline:nnn {65} {90}
+  { \Umathcode #1 = 7 \symbodyletters #1 \scan_stop: }
+\int_step_inline:nnn {97} {122}
+  { \Umathcode #1 = 7 \symbodyletters #1 \scan_stop: }
+\ExplSyntaxOff
 \usepackage{url} % Responsible for URL formatting.
+% Reserve math families for the body-letter font; bm can use its fallback method.
+\newcommand{\bmmax}{0}
+\newcommand{\hmmax}{0}
 \usepackage{bm}  % Allows to use sensible bold letters in math mode. This package has to go after the font packages. Otherwise it does not work correctly!
 
 

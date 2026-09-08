@@ -544,10 +544,11 @@ Using the numerical values of the wavefunction gradients, the value can be obtai
 The two estimations in Equation~\eqref{eq:Omega_a_EH_est} and \eqref{eq:Omega_a_EH_theta} yield consistent results within an order of magnitude.
 % scripts-and-data\grav_potential.ipynb #### Estimation of the ALP field gradient Note that due to the magnitude of the Rabi frequency can vary by \SI{100}{\percent} due to the time-changing alignment between the ALP gradient and the sensitive axis of detector.
 The precise values of the gradients can be computed numerically from the eigen-states and are used to estimate the expected signal strength in Chapter~\ref{chap:results}.
-An example of ALP gradients and Rabi frequencies for $|n=2,\,l=1,\, m=0\rangle$ state are illustrated in Figure~\ref{fig:EH_ALP-daily_modulation-gradient-Omega_a}.
+An example of ALP gradients and Rabi frequencies for $|n=2,\,l=1,\, m=0\rangle$ state are illustrated in Figure~\ref{fig:EH_ALP-2p-daily_modulation-gradient-Omega_a}.
+As can be seen from the figure, the radial component of the Rabi frequency is the largest due to the strong radial gradient of the Earth gravitational potential.
 \begin{figure}
     \centering
-    \includegraphics[width=0.99\textwidth]{figures/EH_ALP-daily_modulation-gradient-Omega_a.pdf}
+    \includegraphics[width=0.99\textwidth]{figures/EH_ALP-2p-daily_modulation-gradient-Omega_a.pdf}
     \caption{Daily modulation of the gradient component for the $|n=2,\,l=1,\, m=0\rangle$ state at the location of CASPEr-Gradient (Helmholtz Institute Mainz) from 07:00 (Central European Time), December 13, 2022.  
     The modulation is due to the rotation of the Earth. 
     The quantization axis is arbitrarily chosen along the Earth--Sun line. 
@@ -555,7 +556,7 @@ An example of ALP gradients and Rabi frequencies for $|n=2,\,l=1,\, m=0\rangle$ 
     In general, Lorentz boost modifies the Rabi frequency by less than \SI{1}{\mHz} at \SI{1}{\MHz} ALP Compton frequency. 
     Note that for $\Omega_a^\phi$, which is zero without Lorentz boost (since magnetic quantum number $m=0$), is non-zero with Lorentz boost due to Earth rotation.
     }
-    \label{fig:EH_ALP-daily_modulation-gradient-Omega_a}
+    \label{fig:EH_ALP-2p-daily_modulation-gradient-Omega_a}
 \end{figure}
 Such Rabi frequency is $\sim7$ orders of magnitude larger than the expected Rabi frequency from the galactic halo ALP, as estimated after Equation~\eqref{eq:Omega_a_MW}
 If indeed such amount of axionlike dark matter can be accumulated in the Earth gravitational potential, it would produce a much stronger signal than the galactic halo ALP, making it an target that CASPEr-Gradient is sensitive to.
@@ -565,8 +566,8 @@ If indeed such amount of axionlike dark matter can be accumulated in the Earth g
 Unlike the galactic halo signal, which has a continuous Maxwell-Boltzmann spectrum, Earth-bound ALPs occupy discrete energy levels. 
 Only the lowest few eigen-states are of interest because the higher eigen-states have small wavefunction amplitudes at the detector location.
 The population of the eigen-states is determined by the dark matter capture / accumulation process and potential ALP self-interaction or interactions with other particles, which is under investigation by the CASPEr collaboration. 
-The population distribution is therefore treated as a free parameter in this thesis. 
-A few simple scenarios are considered: (1) only one of the lowest eigen-states is populated; (2) the first few eigen-states are populated uniformly.
+The population distribution is not explored in this thesis. 
+Empirical results are presented in Chapter~\ref{chap:results} for the scenario where most ALPs are in the lowest eigen-states. 
 
 Each level $n$ contributes an ALP oscillation at a slightly different Compton frequency
 \begin{equation}
@@ -578,7 +579,7 @@ If multiple modes are populated simultaneously, the phases of the individual osc
 This leads to finite coherence time for the multi-mode ALP field. 
 A rough estimate of the coherence time can be made from the spacing $\Delta E$ between eigen-states:
 \begin{equation}
-    \tau_\mathrm{coh} \approx \frac{1}{\Delta \nu} = \frac{h}{\Delta E}
+    \tau_\mathrm{a,\,est} \approx \frac{1}{\Delta \nu} = \frac{h}{\Delta E}
     \,.\label{eq:coherence_time_estimate}
 \end{equation}
 The maximum spacing can be estimated from the ALP mass and the Earth gravitational potential which is $|\Delta V_g| = \SI{125}{\mega\joule\per\kg}$\,\cite{Zhang2026_Dissertation_ipynb_2_theory_EH_ALP}:
@@ -594,7 +595,7 @@ The corresponding frequency spacing and coherence time are
 \end{equation}
 and
 \begin{equation}
-    \tau_\mathrm{coh} \approx \frac{1}{\Delta\nu} = \frac{10^9}{\nu_a}
+    \tau_\mathrm{a,\,est} \approx \frac{1}{\Delta\nu} = \frac{10^9}{\nu_a}
     \,.\label{eq:coherence_time_estimate_max_value}
 \end{equation}
 It can be seen that the coherence time is $\sim 10^3$ times longer than the galactic-halo coherence time $\tau_a = Q_a/\nu_a \sim 10^6/\nu_a$ due to the much smaller velocity spread of the Earth-bound ALP. 
@@ -617,7 +618,7 @@ Since the gravitional potential is spherically symmetric, the choice of coordina
 This frame is generally not aligned with the Earth's rotation axis.
 As the Earth rotates, the orientation of the component of $\boldsymbol{\nabla}a$ at any given location therefore exhibits a daily modulation. 
 Earth's orbital motion produces an annual modulation of the gradient component at a given location. 
-Examples of daily and annual modulations are illustrated in Figure~\ref{fig:EH_ALP-daily_modulation-gradient-Omega_a} and Figure~\ref{fig:earthALP_annual_modulation}, which show the daily and annual modulations of the gradient component for the $|n=2,\,l=1,\, m=0\rangle$ state at the location of CASPEr-Gradient. 
+Examples of daily and annual modulations are illustrated in Figure~\ref{fig:EH_ALP-2p-daily_modulation-gradient-Omega_a} and Figure~\ref{fig:earthALP_annual_modulation}, which show the daily and annual modulations of the gradient component for the $|n=2,\,l=1,\, m=0\rangle$ state at the location of CASPEr-Gradient. 
 % In summary, the Rabi frequency exhibits changes within one order of magnitude due to periodic modulations. 
 % Therefore, the date and time of measurements would not have a significant effect for the sensitivity of CASPEr-Gradient. 
 

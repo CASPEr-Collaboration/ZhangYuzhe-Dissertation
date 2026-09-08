@@ -57,3 +57,5 @@ fonts/
 *.toc
 *.bbl-SAVE-ERROR
 *.bcf-SAVE-ERROR
+font-build-output.txt
+font-check.xml
