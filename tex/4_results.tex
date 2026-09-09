@@ -170,7 +170,7 @@ The estimated baseline is then subtracted from the spectrum, and the result is d
 % statistic.
 
 The next step is to decide whether optimal filtering\footnote{also known as matched filtering} should be applied or not.
-The optimal filter is a weighted average of neighboring frequency bins, with weights determined by the expected signal lineshape; this choice maximizes the SNR among linear filters for random noise with known covariance, as shown in Appendix~\ref{sec:app:optimal-filter}.
+The optimal filter is a weighted average of neighboring frequency bins, with weights determined by the expected signal lineshape; this choice maximizes the SNR among linear filters for random noise.
 If the ALP linewidth is broader than the RBW of the spectrum, the signal is resolved, which means the signal is spread over multiple frequency bins.
 In this case, optimal filtering is applied to combine the signal power into a single bin.
 Alternatively, if the ALP linewidth is narrower than the RBW, the signal is unresolved and optimal filtering is not applied.
