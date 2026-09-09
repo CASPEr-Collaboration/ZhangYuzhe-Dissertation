@@ -91,8 +91,8 @@ if not plot_sin:
     ax00.plot(timeStamp, np.abs(axion_ts_envelope))
 if plot_sin:
     ax00.plot(newTimeStamp, axion_ts, label="")
-ax00.set_xlabel("Time ($\\tau_{\\mathrm{a}}$)")
-# ax00.set_xlabel("time ($\\Delta \\nu_\\mathrm{a}^{-1}$)")
+ax00.set_xlabel("Time ($\\tau_a$)")
+# ax00.set_xlabel("time ($\\Delta \\nu_a^{-1}$)")
 ax00.set_ylabel("$a(t)\\, (\\mathrm{arb.\\,units})$")
 # ax00.set_title('ALP time-series')
 ybottom, ytop = ax00.get_ylim()
@@ -131,8 +131,8 @@ ax01 = fig.add_subplot(gs[0, 1])
 
 ax01.plot(frequencies, stoch_lineshape, color="tab:green", label="Stochastic lineshape")
 ax01.plot(frequencies, lineshape, "--", color="tab:red", label="Average lineshape")
-ax01.set_xlabel("Frequency$\\,-\\,\\nu_{\\mathrm{a}}$ ($\\Delta \\nu_\\mathrm{a}$)")
-ax01.set_ylabel("$\\left|F\\,[a(t)]\\right|^2\\, (\\mathrm{arb.\\,units})$")
+ax01.set_xlabel("Frequency$\\,-\\,\\nu_a$ ($\\Delta \\nu_a$)")
+ax01.set_ylabel("$\\left|\\mathrm{FT}[a(t)]\\right|^2\\, (\\mathrm{arb.\\,units})$")
 # ax01.set_title('Pulsed-NMR Signal Amplitude')
 ax01.set_xlim(-0.5, 3.5)
 ax01.set_yticks([])
@@ -165,5 +165,6 @@ for i, ax in enumerate([ax00, ax01]):
 # va = 'top' or 'bottom'
 
 # fig.tight_layout()
-plt.savefig("tex/figures/MW_ALP-time_frequency_domain-2.pdf")
+plt.savefig("tex/figures/MW_ALP-time_frequency_domain.png")
+plt.savefig("tex/figures/MW_ALP-time_frequency_domain.pdf")
 # plt.show()
