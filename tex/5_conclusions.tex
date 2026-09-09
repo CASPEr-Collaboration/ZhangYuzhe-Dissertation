@@ -20,7 +20,7 @@
 % - In all long-measurement-duration regimes, coupling sensitivity scales only as T_tot^{-1/4}; simply measuring longer gives slow returns.
 % - Longer T2* helps in all regimes; longer T2 helps when T2 limits the accumulated tipping angle.
 % - Optimal scan step equals the sensitive bandwidth of a single measurement, max(NMR linewidth, ALP linewidth).
-% - Optimal dwell time is uniform across frequency for regimes (1)--(3), and T proportional to nu^{-1} in regime (4).
+% - Optimal measurement duration is uniform across frequency for regimes (1)--(3), and T proportional to nu^{-1} in regime (4).
 % - CASPEr-Gradient-LowField apparatus: superconducting magnet up to 0.1 T, excitation/pickup coils, SQUID, lock-in amplifier, Python control.
 % - LF frequency range with protons extends to approx 4.3 MHz; HF apparatus with 14.1 T reaches approx 600 MHz.
 % - Current apparatus parameters: methanol, spin density 5.9e22 cm^-3, volume 1.2 cm^3, T2 approx 0.72 s, B0 inhomogeneity approx 10 ppm, electronic noise approx 7.1 microPhi0/sqrt(Hz).
@@ -53,13 +53,13 @@ When the Larmor frequency of the sample is tuned to the ALP Compton frequency, t
 The theoretical work developed the signal model and the data analysis framework needed for such a search.
 Two dark-matter scenarios were considered.
 For virialized Milky Way halo ALPs, the field is a stochastic superposition of many velocity modes, giving a finite coherence time and a linewidth set by the standard halo model. 
-For Earth-bound ALPs, the field is instead described by bound states in the Earth's gravitational potential, leading to discrete eigenstates, longer coherence times, and potentially larger dark matter density than the virialized halo.
+For Earth-bound ALPs, the field is instead described by bound states in the Earth's gravitational potential, leading to discrete eigenstates, longer coherence times, and a potentially higher dark matter density than that of the virialized halo.
 
 The frequency-scanning analysis identified four signal regimes determined by the ordering of $T_2^*$, $T_2$, and the ALP coherence time $\tau_a$.
 In all long-measurement-duration regimes considered here, the coupling sensitivity scales only as $T_\mathrm{tot}^{-1/4}$ with total measurement time.
 % This slow scaling makes the main experimental lesson clear: improving spin polarization, field homogeneity, $T_2^*$, $T_2$, and detector noise is more powerful than simply accumulating longer data sets.
-In order to maximize the sensitivity, the relaxation times $T_2^*$ and $T_2$ should be maximized, no matter if a narrow or broad frequency bandwidth is being searched.
-The optimal frequency step in scanning should be the sensitive bandwidth of one measurement.
+To maximize the sensitivity, the relaxation times $T_2^*$ and $T_2$ should be maximized, regardless of whether a narrow or broad frequency band is being searched.
+The optimal frequency step size equals the sensitive bandwidth of a single measurement.
 
 Experimentally, the thesis applied this framework to proof-of-principle measurements with thermally polarized methanol.
 
@@ -75,10 +75,10 @@ The resulting \SI{95}{\percent} confidence-level constraint is
 over the scanned mass range.
 This narrow-band search serves as a commissioning measurement for CASPEr-Gradient-LowField and, to the best of our knowledge, is the first dedicated laboratory search in this mass range.
 
-The December 14, 2022 Earth-bound ALP measurement used the same apparatus and sample but emphasized longer dwell time.
+The December 14, 2022 Earth-bound ALP measurement used the same apparatus and sample but employed a longer measurement duration.
 It scanned $\SI{1.348575}{\MHz}\pm\SI{24}{\Hz}$ with \SI{1}{\hour} no-pulse acquisitions at each of eight scan steps, targeting the narrower linewidth and longer coherence time expected for Earth-bound ALP states.
 This frequency range corresponds to ALP masses $\SI{5.577258}{\neV/c^2}\pm\SI{99}{\femto\eV/c^2}$.
-The analysis framework for this data set was structured analogously to the Milky Way search, but with the important distinction that an unresolved one-bin statistic replaces the optimal-filter convolution since the ALP linewidth is smaller than the resolution bandwidth.
+The analysis framework for this data set was structured analogously to that of the Milky Way search, but a one-bin statistic for unresolved signals replaced the optimal-filter convolution because the ALP linewidth is smaller than the resolution bandwidth.
 No statistically significant Earth-bound ALP candidate was found, and the resulting \SI{95}{\percent} confidence-level constraint is approximately \SI{1e-9}{\GeV^{-1}} over the scanned range. 
 
 \section{Outlook}
@@ -86,14 +86,13 @@ No statistically significant Earth-bound ALP candidate was found, and the result
 The most direct path to improved sensitivity is higher nuclear-spin molar polarization.
 The thermally polarized methanol sample used here has a proton polarization of only approximately $\num{1.8e-7}$, which limits the sensitivity.
 Hyperpolarized methanol, produced for example by brute-force prepolarization, parahydrogen-induced polarization, or dynamic nuclear polarization, could improve the projected coupling sensitivity by up to 6 orders of magnitude.
-Liquid \ch{^{129}Xe} polarized by spin-exchange optical pumping, combined with long $T_2$, offers up to order of unity fractional polarization.
-Recent progress on \ch{^{129}Xe} hyperpolarization and on the temperature-control sample probe for the CASPEr-Gradient-HighField setup demonstrate the potential to improve the CASPEr-Gradient-LowField sensitivity.
+Liquid \ch{^{129}Xe} polarized by spin-exchange optical pumping offers fractional polarization approaching unity together with a long $T_2$.
+Recent progress in \ch{^{129}Xe} hyperpolarization and in the development of the temperature-controlled sample probe for the CASPEr-Gradient-HighField setup demonstrates the potential to improve the sensitivity of CASPEr-Gradient-LowField.
 
 Further gains should come from longer coherence in the sample and a quieter, more homogeneous apparatus.
-Improving the bias-field homogeneity from the present \SI{10}{ppm} scale toward the projected \SI{2}{ppm} level would increase $T_2^*$ and increase the fraction of spins resonant with a narrow ALP signal.
+Improving the bias-field homogeneity from the present \SI{10}{ppm} scale toward the projected \SI{2}{ppm} level would increase both $T_2^*$ and the fraction of spins resonant with a narrow ALP signal.
 The LF setup is also expected to benefit from an upgraded variable-temperature insert (VTI), which should improve temperature stability and operating flexibility.
-Lower electronic noise and larger effective sample volume would improve the apparatus prefactor in the sensitivity equations.
-Larger sample volume and improved pickup-coil performance would further enhance the sensitivity.
+Lower electronic noise, larger effective sample volume and improved pickup-coil performance would enhance the sensitivity.
 These improvements are complementary: polarization increases the available magnetization, while long relaxation times increase the accumulated ALP-induced tipping angle.
 
 
@@ -145,7 +144,7 @@ These improvements are complementary: polarization increases the available magne
 
 
 The Earth-bound ALP analysis opens a second direction for future work.
-Because bound states can have long coherence times and geometry-dependent gradients, the optimal statistic, signal normalization, and validation tests differ from the Milky Way halo case.
+Because bound states can have long coherence times and geometry-dependent gradients, the optimal statistic, signal normalization, and validation differ from those used for the Milky Way halo.
 Completing this analysis requires finalizing the state-population assumptions, the reference signal power, the recovery efficiency, and the candidate consistency criteria.
 The transient jumps seen in the one-hour records should also be catalogued systematically.
 They are likely instrumental in origin, but the same tools may become useful for searches for transient exotic signals such as ALP domain walls.
