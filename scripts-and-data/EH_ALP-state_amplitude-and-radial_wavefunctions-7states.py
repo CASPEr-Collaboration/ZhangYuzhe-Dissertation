@@ -7,7 +7,7 @@ Run from the repository root with the axionbloch environment activated::
     python -m examples.EarthBoundAxionHalo.state-amplitude-and-radial-wavefunctions
 """
 
-"""Plot eigenstate amplitudes against their eigen-energy shifts.
+"""Plot eigenstate amplitudes against their eigenenergy shifts.
 
 All states from 1s through 4f are included with equal input coefficients.
 ``plotStateAmplitudeVsEigenEnergy`` normalizes the coefficients before plotting,
@@ -242,7 +242,7 @@ halo = EarthBoundAxionHalo(
 )
 l_vals=[0, 1, 2, 3, 4, 5, 6]
         s  p  d  f  g  h  i
-eigen-energies low to high: 
+eigenenergies low to high: 
 
 1s: E = -4.549e-18 eV
 2s: E = -3.445e-18 eV
