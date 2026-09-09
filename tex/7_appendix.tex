@@ -168,7 +168,7 @@
 % For $X\sim\mathcal{N}(\mu,\sigma^2)$ with $H_0:\mu=0$ versus $H_1:\mu=1$, the log-likelihood ratio simplifies to $\log\Lambda(x) = x/\sigma^2 - 1/(2\sigma^2)$, so rejecting for large $\Lambda(x)$ is equivalent to rejecting for large $x$.
 % This confirms that the sample mean is the optimal test statistic for Gaussian location testing.
 
-% \section{Optimal filter as a weighted average}\label{sec:app:optimal-filter}
+% \chapter{Optimal filter as a weighted average}\label{sec:app:optimal-filter}
 
 % The optimal filter used in the ALP search can be understood as the linear combination of frequency bins that maximizes the SNR.
 % Consider a baseline-subtracted spectrum with bin values $x_i$ near a trial ALP frequency.
@@ -177,7 +177,7 @@
 %     x_i = A s_i + n_i\,,
 % \end{equation}
 % where $A$ is the signal amplitude and $n_i$ is noise.
-% The noise in a power spectrum follows a $\chi^2$ distribution with two degrees of freedom before averaging.
+% The noise in a power spectrum follows a $\chi^2_2$ distribution before averaging.
 % After subtracting the local mean, the noise fluctuations have zero mean but are not Gaussian.
 % The following result therefore states optimality among linear filters, rather than optimality among all possible statistical tests.
 
@@ -271,8 +271,6 @@
 % When the bandwidth is independent of frequency (regime 4), spending less time at higher frequencies---where the ALP coherence time is shorter and the signal integrates faster---maximizes the covered area.
 
 \chapter{ALP candidate lists}\label{app:candidates}
-
-% \section{ALP candidate lists}
 
 The outliers appeared in at least two independent scan steps with consistent frequencies and coupling strengths are regarded as ALP candidates. 
 This appendix lists the ALP candidates identified in the Milky Way and Earth-halo searches.
