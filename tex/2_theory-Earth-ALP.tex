@@ -87,7 +87,7 @@ Since the escape speed is much smaller than the speed of light, the nonrelativis
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{figures/PREM-density-enclosed_mass.pdf}
-    \caption{Earth's density (upper plot) and enclosed mass (lower plot) as functions of radius according to PREM\,\cite{Dziewonski1981_PREM}.}
+    \caption{Earth's density (top), enclosed mass (middle), and gravitational acceleration magnitude (bottom) as functions of radius according to PREM\,\cite{Dziewonski1981_PREM}. The acceleration is calculated as $g(r)=G M_\mathrm{enclosed}(r)/r^2$, with $g(0)=0$. The dashed curve shows the linear interior profile of a uniform-density sphere with the same total mass and radius.}
     \label{fig:PREM-density-enclosed_mass}
 \end{figure}
 
@@ -97,9 +97,11 @@ infinity to be zero, is obtained from the spherically symmetric density profile:
     V_g(r)
     & = -G m \left[\frac{M_\mathrm{enclosed}(r)}{r}
     +4\pi\int_r^{\infty}\rho_\oplus(r')\,r'\,\mathrm{d}r'\right]
-    \,\label{eq:grav_potential}
+    \,,\label{eq:grav_potential}
 \end{align}
 where $r$ is the distance measured from the Earth's center, $G$ is Newton's constant, $M_\mathrm{enclosed}(r)$ is the Earth's mass enclosed within radius $r$, $m$ is the mass of the object experiencing the gravitational field, and $\rho_\oplus(r)$ is the Earth's density profile. For $r\geq R_\oplus$, this expression reduces to $V_g(r)=-G M_\oplus m/r$; inside the Earth, the integral accounts for the contribution from the outer shells. 
+The corresponding gravitational acceleration has magnitude $g(r)=G M_\mathrm{enclosed}(r)/r^2$ for $r>0$ and vanishes at the center.
+Unlike the linear interior profile of a uniform-density sphere, the PREM acceleration is nonmonotonic, with its largest value near the core--mantle boundary, as shown in Figure~\ref{fig:PREM-density-enclosed_mass}.
 The potential as a function of radius can be calculated numerically based on PREM, as shown in Figure~\ref{fig:PREM-Earth_grav_potential}.
 
 \begin{figure}
