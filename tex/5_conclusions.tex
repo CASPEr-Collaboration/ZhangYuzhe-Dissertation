@@ -1,4 +1,6 @@
 \chapter{Conclusions \& Outlook}\label{chap:conclusion}
+\begingroup
+\emergencystretch=2em
 
 % Key points accumulated from the top-level thesis source and LF-thermal paper:
 % - Main physics idea: ALP gradient coupling acts on nuclear spins as an oscillating pseudomagnetic field.
@@ -46,11 +48,11 @@
 
 \section{Conclusions}
 
-This thesis investigated axionlike-particle dark matter through the nuclear-gradient coupling, using nuclear magnetic resonance as the resonant detector.
+In this thesis, a search for axionlike-particle dark matter through the nuclear-gradient coupling using nuclear magnetic resonance spectroscopy is described.
 In this interaction, the spatial gradient of the ALP field acts as an oscillating pseudomagnetic field on nuclear spins.
 When the Larmor frequency of the sample is tuned to the ALP Compton frequency, this weak drive can generate a transverse magnetization that is detected by the CASPEr-Gradient-LowField apparatus.
 
-The theoretical work developed the signal model and the data analysis framework needed for such a search.
+In the theoretical work, the signal models and the data analysis framework needed for such a search were developed.
 Two dark-matter scenarios were considered.
 For virialized Milky Way halo ALPs, the field is a stochastic superposition of many velocity modes, giving a finite coherence time and a linewidth set by the standard halo model. 
 For Earth-bound ALPs, the field is instead described by bound states in the Earth's gravitational potential, leading to discrete eigenstates, longer coherence times, and a potentially higher dark matter density than that of the virialized halo.
@@ -61,7 +63,7 @@ In all long-measurement-duration regimes considered here, the coupling sensitivi
 To maximize the sensitivity, the relaxation times $T_2^*$ and $T_2$ should be maximized, regardless of whether a narrow or broad frequency band is being searched.
 The optimal frequency step size equals the sensitive bandwidth of a single measurement.
 
-Experimentally, the thesis applied this framework to proof-of-principle measurements with thermally polarized methanol.
+In the experimental work, this framework was applied to proof-of-principle measurements with thermally polarized methanol.
 
 The December 23, 2022 Milky Way ALP search scanned a frequency band of $\SI{1.348570}{\MHz}\pm \SI{120}{\Hz}$, corresponding to ALP masses
 $\SI{5.577237}{\neV/c^2}\pm\SI{496}{\femto\eV/c^2}$.
@@ -70,7 +72,7 @@ The data were processed through sanity checks, Fourier transformation, lock-in r
 No statistically significant Milky Way ALP candidate survived the cross-scan consistency checks.
 The resulting \SI{95}{\percent} confidence-level constraint is
 \begin{equation}
-    |g_\mathrm{ap}| \lesssim \SI{1e-2}{\GeV^{-1}}
+    |g_\mathrm{ap}| \lesssim \SI{1e-2}{\GeV^{-1}}\,
 \end{equation}
 over the scanned mass range.
 This narrow-band search serves as a commissioning measurement for CASPEr-Gradient-LowField and, to the best of our knowledge, is the first dedicated laboratory search in this mass range.
@@ -90,7 +92,11 @@ Together, these contributions provide an experimental and analytical basis for f
 
 The most direct path to improved sensitivity is higher nuclear-spin molar polarization.
 The thermally polarized methanol sample used here has a proton polarization of only approximately $\num{1.8e-7}$, which limits the sensitivity.
-Hyperpolarized methanol, produced for example by brute-force prepolarization, parahydrogen-induced polarization, or dynamic nuclear polarization, could improve the projected coupling sensitivity by up to 6 orders of magnitude.
+The apparatus already uses a highly sensitive SQUID magnetometer, so the very small sample magnetization makes increased polarization a particularly promising route to substantial gains\,\cite{Walter2025_CASPErLFthermal}.
+Further improvements in detection are possible: resonant pickup circuits can improve inductive readout, as illustrated by the quantum-limited measurements of Kuenstner and collaborators\,\cite{Kuenstner2026_QuantumMetrology}, while spin squeezing could reduce spin-projection noise in a suitable measurement quadrature\,\cite{Boyers2025_SpinSqueezing}.
+These approaches require careful control of circuit losses, back-action, and spin dynamics; spin squeezing does not directly remove the electronic noise of the present detector.
+They therefore represent demanding, complementary developments alongside hyperpolarization.
+Hyperpolarized samples, produced for example by brute-force prepolarization, parahydrogen-induced polarization, or dynamic nuclear polarization, could improve the projected coupling sensitivity by up to 6 orders of magnitude.
 Liquid \ch{^{129}Xe} polarized by spin-exchange optical pumping offers fractional polarization approaching unity together with a long $T_2$.
 Recent progress in \ch{^{129}Xe} hyperpolarization and in the development of the temperature-controlled sample probe for the CASPEr-Gradient-HighField setup demonstrates the potential to improve the sensitivity of CASPEr-Gradient-LowField.
 
@@ -159,3 +165,4 @@ The \texttt{axionbloch} simulations provide a way to test Bloch dynamics for rea
 % The Neyman--Pearson and optimal-filter treatment provides a general basis for future search statistics.
 Together with the broader frequency reach of CASPEr-Gradient-LowField and the HighField apparatus, these tools prepare CASPEr for wider scans of ALP parameter space and for comparisons between different dark-matter models, spin species, and coupling structures.
 One interesting direction is the dual-NMR-sample concept, which could expand the experimental reach to correlated searches for axions and other new-physics signals such as dark photons\,\cite{dror2025_axiondualNMR}.
+\par\endgroup
