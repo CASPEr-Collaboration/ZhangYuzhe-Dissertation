@@ -1,0 +1,276 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---------- Page layout ----------
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\setstretch{1.1}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% ---------- Section formatting ----------
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{}{0em}{}
+\titlespacing*{\section}{0pt}{1.2em}{0.6em}
+
+% ---------- Bibliography ----------
+% \usepackage[numbers]{natbib}
+% \bibliographystyle{unsrt}
+
+% \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+% \addbibresource{publications.bib} % your .bib file
+
+% \usepackage{bibentry}
+% \PassOptionsToPackage{style=ieee,sorting=ydnt,uniquename=init,defernumbers=true}{biblatex}
+% % Remove default [Online] prefix before URLs
+% \DefineBibliographyStrings{english}{url={\textsc{url}}}
+% % Add short journal field formatting after loading settings
+% \DeclareFieldFormat{journaltitle}{%
+%   \iffieldundef{shortjournal}{#1}{\printfield{shortjournal}}}
+% \addbibresource{publications.bib}
+
+\PassOptionsToPackage{
+    style=ieee,
+    sorting=ydnt,
+    uniquename=false,
+    defernumbers=true,
+    maxnames=99,
+    minnames=99,
+    doi=true,
+    url=false,
+    eprint=false
+}{biblatex}
+\usepackage[backend=biber,style=numeric]{biblatex}
+
+% \usepackage{biblatex}
+% Shorten "url" prefix for IEEE style
+\DefineBibliographyStrings{english}{url={\textsc{url}}}
+% Load your bibliography
+\addbibresource{publications.bib}
+
+% ---------- No page numbers ----------
+% \pagestyle{empty}
+
+% add hlines under the section titles
+\usepackage{titlesec}
+\titleformat{\section}
+  {\large\bfseries}
+  {}
+  {0em}
+  {}
+  [\titlerule]
+
+% links
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{enumitem}
+
+\begin{document}
+
+
+% ---------- Header ----------
+\begin{center}
+{\Large \textbf{Yuzhe Zhang}} \\[0.3em]
+\today{} \\
+\end{center}
+
+\vspace{0.5em}
+
+% ---------- Sections ----------
+\section*{Personal Information}
+
+\noindent\textbf{Date and place of birth:} January 10, 1998 (Jiangsu, China) \\
+\textbf{Nationality:} Chinese \\
+\textbf{Address:} GSI Helmholtz Institute Mainz, Staudingerweg 18, 55128 Mainz, Germany \\
+\textbf{Email:} yuhzhang@uni-mainz.de
+
+\noindent\textbf{ORCID:} \href{https://orcid.org/0009-0006-6082-9066}{\texttt{0009-0006-6082-9066}}
+
+\noindent\textbf{Google Scholar:} \href{https://scholar.google.com/citations?user=tPAwEPsAAAAJ&hl=en&oi=sra}{scholar.google.com/citations?user=tPAwEPsAAAAJ}
+
+\noindent\textbf{LinkedIn:} \href{https://www.linkedin.com/in/yuzhe-zhang-physics/}{linkedin.com/in/yuzhe-zhang-physics/}
+
+\noindent\textbf{Webpage:} \href{https://yuzhe98.github.io/}{yuzhe98.github.io}
+
+\noindent\textbf{Languages:} Chinese (native), English (professional working proficiency)
+
+\section*{Summary}
+I am a junior researcher focusing on \textbf{axionlike dark matter} detection using \textbf{nuclear magnetic resonance} and \textbf{quantum sensing} techniques. 
+Within the Cosmic Axion Spin Precession Experiment (CASPEr) collaboration, I have contributed to experiments, data analysis, and simulations, resulting in peer-reviewed publications and presentations at international conferences and seminars. 
+Over the years, I have developed expertise in precision measurement, programming, and electronics. 
+% Beyond axion, I am \textbf{broadly interested in dark matter} research. 
+I also prioritize collaborative research, clear scientific communication, and teaching.
+
+\section*{Education}
+
+\textbf{\textit{Ph.D.}, Physics (in progress)}\hfill 11.2022--Present \\
+Johannes Gutenberg University Mainz \\
+Thesis: \emph{Search for an Axionlike Dark Matter Candidate Using Nuclear Magnetic Resonance}
+
+\vspace{0.5em}
+
+\noindent\textbf{Master of Science, Physics} \hfill 10.2020--10.2022 \\
+Johannes Gutenberg University Mainz\\
+Thesis: \emph{Search for axion-like particles by performing NMR on a thermally polarized sample}
+
+\vspace{0.5em}
+
+\noindent\textbf{Bachelor of Science, Physics} \hfill 09.2016--06.2020 \\
+University of Science and Technology of China\\
+Thesis: \emph{Data analysis in Earth rotation measurements based on a nuclear spin--electron spin system}
+
+
+\section*{Research}
+\noindent\textbf{Cosmic Axion Spin Precession Experiment (CASPEr)} \hfill 10.2020--Present \\
+GSI Helmholtz Institute Mainz \& Johannes Gutenberg University Mainz \\
+Advisor: Prof.\,Dr.\,Dmitry Budker\\
+\textbf{Contribution:} Experiment, simulation, and data analysis. Design and optimization of axionlike dark matter detection strategy. Cross-team coordination within the CASPEr collaboration. 
+
+\vspace{0.5em}
+
+\noindent\textbf{Rb--Xe Comagnetometer Experiment} \hfill 09.2019--06.2020 \\
+Zheng-Tian Lu Group, University of Science and Technology of China \\
+Advisor: Prof.\,Dr.\,Dong Sheng\\
+\textbf{Contribution:} Assistance in the experimental search for spin-gravity coupling. Analysis of co-magnetometer data. 
+
+\vspace{0.5em}
+
+\noindent\textbf{Global Network of Optical Magnetometers for Exotic physics (GNOME)} \hfill 06.2019--08.2019 \\
+Laboratory of Magnetometry and Quantum-State Engineering, Jagiellonian University \\
+Advisor: Prof.\,Dr.\,Szymon Pustelny\\
+\textbf{Contribution:} Simulation and data analysis for the GNOME collaboration.
+
+\vspace{0.5em}
+
+\noindent\textbf{Catalyst Research for Water Splitting} \hfill 08.2017--06.2019 \\
+Jie Zeng Group, University of Science and Technology of China \\
+Advisor: Prof.\,Dr.\,Jie Zeng\\
+\textbf{Contribution:} Synthesized catalysts, prepared electrodes, and tested water-splitting performance.
+
+
+\section*{Selected Publications}
+
+\noindent
+
+\AtNextCite{\defcounter{maxnames}{3}\defcounter{minnames}{3}}
+\noindent[1] \fullcite{walter2025searchaxionlikedarkmatter}
+\begin{itemize}
+    \item Commissioning results of the CASPEr-Gradient experiment.
+    \item Co--first author (equal contribution; 3 authors). Contributions: apparatus construction and commissioning; data acquisition; analytical calculations and data analysis; manuscript preparation; coordination within the collaboration.
+\end{itemize}
+
+\AtNextCite{\defcounter{maxnames}{3}\defcounter{minnames}{3}}
+\noindent[2] \fullcite{Yuzhe2023_FrequencyScanning}
+\begin{itemize}
+    \item Theoretical considerations on frequency scanning for axion haloscopes. 
+    \item First and corresponding author. Contributions: all theoretical calculations and analysis; full manuscript preparation; coordination within the collaboration.
+\end{itemize}
+
+% \AtNextCite{\defcounter{maxnames}{3}\defcounter{minnames}{3}}
+% \noindent[3] \fullcite{Walter2023Shimming}
+% \begin{itemize}
+%     \item Application of Bayesian optimization to accelerate magnetic field shimming.
+%     \item Contributions: experimental apparatus construction; data acquisition; optimization of the algorithm.
+% \end{itemize}
+
+\section*{Presentations}
+\noindent\textbf{Talks}
+
+\vspace{0.3em}
+
+\noindent\begin{tabular}{@{}lp{14cm}@{}}
+2026 & GNOME workshop \\
+2023 & Academic Seminar of Chinese Students and Scholars in the German--French Region \\
+2022 & Invited talk at a Seminar at Institute of Theoretical Physics, Chinese Academy of Sciences \\
+2021 & 16th Patras Workshop on Axions, WIMPs and WISPs \\
+\end{tabular}
+
+\vspace{0.5em}
+
+\noindent\textbf{Posters}
+
+\vspace{0.3em}
+
+\noindent\begin{tabular}{@{}lp{14cm}@{}}
+2024 & The Fundamentals School -- summer school in high-energy and gravitational physics \\
+2024 & DPG Spring Meeting of the Atomic, Molecular, Quantum Optics and Photonics Section (SAMOP) \\
+2023 & The conference on dark matter, ions, molecules and atoms \\
+2022 & 17th Patras Workshop on Axions, WIMPs and WISPs \\
+\end{tabular}
+
+\section*{Software Development}
+
+\texttt{AxionBloch} -- [\href{https://github.com/Yuzhe98/AxionBloch}{GitHub link}]
+\begin{itemize}
+    \item Simulation tool for axion-induced spin dynamics using Bloch equations.  
+    \item Contributions: all design and implementation. 
+\end{itemize}
+
+\section*{Academic / Educational Contributions}
+
+\noindent\begin{tabular}{@{}lp{13.5cm}@{}}
+2026 & GNOME workshop  \\
+& Local co-organizer \\
+2026 & Educational publication – \textit{Some Rules for Good Scientific Presentations} (contribution: manuscript translation and editing)\\
+2025--2026 & Teaching assistant in Advanced Physics Laboratory Course - Magnetic Resonance (undergraduate-to-master-level course)\\
+2024 & Educational publication – \textit{Some rules of good scientific viewgraphs} (contribution: idea initiation; manuscript writing \& editing)\\
+2022 & 17th Patras Workshop on Axions, WIMPs and WISPs  \\
+& Local co-organizer
+\end{tabular}
+
+
+\section*{Skills and Experiences}
+
+\noindent\textbf{Experiment / Technical}
+\begin{itemize}
+    \item \textbf{Nuclear Magnetic Resonance (NMR):} Apparatus construction, operation, calibration, and data acquisition.
+    \item \textbf{Quantum sensing / precision measurements:} Operating Superconducting Quantum Interference Device (SQUID).
+    \item \textbf{Cryogenics:} Managing liquid helium and nitrogen for experiments.
+    \item \textbf{Hardware automation:} Programming-based control of laboratory equipment.
+    % \item \textbf{Catalysis / Electrochemistry:} Catalyst synthesis, electrode preparation, and water-splitting performance testing.
+\end{itemize}
+
+\noindent\textbf{Programming / Computational}
+\begin{itemize}
+    \item \textbf{Data analysis:} Processing CASPEr experimental data with Python; knowledge of particle physics data workflows from workshops.
+    \item \textbf{Simulation:} Physics simulations (spin dynamics, signal modeling) using C++ and Python.
+    \item \textbf{Numerical equation solving:} Solving Bloch and Schrödinger equations using C++ and Python.
+    \item \textbf{Software tools:} Experience with Git / Docker / \LaTeX / HDF5.
+    \item \textbf{High-performance computing (HPC):} Conceptual understanding and practical usage learned through workshops.
+\end{itemize}
+
+\noindent\textbf{Collaboration / Communication}
+\begin{itemize}
+    \item International teamwork: Collaboration with CASPEr members. Hosting weekly data analysis meetings with international colleagues.
+    \item Mentoring and student support: Assisting interns and students with laboratory integration and research projects; teaching assistant in university experiment course.
+    \item Scientific communication: Co-authoring publications, poster presentations, and assisting in talks. Organization of international conference. 
+\end{itemize}
+
+\section*{Publication List}
+\subsection*{Peer-reviewed Journals}
+\begin{enumerate}[label={[\arabic*]}]
+\item \fullcite{Kim2026haloscopecomparison}
+\item \fullcite{walter2025searchaxionlikedarkmatter}
+\item \fullcite{Yuzhe2023_FrequencyScanning}
+\item \fullcite{Walter2023Shimming}
+\item \fullcite{XingYulin2020Electroreduction}
+\end{enumerate}
+
+\subsection*{Software}
+\begin{enumerate}[label={[\arabic*]}]
+% \item \fullcite{Yuzhe2026_axionbloch}
+\item \fullcite{Zhang2026_repoAxionBloch}
+\end{enumerate}
+
+\subsection*{Preprints}
+\begin{enumerate}[label={[\arabic*]}]
+\item \fullcite{Yuzhe2026_axionbloch}
+% \item \fullcite{Zhang2026_repoAxionBloch}
+\end{enumerate}
+
+\subsection*{In Preparation}
+\begin{enumerate}[label={[\arabic*]}]
+\item \fullcite{Gao2025_EarthDM}
+\item \fullcite{Walter2026_CASPErDo}
+\end{enumerate}
+
+\end{document}
