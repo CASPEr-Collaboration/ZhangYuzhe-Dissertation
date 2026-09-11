@@ -3,3 +3,11 @@
 \newfontfamily\chinesefont{SimSun}
 \newcommand{\chinesetext}[1]{{\chinesefont #1}}
 
+% Enable full author lists locally, without changing citations elsewhere.
+\newif\iflongcitenames
+\AtEveryCite{%
+    \iflongcitenames
+        \defcounter{maxnames}{99}%
+        \defcounter{minnames}{1}%
+    \fi
+}
