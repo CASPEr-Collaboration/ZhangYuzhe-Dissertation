@@ -80,9 +80,12 @@ With lower nuclear polarization or a smaller sample volume, the SPN can become a
 \subsection{Bloch equations}\label{sec:intro:bloch_eq}
 The evolution of the nuclear spin magnetization $\mathbf{M}$ in magnetic fields is governed by the Bloch equations\,\cite{Abragam1961_NuclearMagnetism}:
 \begin{align}
-    \frac{dM_x}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_x - \frac{M_x}{T_2}\,,\label{eq:bloch_x}\\
-    \frac{dM_y}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_y - \frac{M_y}{T_2}\,,\label{eq:bloch_y}\\
-    \frac{dM_z}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_z - \frac{M_z-M_\mathrm{eqb}}{T_1}\,,\label{eq:bloch_z}
+    \frac{dM_x}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_x - \frac{M_x}{T_2}
+    \,,\label{eq:bloch_x}\\
+    \frac{dM_y}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_y - \frac{M_y}{T_2}
+    \,,\label{eq:bloch_y}\\
+    \frac{dM_z}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_z - \frac{M_z-M_\mathrm{eqb}}{T_1}
+    \,,\label{eq:bloch_z}
 \end{align}
 where $\mathbf{B}_\mathrm{eff}$ is the total effective field, $M_\mathrm{eqb}$ is the equilibrium magnetization, and $T_1$, $T_2$ are the longitudinal and transverse relaxation times.
 In most NMR experiments, the bias magnetic field $\mathbf{B}_0$ is much larger than any other applied magnetic field.
@@ -373,9 +376,9 @@ If all $N_a$ ALPs occupy the same mode, the corresponding local field takes the 
 \begin{equation}
     a(\mathbf{r},t)
     =a_0\cos\left(2\pi\nu_a t-\mathbf{k}\cdot\mathbf{r}+\phi\right)
-    \,,\label{eq:ALP_field}
+    \,\label{eq:ALP_field}
 \end{equation}
-over a region where the axion density can be treated as uniform.
+over a region where the ALP density can be treated as uniform.
 A realistic ALP wavefunction generally contains many modes and may be written as
 \begin{equation}
     \Psi(\mathbf{r},t)
@@ -396,7 +399,7 @@ Chapter~\ref{chap:theory} develops this behavior for the Milky Way ALP halo and 
 An oscillating ALP field can potentially produce three non-gravitational interactions: it may couple to photons, generating an electromagnetic field; its coupling to gluons induces oscillating $CP$-odd nuclear moments such as a nuclear electric dipole moment (EDM); its gradient coupling to nucleons and electrons acts as oscillating magnetic fields on nuclear and electron spins\,\cite{GrahamNewobservables}.
 All three effects oscillate at a frequency set primarily by the ALP mass and can therefore be sought with resonant precision measurements.
 
-This thesis focuses on the gradient coupling to nucleons, also known as the ``axion-wind'' coupling.
+This thesis focuses on the gradient coupling to nucleons, also known as the ``ALP-wind'' coupling.
 The nucleon Hamiltonian in the presence of an ALP field background can be written as
 \begin{equation}
     H_{\mathrm{aNN}} = c g_{\mathrm{aNN}}\,{\boldsymbol\nabla}a\cdot\mathbf{I}

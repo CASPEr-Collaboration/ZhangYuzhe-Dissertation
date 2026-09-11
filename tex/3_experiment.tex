@@ -205,7 +205,8 @@ In addition to the ALP coherence time $\tau_a$, the signal is also affected by t
 When $T_2^* \ll \tau_a$, the amplitude of the signal, characterized by the tipping angle $\xi$, is limited by the sample relaxation time, and it grows as
 \begin{equation}
     \xi(t) = (1 - e^{-t/T_2^*}) \Omega_a T_2^*
-    \,,\label{eq:s_t_T2star_ll_tau_a}
+    \,
+    \label{eq:s_t_T2star_ll_tau_a}
 \end{equation}
 and saturates at $t\gg T_2^*$.
 When $T_2^* \gg \tau_a$, the signal first grows linearly at $t\ll\tau_a$, and then grows as $\sim (t\tau_a)^{1/2}$ at $\tau_a<t<T_2^*$ like a random walk\,\cite{Gramolin2022Feb_SpectralSignatures, Yuzhe2023_FrequencyScanning}, saturating at $t\gg T_2^*$.
@@ -214,12 +215,6 @@ An analytical expression for the signal in this regime derived from numerical si
     \xi(t) = \left(1 - \exp{\left(\frac{-t}{\frac{1}{2}T_2^*}\right)}\right)^{1/2} \Omega_a \left(T_2^*\tau_a\right)^{1/2}
     \,.\label{eq:xi_t_T2star_gg_tau_a}
 \end{equation}
-% When the measurement duration $T$ and sample relaxation time $T_2^*$ are much longer than the ALP coherence time $\tau_a$, the signal amplitude varies randomly over time.
-% Hence,
-% When $T_2^*\gg\tau_a$, the final signal amplitude $\approx \Omega_a (T_2^*\tau_a)^{1/2}$. And we also found that the signal grows up with $\sim (t\tau_a)^{1/2}$ at first. So we can use
-% $s(t) = \left(1 - \exp{\left(\frac{-t}{\frac{1}{2}T_2^*}\right)}\right)^{1/2} \Omega_a (T_2^*\tau_a)^{1/2}$
-% to describe the signal.
-% Beside, for the sack of simplicity in numerical calculations, we can use this formula to approximate the signal under any circumstances
 To unify the two regimes, we introduce a parameter $x$ that interpolates between the two limits:
 \begin{equation}
     \xi(t) = \left(1 - \exp{\left(\frac{-t}{x T_2^*}\right)}\right)^{x} \Omega_a T_2^* \left(\frac{\tau_a}{\tau_a + T_2^*}\right)^{1/2}
@@ -273,20 +268,6 @@ Hence, $\Delta\nu$ can be expressed as
     \Delta\nu = \frac{1}{\pi} \frac{1}{\tau_a + T_2^*}
     \,.\label{eq:Gamma_signal}
 \end{equation}
-% Assuming
-% Depending on which linewidth is narrower,
-% \begin{equation}
-%     \Delta\nu = \left\{
-%     \begin{array}{cl}
-%     \Delta\nu_a ,
-%     &  \Delta\nu_a \ll \Delta\nu_{n}\\[4pt]
-%     \Delta\nu_a ,
-%     &  \Delta\nu_a \ll \Delta\nu_{n}\\[4pt]
-%     \Delta\nu_{n},
-%     & \Delta\nu_a  \gg \Delta\nu_{n}
-%     \end{array} \right.
-%     \,.\label{eq:Gamma_signal}
-% \end{equation}
 Within a spectral bin of width $\Delta\nu$, the number of PSD values available for averaging from a measurement of duration $T$ is
 \begin{equation}
     N_{\Delta\nu} = T \Delta\nu \gg 1
@@ -303,7 +284,7 @@ Since $N_{\Delta\nu} \gg 1$, the noise distribution approaches a Gaussian distri
 The coupling strength $g_{\mathrm{aNN}}$ corresponding to a \SI{5}{\sigma} signal can be found using the signal-to-noise ratio (SNR) condition
 \begin{equation}
     \frac{\mathrm{PSD}}{\sigma} = 5
-    \,.\label{eq:SNR_condition}
+    \,, \label{eq:SNR_condition}
 \end{equation}
 which can be expanded using Equations~\eqref{eq:S_PSD}, \eqref{eq:Gamma_signal}, and \eqref{eq:sigma} to
 \begin{equation}
@@ -437,7 +418,7 @@ In the other regime where $ T_2^* \gg \tau_a $, $\Delta\nu = 1 / (\pi T_2^*)$.
 Using $\tau_a = Q_a / \nu$ and Equation~\eqref{eq:scan_rate}, the scan rate becomes
 \begin{equation}
     \frac{d\nu}{d t} = \frac{\nu}{\pi \kappa Q_a T_2^* }
-    \,.\label{eq:scan_rate_regime1}
+    \,,\label{eq:scan_rate_regime1}
 \end{equation}
 which leads to
 \begin{equation}

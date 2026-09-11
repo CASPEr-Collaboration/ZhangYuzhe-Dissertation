@@ -77,7 +77,8 @@ The Earth's density varies with radius.
 From geophysical measurements of seismic waves, the Preliminary Reference Earth Model (PREM)\,\cite{Dziewonski1981_PREM} was constructed, giving the Earth's density profile as shown in Figure\,\ref{fig:PREM-density-enclosed_mass}.
 The Earth's escape velocity can therefore be found by
 \begin{equation}
-    v_\mathrm{escape} = \sqrt{\frac{2 G M_\oplus}{R_\oplus}~},
+    v_\mathrm{escape} = \sqrt{\frac{2 G M_\oplus}{R_\oplus}}
+    \,,
     \label{eq:earth_escape_velocity}
 \end{equation}
 where $M_\oplus=\SI{6e24}{\kg}$ and $R_\oplus=\SI{6378.1}{\km}$ are the mass and average radius of Earth, respectively.
@@ -134,7 +135,8 @@ To prepare for the analysis, this scenario is considered in the following sectio
 The general relation between an ALP wavefunction, its local energy density, and the real scalar field was established in Equations~\eqref{eq:a0_Psi_real} and~\eqref{eq:a0_rhoDM_Psi_real}.
 For the Earth-bound model, the wavefunction is expanded in the discrete gravitational eigenstates:
 \begin{equation}
-    \Psi(\mathbf{r}, t) = e^{-i m_a c^2 t / \hbar}\sum_{nlm}^{} c_{nlm} e^{-i E_n t / \hbar} \psi_{nlm}(\mathbf{r})\,.
+    \Psi(\mathbf{r}, t) = e^{-i m_a c^2 t / \hbar}\sum_{nlm}^{} c_{nlm} e^{-i E_n t / \hbar} \psi_{nlm}(\mathbf{r})
+    \,.
     \label{eq:Psi_r_t}
 \end{equation}
 Here $\Psi(\mathbf{r}, t)$ is the time-dependent wavefunction, $\psi_{nlm}$ and $E_n$ are the eigenfunction and energy of the state $(n,\,l,\,m)$, and $c_{nlm}$ are expansion coefficients determined by the state populations.
@@ -193,7 +195,8 @@ In spherical coordinates,
 \end{equation}
 so that the TISE can be rewritten as
 \begin{equation}
-    \left[-\frac{\hbar^2}{2m}\left(\frac{1}{{r}^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial}{\partial r}\right)-\frac{{\hat{L}}^2}{\hbar^2r^2}\right)+V_g(r)\right]\psi_{nlm}\left(r,\ \theta,\varphi\right)=E_{n}\psi_{nlm}\left(r,\ \theta,\varphi\right)\,,
+    \left[-\frac{\hbar^2}{2m}\left(\frac{1}{{r}^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial}{\partial r}\right)-\frac{{\hat{L}}^2}{\hbar^2r^2}\right)+V_g(r)\right]\psi_{nlm}\left(r,\ \theta,\varphi\right)=E_{n}\psi_{nlm}\left(r,\ \theta,\varphi\right)
+    \,,
 \end{equation}
 where $\hat{L}$ is the angular momentum operator.
 The eigenfunction can be separated as
@@ -204,11 +207,13 @@ The eigenfunction can be separated as
 where $R_{nl}$ is the radial wavefunction and $Y_l^m$ is the spherical harmonic.
 The spherical harmonics satisfy
 \begin{equation}
-    {\hat{L}}^2Y\left(\theta,\ \varphi\right)=l\left(l+1\right)\hbar^2Y\left(\theta,\varphi\right)\,.
+    {\hat{L}}^2Y\left(\theta,\ \varphi\right)=l\left(l+1\right)\hbar^2Y\left(\theta,\varphi\right)
+    \,.
 \end{equation}
 Therefore, to derive the radial wavefunction of an eigenstate with angular quantum number $l$, the TISE is transformed to
 \begin{equation}
-    -\frac{\hbar^2}{2m}\frac{1}{{r}^2}\frac{\partial}{\partial r}\left[r^2\frac{\partial R_{nl}\left(r\right)}{\partial r}\right]+\left[\frac{l\left(l+1\right)\hbar^2}{2mr^2}+V_g\right]R_{nl}\left(r\right)=E_{n}R_{nl}\left(r\right)\,.
+    -\frac{\hbar^2}{2m}\frac{1}{{r}^2}\frac{\partial}{\partial r}\left[r^2\frac{\partial R_{nl}\left(r\right)}{\partial r}\right]+\left[\frac{l\left(l+1\right)\hbar^2}{2mr^2}+V_g\right]R_{nl}\left(r\right)=E_{n}R_{nl}\left(r\right)
+    \,.
     \label{eq:TISE_R}
 \end{equation}
 Since the Earth's density is not uniform, it is difficult to derive the radial wavefunction analytically.
@@ -536,7 +541,7 @@ Using the numerical values of the wavefunction gradients, the value can be obtai
     2 \pi \times \SI{1}{\mHz}
     \frac{g_\mathrm{aNN}}{\SI{1e-9}{\GeV^{-1}}}
     \left(\frac{M_\mathrm{DM}^\mathrm{EH}}{\SI{4e-9}{M_\oplus}}\right)^{1/2}
-    ~.
+    \,.
     \label{eq:Omega_a_EH_theta}
 \end{equation}
 The two estimates in Equations~\eqref{eq:Omega_a_EH_est} and \eqref{eq:Omega_a_EH_theta} yield consistent results within an order of magnitude.
