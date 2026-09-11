@@ -1,47 +1,16 @@
 \addchap{Abstract}
 
-Axions and axionlike particles (ALPs) are well-motivated candidates for the dark matter that makes up most of the matter content of the universe.
-In the nuclear-gradient interaction, an ALP dark-matter field acts as an effective oscillating pseudomagnetic field on nuclear spins, and nuclear magnetic resonance (NMR) provides a resonant method for detecting this weak drive.
+Axions and axionlike particles (ALPs) are well-motivated dark-matter candidates. Their gradient coupling to nuclear spins produces an oscillating pseudomagnetic field that can be detected using nuclear magnetic resonance (NMR).
+In this thesis, signal models, frequency-scanning strategies, and data-analysis methods are developed and applied to proof-of-principle searches with the Cosmic Axion Spin Precession Experiment (CASPEr).
 
-This thesis develops the signal models, frequency-scanning strategy, and data-analysis framework for ALP searches with the Cosmic Axion Spin Precession Experiment (CASPEr), and applies them to proof-of-principle measurements with the CASPEr-Gradient-LowField apparatus.
+Two dark-matter scenarios are considered: a virialized Milky Way halo, which produces stochastic signals with finite coherence times, and a halo of ALPs gravitationally bound to Earth, which can produce signals with longer coherence times and a potentially enhanced local density.
+The frequency-scanning analysis shows that, in the long-measurement limit, coupling sensitivity improves only as $T_\mathrm{tot}^{-1/4}$ with total integration time. Longer nuclear-spin coherence times and frequency steps matched to the sensitive bandwidth are therefore central to efficient searches.
 
-Two ALP dark-matter models are considered: a virialized Milky Way halo, which gives a stochastic signal with finite coherence time and a linewidth set by the velocity distribution, and a halo of ALPs gravitationally bound to Earth, which can produce long-lived, narrowband, and direction-dependent signals with potentially enhanced local dark-matter density.
+The CASPEr-Gradient-LowField apparatus combines a thermally polarized liquid-methanol sample with SQUID magnetometry.
+Searches near \SI{1.35}{\MHz}, corresponding to ALP masses near \SI{5.58}{\neV/c^2}, found no statistically significant candidates.
+The Milky Way halo search yields a \SI{95}{\percent} confidence-level upper limit on the ALP-proton coupling of approximately $|g_\mathrm{ap}|\lesssim\SI{1e-2}{\GeV^{-1}}$ over a \SI{240}{\Hz} frequency interval.
+The Earth-bound search yields an approximate \SI{95}{\percent} confidence-level limit of $|g_\mathrm{ap}|\lesssim\SI{1e-9}{\GeV^{-1}}$ over a \SI{48}{\Hz} interval, conditional on the assumed Earth-bound halo density and state population.
 
-For frequency scans, 2 regimes are identified according to the relative magnitudes of the NMR coherence time $T_2^*$ and the ALP coherence time $\tau_a$.
-In the long-measurement limit, the coupling sensitivity improves only as $T_\mathrm{tot}^{-1/4}$ with total integration time in both regimes.
-To maximize the sensitivity, the relaxation time $T_2^*$ should be as long as possible, and the frequency step size should equal the sensitive bandwidth of a single measurement.
-
-The experimental chapter describes the CASPEr-Gradient-LowField apparatus used in this thesis, including the superconducting magnet system, the methanol sample, the pickup coil, the SQUID detection chain, and the Python-based control and acquisition software.
-The sample consists of thermally polarized liquid methanol at about \SI{180}{\kelvin}, with a proton polarization of only \num{1.8e-7}, which is the dominant limitation on sensitivity.
-% The same apparatus parameters are then used to project the gains expected from hyperpolarized methanol and liquid ${}^{129}$Xe, as well as from improved field homogeneity and larger sample or pickup-coil performance.
-
-The data-analysis pipeline includes time-series sanity checks, Fourier transformation, filter correction, baseline removal, normalized-power-excess thresholding, and outlier validation.
-The Milky Way ALP search scanned a band of
-\begin{equation}
-    \SI{1.348570}{\MHz}\pm\SI{120}{\Hz}
-    \,\nonumber
-\end{equation}
-in three sequential scans with \SI{100}{\s} acquisitions at each frequency step.
-No statistically significant candidate survived the cross-scan consistency checks, yielding a \SI{95}{\percent} confidence-level limit of $|g_\mathrm{ap}| \lesssim \SI{1e-2}{\GeV^{-1}}$ over the scanned mass range of
-\begin{equation}
-    \SI{5.577237}{\neV/c^2}\pm\SI{496}{\femto\eV/c^2}\,.\nonumber
-\end{equation}
-The Earth-bound ALP search scanned
-\begin{equation}
-    \SI{1.348575}{\MHz}\pm\SI{24}{\Hz}
-    \,\nonumber
-\end{equation}
-with a measurement duration of \SI{1}{\hour} at each of 8 frequency steps.
-No statistically significant candidate was found, giving an approximate \SI{95}{\percent} confidence-level limit of $|g_\mathrm{ap}| \lesssim \SI{1e-9}{\GeV^{-1}}$ over the scanned mass range of
-\begin{equation}
-    \SI{5.577258}{\neV/c^2} \pm \SI{99}{\femto\electronvolt/c^2}
-    \,\nonumber
-\end{equation}
-under the Earth-bound halo assumptions used in the analysis.
-
-These measurements demonstrate the use of liquid-state NMR to search for ALP-proton gradient coupling and establish an experimental and analytical basis for more sensitive searches with hyperpolarized samples across different ALP halo models.
-
-The most promising upgrades are hyperpolarized samples, lower noise, better field homogeneity, and larger sample volume.
-Hyperpolarized methanol could improve the projected coupling sensitivity by orders of magnitude, while highly polarized liquid \ch{^{129}Xe} with long transverse relaxation times offers a further route to improved sensitivity.
-The numerical Bloch-dynamics simulator and statistical framework developed here support the analysis of diverse dark-matter models.
-These developments could broaden the reach of CASPEr to axion streams, dark photons, and other new-physics scenarios.
+These measurements demonstrate liquid-state NMR as a method for searching for ALP-proton gradient coupling under distinct halo assumptions.
+The very small thermal proton polarization, approximately \num{1.8e-7}, is the principal limitation on sensitivity. Hyperpolarization offers a route to improvements of several orders of magnitude, complemented by lower detector noise and improved field homogeneity.
+The signal models, statistical methods, and numerical spin-dynamics simulations developed here provide a basis for future searches with more highly polarized samples.
