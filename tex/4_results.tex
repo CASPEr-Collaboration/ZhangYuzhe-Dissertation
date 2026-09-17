@@ -30,12 +30,12 @@ The analysis consists of 4 main stages:
     \item \textbf{Frequency spectrum generation and filtering.} Recorded time-series data are checked for sanity. Data that pass these checks are Fourier transformed to generate frequency spectra. Digital filters, such as the Savitzky--Golay (SG) filter and optimal filters, are applied to remove the baseline and optimize the SNR. The filtered spectra are then searched for outliers.
     \item \textbf{MC simulations to determine the outlier threshold.} MC simulations with artificial ALP signals are used to determine the threshold for selecting outliers in the frequency domain.
     \item \textbf{NMR characterization.} The NMR sample, bias magnetic field, and detection chain are characterized by pulsed-NMR measurements. These NMR configurations are later used for examining the outliers and determining the experimental sensitivity to ALPs.
-    \item \textbf{Outlier examination.} Based on the information from previous steps, outliers in the frequency spectra are selected and examined. The validated outliers become ALP signal candidates for further investigation. Exclusion or sensitivity plots can also be generated after the validation check.
+    \item \textbf{Outlier examination.} Based on the information from previous steps, outliers in the frequency spectra are selected and examined. The validated outliers become ALP signal candidates for further investigation. Exclusion or sensitivity plots can also be generated after the validation.
 \end{itemize}
 In addition to these procedures, the analysis also includes procedures such as calibration by artificial signal injection.
 The technical details of these procedures are discussed as follows.
 \begin{figure}
-    \includegraphics[width=0.99\linewidth]{figures/CASPEr-G-data-analysis-pipeline.drawio.pdf}
+    \includegraphics[width=0.99\linewidth]{figures/CASPEr-G-data-analysis-pipeline.pdf}
     \caption{Data-analysis pipeline for the CASPEr-Gradient search. Details of this pipeline are discussed in Section~\ref{sec:results:data_analysis:procedure}.}
     \label{fig:casper_g_data_analysis_pipeline}
 \end{figure}
@@ -261,16 +261,16 @@ Since these parameters may vary due to changes in the sample temperature, bias m
     % If no candidate survives, convert the threshold power into a coupling limit after correcting for the simulated signal-recovery efficiency.
 % \end{enumerate}
 
-\subsubsection{Validation check and results}
+\subsubsection{Validation and results}
 
 Outliers that pass the threshold are not necessarily ALP signals.
 Several methods are used to validate the outliers.
 Those that can pass the validation tests are considered ALP signal candidates.
 
-The key principle of the validation check is that ALP signals are expected to be consistent in terms of Compton frequency and coupling strength across measurements.
+The key principle of the validation is that ALP signals are expected to be consistent in terms of Compton frequency and coupling strength across measurements.
 Following this principle, the outliers are examined by the following steps:
 \begin{enumerate}[label=\arabic*.]
-    \item \textbf{Merging outliers within individual scan steps by frequency.} The frequency of the outlier should be consistent within a certain tolerance. This tolerance is determined by the spectral RBW and the ALP linewidth. Outliers that appear at adjacent frequencies are likely to be the same ALP signal. Therefore, the first step in the validation check is to merge the outliers by their frequencies. The merged outlier is represented by the outlier with the largest amplitude.
+    \item \textbf{Merging outliers within individual scan steps by frequency.} The frequency of the outlier should be consistent within a certain tolerance. This tolerance is determined by the spectral RBW and the ALP linewidth. Outliers that appear at adjacent frequencies are likely to be the same ALP signal. Therefore, the first step in the validation is to merge the outliers by their frequencies. The merged outlier is represented by the outlier with the largest amplitude.
     \item \textbf{Obtaining coupling strength.} The coupling strength of the ALP signal and its uncertainty can be obtained from the amplitude of the outlier, the NMR configuration, ALP periodic modulation, and the noise in the spectra.
     % \item \textbf{Finding interesting scan steps.}
     \item \textbf{Reproducibility.} The outlier should be reproducible across scan steps that cover the same frequency range. Though the coupling strength should be consistent, the amplitude of the outlier may vary due to the periodic modulation of the ALP signal and changes in the NMR configuration, especially the Larmor frequency. The outlier should be observed when and only when the estimated signal amplitude is significant compared to the noise level. This rule can be used to exclude outliers that are not reproducible across scans.
@@ -824,11 +824,11 @@ The excess of outliers is likely due to non-white-noise structures such as RFI i
 There was no optimal filtering to suppress these structures.
 % The corresponding coupling strengths of the merged outliers were obtained by the NMR characterization and Equation~\YZ{add equation ref here}.
 Outliers appearing at consistent frequencies with consistent coupling strengths were considered candidates.
-Out of the 1041 outliers, 38 candidates were found after the validation check.
+Out of the 1041 outliers, 38 candidates were found after the validation.
 % One candidate is shown in Figure~\ref{fig:EarthALP-candidate-example} as an example.
 Note that only one scan was performed over the scan range, so the candidates cannot be cross-checked by multiple scans.
 Most of the candidates did not appear in the NMR resonant windows; therefore, they are unlikely to be ALP signals.
-Those candidates that appeared in the NMR resonant windows are likely to be aliases of RFI, since similar structures are observed in the spectra at regular intervals.
+Those candidates that appeared in the NMR resonant windows were found to be aliases of RFI, since similar structures are observed in the spectra at regular intervals.
 The candidates are listed in Appendix~\ref{app:candidates} for reference.
 
 In the absence of a detection, constraints on the ALP-proton coupling can be derived from the measured NPE noise spectra and the expected signal power for the Earth-bound ALP halo model based on Equation~\eqref{eq:gaNN_lim_equation}.

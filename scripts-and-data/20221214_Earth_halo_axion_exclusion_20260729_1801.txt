@@ -5,6 +5,7 @@
 # frequency_axis_unit: Hz
 # frequency_offset (MHz): 1.348568
 # frequency_grid_RBW (Hz): 2
+# assume \Omega_{a,\,\perp}^{\oplus}  \approx 2 \pi \times \SI{2}{\mHz} \frac{g_\mathrm{aNN}}{\SI{1e-9}{\GeV^{-1}}}
 # columns: frequency_minus_offset, frequency, combined_limit, valid_mask, candidate_mask
 # units: Hz, Hz, 1 / GeV, boolean_as_0_or_1, boolean_as_0_or_1
 -118	1348450	1.376228944582e-10	1	0

@@ -99,7 +99,7 @@ ax.fill_between(
     label="$>7.809\\,\\sigma$ range\n" + f"$P=${ncx2.sf(rescan_thres, df, 0.0):.1g}",
 )
 
-# ax.set_xlim([x[0], x[-1]])
+ax.set_xlim(right=x[-1] / sigma)
 # ax.legend(loc='best', frameon=False)
 ax.set_yscale("log")
 

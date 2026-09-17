@@ -222,11 +222,17 @@ for i, ax in enumerate([state_ax, WF_ax]):
 # ha = 'left' or 'right'
 # va = 'top' or 'bottom'
 
-output_path = "tex/figures/EH_ALP-state_amplitude-and-radial_wavefunctions-10states.pdf"
 # fig.savefig(output_path, facecolor="white", transparent=False)
-fig.savefig(output_path, dpi=300, bbox_inches="tight")
-print(f"Saved figure to {output_path}")
-
+fig.savefig(
+    "tex/figures/EH_ALP-state_amplitude-and-radial_wavefunctions-7states.pdf",
+    # dpi=300,
+    # bbox_inches="tight",
+)
+fig.savefig(
+    "tex/figures/EH_ALP-state_amplitude-and-radial_wavefunctions-7states.png",
+    # dpi=300,
+    # bbox_inches="tight",
+)
 # fig.tight_layout()
 plt.show()
 
