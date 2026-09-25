@@ -1,6 +1,6 @@
 \documentclass[12pt,a4paper]{article}
 
-\usepackage[ngerman]{babel}
+\usepackage[american]{babel}
 \usepackage{geometry}
 \geometry{margin=25mm}
 \usepackage{microtype}
@@ -19,17 +19,17 @@
     Yuzhe Zhang
 \end{center}
 
-\input{0_abstractGerman}
+\IfFileExists{../0_abstract.tex}{\input{../0_abstract}}{\input{tex/0_abstract}}
 
 \vfill
 
-\noindent\textbf{Bestätigung durch den Betreuer}
+\noindent\textbf{Supervisor approval}
 
 \vspace{2.2cm}
 
 \noindent\begin{tabular}{@{}p{0.45\textwidth}p{0.45\textwidth}@{}}
     \rule{0.9\linewidth}{0.4pt} & \rule{0.9\linewidth}{0.4pt} \\
-    Ort, Datum & Unterschrift des Betreuers \\
+    Place, date & Supervisor signature \\
     & Prof.\,Dr.\,Dmitry Budker
 \end{tabular}
 

@@ -31,39 +31,39 @@
 
 % The format of the title page.
 \begin{titlepage}
-    \sffamily
     \begin{center}
         % \includegraphics[height = 2.0 cm]{figures/HIMlogo.png} \\
         \includegraphics[height = 3.2 cm]{figures/JGUlogo-2.jpeg}\\
         \includegraphics[height = 2.4 cm]{figures/HI-Mainz_nebeneinander_d.png}\\
         \vfil
-        {\LARGE
+        {\Large
             \rule[1 ex]{\textwidth}{.5 pt}
-            \onehalfspacing\printTitleBold\\[1 ex]
+            \onehalfspacing\printTitleBold\\
+            % [.5 ex]
             % {\vspace*{-1 ex}\Large \printGermanTitle}\\
             \rule[-1 ex]{\textwidth}{.5 pt}
         }
         \vfil
-        {\Large\textbf{\printAuthor}}
-        \vfil
-        {\large A dissertation submitted \\[0.25 ex]
-        for the degree of Doctor of Natural Science}\\[0.25 ex]
+        {\large\textbf{\printAuthor}}\\[0.25 ex]
         \bigskip
-        % {\Large \textit{Philosophiae Doctor} }\\[0.5 ex]
-        % {\large\emph{(Ph.D.)}}\\
-        \bigskip
+        {Born in Jiangsu, China}\\[0.25 ex]
         \vfil
-        {\large Submitted on \printDateReceived{}\\[0.25 ex]
-        Department of Physics, Mathematics and Computer Science \\[0.25 ex]
-        % Digital-Engineering-Fakultät\\[0.25 ex]
-        Johannes Gutenberg-Universität Mainz}
+        \bigskip
+        {A dissertation submitted for the degree of \\[0.25 ex]
+        Doctor of Natural Sciences \\[0.25 ex]
+        at the Department of Physics, Mathematics and Computer Science \\[0.25 ex]
+        of Johannes Gutenberg University \\
+        in Mainz}\\[0.25 ex]
+        \bigskip
+        {Submitted on \printDateReceived{}\\[0.25 ex]
+        % Johannes Gutenberg-Universität Mainz
+        }
     \end{center}
     
     \vfil
     \begin{table}[h]
         \centering
         \large
-        \sffamily 
         {\def\arraystretch{1.2}
             \begin{tabular}{>{\bfseries}p{3.8 cm}p{6.3 cm}}
                 First referee            & \printNameOfSupervisor\\
