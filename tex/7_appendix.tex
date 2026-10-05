@@ -13,18 +13,18 @@
 
 % % \section{Spin dynamics: the Bloch equations}\label{sec:axionbloch:bloch}
 
-% % The package models spin-$1/2$ ensembles through the Bloch equations~\eqref{eq:bloch_x}--\eqref{eq:bloch_z} derived in Section~\ref{sec:intro:bloch_eq}. The total effective field is $\mathbf{B}_\mathrm{eff} = \mathbf{B}_0 + \mathbf{B}_a(t)$, combining the laboratory bias magnetic field and the axion-induced pseudomagnetic field. The equations are solved in the rotating coordinate frame (RCF), which removes the fast Larmor precession and exposes the slow axion-induced dynamics. The effective transverse relaxation time $T_2^*$ (which includes inhomogeneous broadening) is simulated by sampling the spread of bias-field values from a \texttt{Magnet} instance and integrating the Bloch equations for each sampled field independently.
+% % The package models spin-$1/2$ ensembles through the Bloch equations~\eqref{eq:bloch_x}--\eqref{eq:bloch_z} derived in Section~\ref{sec:intro:bloch_eq}. The total effective field is $\boldsymbol{B}_\mathrm{eff} = \boldsymbol{B}_0 + \boldsymbol{B}_a(t)$, combining the laboratory bias magnetic field and the axion-induced pseudomagnetic field. The equations are solved in the rotating coordinate frame (RCF), which removes the fast Larmor precession and exposes the slow axion-induced dynamics. The effective transverse relaxation time $T_2^*$ (which includes inhomogeneous broadening) is simulated by sampling the spread of bias-field values from a \texttt{Magnet} instance and integrating the Bloch equations for each sampled field independently.
 
 
 % % \section{Numerical integration}\label{sec:axionbloch:rk4}
 
-% % The time evolution of $\mathbf{M}$ is obtained by numerically integrating Equations~(\ref{eq:bloch_x}--\ref{eq:bloch_z}) with the fourth-order Runge--Kutta (RK4) method. Given a time step $\Delta t$ and initial magnetization $\mathbf{M}^n$, the update rule is
+% % The time evolution of $\boldsymbol{M}$ is obtained by numerically integrating Equations~(\ref{eq:bloch_x}--\ref{eq:bloch_z}) with the fourth-order Runge--Kutta (RK4) method. Given a time step $\Delta t$ and initial magnetization $\boldsymbol{M}^n$, the update rule is
 % % \begin{equation}
-% %     \mathbf{M}^{n+1}
-% %     = \mathbf{M}^n
-% %     + \frac{\Delta t}{6}\bigl(\mathbf{k}_1 + 2\mathbf{k}_2 + 2\mathbf{k}_3 + \mathbf{k}_4\bigr)\,,
+% %     \boldsymbol{M}^{n+1}
+% %     = \boldsymbol{M}^n
+% %     + \frac{\Delta t}{6}\bigl(\boldsymbol{k}_1 + 2\boldsymbol{k}_2 + 2\boldsymbol{k}_3 + \boldsymbol{k}_4\bigr)\,,
 % % \end{equation}
-% % where $\mathbf{k}_1 = d\mathbf{M}/dt|_{\mathbf{M}^n}$ and subsequent $\mathbf{k}_i$ are evaluated at intermediate half-steps following the standard RK4 prescription. The local truncation error is $\mathcal{O}(\Delta t^5)$ and the global accumulated error is $\mathcal{O}(\Delta t^4)$. The time step is set to be at least one order of magnitude smaller than the shortest characteristic timescale in the simulation (e.g., $T_1$, $T_2$, or $1/\nu_a$).
+% % where $\boldsymbol{k}_1 = d\boldsymbol{M}/dt|_{\boldsymbol{M}^n}$ and subsequent $\boldsymbol{k}_i$ are evaluated at intermediate half-steps following the standard RK4 prescription. The local truncation error is $\mathcal{O}(\Delta t^5)$ and the global accumulated error is $\mathcal{O}(\Delta t^4)$. The time step is set to be at least one order of magnitude smaller than the shortest characteristic timescale in the simulation (e.g., $T_1$, $T_2$, or $1/\nu_a$).
 
 % % The RK4 integration is implemented in a compiled C++ backend and exposed to Python through the \texttt{pybind11} interface, achieving runtimes of $\sim\SI{10}{\s}$ for $\approx4\times10^9$ integration steps on a modern desktop CPU.
 
@@ -191,7 +191,7 @@
 % where $C_{ij}=\langle n_i n_j\rangle$ is the noise covariance matrix.
 % Maximizing this expression gives
 % \begin{equation}
-%     \mathbf{w}\propto \mathbf{C}^{-1}\mathbf{s}\,.
+%     \boldsymbol{w}\propto \boldsymbol{C}^{-1}\boldsymbol{s}\,.
 %     \label{eq:optimal_filter_covariance}
 % \end{equation}
 % If the frequency bins are independent, $C_{ij}=\sigma_i^2\delta_{ij}$, and the optimal linear estimator combines the bins as

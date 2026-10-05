@@ -135,22 +135,22 @@ To prepare for the analysis, this scenario is considered in the following sectio
 The general relation between an ALP wavefunction, its local energy density, and the real scalar field was established in Equations~\eqref{eq:a0_Psi_real} and~\eqref{eq:a0_rhoDM_Psi_real}.
 For the Earth-bound model, the wavefunction is expanded in the discrete gravitational eigenstates:
 \begin{equation}
-    \Psi(\mathbf{r}, t) = e^{-i m_a c^2 t / \hbar}\sum_{nlm}^{} c_{nlm} e^{-i E_n t / \hbar} \psi_{nlm}(\mathbf{r})
+    \Psi(\boldsymbol{r}, t) = e^{-i m_a c^2 t / \hbar}\sum_{nlm}^{} c_{nlm} e^{-i E_n t / \hbar} \psi_{nlm}(\boldsymbol{r})
     \,.
     \label{eq:Psi_r_t}
 \end{equation}
-Here $\Psi(\mathbf{r}, t)$ is the time-dependent wavefunction, $\psi_{nlm}$ and $E_n$ are the eigenfunction and energy of the state $(n,\,l,\,m)$, and $c_{nlm}$ are expansion coefficients determined by the state populations.
+Here $\Psi(\boldsymbol{r}, t)$ is the time-dependent wavefunction, $\psi_{nlm}$ and $E_n$ are the eigenfunction and energy of the state $(n,\,l,\,m)$, and $c_{nlm}$ are expansion coefficients determined by the state populations.
 The total particle number $N_a$ enters through the density below.
 The fast oscillation at the ALP Compton frequency is indicated by $e^{-i m_a c^2 t / \hbar}$, while the small shift in oscillation frequency is indicated by $e^{-i E_n t / \hbar}$.
-The corresponding local energy density, $\rho_{DM}(\mathbf{r})=m_a c^2N_a
-\langle|\Psi(\mathbf{r},t)|^2\rangle_t$, fixes the field amplitude through
+The corresponding local energy density, $\rho_{DM}(\boldsymbol{r})=m_a c^2N_a
+\langle|\Psi(\boldsymbol{r},t)|^2\rangle_t$, fixes the field amplitude through
 Equation~\eqref{eq:a0_rhoDM_Psi_real}.
 The remaining task is therefore to determine the eigenfunctions, eigenenergies, and state populations in the Earth's potential.
 
 In the non-relativistic limit, the eigenstates can be found by solving the time-independent Schrödinger equation (TISE)
 \begin{equation}
-    \left[-\frac{\hbar^2}{2 m_a}\nabla^2 + V_g(r)\right]\psi_{nlm}(\mathbf{r})
-    = E_n\,\psi_{nlm}(\mathbf{r})
+    \left[-\frac{\hbar^2}{2 m_a}\nabla^2 + V_g(r)\right]\psi_{nlm}(\boldsymbol{r})
+    = E_n\,\psi_{nlm}(\boldsymbol{r})
     \,.\label{eq:schrodinger_earth}
 \end{equation}
 At infinity ($r \to \infty$), the potential vanishes.
@@ -201,7 +201,7 @@ so that the TISE can be rewritten as
 where $\hat{L}$ is the angular momentum operator.
 The eigenfunction can be separated as
 \begin{equation}
-    \psi_{nlm}(\mathbf{r}) = R_{nl}(r)\,Y_l^m(\hat{\mathbf{r}})
+    \psi_{nlm}(\boldsymbol{r}) = R_{nl}(r)\,Y_l^m(\hat{\boldsymbol{r}})
     \,,\label{eq:psi_R_Y}
 \end{equation}
 where $R_{nl}$ is the radial wavefunction and $Y_l^m$ is the spherical harmonic.
@@ -225,9 +225,9 @@ This method is implemented in the Python class \texttt{EarthBoundAxionHalo} of \
 Note that normalization is necessary for deriving the correct magnitude of the eigenfunctions.
 The wavefunctions are normalized so that the total probability integrates to unity,
 \begin{equation}
-    \int|\psi_{nlm}(\mathbf{r})|^2\,d^3r
+    \int|\psi_{nlm}(\boldsymbol{r})|^2\,d^3r
     = \int_0^\infty |R_{nl}(r)|^2\,r^2\,dr
-    \int|Y_l^m(\hat{\mathbf{r}})|^2\,d\Omega
+    \int|Y_l^m(\hat{\boldsymbol{r}})|^2\,d\Omega
     = 1
     \,.\label{eq:psi_norm}
 \end{equation}
@@ -242,10 +242,10 @@ Examples of normalized wavefunctions are illustrated in Figure~\ref{fig:EH_ALP-s
 
 % in terms of associated Laguerre polynomials with $r$ scaled by $a_g$. The ground state ($n=1$, $l=m=0$) is
 % \begin{equation}
-%     \psi_{100}(\mathbf{r}) = \frac{1}{\sqrt{\pi}\,a_g^{3/2}}\,e^{-r/a_g}
+%     \psi_{100}(\boldsymbol{r}) = \frac{1}{\sqrt{\pi}\,a_g^{3/2}}\,e^{-r/a_g}
 %     \,.\label{eq:psi_ground}
 % \end{equation}
-% The local ALP field amplitude at the detector is proportional to $|\psi_{nlm}|$ evaluated at the detector position $\mathbf{r}_\mathrm{det}$ (for a mode carrying total energy $E_n$ and a fixed number of bound quanta).
+% The local ALP field amplitude at the detector is proportional to $|\psi_{nlm}|$ evaluated at the detector position $\boldsymbol{r}_\mathrm{det}$ (for a mode carrying total energy $E_n$ and a fixed number of bound quanta).
 
 % The gradient of the ALP field, which drives nuclear spin precession through Equation~\eqref{eq:HaNN}, is
 % \begin{equation}
@@ -260,13 +260,13 @@ Examples of normalized wavefunctions are illustrated in Figure~\ref{fig:EH_ALP-s
 The ALP field gradient at the detector can be derived from the spatial gradient of the wavefunction $\psi_{nlm}$ evaluated at the detector position.
 The gradient operator in spherical coordinates is
 \begin{equation}
-    \boldsymbol{\nabla} = \hat{\mathbf{r}}\,\frac{\partial}{\partial r} + \hat{\boldsymbol{\theta}}\,\frac{1}{r}\frac{\partial}{\partial \theta} + \hat{\boldsymbol{\varphi}}\,\frac{1}{r\sin\theta}\frac{\partial}{\partial \varphi}
+    \boldsymbol{\nabla} = \hat{\boldsymbol{r}}\,\frac{\partial}{\partial r} + \hat{\boldsymbol{\theta}}\,\frac{1}{r}\frac{\partial}{\partial \theta} + \hat{\boldsymbol{\varphi}}\,\frac{1}{r\sin\theta}\frac{\partial}{\partial \varphi}
     \,.\label{eq:gradient_spherical}
 \end{equation}
 The eigenstates are defined in the Earth-rest frame, whereas the gradient coupling is measured in the laboratory frame.
 The ALP field is a Lorentz scalar\footnote{A Lorentz scalar is a physical quantity whose value is unchanged under Lorentz transformations between inertial observers.}, while its derivatives transform according to the inverse Lorentz transformation.
 The chain rule, $\partial'_\mu=(\Lambda^{-1})^\nu{}_\mu\partial_\nu$, mixes the temporal derivative with the component of the spatial gradient parallel to the laboratory velocity.
-Here $\Lambda^\mu{}_\nu$ is the $4\times4$ Lorentz-boost matrix relating the Earth-rest-frame coordinates $x^\mu=(ct,\mathbf{r})$ to the laboratory-frame coordinates through $x'^\mu=\Lambda^\mu{}_\nu x^\nu$.
+Here $\Lambda^\mu{}_\nu$ is the $4\times4$ Lorentz-boost matrix relating the Earth-rest-frame coordinates $x^\mu=(ct,\boldsymbol{r})$ to the laboratory-frame coordinates through $x'^\mu=\Lambda^\mu{}_\nu x^\nu$.
 Its inverse appears because the derivative basis transforms oppositely to the coordinates; the Greek indices run over the temporal and three spatial components.
 To obtain the spatial transformation explicitly, the unboosted gradient is decomposed into components parallel and perpendicular to the velocity of the laboratory in the Earth-rest frame, $\boldsymbol{v}$:
 \begin{equation}
@@ -357,15 +357,15 @@ The condition $v/c\ll1$ does not necessarily make the temporal-gradient contribu
 It is the laboratory-frame gradient $\boldsymbol{\nabla}_\mathrm{lab}a$ that enters the interaction Hamiltonian in Equation~\eqref{eq:HaNN}.
 The unboosted gradient can be inferred from Equations~\eqref{eq:a0_Psi_real} and~\eqref{eq:Psi_r_t} as
 \begin{align}
-    \boldsymbol{\nabla}a(\mathbf{r}, t)
-    &= \sqrt{\frac{N_a \hbar^3 c}{2 m_a}} \Re\left[ \boldsymbol{\nabla} \Psi(\mathbf{r}, t) \right] \\
-    &= \sqrt{\frac{N_a \hbar^3 c}{2 m_a}} \Re\left[ e^{-\frac{i m_a c^2 t}{\hbar}}\sum_{nlm}^{} c_{nlm} e^{-\frac{i E_n t}{\hbar}} \boldsymbol{\nabla}\psi_{nlm}(\mathbf{r}) \right]
+    \boldsymbol{\nabla}a(\boldsymbol{r}, t)
+    &= \sqrt{\frac{N_a \hbar^3 c}{2 m_a}} \Re\left[ \boldsymbol{\nabla} \Psi(\boldsymbol{r}, t) \right] \\
+    &= \sqrt{\frac{N_a \hbar^3 c}{2 m_a}} \Re\left[ e^{-\frac{i m_a c^2 t}{\hbar}}\sum_{nlm}^{} c_{nlm} e^{-\frac{i E_n t}{\hbar}} \boldsymbol{\nabla}\psi_{nlm}(\boldsymbol{r}) \right]
     \,,\label{eq:gradient_Psi_sum}
 \end{align}
 where
 \begin{equation}
-    \boldsymbol{\nabla}\psi_{nlm}(\mathbf{r})
-    = \hat{\mathbf{r}}\,\frac{\partial R_{nl}}{\partial r}Y_l^m + \hat{\boldsymbol{\theta}}\,\frac{R_{nl}}{r}\frac{\partial Y_l^m}{\partial \theta} + \hat{\boldsymbol{\varphi}}\,\frac{R_{nl}}{r\sin\theta}\frac{\partial Y_l^m}{\partial \varphi}
+    \boldsymbol{\nabla}\psi_{nlm}(\boldsymbol{r})
+    = \hat{\boldsymbol{r}}\,\frac{\partial R_{nl}}{\partial r}Y_l^m + \hat{\boldsymbol{\theta}}\,\frac{R_{nl}}{r}\frac{\partial Y_l^m}{\partial \theta} + \hat{\boldsymbol{\varphi}}\,\frac{R_{nl}}{r\sin\theta}\frac{\partial Y_l^m}{\partial \varphi}
     \,.\label{eq:gradient_psi_nlm}
 \end{equation}
 Using Equation~\eqref{eq:Psi_r_t}, the two Lorentz-boost terms in Equation~\eqref{eq:gradient_lorentz_boost} become
@@ -501,7 +501,7 @@ If multiple modes are populated, the total gradient is a superposition of the gr
 %     \item When angular momentum is non-zero ($l>=1$), the gradient has non-radial components may vary over different locations, depending on the angular structure of the wavefunction.
 %     \item The choice of the quantization axis is critical for considering $l>0$ states.
 %     Since the solar gravity breaks the rotational symmetry, the $z$-axis is chosen along the Earth--Sun line.
-%     The $x$-axis is chosen along the instantaneous velocity of the Earth in the Solar System, and the $y$-axis is defined by $\hat{\mathbf{y}}=\hat{\mathbf{z}}\times\hat{\mathbf{x}}$.
+%     The $x$-axis is chosen along the instantaneous velocity of the Earth in the Solar System, and the $y$-axis is defined by $\hat{\boldsymbol{y}}=\hat{\boldsymbol{z}}\times\hat{\boldsymbol{x}}$.
 %     This coordinate system generally does not align with the Earth's rotation axis, so the laboratory velocity is retained in all three spherical components, $v_r$, $v_\theta$, and $v_\varphi$.
 %     The gradient at the detector location therefore exhibits a daily modulation as the Earth rotates, as discussed in Section~\ref{sec:theory:earthALP:periodic}.
 %     \item \textbf{Azimuthal dependence} For modes with $m\neq 0$, the gradient has an azimuthal dependence.
@@ -533,7 +533,7 @@ With Equations~(\ref{eq:Bpseudo}, \ref{eq:gradient_Psi_sum}, \ref{eq:gradient_ps
     \Omega_a^{\oplus} = c\, g_\mathrm{aNN} \sqrt{\frac{N_a \hbar^3 c}{2 m_a}}\,\left|\left(\boldsymbol{\nabla}\psi_{nlm}\right)_\perp\right|
     \,,\label{eq:Omega_a_EH}
 \end{equation}
-where $\left|(\boldsymbol{\nabla}\psi_{nlm})_\perp\right|$ is the magnitude of the wavefunction gradient component perpendicular to the bias magnetic field $\mathbf{B}_0$ [i.e., the $\hat{\boldsymbol{\theta}}$ and $\hat{\boldsymbol{\varphi}}$ terms from Equation~\eqref{eq:gradient_psi_nlm}].
+where $\left|(\boldsymbol{\nabla}\psi_{nlm})_\perp\right|$ is the magnitude of the wavefunction gradient component perpendicular to the bias magnetic field $\boldsymbol{B}_0$ [i.e., the $\hat{\boldsymbol{\theta}}$ and $\hat{\boldsymbol{\varphi}}$ terms from Equation~\eqref{eq:gradient_psi_nlm}].
 Using the numerical values of the wavefunction gradients, the value can be obtained as
 \begin{equation}
     \Omega_a^{\oplus}
@@ -614,9 +614,9 @@ Therefore, the exact value of the coherence time is not always needed for the an
 \subsection{Periodic modulations}\label{sec:theory:earthALP:periodic}
 
 The Earth-bound ALP wavefunction $\psi_{nlm}$ is defined in the Earth-centered frame introduced above.
-% with the quantization axis (the $z$-axis) arbitrarily chosen along the Earth--Sun line, the $x$-axis along the instantaneous velocity of the Earth in the Solar System, and $\hat{\mathbf{y}}=\hat{\mathbf{z}}\times\hat{\mathbf{x}}$.
+% with the quantization axis (the $z$-axis) arbitrarily chosen along the Earth--Sun line, the $x$-axis along the instantaneous velocity of the Earth in the Solar System, and $\hat{\boldsymbol{y}}=\hat{\boldsymbol{z}}\times\hat{\boldsymbol{x}}$.
 A Cartesian coordinate system is chosen with the quantization axis,
-$\hat{\mathbf{z}}$, along the Earth--Sun line, the $\hat{\mathbf{x}}$-axis along Earth's instantaneous velocity in the Solar System, and $\hat{\mathbf{y}}=\hat{\mathbf{z}}\times\hat{\mathbf{x}}$.
+$\hat{\boldsymbol{z}}$, along the Earth--Sun line, the $\hat{\boldsymbol{x}}$-axis along Earth's instantaneous velocity in the Solar System, and $\hat{\boldsymbol{y}}=\hat{\boldsymbol{z}}\times\hat{\boldsymbol{x}}$.
 Since the gravitational potential is spherically symmetric, the choice of coordinate axes is arbitrary.
 This frame is generally not aligned with the Earth's rotation axis.
 As the Earth rotates, the orientation of the component of $\boldsymbol{\nabla}a$ at any given location therefore exhibits a daily modulation.

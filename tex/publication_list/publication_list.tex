@@ -1,0 +1,94 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[american]{babel}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\setstretch{1.1}
+\usepackage{fontspec}
+\usepackage[ttscale=0.85]{libertine}
+\setmonofont{Latin Modern Mono}[Scale=MatchLowercase]
+\newfontfamily\chinesefont{SimSun}
+\newcommand{\chinesetext}[1]{{\chinesefont #1}}
+\usepackage{microtype}
+\usepackage{csquotes}
+\usepackage{titlesec}
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{1.2em}{0.6em}
+\usepackage[
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+]{hyperref}
+\usepackage{enumitem}
+\usepackage[
+    backend=biber,
+    style=ieee,
+    sorting=ydnt,
+    uniquename=false,
+    maxnames=99,
+    minnames=99,
+    doi=true,
+    url=false,
+    eprint=false
+]{biblatex}
+
+\IfFileExists{tex/references.bib}
+    {\addbibresource{tex/references.bib}}
+    {\addbibresource{../references.bib}}
+
+\begin{document}
+
+
+% ---------- Header ----------
+\begin{center}
+{\Large \textbf{Publication List -- Yuzhe Zhang}} \\[0.3em]
+\today{}\\
+\end{center}
+
+\vspace{0.5em}
+
+% ---------- Sections ----------
+\section*{Personal Information}
+
+% \noindent\textbf{Date and place of birth:} January 10, 1998 (Jiangsu, China) \\
+% \textbf{Nationality:} Chinese \\
+\noindent\textbf{Address:} GSI Helmholtz Institute Mainz, Staudingerweg 18, 55128 Mainz, Germany \\
+\textbf{Email:} yuhzhang@uni-mainz.de
+
+\noindent\textbf{ORCID:} \href{https://orcid.org/0009-0006-6082-9066}{\texttt{0009-0006-6082-9066}}
+
+\noindent\textbf{Google Scholar:} \href{https://scholar.google.com/citations?user=tPAwEPsAAAAJ&hl=en&oi=sra}{scholar.google.com/citations?user=tPAwEPsAAAAJ}
+
+\section*{Journal Articles}
+\begin{enumerate}
+    \item \fullcite{Yuzhe2023_FrequencyScanning}
+    \item \fullcite{Walter2023_shimming}
+    \item \fullcite{Walter2025_CASPErLFthermal}
+    \item \fullcite{YGK2026_CavityLumpedSpin}
+    \item \fullcite{XingYulin2020Electroreduction}
+\end{enumerate}
+
+\section*{Preprint}
+\begin{enumerate}
+    \item \fullcite{Zhang2026_axionbloch}
+\end{enumerate}
+
+\section*{Software}
+\begin{enumerate}
+    \item \fullcite{Zhang2026_repoAxionBloch}
+\end{enumerate}
+
+\section*{Educational Publication}
+\begin{enumerate}
+    \item \fullcite{ZhangBudker2024viewgraphs}
+    \item \fullcite{budker_2026_PresentationsCHN}
+\end{enumerate}
+
+\section*{Manuscripts in Preparation}
+\begin{enumerate}
+    \item \fullcite{Gao2025_EarthDM}
+    \item \fullcite{Walter2026_CASPErDo}
+\end{enumerate}
+
+\end{document}

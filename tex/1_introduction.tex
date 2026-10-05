@@ -80,17 +80,17 @@ In comparison to the thermal-equilibrium magnetization of \SI{1e-8}{\ampere/\met
 With lower nuclear polarization or a smaller sample volume, the SPN can become a limiting factor for the sensitivity of the experiment.
 
 \subsection{Bloch equations}\label{sec:intro:bloch_eq}
-The evolution of the nuclear spin magnetization $\mathbf{M}$ in magnetic fields is governed by the Bloch equations\,\cite{Abragam1961_NuclearMagnetism}:
+The evolution of the nuclear spin magnetization $\boldsymbol{M}$ in magnetic fields is governed by the Bloch equations\,\cite{Abragam1961_NuclearMagnetism}:
 \begin{align}
-    \frac{dM_x}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_x - \frac{M_x}{T_2}
+    \frac{dM_x}{dt} &= \gamma\left(\boldsymbol{M}\times\boldsymbol{B}_\mathrm{eff}\right)_x - \frac{M_x}{T_2}
     \,,\label{eq:bloch_x}\\
-    \frac{dM_y}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_y - \frac{M_y}{T_2}
+    \frac{dM_y}{dt} &= \gamma\left(\boldsymbol{M}\times\boldsymbol{B}_\mathrm{eff}\right)_y - \frac{M_y}{T_2}
     \,,\label{eq:bloch_y}\\
-    \frac{dM_z}{dt} &= \gamma\left(\mathbf{M}\times\mathbf{B}_\mathrm{eff}\right)_z - \frac{M_z-M_\mathrm{eqb}}{T_1}
+    \frac{dM_z}{dt} &= \gamma\left(\boldsymbol{M}\times\boldsymbol{B}_\mathrm{eff}\right)_z - \frac{M_z-M_\mathrm{eqb}}{T_1}
     \,,\label{eq:bloch_z}
 \end{align}
-where $\mathbf{B}_\mathrm{eff}$ is the total effective field, $M_\mathrm{eqb}$ is the equilibrium magnetization, and $T_1$, $T_2$ are the longitudinal and transverse relaxation times.
-In most NMR experiments, the bias magnetic field $\mathbf{B}_0$ is much larger than any other applied magnetic field.
+where $\boldsymbol{B}_\mathrm{eff}$ is the total effective field, $M_\mathrm{eqb}$ is the equilibrium magnetization, and $T_1$, $T_2$ are the longitudinal and transverse relaxation times.
+In most NMR experiments, the bias magnetic field $\boldsymbol{B}_0$ is much larger than any other applied magnetic field.
 Therefore, the equations are most efficiently solved in the rotating coordinate frame (RCF), which removes the fast Larmor precession at $\nu_L$ in the laboratory frame and exposes the much slower dynamics induced by the additional fields.
 
 \subsection{Relaxations}\label{sec:intro:NMR:relaxation}
@@ -185,7 +185,7 @@ These are also referred to as $\SI{90}{\degree}$ and $\SI{180}{\degree}$ pulses 
 
 \subsubsection{Free decay}\label{sec:intro:NMR:scheme:1Pulse}
 After a $\pi/2$ pulse, the magnetization is tipped into the transverse plane and then decays with the relaxation time $T_2^*$.
-The resulting free-decay signal has an exponential envelope ($\exp(-t/T_2^*)$) and can be used to measure $T_2^*$ and the Larmor frequency.
+The resulting free-decay signal has an exponential envelope ($e^{-t/T_2^*}$) and can be used to measure $T_2^*$ and the Larmor frequency.
 The process is illustrated in Figure~\ref{fig:pulsed_NMR-schematic}.
 \begin{figure}
     \centering
@@ -318,11 +318,11 @@ Therefore, the amplitude of the ALP field can be approximated as uniform over th
 
 The ALP field of a single free ALP mode can be written as a real field:
 \begin{align}
-     a(\mathbf{r},t)
+     a(\boldsymbol{r},t)
      &=\sqrt{\frac{\hbar^3c}{2 m_a}}\,
-      \left(\Psi(\mathbf{r},t) + \Psi^*(\mathbf{r},t)\right)\\
+      \left(\Psi(\boldsymbol{r},t) + \Psi^*(\boldsymbol{r},t)\right)\\
     &=\sqrt{\frac{2\hbar^3c}{m_a}}\,
-      \Re\left[\Psi(\mathbf{r},t)\right]
+      \Re\left[\Psi(\boldsymbol{r},t)\right]
     \,,\label{eq:ALP_single_wavefunction}
 \end{align}
 where $\Psi$ is the wavefunction of a single ALP.
@@ -342,26 +342,26 @@ If the ALP is the dominant dark-matter component, $\rho_a$ is close to the local
 For ALP masses relevant to this thesis, $m_a \leq \SI{2.5}{\micro\electronvolt}$ and velocities $v_a \leq v_\mathrm{esc} = \SI{550}{\km/\s}$, the occupation number is $N_a \geq \SI{3e27}{}$, much larger than unity\,\cite{Zhang2026_Dissertation_ipynb_1_introduction}.
 Therefore, what is measured in the experiment is the collective effect of many ALPs instead of rare single-particle events.
 % The ensemble is coherent over a length scale set by the de~Broglie wavelength.
-% Its phase and spatial structure can be described by a complex wavefunction $\Psi(\mathbf{r},t)$, which may contain one or more occupied modes.
+% Its phase and spatial structure can be described by a complex wavefunction $\Psi(\boldsymbol{r},t)$, which may contain one or more occupied modes.
 
 For $N_a$ ALPs that are collectively described by a wavefunction normalized as $\int|\Psi|^2\,d^3r=1$, the associated scalar field is the appropriately scaled real part of the wavefunction, as in Equation~\eqref{eq:ALP_single_wavefunction}:
 \begin{equation}
-    a(\mathbf{r},t)
+    a(\boldsymbol{r},t)
     =\sqrt{\frac{2N_a\hbar^3c}{m_a}}\,
-      \Re\left[\Psi(\mathbf{r},t)\right]
+      \Re\left[\Psi(\boldsymbol{r},t)\right]
     \,.\label{eq:a0_Psi_real}
 \end{equation}
-The local, time-averaged energy density is $\rho_a=m_a c^2N_a\langle|\Psi(\mathbf{r},t)|^2\rangle_t$, where $\langle|\Psi(\mathbf{r},t)|^2\rangle_t$ denotes the time average.
+The local, time-averaged energy density is $\rho_a=m_a c^2N_a\langle|\Psi(\boldsymbol{r},t)|^2\rangle_t$, where $\langle|\Psi(\boldsymbol{r},t)|^2\rangle_t$ denotes the time average.
 Eliminating $N_a$ gives
 \begin{align}
-    a(\mathbf{r},t)
+    a(\boldsymbol{r},t)
     &=\sqrt{\frac{2\hbar^3\rho_a}{m_a^2c}}\,
-      \frac{\Re\left[\Psi(\mathbf{r},t)\right]}
-      {\langle|\Psi(\mathbf{r},t)|^2\rangle_t^{1/2}}
+      \frac{\Re\left[\Psi(\boldsymbol{r},t)\right]}
+      {\langle|\Psi(\boldsymbol{r},t)|^2\rangle_t^{1/2}}
       \notag\\
     &=a_0\,
-      \frac{\Re\left[\Psi(\mathbf{r},t)\right]}
-      {\langle|\Psi(\mathbf{r},t)|^2\rangle_t^{1/2}}
+      \frac{\Re\left[\Psi(\boldsymbol{r},t)\right]}
+      {\langle|\Psi(\boldsymbol{r},t)|^2\rangle_t^{1/2}}
     \,,\label{eq:a0_rhoDM_Psi_real}
 \end{align}
 where
@@ -376,16 +376,16 @@ is the local field amplitude.
 % \subsubsection{Coherent and stochastic fields}
 If all $N_a$ ALPs occupy the same mode, the corresponding local field takes the plane-wave form
 \begin{equation}
-    a(\mathbf{r},t)
-    =a_0\cos\left(2\pi\nu_a t-\mathbf{k}\cdot\mathbf{r}+\phi\right)
+    a(\boldsymbol{r},t)
+    =a_0\cos\left(2\pi\nu_a t-\boldsymbol{k}\cdot\boldsymbol{r}+\phi\right)
     \,\label{eq:ALP_field}
 \end{equation}
 over a region where the ALP density can be treated as uniform.
 A realistic ALP wavefunction generally contains many modes and may be written as
 \begin{equation}
-    \Psi(\mathbf{r},t)
+    \Psi(\boldsymbol{r},t)
     =\sum_j C_j
-    \exp\left[-i\left(2\pi\nu_jt-\mathbf{k}_j\cdot\mathbf{r}+\phi_j\right)\right]
+    \exp\left[-i\left(2\pi\nu_jt-\boldsymbol{k}_j\cdot\boldsymbol{r}+\phi_j\right)\right]
     \,.\label{eq:ALP_sum}
 \end{equation}
 The coefficients $C_j$ encode the populations of the modes and are fixed by the normalization of $\Psi$.
@@ -404,14 +404,14 @@ All three effects oscillate at a frequency set primarily by the ALP mass and can
 This thesis focuses on the gradient coupling to nucleons, also known as the ``ALP-wind'' coupling.
 The nucleon Hamiltonian in the presence of an ALP field background can be written as
 \begin{equation}
-    H_{\mathrm{aNN}} = c g_{\mathrm{aNN}}\,{\boldsymbol\nabla}a\cdot\mathbf{I}
+    H_{\mathrm{aNN}} = c g_{\mathrm{aNN}}\,{\boldsymbol\nabla}a\cdot\boldsymbol{I}
     \,,\label{eq:HaNN}
 \end{equation}
-where $g_{\mathrm{aNN}}$ is the coupling strength in $\SI{}{\GeV^{-1}}$ and $\mathbf{I}$ is the nuclear spin operator.
-% For spin-$1/2$ nuclei, $\mathbf{I} = \hbar {\boldsymbol\sigma_n}/2$, where ${\boldsymbol\sigma_n}$ is the dimensionless Pauli spin operator.
+where $g_{\mathrm{aNN}}$ is the coupling strength in $\SI{}{\GeV^{-1}}$ and $\boldsymbol{I}$ is the nuclear spin operator.
+% For spin-$1/2$ nuclei, $\boldsymbol{I} = \hbar {\boldsymbol\sigma_n}/2$, where ${\boldsymbol\sigma_n}$ is the dimensionless Pauli spin operator.
 In this form of the Hamiltonian, $g_{\mathrm{aNN}} a_0$ becomes dimensionless.
 The amplitude $a_0$ is fixed by the local dark-matter density through Equation~\eqref{eq:a0_rhoDM} and has dimensions of energy.
-In some papers, the nuclear spin operator $\mathbf{I}$ is written as $\hbar {\boldsymbol\sigma_n}/2$, where ${\boldsymbol\sigma_n}$ is the dimensionless Pauli spin operator.
+In some papers, the nuclear spin operator $\boldsymbol{I}$ is written as $\hbar {\boldsymbol\sigma_n}/2$, where ${\boldsymbol\sigma_n}$ is the dimensionless Pauli spin operator.
 
 
 % The rms Rabi frequency of the pseudomagnetic field can be found by the Hamiltonian in Equation~\eqref{eq:HaNN}\,\cite{Centers2021Stochastic,Yuzhe2023_FrequencyScanning}
@@ -423,7 +423,7 @@ In some papers, the nuclear spin operator $\mathbf{I}$ is written as $\hbar {\bo
 %     \Omega_a = \dfrac{1}{2\hbar} c g_\mathrm{aNN} a_0 m_a v_{\bot} = \dfrac{1}{2} g_{\mathrm{aNN}} \sqrt{2\hbar c \rho_{DM}} v_{\bot}
 %     \,,\label{eq:Omega_a_MW}
 % \end{equation}
-% where $v_{\bot}$ is the component of the ALP-detector relative velocity perpendicular to $\mathbf{B}_0$.
+% where $v_{\bot}$ is the component of the ALP-detector relative velocity perpendicular to $\boldsymbol{B}_0$.
 % Taking $v_{\bot} = \SI{220}{\km\per\second}$, we have $\Omega_a/2\pi = g_{\mathrm{aNN}} \times \SI{0.2}{\GeV\cdot\Hz}$.
 % For $g_{\mathrm{aNN}} \lesssim 10^{-10}\,\SI{}{\GeV^{-1}}$, the Rabi period $2\pi/\Omega_a \gtrsim 1000\,\mathrm{yr}$, confirming that the ALP field is a weak drive on the spins.
 % \YZ{What about that factor of one half?
@@ -466,7 +466,7 @@ The CASPEr-Gradient-Highfield experiment uses a 0-to-\SI{14.1}{\tesla} magnet to
 
 A conceptual diagram of the LowField apparatus is shown in Figure~\ref{fig:CASPEr_Apparatus}.
 The cryostat contains a liquid helium (L\ch{He}) reservoir, excitation and pickup coils, and a SQUID magnetometer.
-A superconducting magnet produces the bias magnetic field $\mathbf{B}_0$, which sets the Larmor frequency and can be varied to scan ALP masses.
+A superconducting magnet produces the bias magnetic field $\boldsymbol{B}_0$, which sets the Larmor frequency and can be varied to scan ALP masses.
 
 % resonance and broadband scheme
 The resonance scheme is the main search strategy for CASPEr-Gradient-LowField.
